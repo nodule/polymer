@@ -16,10 +16,12 @@
     "url": "https://github.com/nodule/polymer/issues"
   },
   "homepage": "https://github.com/nodule/polymer",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "polymer-context-free-parser": "git://github.com/Polymer/context-free-parser"
   },
-  "devDependencies": {
-    "dot-object": "^0.4.1"
+  "chix": {
+    "name": "polymer",
+    "color": "rgb(126,56,139)"
   }
 }

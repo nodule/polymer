@@ -1,0 +1,10 @@
+{
+  "name": "core-menu",
+  "ns": "polymer",
+  "type": "polymer",
+  "description": "\n`core-menu` is a selector which styles to looks like a menu.\n\n    <core-menu selected=\"0\">\n      <core-item icon=\"settings\" label=\"Settings\"></core-item>\n      <core-item icon=\"dialog\" label=\"Dialog\"></core-item>\n      <core-item icon=\"search\" label=\"Search\"></core-item>\n    </core-menu>\n    \nWhen an item is selected the `core-selected` class is added to it.  The user can\nuse the class to add more stylings to the selected item.\n\n    core-item.core-selected {\n      color: red;\n    }\n\nThe `selectedItem` property references the selected item.\n\n    <core-menu selected=\"0\" selectedItem=\"{{item}}\">\n      <core-item icon=\"settings\" label=\"Settings\"></core-item>\n      <core-item icon=\"dialog\" label=\"Dialog\"></core-item>\n      <core-item icon=\"search\" label=\"Search\"></core-item>\n    </core-menu>\n\n    <div>selected label: {{item.label}}</div>\n\nThe `core-select` event signals selection change.\n\n    <core-menu selected=\"0\" on-core-select=\"{{selectAction}}\">\n      <core-item icon=\"settings\" label=\"Settings\"></core-item>\n      <core-item icon=\"dialog\" label=\"Dialog\"></core-item>\n      <core-item icon=\"search\" label=\"Search\"></core-item>\n    </core-menu>\n\n    ...\n\n    selectAction: function(e, detail) {\n      if (detail.isSelected) {\n        var selectedItem = detail.item;\n        ...\n      }\n    }\n\n",
+  "ports": {
+    "input": {},
+    "output": {}
+  }
+}

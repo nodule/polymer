@@ -1,0 +1,10 @@
+{
+  "name": "core-drag-drop",
+  "ns": "polymer",
+  "type": "polymer",
+  "description": "\n",
+  "ports": {
+    "input": {},
+    "output": {}
+  }
+}

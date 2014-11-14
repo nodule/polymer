@@ -1,0 +1,10 @@
+{
+  "name": "paper-dropdown",
+  "ns": "polymer",
+  "type": "polymer",
+  "description": "\n\n`paper-dropdown` is a `core-dropdown` with a `paper-shadow`. By default, it\nis animated on open with `paper-dropdown-transition`. Use this element with\n`paper-dropdown-menu` or `paper-menu-button` to implement UI controls that\nopen a drop-down.\n\nExample:\n\n    <paper-dropdown>\n      Hi!\n    </paper-dropdown>\n\nTheming\n-------\n\nStyle the background color of the dropdown with these selectors:\n\n    paper-dropdown::shadow #ripple,\n    paper-dropdown::shadow #background {\n        background-color: green;\n    }\n\n",
+  "ports": {
+    "input": {},
+    "output": {}
+  }
+}

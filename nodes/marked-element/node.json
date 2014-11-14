@@ -1,0 +1,10 @@
+{
+  "name": "marked-element",
+  "ns": "polymer",
+  "type": "polymer",
+  "description": "\nElement wrapper for the `marked` (http://marked.org/) library.\n\n",
+  "ports": {
+    "input": {},
+    "output": {}
+  }
+}

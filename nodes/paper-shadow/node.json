@@ -1,0 +1,23 @@
+{
+  "name": "paper-shadow",
+  "ns": "polymer",
+  "type": "polymer",
+  "description": "\n\n`paper-shadow` is a container that renders two shadows on top of each other to\ncreate the effect of a lifted piece of paper.\n\nExample:\n\n    <paper-shadow z=\"1\">\n      ... card content ...\n    </paper-shadow>\n\n",
+  "ports": {
+    "input": {
+      "z": {
+        "name": "z",
+        "description": "\nThe z-depth of this shadow, from 0-5. Setting this property\nafter element creation has no effect. Use `setZ()` instead.\n\n",
+        "type": "number",
+        "default": "1"
+      },
+      "animated": {
+        "name": "animated",
+        "description": "\nSet this to true to animate the shadow when setting a new\n`z` value.\n\n",
+        "type": "boolean",
+        "default": "false"
+      }
+    },
+    "output": {}
+  }
+}

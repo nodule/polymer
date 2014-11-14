@@ -1,0 +1,10 @@
+{
+  "name": "Entity",
+  "ns": "polymer",
+  "type": "polymer",
+  "description": "**Undocumented**",
+  "ports": {
+    "input": {},
+    "output": {}
+  }
+}

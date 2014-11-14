@@ -1,0 +1,22 @@
+{
+  "name": "nodule-polymer",
+  "main": "index.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/nodule/polymer",
+  "authors": [
+    "Rob Halff <rob.halff@gmail.com>"
+  ],
+  "description": "Polymer for chix",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "core-elements": "Polymer/core-elements#~0.5.1",
+    "paper-elements": "Polymer/paper-elements#~0.5.1"
+  }
+}

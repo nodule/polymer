@@ -1,0 +1,10 @@
+{
+  "name": "core-animation-prop",
+  "ns": "polymer",
+  "type": "polymer",
+  "description": "\n`core-animation-prop` represents a CSS property and value pair to use with\n`core-animation-keyframe`.\n\n",
+  "ports": {
+    "input": {},
+    "output": {}
+  }
+}

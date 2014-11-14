@@ -1,0 +1,83 @@
+{
+  "name": "core-drawer-panel",
+  "ns": "polymer",
+  "type": "polymer",
+  "description": "\n`core-drawer-panel` contains a drawer panel and a main panel.  The drawer\nand the main panel are side-by-side with drawer on the left.  When browser\nwindow size is smaller than the `responsiveWidth`, `core-drawer-panel`\nchanges to narrow layout.  In narrow layout, the drawer will be stacked on top\nof the main panel.  The drawer will be slided in/out to hide/reveal the main\npanel.\n\nUse the attribute `drawer` to indicate the element is a drawer panel and\n`main` to indicate is a main panel.\n\nExample:\n\n    <core-drawer-panel>\n      <div drawer> Drawer panel... </div>\n      <div main> Main panel... </div>\n    </core-drawer-panel>\n\nThe drawer and the main panels are not scrollable.  You can set CSS overflow\nproperty on the elements to make them scrollable or use `core-header-panel`.\n\nExample:\n\n    <core-drawer-panel>\n      <core-header-panel drawer>\n        <core-toolbar></core-toolbar>\n        <div> Drawer content... </div>\n      </core-header-panel>\n      <core-header-panel main>\n        <core-toolbar></core-toolbar>\n        <div> Main content... </div>\n      </core-header-panel>\n    </core-drawer-panel>\n\nAn element that should toggle the drawer will automatically do so if it's \ngiven the `core-drawer-toggle` attribute.  Also this element will automatically\nbe hidden in wide layout.\n\nExample:\n\n    <core-drawer-panel>\n      <core-header-panel drawer>\n        <core-toolbar>\n          <div>Application</div>\n        </core-toolbar>\n        <div> Drawer content... </div>\n      </core-header-panel>\n      <core-header-panel main>\n        <core-toolbar>\n          <core-icon-button icon=\"menu\" core-drawer-toggle></core-icon-button>\n          <div>Title</div>\n        </core-toolbar>\n        <div> Main content... </div>\n      </core-header-panel>\n    </core-drawer-panel>\n\nTo position the drawer to the right, add `rightDrawer` attribute.\n\n    <core-drawer-panel rightDrawer>\n      <div drawer> Drawer panel... </div>\n      <div main> Main panel... </div>\n    </core-drawer-panel>\n\n",
+  "ports": {
+    "input": {
+      "drawerWidth": {
+        "name": "drawerWidth",
+        "description": "\nWidth of the drawer panel.\n\n",
+        "type": "string",
+        "default": "'256px'"
+      },
+      "responsiveWidth": {
+        "name": "responsiveWidth",
+        "description": "\nMax-width when the panel changes to narrow layout.\n\n",
+        "type": "string",
+        "default": "'640px'"
+      },
+      "selected": {
+        "name": "selected",
+        "description": "\nThe panel that is being selected. `drawer` for the drawer panel and\n`main` for the main panel.\n\n",
+        "type": "string",
+        "default": "null"
+      },
+      "defaultSelected": {
+        "name": "defaultSelected",
+        "description": "\nThe panel to be selected when `core-drawer-panel` changes to narrow\nlayout.\n\n",
+        "type": "string",
+        "default": "'main'"
+      },
+      "narrow": {
+        "name": "narrow",
+        "description": "\nReturns true if the panel is in narrow layout.  This is useful if you\nneed to show/hide elements based on the layout.\n\n",
+        "type": "boolean",
+        "default": "false"
+      },
+      "rightDrawer": {
+        "name": "rightDrawer",
+        "description": "\nIf true, position the drawer to the right.\n\n",
+        "type": "boolean",
+        "default": "false"
+      },
+      "disableSwipe": {
+        "name": "disableSwipe",
+        "description": "\nIf true, swipe to open/close the drawer is disabled.\n\n",
+        "type": "boolean",
+        "default": "false"
+      },
+      "forceNarrow": {
+        "name": "forceNarrow",
+        "description": "\nIf true, ignore `responsiveWidth` setting and force the narrow layout.\n\n",
+        "type": "boolean",
+        "default": "false"
+      },
+      "togglePanel": {
+        "name": "togglePanel",
+        "description": "\nToggles the panel open and closed.\n\n"
+      },
+      "openDrawer": {
+        "name": "openDrawer",
+        "description": "\nOpens the drawer.\n\n"
+      },
+      "closeDrawer": {
+        "name": "closeDrawer",
+        "description": "\nCloses the drawer.\n\n"
+      }
+    },
+    "output": {
+      "core-responsive-change": {
+        "name": "core-responsive-change",
+        "description": "\nFired when the narrow layout changes.\n\n",
+        "params": [
+          {
+            "type": "boolean",
+            "name": "detail.narrow",
+            "description": "true if the panel is in narrow layout."
+          }
+        ]
+      }
+    }
+  }
+}

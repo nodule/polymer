@@ -72,7 +72,7 @@ g.on('match', function(file) {
       }
 
       // only write if there are any ports.
-      if (Object.keys(nD.ports.input) || Object.keys(nD.ports.output)) {
+      if (Object.keys(nD.ports.input).length || Object.keys(nD.ports.output).length) {
         if (!fs.existsSync('./nodes/' + basename)) {
           fs.mkdirSync('./nodes/' + basename);
         }

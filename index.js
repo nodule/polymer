@@ -5,8 +5,6 @@ var glob = require('glob');
 var path = require('path');
 var d = require('dot-object')();
 
-var file = './bower_components/core-scaffold/core-scaffold.html';
-
 /**
  *
  * Todo: some packages define multiple components.

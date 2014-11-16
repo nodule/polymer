@@ -28,5 +28,8 @@
         "description": "\nFired when a page transition completes.\n\n"
       }
     }
+  },
+  "require": {
+    "core-animated-pages": "github.com/Polymer/core-animated-pages/bower#master"
   }
 }

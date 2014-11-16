@@ -24,5 +24,8 @@
         "description": "\nFired when a keycombo in `keys` is pressed.\n\n"
       }
     }
+  },
+  "require": {
+    "core-a11y-keys": "github.com/Polymer/core-a11y-keys/bower#master"
   }
 }

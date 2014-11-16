@@ -102,5 +102,8 @@
         "description": "\nFired whenever a response or an error is received.\n\n"
       }
     }
+  },
+  "require": {
+    "core-ajax": "github.com/Polymer/core-ajax/bower#master"
   }
 }

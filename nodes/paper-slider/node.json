@@ -52,5 +52,8 @@
         "description": "\nFired when the slider's value changes due to user interaction.\n\nChanges to the slider's value due to changes in an underlying\nbound variable will not trigger this event.\n\n"
       }
     }
+  },
+  "require": {
+    "paper-slider": "github.com/Polymer/paper-slider/bower#master"
   }
 }

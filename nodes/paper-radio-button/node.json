@@ -40,5 +40,8 @@
         "description": "\nFired when the checked state changes.\n\n"
       }
     }
+  },
+  "require": {
+    "paper-radio-button": "github.com/Polymer/paper-radio-button/bower#master"
   }
 }

@@ -80,5 +80,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "core-iconset": "github.com/Polymer/core-iconset/bower#master"
   }
 }

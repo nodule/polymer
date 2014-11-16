@@ -19,5 +19,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "core-doc-viewer": "github.com/Polymer/core-doc-viewer/bower#master"
   }
 }

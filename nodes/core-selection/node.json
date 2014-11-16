@@ -53,5 +53,8 @@
         ]
       }
     }
+  },
+  "require": {
+    "core-selection": "github.com/Polymer/core-selection/bower#master"
   }
 }

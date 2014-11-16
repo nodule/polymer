@@ -25,5 +25,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "paper-fab": "github.com/Polymer/paper-fab/bower#master"
   }
 }

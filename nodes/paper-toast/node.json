@@ -75,5 +75,8 @@
         "description": "\nFired when the `paper-toast` has completely closed.\n\n"
       }
     }
+  },
+  "require": {
+    "paper-toast": "github.com/Polymer/paper-toast/bower#master"
   }
 }

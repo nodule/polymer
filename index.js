@@ -38,6 +38,9 @@ g.on('match', function(file) {
         input: {},
         output: {}
       };
+      nD.require = {};
+      nD.require[def.name] =
+        'github.com/Polymer/' + def.name + '/bower#master';
 
       if (def.attributes) {
 

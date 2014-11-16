@@ -13,5 +13,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "core-label": "github.com/Polymer/core-label/bower#master"
   }
 }

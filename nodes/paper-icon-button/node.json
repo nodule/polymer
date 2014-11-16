@@ -19,5 +19,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "paper-icon-button": "github.com/Polymer/paper-icon-button/bower#master"
   }
 }

@@ -31,5 +31,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "core-splitter": "github.com/Polymer/core-splitter/bower#master"
   }
 }

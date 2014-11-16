@@ -45,5 +45,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "core-iconset-svg": "github.com/Polymer/core-iconset-svg/bower#master"
   }
 }

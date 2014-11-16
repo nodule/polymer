@@ -61,5 +61,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "core-image": "github.com/Polymer/core-image/bower#master"
   }
 }

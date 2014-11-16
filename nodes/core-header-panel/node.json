@@ -30,5 +30,8 @@
         "description": "\nFired when the content has been scrolled.  `event.detail.target` returns\nthe scrollable element which you can use to access scroll info such as\n`scrollTop`.\n\n    <core-header-panel on-scroll=\"{{scrollHandler}}\">\n      ...\n    </core-header-panel>\n\n\n    scrollHandler: function(event) {\n      var scroller = event.detail.target;\n      console.log(scroller.scrollTop);\n    }\n\n"
       }
     }
+  },
+  "require": {
+    "core-header-panel": "github.com/Polymer/core-header-panel/bower#master"
   }
 }

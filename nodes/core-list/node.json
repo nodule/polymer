@@ -152,5 +152,8 @@
         ]
       }
     }
+  },
+  "require": {
+    "core-list": "github.com/Polymer/core-list/bower#master"
   }
 }

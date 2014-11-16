@@ -28,5 +28,8 @@
         "description": "\nFired when the checked state changes.\n\n"
       }
     }
+  },
+  "require": {
+    "paper-toggle-button": "github.com/Polymer/paper-toggle-button/bower#master"
   }
 }

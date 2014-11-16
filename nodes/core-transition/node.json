@@ -94,5 +94,8 @@
         ]
       }
     }
+  },
+  "require": {
+    "core-transition": "github.com/Polymer/core-transition/bower#master"
   }
 }

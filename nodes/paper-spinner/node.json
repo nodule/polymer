@@ -13,5 +13,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "paper-spinner": "github.com/Polymer/paper-spinner/bower#master"
   }
 }

@@ -124,5 +124,8 @@
         ]
       }
     }
+  },
+  "require": {
+    "core-overlay": "github.com/Polymer/core-overlay/bower#master"
   }
 }

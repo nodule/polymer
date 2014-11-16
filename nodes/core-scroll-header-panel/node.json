@@ -68,5 +68,8 @@
         "description": "\nFired when the header is transformed.\n\n"
       }
     }
+  },
+  "require": {
+    "core-scroll-header-panel": "github.com/Polymer/core-scroll-header-panel/bower#master"
   }
 }

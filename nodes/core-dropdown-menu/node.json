@@ -25,5 +25,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "core-dropdown-menu": "github.com/Polymer/core-dropdown-menu/bower#master"
   }
 }

@@ -42,5 +42,8 @@
         ]
       }
     }
+  },
+  "require": {
+    "paper-dropdown-menu": "github.com/Polymer/paper-dropdown-menu/bower#master"
   }
 }

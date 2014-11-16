@@ -25,5 +25,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "core-icon": "github.com/Polymer/core-icon/bower#master"
   }
 }

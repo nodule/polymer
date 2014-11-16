@@ -31,5 +31,8 @@
         ]
       }
     }
+  },
+  "require": {
+    "paper-ripple": "github.com/Polymer/paper-ripple/bower#master"
   }
 }

@@ -56,5 +56,8 @@
         "description": "\nFired when the target element has been resized as a result of the opened\nstate changing.\n\n"
       }
     }
+  },
+  "require": {
+    "core-collapse": "github.com/Polymer/core-collapse/bower#master"
   }
 }

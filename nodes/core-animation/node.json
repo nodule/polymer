@@ -40,5 +40,8 @@
         "description": "\n\nFired when the web animation object changes.\n\n"
       }
     }
+  },
+  "require": {
+    "core-animation": "github.com/Polymer/core-animation/bower#master"
   }
 }

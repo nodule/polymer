@@ -37,5 +37,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "core-tooltip": "github.com/Polymer/core-tooltip/bower#master"
   }
 }

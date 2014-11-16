@@ -79,5 +79,8 @@
         ]
       }
     }
+  },
+  "require": {
+    "core-drawer-panel": "github.com/Polymer/core-drawer-panel/bower#master"
   }
 }

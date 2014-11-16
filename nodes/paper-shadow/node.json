@@ -19,5 +19,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "paper-shadow": "github.com/Polymer/paper-shadow/bower#master"
   }
 }

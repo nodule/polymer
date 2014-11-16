@@ -47,5 +47,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "paper-tabs": "github.com/Polymer/paper-tabs/bower#master"
   }
 }

@@ -23,5 +23,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "core-input": "github.com/Polymer/core-input/bower#master"
   }
 }

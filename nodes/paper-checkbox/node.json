@@ -15,5 +15,8 @@
         "description": "\nFired when the checked state changes.\n\n"
       }
     }
+  },
+  "require": {
+    "paper-checkbox": "github.com/Polymer/paper-checkbox/bower#master"
   }
 }

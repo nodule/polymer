@@ -11,5 +11,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "core-layout-trbl": "github.com/Polymer/core-layout-trbl/bower#master"
   }
 }

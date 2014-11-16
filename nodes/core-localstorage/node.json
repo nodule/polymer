@@ -40,5 +40,8 @@
         "description": "\nFired when a value is loaded from localStorage.\n"
       }
     }
+  },
+  "require": {
+    "core-localstorage": "github.com/Polymer/core-localstorage/bower#master"
   }
 }

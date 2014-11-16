@@ -25,5 +25,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "core-item": "github.com/Polymer/core-item/bower#master"
   }
 }

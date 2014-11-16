@@ -141,5 +141,8 @@
         ]
       }
     }
+  },
+  "require": {
+    "core-selector": "github.com/Polymer/core-selector/bower#master"
   }
 }

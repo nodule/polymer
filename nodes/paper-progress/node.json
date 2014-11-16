@@ -19,5 +19,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "paper-progress": "github.com/Polymer/paper-progress/bower#master"
   }
 }

@@ -25,5 +25,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "paper-input": "github.com/Polymer/paper-input/bower#master"
   }
 }

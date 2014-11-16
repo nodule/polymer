@@ -17,5 +17,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "sampler-scaffold": "github.com/Polymer/sampler-scaffold/bower#master"
   }
 }

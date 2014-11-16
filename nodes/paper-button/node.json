@@ -25,5 +25,8 @@
       }
     },
     "output": {}
+  },
+  "require": {
+    "paper-button": "github.com/Polymer/paper-button/bower#master"
   }
 }

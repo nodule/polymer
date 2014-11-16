@@ -3,6 +3,9 @@
   "ns": "polymer",
   "type": "polymer",
   "description": "\n`core-icon-button` is an icon with button behaviors.\n\n    <core-icon-button src=\"star.png\"></core-icon-button>\n\n`core-icon-button` includes a default icon set.  Use `icon` to specify \nwhich icon from the icon set to use.\n\n    <core-icon-button icon=\"menu\"></core-icon-button>\n\nSee [`core-iconset`](#core-iconset) for more information about \nhow to use a custom icon set.\n\n",
+  "require": {
+    "core-icon-button": "github.com/Polymer/core-icon-button/bower#master"
+  },
   "ports": {
     "input": {
       "src": {
@@ -25,8 +28,5 @@
       }
     },
     "output": {}
-  },
-  "require": {
-    "core-icon-button": "github.com/Polymer/core-icon-button/bower#master"
   }
 }

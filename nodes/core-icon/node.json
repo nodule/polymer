@@ -3,6 +3,9 @@
   "ns": "polymer",
   "type": "polymer",
   "description": "\n\nThe `core-icon` element displays an icon. By default an icon renders as a 24px square.\n\nExample using src:\n\n    <core-icon src=\"star.png\"></core-icon>\n\nExample setting size to 32px x 32px:\n\n    <core-icon class=\"big\" src=\"big_star.png\"></core-icon>\n\n    <style>\n      .big {\n        height: 32px;\n        width: 32px;\n      }\n    </style>\n\nThe core elements include several sets of icons. \nTo use the default set of icons, import  `core-icons.html` and use the `icon` attribute to specify an icon:\n\n    &lt;!-- import default iconset and core-icon --&gt;\n    <link rel=\"import\" href=\"/components/core-icons/core-icons.html\">\n\n    <core-icon icon=\"menu\"></core-icon>\n    \nTo use a different built-in set of icons, import  `core-icons/<iconset>-icons.html`, and\nspecify the icon as `<iconset>:<icon>`. For example:\n\n    &lt;!-- import communication iconset and core-icon --&gt;\n    <link rel=\"import\" href=\"/components/core-icons/communication-icons.html\">\n\n    <core-icon icon=\"communication:email\"></core-icon>\n    \nYou can also create custom icon sets of bitmap or SVG icons. \n\nExample of using an icon named `cherry` from a custom iconset with the ID `fruit`:\n\n    <core-icon icon=\"fruit:cherry\"></core-icon>\n\nSee [core-iconset](#core-iconset) and [core-iconset-svg](#core-iconset-svg) for more information about\nhow to create a custom iconset.\n\nSee [core-icons](http://www.polymer-project.org/components/core-icons/demo.html) for the default set of icons.\n\n",
+  "require": {
+    "core-icon": "github.com/Polymer/core-icon/bower#master"
+  },
   "ports": {
     "input": {
       "src": {
@@ -25,8 +28,5 @@
       }
     },
     "output": {}
-  },
-  "require": {
-    "core-icon": "github.com/Polymer/core-icon/bower#master"
   }
 }

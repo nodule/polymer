@@ -3,6 +3,9 @@
   "ns": "polymer",
   "type": "polymer",
   "description": "\n`core-drawer-panel` contains a drawer panel and a main panel.  The drawer\nand the main panel are side-by-side with drawer on the left.  When browser\nwindow size is smaller than the `responsiveWidth`, `core-drawer-panel`\nchanges to narrow layout.  In narrow layout, the drawer will be stacked on top\nof the main panel.  The drawer will be slided in/out to hide/reveal the main\npanel.\n\nUse the attribute `drawer` to indicate the element is a drawer panel and\n`main` to indicate is a main panel.\n\nExample:\n\n    <core-drawer-panel>\n      <div drawer> Drawer panel... </div>\n      <div main> Main panel... </div>\n    </core-drawer-panel>\n\nThe drawer and the main panels are not scrollable.  You can set CSS overflow\nproperty on the elements to make them scrollable or use `core-header-panel`.\n\nExample:\n\n    <core-drawer-panel>\n      <core-header-panel drawer>\n        <core-toolbar></core-toolbar>\n        <div> Drawer content... </div>\n      </core-header-panel>\n      <core-header-panel main>\n        <core-toolbar></core-toolbar>\n        <div> Main content... </div>\n      </core-header-panel>\n    </core-drawer-panel>\n\nAn element that should toggle the drawer will automatically do so if it's \ngiven the `core-drawer-toggle` attribute.  Also this element will automatically\nbe hidden in wide layout.\n\nExample:\n\n    <core-drawer-panel>\n      <core-header-panel drawer>\n        <core-toolbar>\n          <div>Application</div>\n        </core-toolbar>\n        <div> Drawer content... </div>\n      </core-header-panel>\n      <core-header-panel main>\n        <core-toolbar>\n          <core-icon-button icon=\"menu\" core-drawer-toggle></core-icon-button>\n          <div>Title</div>\n        </core-toolbar>\n        <div> Main content... </div>\n      </core-header-panel>\n    </core-drawer-panel>\n\nTo position the drawer to the right, add `rightDrawer` attribute.\n\n    <core-drawer-panel rightDrawer>\n      <div drawer> Drawer panel... </div>\n      <div main> Main panel... </div>\n    </core-drawer-panel>\n\n",
+  "require": {
+    "core-drawer-panel": "github.com/Polymer/core-drawer-panel/bower#master"
+  },
   "ports": {
     "input": {
       "drawerWidth": {
@@ -79,8 +82,5 @@
         ]
       }
     }
-  },
-  "require": {
-    "core-drawer-panel": "github.com/Polymer/core-drawer-panel/bower#master"
   }
 }

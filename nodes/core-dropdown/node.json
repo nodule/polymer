@@ -3,6 +3,9 @@
   "ns": "polymer",
   "type": "polymer",
   "description": "\n\n`core-dropdown` is an element that is initially hidden and is positioned relatively to another\nelement, usually the element that triggers the dropdown. The dropdown and the triggering element\nshould be children of the same offsetParent, e.g. the same `<div>` with `position: relative`.\nIt can be used to implement dropdown menus, menu buttons, etc..\n\nExample:\n\n    <template is=\"auto-binding\">\n      <div relative>\n        <core-icon-button id=\"trigger\" icon=\"menu\"></core-icon-button>\n        <core-dropdown relatedTarget=\"{{$.trigger}}\">\n          <core-menu>\n            <core-item>Cut</core-item>\n            <core-item>Copy</core-item>\n            <core-item>Paste</core-item>\n          </core-menu>\n        </core-dropdown>\n      </div>\n    </template>\n\nPositioning\n-----------\n\nBy default, the dropdown is absolutely positioned on top of the `relatedTarget` with the top and\nleft edges aligned. The `halign` and `valign` properties controls the various alignments. The size\nof the dropdown is automatically restrained such that it is entirely visible on the screen. Use the\n`margin`\n\nIf you need more control over the dropdown's position, use CSS. The `halign` and `valign` properties are\nignored if the dropdown is positioned with CSS.\n\nExample:\n\n    <style>\n      /* manually position the dropdown below the trigger */\n      core-dropdown {\n        position: absolute;\n        top: 38px;\n        left: 0;\n      }\n    </style>\n\n    <template is=\"auto-binding\">\n      <div relative>\n        <core-icon-button id=\"trigger\" icon=\"menu\"></core-icon-button>\n        <core-dropdown relatedTarget=\"{{$.trigger}}\">\n          <core-menu>\n            <core-item>Cut</core-item>\n            <core-item>Copy</core-item>\n            <core-item>Paste</core-item>\n          </core-menu>\n        </core-dropdown>\n      </div>\n    </template>\n\nThe `layered` property\n----------------------\n\nSometimes you may need to render the dropdown in a separate layer. For example,\nit may be nested inside an element that needs to be `overflow: hidden`, or\nits parent may be overlapped by elements above it in stacking order.\n\nThe `layered` property will place the dropdown in a separate layer to ensure\nit appears on top of everything else. Note that this implies the dropdown will\nnot scroll with its container.\n\n",
+  "require": {
+    "core-dropdown": "github.com/Polymer/core-dropdown/bower#master"
+  },
   "ports": {
     "input": {
       "relatedTarget": {
@@ -24,8 +27,5 @@
       }
     },
     "output": {}
-  },
-  "require": {
-    "core-dropdown": "github.com/Polymer/core-dropdown/bower#master"
   }
 }

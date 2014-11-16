@@ -3,6 +3,9 @@
   "ns": "polymer",
   "type": "polymer",
   "description": "\n\n`core-input` is an unstyled single-line input field. It extends the native\n`input` element.\n\nExample:\n\n    <input is=\"core-input\">\n\nThe input's value is considered \"committed\" if the user hits the \"enter\" key\nor blurs the input after changing the value. The committed value is stored in\nthe `committedValue` property.\n\nIf the input has `type = number`, this element will also prevent non-numeric characters\nfrom being typed into the text field.\n\nAccessibility\n-------------\n\nThe following ARIA attributes are set automatically:\n\n- `aria-label`: set to the `placeholder` attribute\n- `aria-disabled`: set if `disabled` is true\n\n",
+  "require": {
+    "core-input": "github.com/Polymer/core-input/bower#master"
+  },
   "ports": {
     "input": {
       "committedValue": {
@@ -23,8 +26,5 @@
       }
     },
     "output": {}
-  },
-  "require": {
-    "core-input": "github.com/Polymer/core-input/bower#master"
   }
 }

@@ -3,6 +3,9 @@
   "ns": "polymer",
   "type": "polymer",
   "description": "\n`paper-toggle-button` provides a ON/OFF switch that user can toggle the state\nby tapping or by dragging the swtich.\n\nExample:\n\n    <paper-toggle-button></paper-toggle-button>\n\nStyling toggle button:\n\nTo change the ink color for checked state:\n\n    paper-toggle-button::shadow paper-radio-button::shadow #ink[checked] {\n      color: #4285f4;\n    }\n    \nTo change the radio checked color:\n    \n    paper-toggle-button::shadow paper-radio-button::shadow #onRadio {\n      background-color: #4285f4;\n    }\n    \nTo change the bar color for checked state:\n\n    paper-toggle-button::shadow #toggleBar[checked] {\n      background-color: #4285f4;\n    }\n    \nTo change the ink color for unchecked state:\n\n    paper-toggle-button::shadow paper-radio-button::shadow #ink {\n      color: #b5b5b5;\n    }\n    \nTo change the radio unchecked color:\n    \n    paper-toggle-button::shadow paper-radio-button::shadow #offRadio {\n      border-color: #b5b5b5;\n    }\n\nTo change the bar color for unchecked state:\n\n    paper-toggle-button::shadow #toggleBar {\n      background-color: red;\n    }\n\n",
+  "require": {
+    "paper-toggle-button": "github.com/Polymer/paper-toggle-button/bower#master"
+  },
   "ports": {
     "input": {
       "checked": {
@@ -28,8 +31,5 @@
         "description": "\nFired when the checked state changes.\n\n"
       }
     }
-  },
-  "require": {
-    "paper-toggle-button": "github.com/Polymer/paper-toggle-button/bower#master"
   }
 }

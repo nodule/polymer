@@ -3,6 +3,9 @@
   "ns": "polymer",
   "type": "polymer",
   "description": "\n`core-splitter` provides a split bar and dragging on the split bar\nwill resize the sibling element.  Use its `direction` property to indicate\nwhich sibling element to be resized and the orientation.  Usually you would want\nto use `core-splitter` along with flex layout so that the other sibling\nelement can be _flexible_.\n\nExample:\n\n    <div horizontal layout>\n      <div>left</div>\n      <core-splitter direction=\"left\"></core-splitter>\n      <div flex>right</div>\n    </div>\n\nIn the above example, dragging the splitter will resize the _left_ element.  And\nsince the parent container is a flexbox and the _right_ element has\n`flex`, the _right_ element will be auto-resized.\n\nFor horizontal splitter set `direction` to `up` or `down`.\n\nExample:\n\n    <div vertical layout>\n      <div>top</div>\n      <core-splitter direction=\"up\"></core-splitter>\n      <div flex>bottom</div>\n    </div>\n\n",
+  "require": {
+    "core-splitter": "github.com/Polymer/core-splitter/bower#master"
+  },
   "ports": {
     "input": {
       "direction": {
@@ -31,8 +34,5 @@
       }
     },
     "output": {}
-  },
-  "require": {
-    "core-splitter": "github.com/Polymer/core-splitter/bower#master"
   }
 }

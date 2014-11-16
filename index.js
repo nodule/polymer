@@ -34,13 +34,13 @@ g.on('match', function(file) {
       nD.ns = 'polymer';
       nD.type = 'polymer';
       nD.description = def.description;
+      nD.require = {};
+      nD.require[def.name] =
+        'github.com/Polymer/' + def.name + '/bower#master';
       nD.ports = {
         input: {},
         output: {}
       };
-      nD.require = {};
-      nD.require[def.name] =
-        'github.com/Polymer/' + def.name + '/bower#master';
 
       if (def.attributes) {
 

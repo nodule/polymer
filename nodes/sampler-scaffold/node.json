@@ -3,6 +3,9 @@
   "ns": "polymer",
   "type": "polymer",
   "description": "\n`sampler-scaffold` provides a responsive layout for elements sampler.\n\nExampler:\n\n    <sampler-scaffold label=\"HTML Input Elements\">\n\n      <core-item label=\"String\" url=\"demos/string.html\"></core-item>\n      <core-item label=\"Checkbox\" url=\"demos/checkbox.html\"></core-item>\n      <core-item label=\"Radio\" url=\"demos/radio.html\"></core-item>\n      <core-item label=\"Range\" url=\"demos/range.html\"></core-item>\n      <core-item label=\"Color\" url=\"demos/color.html\"></core-item>\n    \n    </sampler-scaffold>\n\nUse `label` to set the sampler label and `responsiveWidth` to change the layout \nof the scaffold.\n\n",
+  "require": {
+    "sampler-scaffold": "github.com/Polymer/sampler-scaffold/bower#master"
+  },
   "ports": {
     "input": {
       "responsiveWidth": {
@@ -17,8 +20,5 @@
       }
     },
     "output": {}
-  },
-  "require": {
-    "sampler-scaffold": "github.com/Polymer/sampler-scaffold/bower#master"
   }
 }

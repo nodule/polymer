@@ -33,7 +33,7 @@ g.on('match', function(file) {
       nD.name = def.name;
       nD.ns = 'polymer';
       nD.type = 'polymer';
-      nD.description = def.description;
+      nD.description = def.description.trim();
       nD.require = {};
       nD.require[def.name] =
         'github.com/Polymer/' + def.name + '/bower#master';

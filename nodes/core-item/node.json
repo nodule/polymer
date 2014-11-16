@@ -2,7 +2,7 @@
   "name": "core-item",
   "ns": "polymer",
   "type": "polymer",
-  "description": "\n`core-item` is a simple line-item object: a label and/or an icon that can also \nact as a link.\n\nExample:\n\n    <core-item icon=\"settings\" label=\"Settings\"></core-item>\n    \nTo use as a link, put &lt;a&gt; element in the item.\n\nExample:\n\n    <core-item icon=\"settings\" label=\"Settings\">\n      <a href=\"#settings\" target=\"_self\"></a>\n    </core-item>\n\n",
+  "description": "`core-item` is a simple line-item object: a label and/or an icon that can also \nact as a link.\n\nExample:\n\n    <core-item icon=\"settings\" label=\"Settings\"></core-item>\n    \nTo use as a link, put &lt;a&gt; element in the item.\n\nExample:\n\n    <core-item icon=\"settings\" label=\"Settings\">\n      <a href=\"#settings\" target=\"_self\"></a>\n    </core-item>",
   "require": {
     "core-item": "github.com/Polymer/core-item/bower#master"
   },

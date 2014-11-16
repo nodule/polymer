@@ -2,7 +2,7 @@
   "name": "core-localstorage",
   "ns": "polymer",
   "type": "polymer",
-  "description": "\nElement access to localStorage.  The \"name\" property\nis the key to the data (\"value\" property) stored in localStorage.\n\n`core-localstorage` automatically saves the value to localStorage when\nvalue is changed.  Note that if value is an object auto-save will be\ntriggered only when value is a different instance.\n\n    <core-localstorage name=\"my-app-storage\" value=\"{{value}}\"></core-localstorage>\n\n",
+  "description": "Element access to localStorage.  The \"name\" property\nis the key to the data (\"value\" property) stored in localStorage.\n\n`core-localstorage` automatically saves the value to localStorage when\nvalue is changed.  Note that if value is an object auto-save will be\ntriggered only when value is a different instance.\n\n    <core-localstorage name=\"my-app-storage\" value=\"{{value}}\"></core-localstorage>",
   "require": {
     "core-localstorage": "github.com/Polymer/core-localstorage/bower#master"
   },

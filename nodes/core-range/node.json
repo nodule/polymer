@@ -2,7 +2,7 @@
   "name": "core-range",
   "ns": "polymer",
   "type": "polymer",
-  "description": "\nThe `core-range` element is used for managing a numeric value within a given \nrange.  It has no visual appearance and is typically used in conjunction with \nanother element.\n\nOne can build a progress bar using `core-range` like this:\n\n    <core-range min=\"0\" max=\"200\" value=\"100\" ratio=\"{{ratio}}\"></core-range>\n    <div class=\"progress-bar\" style=\"width: {{ratio}}%;\"></div>\n\n\n",
+  "description": "The `core-range` element is used for managing a numeric value within a given \nrange.  It has no visual appearance and is typically used in conjunction with \nanother element.\n\nOne can build a progress bar using `core-range` like this:\n\n    <core-range min=\"0\" max=\"200\" value=\"100\" ratio=\"{{ratio}}\"></core-range>\n    <div class=\"progress-bar\" style=\"width: {{ratio}}%;\"></div>",
   "require": {
     "core-range": "github.com/Polymer/core-range/bower#master"
   },

@@ -2,7 +2,7 @@
   "name": "paper-shadow",
   "ns": "polymer",
   "type": "polymer",
-  "description": "\n\n`paper-shadow` is a container that renders two shadows on top of each other to\ncreate the effect of a lifted piece of paper.\n\nExample:\n\n    <paper-shadow z=\"1\">\n      ... card content ...\n    </paper-shadow>\n\n",
+  "description": "`paper-shadow` is a container that renders two shadows on top of each other to\ncreate the effect of a lifted piece of paper.\n\nExample:\n\n    <paper-shadow z=\"1\">\n      ... card content ...\n    </paper-shadow>",
   "require": {
     "paper-shadow": "github.com/Polymer/paper-shadow/bower#master"
   },

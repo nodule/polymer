@@ -10,31 +10,31 @@
     "input": {
       "value": {
         "name": "value",
-        "description": "\nThe number that represents the current value.\n\n",
+        "description": "The number that represents the current value.",
         "type": "number",
         "default": "0"
       },
       "min": {
         "name": "min",
-        "description": "\nThe number that indicates the minimum value of the range.\n\n",
+        "description": "The number that indicates the minimum value of the range.",
         "type": "number",
         "default": "0"
       },
       "max": {
         "name": "max",
-        "description": "\nThe number that indicates the maximum value of the range.\n\n",
+        "description": "The number that indicates the maximum value of the range.",
         "type": "number",
         "default": "100"
       },
       "step": {
         "name": "step",
-        "description": "\nSpecifies the value granularity of the range's value.\n\n",
+        "description": "Specifies the value granularity of the range's value.",
         "type": "number",
         "default": "1"
       },
       "ratio": {
         "name": "ratio",
-        "description": "\nReturns the ratio of the value.\n\n",
+        "description": "Returns the ratio of the value.",
         "type": "number",
         "default": "0"
       }

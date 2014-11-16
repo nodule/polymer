@@ -10,43 +10,43 @@
     "input": {
       "noink": {
         "name": "noink",
-        "description": "\nIf true, ink ripple effect is disabled.\n\n",
+        "description": "If true, ink ripple effect is disabled.",
         "type": "boolean",
         "default": "false"
       },
       "nobar": {
         "name": "nobar",
-        "description": "\nIf true, the bottom bar to indicate the selected tab will not be shown.\n\n",
+        "description": "If true, the bottom bar to indicate the selected tab will not be shown.",
         "type": "boolean",
         "default": "false"
       },
       "noslide": {
         "name": "noslide",
-        "description": "\nIf true, the slide effect for the bottom bar is disabled.\n\n",
+        "description": "If true, the slide effect for the bottom bar is disabled.",
         "type": "boolean",
         "default": "false"
       },
       "scrollable": {
         "name": "scrollable",
-        "description": "\nIf true, tabs are scrollable and the tab width is based on the label width.\n\n",
+        "description": "If true, tabs are scrollable and the tab width is based on the label width.",
         "type": "boolean",
         "default": "false"
       },
       "disableDrag": {
         "name": "disableDrag",
-        "description": "\nIf true, dragging on the tabs to scroll is disabled.\n\n",
+        "description": "If true, dragging on the tabs to scroll is disabled.",
         "type": "boolean",
         "default": "false"
       },
       "hideScrollButton": {
         "name": "hideScrollButton",
-        "description": "\nIf true, scroll buttons (left/right arrow) will be hidden for scrollable tabs.\n\n",
+        "description": "If true, scroll buttons (left/right arrow) will be hidden for scrollable tabs.",
         "type": "boolean",
         "default": "false"
       },
       "updateBar": {
         "name": "updateBar",
-        "description": "\nInvoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.\n\n"
+        "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible."
       }
     },
     "output": {}

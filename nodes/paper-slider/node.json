@@ -10,37 +10,37 @@
     "input": {
       "snaps": {
         "name": "snaps",
-        "description": "\nIf true, the slider thumb snaps to tick marks evenly spaced based\non the `step` property value.\n\n",
+        "description": "If true, the slider thumb snaps to tick marks evenly spaced based\non the `step` property value.",
         "type": "boolean",
         "default": "false"
       },
       "pin": {
         "name": "pin",
-        "description": "\nIf true, a pin with numeric value label is shown when the slider thumb \nis pressed.  Use for settings for which users need to know the exact \nvalue of the setting.\n\n",
+        "description": "If true, a pin with numeric value label is shown when the slider thumb \nis pressed.  Use for settings for which users need to know the exact \nvalue of the setting.",
         "type": "boolean",
         "default": "false"
       },
       "disabled": {
         "name": "disabled",
-        "description": "\nIf true, this slider is disabled.  A disabled slider cannot be tapped\nor dragged to change the slider value.\n\n",
+        "description": "If true, this slider is disabled.  A disabled slider cannot be tapped\nor dragged to change the slider value.",
         "type": "boolean",
         "default": "false"
       },
       "secondaryProgress": {
         "name": "secondaryProgress",
-        "description": "\nThe number that represents the current secondary progress.\n\n",
+        "description": "The number that represents the current secondary progress.",
         "type": "number",
         "default": "0"
       },
       "editable": {
         "name": "editable",
-        "description": "\nIf true, an input is shown and user can use it to set the slider value.\n\n",
+        "description": "If true, an input is shown and user can use it to set the slider value.",
         "type": "boolean",
         "default": "false"
       },
       "immediateValue": {
         "name": "immediateValue",
-        "description": "\nThe immediate value of the slider.  This value is updated while the user\nis dragging the slider.\n\n",
+        "description": "The immediate value of the slider.  This value is updated while the user\nis dragging the slider.",
         "type": "number",
         "default": "0"
       }
@@ -48,11 +48,11 @@
     "output": {
       "core-change": {
         "name": "core-change",
-        "description": "\nFired when the slider's value changes.\n\n"
+        "description": "Fired when the slider's value changes."
       },
       "change": {
         "name": "change",
-        "description": "\nFired when the slider's value changes due to user interaction.\n\nChanges to the slider's value due to changes in an underlying\nbound variable will not trigger this event.\n\n"
+        "description": "Fired when the slider's value changes due to user interaction.\n\nChanges to the slider's value due to changes in an underlying\nbound variable will not trigger this event."
       }
     }
   }

@@ -10,25 +10,25 @@
     "input": {
       "direction": {
         "name": "direction",
-        "description": "\nPossible values are `left`, `right`, `up` and `down`.\n\n",
+        "description": "Possible values are `left`, `right`, `up` and `down`.",
         "type": "string",
         "default": "'left'"
       },
       "minSize": {
         "name": "minSize",
-        "description": "\nMinimum width to which the splitter target can be sized, e.g. \n`minSize=\"100px\"`\n\n",
+        "description": "Minimum width to which the splitter target can be sized, e.g. \n`minSize=\"100px\"`",
         "type": "string",
         "default": "''"
       },
       "locked": {
         "name": "locked",
-        "description": "\nLocks the split bar so it can't be dragged.\n\n",
+        "description": "Locks the split bar so it can't be dragged.",
         "type": "boolean",
         "default": "false"
       },
       "allowOverflow": {
         "name": "allowOverflow",
-        "description": "\nBy default the parent and siblings of the splitter are set to overflow hidden. This helps\navoid elements bleeding outside the splitter regions. Set this property to true to allow\nthese elements to overflow.\n\n",
+        "description": "By default the parent and siblings of the splitter are set to overflow hidden. This helps\navoid elements bleeding outside the splitter regions. Set this property to true to allow\nthese elements to overflow.",
         "type": "boolean",
         "default": "false"
       }

@@ -10,71 +10,71 @@
     "input": {
       "data": {
         "name": "data",
-        "description": "\nAn array of source data for the list to display.  Elements\nfrom this array will be set to the `model` peroperty on each\ntemplate instance scope for binding.\n\nWhen `groups` is used, this array may either be flat, with\nthe group lengths specified in the `groups` array; otherwise\n`data` may be specified as an array of arrays, such that the\neach array in `data` specifies a group.  See examples above.\n\n",
+        "description": "An array of source data for the list to display.  Elements\nfrom this array will be set to the `model` peroperty on each\ntemplate instance scope for binding.\n\nWhen `groups` is used, this array may either be flat, with\nthe group lengths specified in the `groups` array; otherwise\n`data` may be specified as an array of arrays, such that the\neach array in `data` specifies a group.  See examples above.",
         "type": "array",
         "default": "null"
       },
       "groups": {
         "name": "groups",
-        "description": "\nAn array of data conveying information about groupings of items\nin the `data` array.  Elements from this array will be set to the\n`groupModel` property of each template instance scope for binding.\n\nWhen `groups` is used, template children with the `divider` attribute\nwill be shown above each group.  Typically data from the `groupModel`\nwould be bound to dividers.\n\nIf `data` is specified as a flat array, the `groups` array must\ncontain objects of the format `{ length: n, data: {...} }`, where\n`length` determines the number of items from the `data` array\nthat should be grouped, and `data` specifies the user data that will\nbe assigned to the `groupModel` property on the template instance\nscope.\n\nIf `data` is specified as a nested array of arrays, group lengths\nare derived from these arrays, so each object in `groups` need only\ncontain the user data to be assigned to `groupModel`.\n\n",
+        "description": "An array of data conveying information about groupings of items\nin the `data` array.  Elements from this array will be set to the\n`groupModel` property of each template instance scope for binding.\n\nWhen `groups` is used, template children with the `divider` attribute\nwill be shown above each group.  Typically data from the `groupModel`\nwould be bound to dividers.\n\nIf `data` is specified as a flat array, the `groups` array must\ncontain objects of the format `{ length: n, data: {...} }`, where\n`length` determines the number of items from the `data` array\nthat should be grouped, and `data` specifies the user data that will\nbe assigned to the `groupModel` property on the template instance\nscope.\n\nIf `data` is specified as a nested array of arrays, group lengths\nare derived from these arrays, so each object in `groups` need only\ncontain the user data to be assigned to `groupModel`.",
         "type": "array",
         "default": "null"
       },
       "scrollTarget": {
         "name": "scrollTarget",
-        "description": "\n\nAn optional element on which to listen for scroll events.\n\n",
+        "description": "An optional element on which to listen for scroll events.",
         "type": "Element",
         "default": "core-list"
       },
       "selectionEnabled": {
         "name": "selectionEnabled",
-        "description": "\n\nWhen true, tapping a row will select the item, placing its data model\nin the set of selected items retrievable via the `selection` property.\n\nNote that tapping focusable elements within the list item will not\nresult in selection, since they are presumed to have their own action.\n\n",
+        "description": "When true, tapping a row will select the item, placing its data model\nin the set of selected items retrievable via the `selection` property.\n\nNote that tapping focusable elements within the list item will not\nresult in selection, since they are presumed to have their own action.",
         "type": "{boolean}",
         "default": "true"
       },
       "multi": {
         "name": "multi",
-        "description": "\n\nSet to true to support multiple selection.  Note, existing selection\nstate is maintained only when changing `multi` from `false` to `true`;\nit is cleared when changing from `true` to `false`.\n\n",
+        "description": "Set to true to support multiple selection.  Note, existing selection\nstate is maintained only when changing `multi` from `false` to `true`;\nit is cleared when changing from `true` to `false`.",
         "type": "boolean",
         "default": "false"
       },
       "selection": {
         "name": "selection",
-        "description": "\n\nData record (or array of records, if `multi: true`) corresponding to\nthe currently selected set of items.\n\n",
+        "description": "Data record (or array of records, if `multi: true`) corresponding to\nthe currently selected set of items.",
         "type": "{any}",
         "default": "null"
       },
       "grid": {
         "name": "grid",
-        "description": "\n\nWhen true, the list is rendered as a grid.  Grid items must be fixed\nheight and width, with the width of each item specified in the `width`\nproperty.\n\n",
+        "description": "When true, the list is rendered as a grid.  Grid items must be fixed\nheight and width, with the width of each item specified in the `width`\nproperty.",
         "type": "boolean",
         "default": "false"
       },
       "width": {
         "name": "width",
-        "description": "\n\nWhen `grid` is used, `width` determines the width of each grid item.\nThis property has no meaning when not in `grid` mode.\n\n",
+        "description": "When `grid` is used, `width` determines the width of each grid item.\nThis property has no meaning when not in `grid` mode.",
         "type": "number",
         "default": "null"
       },
       "height": {
         "name": "height",
-        "description": "\nThe approximate height of a list item, in pixels. This is used only for determining\nthe number of physical elements to render based on the viewport size\nof the list.  Items themselves may vary in height between each other\ndepending on their data model.  There is typically no need to adjust \nthis value unless the average size is much larger or smaller than the default.\n\n",
+        "description": "The approximate height of a list item, in pixels. This is used only for determining\nthe number of physical elements to render based on the viewport size\nof the list.  Items themselves may vary in height between each other\ndepending on their data model.  There is typically no need to adjust \nthis value unless the average size is much larger or smaller than the default.",
         "type": "number",
         "default": "200"
       },
       "runwayFactor": {
         "name": "runwayFactor",
-        "description": "\nThe amount of scrolling runway the list keeps rendered, as a factor of\nthe list viewport size.  There is typically no need to adjust this value\nother than for performance tuning.  Larger value correspond to more\nphysical elements being rendered.\n\n",
+        "description": "The amount of scrolling runway the list keeps rendered, as a factor of\nthe list viewport size.  There is typically no need to adjust this value\nother than for performance tuning.  Larger value correspond to more\nphysical elements being rendered.",
         "type": "number",
         "default": "4"
       },
       "updateSize": {
         "name": "updateSize",
-        "description": "\nTo be called by the user when the list is resized or shown\nafter being hidden.  Note, `core-list` calls this automatically\nwhen the window is resized.\n\n"
+        "description": "To be called by the user when the list is resized or shown\nafter being hidden.  Note, `core-list` calls this automatically\nwhen the window is resized."
       },
       "selectItem": {
         "name": "selectItem",
-        "description": "\nSelect the list item at the given index.\n\n",
+        "description": "Select the list item at the given index.",
         "params": [
           {
             "type": "number",
@@ -85,7 +85,7 @@
       },
       "setItemSelected": {
         "name": "setItemSelected",
-        "description": "\nSet the selected state of the list item at the given index.\n\n",
+        "description": "Set the selected state of the list item at the given index.",
         "params": [
           {
             "type": "number",
@@ -101,11 +101,11 @@
       },
       "clearSelection": {
         "name": "clearSelection",
-        "description": "\nClears the current selection state of the list.\n\n"
+        "description": "Clears the current selection state of the list."
       },
       "scrollToItem": {
         "name": "scrollToItem",
-        "description": "\nScroll to an item.\n\nNote, when grouping is used, the index is based on the\ntotal flattened number of items.  For scrolling to an item\nwithin a group, use the `scrollToGroupItem` API.\n\n",
+        "description": "Scroll to an item.\n\nNote, when grouping is used, the index is based on the\ntotal flattened number of items.  For scrolling to an item\nwithin a group, use the `scrollToGroupItem` API.",
         "params": [
           {
             "type": "number",
@@ -116,7 +116,7 @@
       },
       "scrollToGroup": {
         "name": "scrollToGroup",
-        "description": "\nScroll to a group.\n\n",
+        "description": "Scroll to a group.",
         "params": [
           {
             "type": "number",
@@ -127,7 +127,7 @@
       },
       "scrollToGroupItem": {
         "name": "scrollToGroupItem",
-        "description": "\nScroll to an item within a group.\n\n",
+        "description": "Scroll to an item within a group.",
         "params": [
           {
             "type": "number",
@@ -145,7 +145,7 @@
     "output": {
       "core-activate": {
         "name": "core-activate",
-        "description": "\nFired when an item element is tapped.\n\n",
+        "description": "Fired when an item element is tapped.",
         "params": [
           {
             "type": "Object",

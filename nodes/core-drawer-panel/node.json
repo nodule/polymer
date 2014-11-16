@@ -10,69 +10,69 @@
     "input": {
       "drawerWidth": {
         "name": "drawerWidth",
-        "description": "\nWidth of the drawer panel.\n\n",
+        "description": "Width of the drawer panel.",
         "type": "string",
         "default": "'256px'"
       },
       "responsiveWidth": {
         "name": "responsiveWidth",
-        "description": "\nMax-width when the panel changes to narrow layout.\n\n",
+        "description": "Max-width when the panel changes to narrow layout.",
         "type": "string",
         "default": "'640px'"
       },
       "selected": {
         "name": "selected",
-        "description": "\nThe panel that is being selected. `drawer` for the drawer panel and\n`main` for the main panel.\n\n",
+        "description": "The panel that is being selected. `drawer` for the drawer panel and\n`main` for the main panel.",
         "type": "string",
         "default": "null"
       },
       "defaultSelected": {
         "name": "defaultSelected",
-        "description": "\nThe panel to be selected when `core-drawer-panel` changes to narrow\nlayout.\n\n",
+        "description": "The panel to be selected when `core-drawer-panel` changes to narrow\nlayout.",
         "type": "string",
         "default": "'main'"
       },
       "narrow": {
         "name": "narrow",
-        "description": "\nReturns true if the panel is in narrow layout.  This is useful if you\nneed to show/hide elements based on the layout.\n\n",
+        "description": "Returns true if the panel is in narrow layout.  This is useful if you\nneed to show/hide elements based on the layout.",
         "type": "boolean",
         "default": "false"
       },
       "rightDrawer": {
         "name": "rightDrawer",
-        "description": "\nIf true, position the drawer to the right.\n\n",
+        "description": "If true, position the drawer to the right.",
         "type": "boolean",
         "default": "false"
       },
       "disableSwipe": {
         "name": "disableSwipe",
-        "description": "\nIf true, swipe to open/close the drawer is disabled.\n\n",
+        "description": "If true, swipe to open/close the drawer is disabled.",
         "type": "boolean",
         "default": "false"
       },
       "forceNarrow": {
         "name": "forceNarrow",
-        "description": "\nIf true, ignore `responsiveWidth` setting and force the narrow layout.\n\n",
+        "description": "If true, ignore `responsiveWidth` setting and force the narrow layout.",
         "type": "boolean",
         "default": "false"
       },
       "togglePanel": {
         "name": "togglePanel",
-        "description": "\nToggles the panel open and closed.\n\n"
+        "description": "Toggles the panel open and closed."
       },
       "openDrawer": {
         "name": "openDrawer",
-        "description": "\nOpens the drawer.\n\n"
+        "description": "Opens the drawer."
       },
       "closeDrawer": {
         "name": "closeDrawer",
-        "description": "\nCloses the drawer.\n\n"
+        "description": "Closes the drawer."
       }
     },
     "output": {
       "core-responsive-change": {
         "name": "core-responsive-change",
-        "description": "\nFired when the narrow layout changes.\n\n",
+        "description": "Fired when the narrow layout changes.",
         "params": [
           {
             "type": "boolean",

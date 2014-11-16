@@ -10,55 +10,55 @@
     "input": {
       "src": {
         "name": "src",
-        "description": "\nWhen false, the image is prevented from loading and any placeholder is\nshown.  This may be useful when a binding to the src property is known to\nbe invalid, to prevent 404 requests.\n\n",
+        "description": "When false, the image is prevented from loading and any placeholder is\nshown.  This may be useful when a binding to the src property is known to\nbe invalid, to prevent 404 requests.",
         "type": "string",
         "default": "null"
       },
       "sizing": {
         "name": "sizing",
-        "description": "\nSets a sizing option for the image.  Valid values are `contain` (full \naspect ratio of the image is contained within the element and \nletterboxed) or `cover` (image is cropped in order to fully cover the\nbounds of the element), or `null` (default: image takes natural size).\n\n",
+        "description": "Sets a sizing option for the image.  Valid values are `contain` (full \naspect ratio of the image is contained within the element and \nletterboxed) or `cover` (image is cropped in order to fully cover the\nbounds of the element), or `null` (default: image takes natural size).",
         "type": "string",
         "default": "null"
       },
       "position": {
         "name": "position",
-        "description": "\nWhen a sizing option is uzed (`cover` or `contain`), this determines\nhow the image is aligned within the element bounds.\n\n",
+        "description": "When a sizing option is uzed (`cover` or `contain`), this determines\nhow the image is aligned within the element bounds.",
         "type": "string",
         "default": "'center'"
       },
       "preload": {
         "name": "preload",
-        "description": "\nWhen `true`, any change to the `src` property will cause the `placeholder`\nimage to be shown until the \n\n",
+        "description": "When `true`, any change to the `src` property will cause the `placeholder`\nimage to be shown until the",
         "type": "boolean",
         "default": "false"
       },
       "placeholder": {
         "name": "placeholder",
-        "description": "\nThis image will be used as a background/placeholder until the src image has\nloaded.  Use of a data-URI for placeholder is encouraged for instant rendering.\n\n",
+        "description": "This image will be used as a background/placeholder until the src image has\nloaded.  Use of a data-URI for placeholder is encouraged for instant rendering.",
         "type": "string",
         "default": "null"
       },
       "fade": {
         "name": "fade",
-        "description": "\nWhen `preload` is true, setting `fade` to true will cause the image to\nfade into place.\n\n",
+        "description": "When `preload` is true, setting `fade` to true will cause the image to\nfade into place.",
         "type": "boolean",
         "default": "false"
       },
       "loading": {
         "name": "loading",
-        "description": "\nRead-only value that tracks the loading state of the image when the `preload`\noption is used.\n\n",
+        "description": "Read-only value that tracks the loading state of the image when the `preload`\noption is used.",
         "type": "boolean",
         "default": "false"
       },
       "width": {
         "name": "width",
-        "description": "\nCan be used to set the width of image (e.g. via binding); size may also be\nset via CSS.\n\n",
+        "description": "Can be used to set the width of image (e.g. via binding); size may also be\nset via CSS.",
         "type": "number",
         "default": "null"
       },
       "height": {
         "name": "height",
-        "description": "\nCan be used to set the height of image (e.g. via binding); size may also be\nset via CSS.\n\n",
+        "description": "Can be used to set the height of image (e.g. via binding); size may also be\nset via CSS.",
         "type": "number",
         "default": "null"
       }

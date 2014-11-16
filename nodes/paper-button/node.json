@@ -10,19 +10,19 @@
     "input": {
       "raised": {
         "name": "raised",
-        "description": "\nIf true, the button will be styled with a shadow.\n\n",
+        "description": "If true, the button will be styled with a shadow.",
         "type": "boolean",
         "default": "false"
       },
       "recenteringTouch": {
         "name": "recenteringTouch",
-        "description": "\nBy default the ripple emanates from where the user touched the button.\nSet this to true to always center the ripple.\n\n",
+        "description": "By default the ripple emanates from where the user touched the button.\nSet this to true to always center the ripple.",
         "type": "boolean",
         "default": "false"
       },
       "fill": {
         "name": "fill",
-        "description": "\nBy default the ripple expands to fill the button. Set this to true to\nconstrain the ripple to a circle within the button.\n\n",
+        "description": "By default the ripple expands to fill the button. Set this to true to\nconstrain the ripple to a circle within the button.",
         "type": "boolean",
         "default": "true"
       }

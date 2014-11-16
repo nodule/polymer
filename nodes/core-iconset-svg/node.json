@@ -10,13 +10,13 @@
     "input": {
       "iconSize": {
         "name": "iconSize",
-        "description": "\nThe size of an individual icon. Note that icons must be square.\n\n",
+        "description": "The size of an individual icon. Note that icons must be square.",
         "type": "number",
         "default": "24"
       },
       "applyIcon": {
         "name": "applyIcon",
-        "description": "\nApplies an icon to the given element. The svg icon is added to the\nelement's shadowRoot if one exists or directly to itself.\n\napplied.\n",
+        "description": "Applies an icon to the given element. The svg icon is added to the\nelement's shadowRoot if one exists or directly to itself.\n\napplied.",
         "params": [
           {
             "type": "Element",
@@ -32,7 +32,7 @@
       },
       "updateIcons": {
         "name": "updateIcons",
-        "description": "\nTell users of the iconset, that the set has loaded.\nThis finds all elements matching the selector argument and calls \nthe method argument on them.\ndefaults to '[icon]'\ndefaults to 'updateIcon'\n",
+        "description": "Tell users of the iconset, that the set has loaded.\nThis finds all elements matching the selector argument and calls \nthe method argument on them.\ndefaults to '[icon]'\ndefaults to 'updateIcon'",
         "params": [
           {
             "type": "string",

@@ -10,7 +10,7 @@
     "input": {
       "for": {
         "name": "for",
-        "description": "\nA query selector string for a \"target\" element not nested in the `<core-label>`\n\n",
+        "description": "A query selector string for a \"target\" element not nested in the `<core-label>`",
         "type": "string",
         "default": "''"
       }

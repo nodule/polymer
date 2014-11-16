@@ -10,7 +10,7 @@
     "input": {
       "active": {
         "name": "active",
-        "description": "\nDisplays the spinner.\n\n",
+        "description": "Displays the spinner.",
         "type": "boolean",
         "default": "false"
       }

@@ -10,7 +10,7 @@
     "input": {
       "go": {
         "name": "go",
-        "description": "\nRun the animation.\n\n",
+        "description": "Run the animation.",
         "params": [
           {
             "type": "Node",
@@ -26,7 +26,7 @@
       },
       "setup": {
         "name": "setup",
-        "description": "\nSet up the animation. This may include injecting a stylesheet,\napplying styles, creating a web animations object, etc.. This\n\n",
+        "description": "Set up the animation. This may include injecting a stylesheet,\napplying styles, creating a web animations object, etc.. This",
         "params": [
           {
             "type": "Node",
@@ -37,7 +37,7 @@
       },
       "teardown": {
         "name": "teardown",
-        "description": "\nTear down the animation.\n\n",
+        "description": "Tear down the animation.",
         "params": [
           {
             "type": "Node",
@@ -48,7 +48,7 @@
       },
       "complete": {
         "name": "complete",
-        "description": "\nCalled when the animation completes. This function also fires the\n`core-transitionend` event.\n\n",
+        "description": "Called when the animation completes. This function also fires the\n`core-transitionend` event.",
         "params": [
           {
             "type": "Node",
@@ -59,7 +59,7 @@
       },
       "listenOnce": {
         "name": "listenOnce",
-        "description": "\nUtility function to listen to an event on a node once.\n\n",
+        "description": "Utility function to listen to an event on a node once.",
         "params": [
           {
             "type": "Node",
@@ -87,7 +87,7 @@
     "output": {
       "core-transitionend": {
         "name": "core-transitionend",
-        "description": "\nFired when the animation finishes.\n\n",
+        "description": "Fired when the animation finishes.",
         "params": [
           {
             "type": "Object",

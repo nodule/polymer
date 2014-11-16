@@ -10,7 +10,7 @@
     "input": {
       "layout": {
         "name": "layout",
-        "description": "\nArrange sibling nodes end-to-end in one dimension.\n\nArrangement is horizontal unless the `vertical`\nattribute is applied on this node.\n\n"
+        "description": "Arrange sibling nodes end-to-end in one dimension.\n\nArrangement is horizontal unless the `vertical`\nattribute is applied on this node."
       }
     },
     "output": {}

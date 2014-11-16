@@ -10,19 +10,19 @@
     "input": {
       "id": {
         "name": "id",
-        "description": "\nThe `id` property should be set if the `core-style` is a producer\nof styles. In this case, the `core-style` should have text content\nthat is cssText.\n\n",
+        "description": "The `id` property should be set if the `core-style` is a producer\nof styles. In this case, the `core-style` should have text content\nthat is cssText.",
         "type": "string",
         "default": "''"
       },
       "ref": {
         "name": "ref",
-        "description": "\nThe `ref` property should be set if the `core-style` element is a \nconsumer of styles. Set it to the `id` of the desired `core-style`\nelement.\n\n",
+        "description": "The `ref` property should be set if the `core-style` element is a \nconsumer of styles. Set it to the `id` of the desired `core-style`\nelement.",
         "type": "string",
         "default": "''"
       },
       "list": {
         "name": "list",
-        "description": "\nThe `list` is a map of all `core-style` producers stored by `id`. It \nshould be considered readonly. It's useful for nesting one `core-style`\ninside another.\n\n",
+        "description": "The `list` is a map of all `core-style` producers stored by `id`. It \nshould be considered readonly. It's useful for nesting one `core-style`\ninside another.",
         "type": "object (readonly)",
         "default": "{map of all `core-style` producers}"
       }

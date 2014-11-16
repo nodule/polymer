@@ -10,13 +10,13 @@
     "input": {
       "url": {
         "name": "url",
-        "description": "\nA single file to parse for docs\n\n",
+        "description": "A single file to parse for docs",
         "type": "String",
         "default": "''"
       },
       "sources": {
         "name": "sources",
-        "description": "\nFiles to parse for docs\n\n",
+        "description": "Files to parse for docs",
         "type": "Array",
         "default": "[]"
       }

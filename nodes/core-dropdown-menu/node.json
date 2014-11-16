@@ -10,19 +10,19 @@
     "input": {
       "label": {
         "name": "label",
-        "description": "\nA label for the control. The label is displayed if no item is selected.\n\n",
+        "description": "A label for the control. The label is displayed if no item is selected.",
         "type": "string",
         "default": "'Select an item'"
       },
       "openedIcon": {
         "name": "openedIcon",
-        "description": "\nThe icon to display when the drop-down is opened.\n\n",
+        "description": "The icon to display when the drop-down is opened.",
         "type": "string",
         "default": "'arrow-drop-up'"
       },
       "closedIcon": {
         "name": "closedIcon",
-        "description": "\nThe icon to display when the drop-down is closed.\n\n",
+        "description": "The icon to display when the drop-down is closed.",
         "type": "string",
         "default": "'arrow-drop-down'"
       }

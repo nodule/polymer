@@ -10,65 +10,65 @@
     "input": {
       "condenses": {
         "name": "condenses",
-        "description": "\nIf true, the header's height will condense to `_condensedHeaderHeight`\nas the user scrolls down from the top of the content area.\n\n",
+        "description": "If true, the header's height will condense to `_condensedHeaderHeight`\nas the user scrolls down from the top of the content area.",
         "type": "boolean",
         "default": "false"
       },
       "noDissolve": {
         "name": "noDissolve",
-        "description": "\nIf true, no cross-fade transition from one background to another.\n\n",
+        "description": "If true, no cross-fade transition from one background to another.",
         "type": "boolean",
         "default": "false"
       },
       "noReveal": {
         "name": "noReveal",
-        "description": "\nIf true, the header doesn't slide back in when scrolling back up.\n\n",
+        "description": "If true, the header doesn't slide back in when scrolling back up.",
         "type": "boolean",
         "default": "false"
       },
       "fixed": {
         "name": "fixed",
-        "description": "\nIf true, the header is fixed to the top and never moves away.\n\n",
+        "description": "If true, the header is fixed to the top and never moves away.",
         "type": "boolean",
         "default": "false"
       },
       "keepCondensedHeader": {
         "name": "keepCondensedHeader",
-        "description": "\nIf true, the condensed header is always shown and does not move away.\n\n",
+        "description": "If true, the condensed header is always shown and does not move away.",
         "type": "boolean",
         "default": "false"
       },
       "headerHeight": {
         "name": "headerHeight",
-        "description": "\nThe height of the header when it is at its full size.\n\nBy default, the height will be measured when it is ready.  If the height\nchanges later the user needs to either set this value to reflect the\nnew height or invoke `measureHeaderHeight()`.\n\n",
+        "description": "The height of the header when it is at its full size.\n\nBy default, the height will be measured when it is ready.  If the height\nchanges later the user needs to either set this value to reflect the\nnew height or invoke `measureHeaderHeight()`.",
         "type": "number",
         "default": "0"
       },
       "condensedHeaderHeight": {
         "name": "condensedHeaderHeight",
-        "description": "\nThe height of the header when it is condensed.\n\nBy default, `_condensedHeaderHeight` is 1/3 of `headerHeight` unless\nthis is specified.\n\n",
+        "description": "The height of the header when it is condensed.\n\nBy default, `_condensedHeaderHeight` is 1/3 of `headerHeight` unless\nthis is specified.",
         "type": "number",
         "default": "0"
       },
       "scrollAwayTopbar": {
         "name": "scrollAwayTopbar",
-        "description": "\nBy default, the top part of the header stays when the header is being\ncondensed.  Set this to true if you want the top part of the header\nto be scrolled away.\n\n",
+        "description": "By default, the top part of the header stays when the header is being\ncondensed.  Set this to true if you want the top part of the header\nto be scrolled away.",
         "type": "boolean",
         "default": "false"
       },
       "measureHeaderHeight": {
         "name": "measureHeaderHeight",
-        "description": "\nInvoke this to tell `core-scroll-header-panel` to re-measure the header's\nheight.\n\n"
+        "description": "Invoke this to tell `core-scroll-header-panel` to re-measure the header's\nheight."
       }
     },
     "output": {
       "scroll": {
         "name": "scroll",
-        "description": "\nFired when the content has been scrolled.\n\n"
+        "description": "Fired when the content has been scrolled."
       },
       "core-header-transform": {
         "name": "core-header-transform",
-        "description": "\nFired when the header is transformed.\n\n"
+        "description": "Fired when the header is transformed."
       }
     }
   }

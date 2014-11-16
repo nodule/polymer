@@ -45,6 +45,9 @@ g.on('match', function(file) {
       if (def.attributes) {
 
         def.attributes.forEach(function(a) {
+          if (a.description) {
+            a.description = a.description.trim();
+          }
           nD.ports.input[a.name] = a;
         });
 
@@ -57,6 +60,9 @@ g.on('match', function(file) {
           if (nD.ports.input.hasOwnProperty(a.name)) {
             throw Error('Conflicting port names');
           } else {
+            if (a.description) {
+              a.description = a.description.trim();
+            }
             nD.ports.input[a.name] = a;
           }
         });
@@ -66,6 +72,9 @@ g.on('match', function(file) {
 
       if (def.events) {
         def.events.forEach(function(e) {
+          if (e.description) {
+            e.description = e.description.trim();
+          }
           nD.ports.output[e.name] = e;
         });
       } else {

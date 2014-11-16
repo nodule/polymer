@@ -10,13 +10,13 @@
     "input": {
       "type": {
         "name": "type",
-        "description": "\nThe type of meta-data.  All meta-data with the same type with be\nstored together.\n\n",
+        "description": "The type of meta-data.  All meta-data with the same type with be\nstored together.",
         "type": "string",
         "default": "'default'"
       },
       "byId": {
         "name": "byId",
-        "description": "\nRetrieves meta-data by ID.\n\n",
+        "description": "Retrieves meta-data by ID.",
         "params": [
           {
             "type": "String",

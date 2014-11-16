@@ -10,99 +10,99 @@
     "input": {
       "url": {
         "name": "url",
-        "description": "\nThe URL target of the request.\n\n",
+        "description": "The URL target of the request.",
         "type": "string",
         "default": "''"
       },
       "handleAs": {
         "name": "handleAs",
-        "description": "\nSpecifies what data to store in the `response` property, and\nto deliver as `event.response` in `response` events.\n\nOne of:\n\n   `text`: uses `XHR.responseText`.\n\n   `xml`: uses `XHR.responseXML`.\n\n   `json`: uses `XHR.responseText` parsed as JSON.\n\n   `arraybuffer`: uses `XHR.response`.\n\n   `blob`: uses `XHR.response`.\n\n   `document`: uses `XHR.response`.\n\n",
+        "description": "Specifies what data to store in the `response` property, and\nto deliver as `event.response` in `response` events.\n\nOne of:\n\n   `text`: uses `XHR.responseText`.\n\n   `xml`: uses `XHR.responseXML`.\n\n   `json`: uses `XHR.responseText` parsed as JSON.\n\n   `arraybuffer`: uses `XHR.response`.\n\n   `blob`: uses `XHR.response`.\n\n   `document`: uses `XHR.response`.",
         "type": "string",
         "default": "'text'"
       },
       "auto": {
         "name": "auto",
-        "description": "\nIf true, automatically performs an Ajax request when either `url` or `params` changes.\n\n",
+        "description": "If true, automatically performs an Ajax request when either `url` or `params` changes.",
         "type": "boolean",
         "default": "false"
       },
       "params": {
         "name": "params",
-        "description": "\nParameters to send to the specified URL, as JSON.\n\n",
+        "description": "Parameters to send to the specified URL, as JSON.",
         "type": "string (JSON)",
         "default": "''"
       },
       "response": {
         "name": "response",
-        "description": "\nThe response for the current request, or null if it hasn't\ncompleted yet or the request resulted in error.\n\n",
+        "description": "The response for the current request, or null if it hasn't\ncompleted yet or the request resulted in error.",
         "type": "Object",
         "default": "null"
       },
       "error": {
         "name": "error",
-        "description": "\nThe error for the current request, or null if it hasn't\ncompleted yet or the request resulted in success.\n\n",
+        "description": "The error for the current request, or null if it hasn't\ncompleted yet or the request resulted in success.",
         "type": "Object",
         "default": "null"
       },
       "loading": {
         "name": "loading",
-        "description": "\nWhether the current request is currently loading.\n\n",
+        "description": "Whether the current request is currently loading.",
         "type": "boolean",
         "default": "false"
       },
       "progress": {
         "name": "progress",
-        "description": "\nThe progress of the current request.\n\n",
+        "description": "The progress of the current request.",
         "type": "{loaded: number, total: number, lengthComputable: boolean}",
         "default": "{}"
       },
       "method": {
         "name": "method",
-        "description": "\nThe HTTP method to use such as 'GET', 'POST', 'PUT', or 'DELETE'.\nDefault is 'GET'.\n\n",
+        "description": "The HTTP method to use such as 'GET', 'POST', 'PUT', or 'DELETE'.\nDefault is 'GET'.",
         "type": "string",
         "default": "''"
       },
       "headers": {
         "name": "headers",
-        "description": "\nHTTP request headers to send.\n\nExample:\n\n    <core-ajax\n        auto\n        url=\"http://somesite.com\"\n        headers='{\"X-Requested-With\": \"XMLHttpRequest\"}'\n        handleAs=\"json\"\n        on-core-response=\"{{handleResponse}}\"></core-ajax>\n\n",
+        "description": "HTTP request headers to send.\n\nExample:\n\n    <core-ajax\n        auto\n        url=\"http://somesite.com\"\n        headers='{\"X-Requested-With\": \"XMLHttpRequest\"}'\n        handleAs=\"json\"\n        on-core-response=\"{{handleResponse}}\"></core-ajax>",
         "type": "Object",
         "default": "null"
       },
       "body": {
         "name": "body",
-        "description": "\nOptional raw body content to send when method === \"POST\".\n\nExample:\n\n    <core-ajax method=\"POST\" auto url=\"http://somesite.com\"\n        body='{\"foo\":1, \"bar\":2}'>\n    </core-ajax>\n\n",
+        "description": "Optional raw body content to send when method === \"POST\".\n\nExample:\n\n    <core-ajax method=\"POST\" auto url=\"http://somesite.com\"\n        body='{\"foo\":1, \"bar\":2}'>\n    </core-ajax>",
         "type": "Object",
         "default": "null"
       },
       "contentType": {
         "name": "contentType",
-        "description": "\nContent type to use when sending data.\n\n",
+        "description": "Content type to use when sending data.",
         "type": "string",
         "default": "'application/x-www-form-urlencoded'"
       },
       "withCredentials": {
         "name": "withCredentials",
-        "description": "\nSet the withCredentials flag on the request.\n\n",
+        "description": "Set the withCredentials flag on the request.",
         "type": "boolean",
         "default": "false"
       },
       "go": {
         "name": "go",
-        "description": "\nPerforms an Ajax request to the specified URL.\n\n"
+        "description": "Performs an Ajax request to the specified URL."
       }
     },
     "output": {
       "core-response": {
         "name": "core-response",
-        "description": "\nFired when a response is received.\n\n"
+        "description": "Fired when a response is received."
       },
       "core-error": {
         "name": "core-error",
-        "description": "\nFired when an error is received.\n\n"
+        "description": "Fired when an error is received."
       },
       "core-complete": {
         "name": "core-complete",
-        "description": "\nFired whenever a response or an error is received.\n\n"
+        "description": "Fired whenever a response or an error is received."
       }
     }
   }

@@ -10,31 +10,31 @@
     "input": {
       "label": {
         "name": "label",
-        "description": "\nA simple string label for the tooltip to display. To display a rich\nHTML tooltip instead, omit `label` and include the `tip` attribute\non a child node of `core-tooltip`.\n\n",
+        "description": "A simple string label for the tooltip to display. To display a rich\nHTML tooltip instead, omit `label` and include the `tip` attribute\non a child node of `core-tooltip`.",
         "type": "string",
         "default": "null"
       },
       "show": {
         "name": "show",
-        "description": "\nForces the tooltip to display. If `disabled` is set, this property is ignored.\n\n",
+        "description": "Forces the tooltip to display. If `disabled` is set, this property is ignored.",
         "type": "boolean",
         "default": "false"
       },
       "position": {
         "name": "position",
-        "description": "\nPositions the tooltip to the top, right, bottom, left of its content.\n\n",
+        "description": "Positions the tooltip to the top, right, bottom, left of its content.",
         "type": "string",
         "default": "'bottom'"
       },
       "noarrow": {
         "name": "noarrow",
-        "description": "\nIf true, the tooltip an arrow pointing towards the content.\n\n",
+        "description": "If true, the tooltip an arrow pointing towards the content.",
         "type": "boolean",
         "default": "false"
       },
       "tipAttribute": {
         "name": "tipAttribute",
-        "description": "\nCustomizes the attribute used to specify which content\nis the rich HTML tooltip.\n\n",
+        "description": "Customizes the attribute used to specify which content\nis the rich HTML tooltip.",
         "type": "string",
         "default": "'tip'"
       }

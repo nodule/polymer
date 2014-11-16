@@ -10,13 +10,13 @@
     "input": {
       "transitions": {
         "name": "transitions",
-        "description": "\nA space-delimited string of transitions to use when switching between pages in this element.\nThe strings are `id`s of `core-transition-pages` elements included elsewhere. See the\nindividual transition's document for specific details.\n\n",
+        "description": "A space-delimited string of transitions to use when switching between pages in this element.\nThe strings are `id`s of `core-transition-pages` elements included elsewhere. See the\nindividual transition's document for specific details.",
         "type": "string",
         "default": "''"
       },
       "lastSelected": {
         "name": "lastSelected",
-        "description": "\nThe last page selected. This property is useful to dynamically set transitions based\non incoming and outgoing pages.\n\n",
+        "description": "The last page selected. This property is useful to dynamically set transitions based\non incoming and outgoing pages.",
         "type": "Object",
         "default": "null"
       }
@@ -24,11 +24,11 @@
     "output": {
       "core-animated-pages-transition-prepare": {
         "name": "core-animated-pages-transition-prepare",
-        "description": "\nFired before a page transition occurs. Both pages involved in the transition are visible when\nthis event fires. This is useful if there is something the client needs to do when a page becomes\nvisible.\n\n"
+        "description": "Fired before a page transition occurs. Both pages involved in the transition are visible when\nthis event fires. This is useful if there is something the client needs to do when a page becomes\nvisible."
       },
       "core-animated-pages-transition-end": {
         "name": "core-animated-pages-transition-end",
-        "description": "\nFired when a page transition completes.\n\n"
+        "description": "Fired when a page transition completes."
       }
     }
   }

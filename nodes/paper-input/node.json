@@ -10,19 +10,19 @@
     "input": {
       "label": {
         "name": "label",
-        "description": "\nThe label for this input. It normally appears as grey text inside\nthe text input and disappears once the user enters text.\n\n",
+        "description": "The label for this input. It normally appears as grey text inside\nthe text input and disappears once the user enters text.",
         "type": "string",
         "default": "''"
       },
       "floatingLabel": {
         "name": "floatingLabel",
-        "description": "\nIf true, the label will \"float\" above the text input once the\nuser enters text instead of disappearing.\n\n",
+        "description": "If true, the label will \"float\" above the text input once the\nuser enters text instead of disappearing.",
         "type": "boolean",
         "default": "false"
       },
       "disabled": {
         "name": "disabled",
-        "description": "\nSet to true to style the element as disabled.\n\n",
+        "description": "Set to true to style the element as disabled.",
         "type": "boolean",
         "default": "false"
       }

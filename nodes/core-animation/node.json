@@ -10,37 +10,37 @@
     "input": {
       "play": {
         "name": "play",
-        "description": "\nPlays the animation. If the animation is currently paused, seeks the animation\nto the beginning before starting playback.\n\n"
+        "description": "Plays the animation. If the animation is currently paused, seeks the animation\nto the beginning before starting playback."
       },
       "cancel": {
         "name": "cancel",
-        "description": "\nStops the animation and clears all effects on the target.\n\n"
+        "description": "Stops the animation and clears all effects on the target."
       },
       "finish": {
         "name": "finish",
-        "description": "\nSeeks the animation to the end.\n\n"
+        "description": "Seeks the animation to the end."
       },
       "pause": {
         "name": "pause",
-        "description": "\nPauses the animation.\n\n"
+        "description": "Pauses the animation."
       },
       "hasTarget": {
         "name": "hasTarget",
-        "description": "\n"
+        "description": ""
       },
       "apply": {
         "name": "apply",
-        "description": "\nCreates a web animations object based on this object's properties, and\nplays it if autoplay is true.\n\n"
+        "description": "Creates a web animations object based on this object's properties, and\nplays it if autoplay is true."
       }
     },
     "output": {
       "core-animation-finish": {
         "name": "core-animation-finish",
-        "description": "\nFired when the animation completes.\n\n"
+        "description": "Fired when the animation completes."
       },
       "core-animation-change": {
         "name": "core-animation-change",
-        "description": "\n\nFired when the web animation object changes.\n\n"
+        "description": "Fired when the web animation object changes."
       }
     }
   }

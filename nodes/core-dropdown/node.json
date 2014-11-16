@@ -10,18 +10,18 @@
     "input": {
       "relatedTarget": {
         "name": "relatedTarget",
-        "description": "\nThe element associated with this dropdown, usually the element that triggers\nthe menu. If unset, this property will default to the target's parent node\nor shadow host.\n\n",
+        "description": "The element associated with this dropdown, usually the element that triggers\nthe menu. If unset, this property will default to the target's parent node\nor shadow host.",
         "type": "Node"
       },
       "halign": {
         "name": "halign",
-        "description": "\nThe horizontal alignment of the popup relative to `relatedTarget`. `left`\nmeans the left edges are aligned together. `right` means the right edges\nare aligned together.\n\n",
+        "description": "The horizontal alignment of the popup relative to `relatedTarget`. `left`\nmeans the left edges are aligned together. `right` means the right edges\nare aligned together.",
         "type": "'left' | 'right'",
         "default": "'left'"
       },
       "valign": {
         "name": "valign",
-        "description": "\nThe vertical alignment of the popup relative to `relatedTarget`. `top` means\nthe top edges are aligned together. `bottom` means the bottom edges are\naligned together.\n\n",
+        "description": "The vertical alignment of the popup relative to `relatedTarget`. `top` means\nthe top edges are aligned together. `bottom` means the bottom edges are\naligned together.",
         "type": "'top' | 'bottom'",
         "default": "'top'"
       }

@@ -10,17 +10,17 @@
     "input": {
       "multi": {
         "name": "multi",
-        "description": "\nIf true, multiple selections are allowed.\n\n",
+        "description": "If true, multiple selections are allowed.",
         "type": "boolean",
         "default": "false"
       },
       "getSelection": {
         "name": "getSelection",
-        "description": "\nRetrieves the selected item(s).\ngetSelection will return an array, otherwise it will return \nthe selected item or undefined if there is no selection.\n"
+        "description": "Retrieves the selected item(s).\ngetSelection will return an array, otherwise it will return \nthe selected item or undefined if there is no selection."
       },
       "isSelected": {
         "name": "isSelected",
-        "description": "\nIndicates if a given item is selected.\n",
+        "description": "Indicates if a given item is selected.",
         "params": [
           {
             "type": "any",
@@ -31,17 +31,17 @@
       },
       "select": {
         "name": "select",
-        "description": "\nSet the selection state for a given `item`. If the multi property\nis true, then the selected state of `item` will be toggled; otherwise\nthe `item` will be selected.\n"
+        "description": "Set the selection state for a given `item`. If the multi property\nis true, then the selected state of `item` will be toggled; otherwise\nthe `item` will be selected."
       },
       "toggle": {
         "name": "toggle",
-        "description": "\nToggles the selection state for `item`.\n"
+        "description": "Toggles the selection state for `item`."
       }
     },
     "output": {
       "core-select": {
         "name": "core-select",
-        "description": "\nFired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.\n\n",
+        "description": "Fired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.",
         "params": [
           {
             "type": "boolean",

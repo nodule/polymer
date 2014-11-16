@@ -10,19 +10,19 @@
     "input": {
       "src": {
         "name": "src",
-        "description": "\nThe URL of an image for the icon.  Should not use `icon` property\nif you are using this property.\n\n",
+        "description": "The URL of an image for the icon.  Should not use `icon` property\nif you are using this property.",
         "type": "string",
         "default": "''"
       },
       "active": {
         "name": "active",
-        "description": "\nIf true, border is placed around the button to indicate it's\nactive state.\n\n",
+        "description": "If true, border is placed around the button to indicate it's\nactive state.",
         "type": "boolean",
         "default": "false"
       },
       "icon": {
         "name": "icon",
-        "description": "\nSpecifies the icon name or index in the set of icons available in\nthe icon set.  Should not use `src` property if you are using this\nproperty.\n\n",
+        "description": "Specifies the icon name or index in the set of icons available in\nthe icon set.  Should not use `src` property if you are using this\nproperty.",
         "type": "string",
         "default": "''"
       }

@@ -11,11 +11,11 @@
     "output": {
       "change": {
         "name": "change",
-        "description": "\nFired when the checked state changes due to user interaction.\n\n"
+        "description": "Fired when the checked state changes due to user interaction."
       },
       "core-change": {
         "name": "core-change",
-        "description": "\nFired when the checked state changes.\n\n"
+        "description": "Fired when the checked state changes."
       }
     }
   }

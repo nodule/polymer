@@ -10,25 +10,25 @@
     "input": {
       "checked": {
         "name": "checked",
-        "description": "\nGets or sets the state, `true` is checked and `false` is unchecked.\n\n",
+        "description": "Gets or sets the state, `true` is checked and `false` is unchecked.",
         "type": "boolean",
         "default": "false"
       },
       "label": {
         "name": "label",
-        "description": "\nThe label for the radio button.\n\n",
+        "description": "The label for the radio button.",
         "type": "string",
         "default": "''"
       },
       "toggles": {
         "name": "toggles",
-        "description": "\nNormally the user cannot uncheck the radio button by tapping once\nchecked.  Setting this property to `true` makes the radio button\ntoggleable from checked to unchecked.\n\n",
+        "description": "Normally the user cannot uncheck the radio button by tapping once\nchecked.  Setting this property to `true` makes the radio button\ntoggleable from checked to unchecked.",
         "type": "boolean",
         "default": "false"
       },
       "disabled": {
         "name": "disabled",
-        "description": "\nIf true, the user cannot interact with this element.\n\n",
+        "description": "If true, the user cannot interact with this element.",
         "type": "boolean",
         "default": "false"
       }
@@ -36,11 +36,11 @@
     "output": {
       "change": {
         "name": "change",
-        "description": "\nFired when the checked state changes due to user interaction.\n\n"
+        "description": "Fired when the checked state changes due to user interaction."
       },
       "core-change": {
         "name": "core-change",
-        "description": "\nFired when the checked state changes.\n\n"
+        "description": "Fired when the checked state changes."
       }
     }
   }

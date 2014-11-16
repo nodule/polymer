@@ -10,13 +10,13 @@
     "input": {
       "secondaryProgress": {
         "name": "secondaryProgress",
-        "description": "\nThe number that represents the current secondary progress.\n\n",
+        "description": "The number that represents the current secondary progress.",
         "type": "number",
         "default": "0"
       },
       "indeterminate": {
         "name": "indeterminate",
-        "description": "\nUse an indeterminate progress indicator.\n\n",
+        "description": "Use an indeterminate progress indicator.",
         "type": "boolean",
         "default": "false"
       }

@@ -10,13 +10,13 @@
     "input": {
       "keys": {
         "name": "keys",
-        "description": "\nThe set of key combinations to listen for.\n\n",
+        "description": "The set of key combinations to listen for.",
         "type": "string (keys syntax)",
         "default": "''"
       },
       "target": {
         "name": "target",
-        "description": "\nThe node that will fire keyboard events.\nDefault to this element's parentNode unless one is assigned\n\n",
+        "description": "The node that will fire keyboard events.\nDefault to this element's parentNode unless one is assigned",
         "type": "Node",
         "default": "this.parentNode"
       }
@@ -24,7 +24,7 @@
     "output": {
       "keys-pressed": {
         "name": "keys-pressed",
-        "description": "\nFired when a keycombo in `keys` is pressed.\n\n"
+        "description": "Fired when a keycombo in `keys` is pressed."
       }
     }
   }

@@ -10,19 +10,19 @@
     "input": {
       "src": {
         "name": "src",
-        "description": "\nThe URL of an image for the icon.\n\n",
+        "description": "The URL of an image for the icon.",
         "type": "string",
         "default": "''"
       },
       "icon": {
         "name": "icon",
-        "description": "\nSpecifies the icon from the Polymer icon set.\n\n",
+        "description": "Specifies the icon from the Polymer icon set.",
         "type": "string",
         "default": "''"
       },
       "label": {
         "name": "label",
-        "description": "\nSpecifies the label for the menu item.\n\n",
+        "description": "Specifies the label for the menu item.",
         "type": "string",
         "default": "''"
       }

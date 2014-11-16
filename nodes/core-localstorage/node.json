@@ -10,37 +10,37 @@
     "input": {
       "name": {
         "name": "name",
-        "description": "\nThe key to the data stored in localStorage.\n\n",
+        "description": "The key to the data stored in localStorage.",
         "type": "string",
         "default": "null"
       },
       "value": {
         "name": "value",
-        "description": "\nThe data associated with the specified name.\n\n",
+        "description": "The data associated with the specified name.",
         "type": "object",
         "default": "null"
       },
       "useRaw": {
         "name": "useRaw",
-        "description": "\nIf true, the value is stored and retrieved without JSON processing.\n\n",
+        "description": "If true, the value is stored and retrieved without JSON processing.",
         "type": "boolean",
         "default": "false"
       },
       "autoSaveDisabled": {
         "name": "autoSaveDisabled",
-        "description": "\nIf true, auto save is disabled.\n\n",
+        "description": "If true, auto save is disabled.",
         "type": "boolean",
         "default": "false"
       },
       "save": {
         "name": "save",
-        "description": " \nSaves the value to localStorage.\n\n"
+        "description": "Saves the value to localStorage."
       }
     },
     "output": {
       "core-localstorage-load": {
         "name": "core-localstorage-load",
-        "description": "\nFired when a value is loaded from localStorage.\n"
+        "description": "Fired when a value is loaded from localStorage."
       }
     }
   }

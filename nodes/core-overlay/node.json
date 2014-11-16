@@ -10,85 +10,85 @@
     "input": {
       "target": {
         "name": "target",
-        "description": "\nThe target element that will be shown when the overlay is \nopened. If unspecified, the core-overlay itself is the target.\n\n",
+        "description": "The target element that will be shown when the overlay is \nopened. If unspecified, the core-overlay itself is the target.",
         "type": "Object",
         "default": "the overlay element"
       },
       "sizingTarget": {
         "name": "sizingTarget",
-        "description": "\nA `core-overlay`'s size is guaranteed to be \nconstrained to the window size. To achieve this, the sizingElement\nis sized with a max-height/width. By default this element is the \ntarget element, but it can be specifically set to a specific element\ninside the target if that is more appropriate. This is useful, for \nexample, when a region inside the overlay should scroll if needed.\n\n",
+        "description": "A `core-overlay`'s size is guaranteed to be \nconstrained to the window size. To achieve this, the sizingElement\nis sized with a max-height/width. By default this element is the \ntarget element, but it can be specifically set to a specific element\ninside the target if that is more appropriate. This is useful, for \nexample, when a region inside the overlay should scroll if needed.",
         "type": "Object",
         "default": "the target element"
       },
       "opened": {
         "name": "opened",
-        "description": "\nSet opened to true to show an overlay and to false to hide it.\nA `core-overlay` may be made initially opened by setting its\n`opened` attribute.\n",
+        "description": "Set opened to true to show an overlay and to false to hide it.\nA `core-overlay` may be made initially opened by setting its\n`opened` attribute.",
         "type": "boolean",
         "default": "false"
       },
       "backdrop": {
         "name": "backdrop",
-        "description": "\nIf true, the overlay has a backdrop darkening the rest of the screen.\nThe backdrop element is attached to the document body and may be styled\nwith the class `core-overlay-backdrop`. When opened the `core-opened`\nclass is applied.\n\n",
+        "description": "If true, the overlay has a backdrop darkening the rest of the screen.\nThe backdrop element is attached to the document body and may be styled\nwith the class `core-overlay-backdrop`. When opened the `core-opened`\nclass is applied.",
         "type": "boolean",
         "default": "false"
       },
       "layered": {
         "name": "layered",
-        "description": "\nIf true, the overlay is guaranteed to display above page content.\n\n",
+        "description": "If true, the overlay is guaranteed to display above page content.",
         "type": "boolean",
         "default": "false"
       },
       "autoCloseDisabled": {
         "name": "autoCloseDisabled",
-        "description": "\nBy default an overlay will close automatically if the user\ntaps outside it or presses the escape key. Disable this\nbehavior by setting the `autoCloseDisabled` property to true.\n",
+        "description": "By default an overlay will close automatically if the user\ntaps outside it or presses the escape key. Disable this\nbehavior by setting the `autoCloseDisabled` property to true.",
         "type": "boolean",
         "default": "false"
       },
       "autoFocusDisabled": {
         "name": "autoFocusDisabled",
-        "description": "\nBy default an overlay will focus its target or an element inside\nit with the `autoFocus` attribute. Disable this\nbehavior by setting the `autoFocusDisabled` property to true.\n",
+        "description": "By default an overlay will focus its target or an element inside\nit with the `autoFocus` attribute. Disable this\nbehavior by setting the `autoFocusDisabled` property to true.",
         "type": "boolean",
         "default": "false"
       },
       "closeAttribute": {
         "name": "closeAttribute",
-        "description": "\nThis property specifies an attribute on elements that should\nclose the overlay on tap. Should not set `closeSelector` if this\nis set.\n\n",
+        "description": "This property specifies an attribute on elements that should\nclose the overlay on tap. Should not set `closeSelector` if this\nis set.",
         "type": "string",
         "default": "\"core-overlay-toggle\""
       },
       "closeSelector": {
         "name": "closeSelector",
-        "description": "\nThis property specifies a selector matching elements that should\nclose the overlay on tap. Should not set `closeAttribute` if this\nis set.\n\n",
+        "description": "This property specifies a selector matching elements that should\nclose the overlay on tap. Should not set `closeAttribute` if this\nis set.",
         "type": "string",
         "default": "\"\""
       },
       "transition": {
         "name": "transition",
-        "description": "\nThe transition property specifies a string which identifies a \n<a href=\"../core-transition/\">`core-transition`</a> element that \nwill be used to help the overlay open and close. The default\n`core-transition-fade` will cause the overlay to fade in and out.\n\n",
+        "description": "The transition property specifies a string which identifies a \n<a href=\"../core-transition/\">`core-transition`</a> element that \nwill be used to help the overlay open and close. The default\n`core-transition-fade` will cause the overlay to fade in and out.",
         "type": "string",
         "default": "'core-transition-fade'"
       },
       "toggle": {
         "name": "toggle",
-        "description": " \nToggle the opened state of the overlay.\n"
+        "description": "Toggle the opened state of the overlay."
       },
       "open": {
         "name": "open",
-        "description": " \nOpen the overlay. This is equivalent to setting the `opened`\nproperty to true.\n"
+        "description": "Open the overlay. This is equivalent to setting the `opened`\nproperty to true."
       },
       "close": {
         "name": "close",
-        "description": " \nClose the overlay. This is equivalent to setting the `opened` \nproperty to false.\n"
+        "description": "Close the overlay. This is equivalent to setting the `opened` \nproperty to false."
       },
       "resizeHandler": {
         "name": "resizeHandler",
-        "description": "\nExtensions of core-overlay should implement the `resizeHandler`\nmethod to adjust the size and position of the overlay when the \nbrowser window resizes.\n"
+        "description": "Extensions of core-overlay should implement the `resizeHandler`\nmethod to adjust the size and position of the overlay when the \nbrowser window resizes."
       }
     },
     "output": {
       "core-overlay-open": {
         "name": "core-overlay-open",
-        "description": "\nFired when the `core-overlay`'s `opened` property changes.\n\n",
+        "description": "Fired when the `core-overlay`'s `opened` property changes.",
         "params": [
           {
             "type": "Object",
@@ -99,15 +99,15 @@
       },
       "core-overlay-open-completed": {
         "name": "core-overlay-open-completed",
-        "description": "\nFired when the `core-overlay` has completely opened.\n\n"
+        "description": "Fired when the `core-overlay` has completely opened."
       },
       "core-overlay-close-completed": {
         "name": "core-overlay-close-completed",
-        "description": "\nFired when the `core-overlay` has completely closed.\n\n"
+        "description": "Fired when the `core-overlay` has completely closed."
       },
       "core-overlay-position": {
         "name": "core-overlay-position",
-        "description": "\nFired when the `core-overlay` needs to position itself. Optionally, implement\nin order to position an overlay via code. If the overlay was not otherwise\npositioned, it's important to indicate how the overlay has been positioned by\nsetting the `dimensions.position` object. For example, if the overlay has been\npositioned via setting `right` and `top`, set dimensions.position to an\nobject like this: `{v: 'top', h: 'right'}`.\n\n",
+        "description": "Fired when the `core-overlay` needs to position itself. Optionally, implement\nin order to position an overlay via code. If the overlay was not otherwise\npositioned, it's important to indicate how the overlay has been positioned by\nsetting the `dimensions.position` object. For example, if the overlay has been\npositioned via setting `right` and `top`, set dimensions.position to an\nobject like this: `{v: 'top', h: 'right'}`.",
         "params": [
           {
             "type": "Object",

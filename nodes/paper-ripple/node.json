@@ -10,13 +10,13 @@
     "input": {
       "initialOpacity": {
         "name": "initialOpacity",
-        "description": "\nThe initial opacity set on the wave.\n\n",
+        "description": "The initial opacity set on the wave.",
         "type": "number",
         "default": "0.25"
       },
       "opacityDecayVelocity": {
         "name": "opacityDecayVelocity",
-        "description": "\nHow fast (opacity per second) the wave fades out.\n\n",
+        "description": "How fast (opacity per second) the wave fades out.",
         "type": "number",
         "default": "0.8"
       }
@@ -24,7 +24,7 @@
     "output": {
       "core-transitionend": {
         "name": "core-transitionend",
-        "description": "\nFired when the animation finishes. This is useful if you want to wait until the ripple\nanimation finishes to perform some action.\n\n",
+        "description": "Fired when the animation finishes. This is useful if you want to wait until the ripple\nanimation finishes to perform some action.",
         "params": [
           {
             "type": "Object",

@@ -31,8 +31,10 @@
           }
         }
       },
-      "require": {
-        "core-a11y-keys": "github.com/Polymer/core-a11y-keys/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-a11y-keys": "Polymer/core-a11y-keys#master"
+        }
       },
       "description": "`core-a11y-keys` provides a normalized interface for processing keyboard commands that pertain to [WAI-ARIA best\npractices](http://www.w3.org/TR/wai-aria-practices/#kbd_general_binding). The element takes care of browser differences\nwith respect to Keyboard events and uses an expressive syntax to filter key presses.\n\nUse the `keys` attribute to express what combination of keys will trigger the event to fire.\n\nUse the `target` attribute to set up event handlers on a specific node.\nThe `keys-pressed` event will fire when one of the key combinations set with the `keys` attribute is pressed.\n\nExample:\n\nThis element will call `arrowHandler` on all arrow keys:\n\n    <core-a11y-keys target=\"{{}}\" keys=\"up down left right\" on-keys-pressed=\"{{arrowHandler}}\"></core-a11y-keys>\n\nKeys Syntax:\n\nThe `keys` attribute can accepts a space seprated, `+` concatenated set of modifier keys and some common keyboard keys.\n\nThe common keys are `a-z`, `0-9` (top row and number pad), `*` (shift 8 and number pad), `F1-F12`, `Page Up`, `Page\nDown`, `Left Arrow`, `Right Arrow`, `Down Arrow`, `Up Arrow`, `Home`, `End`, `Escape`, `Space`, `Tab`, and `Enter` keys.\n\nThe modifier keys are `Shift`, `Control`, and `Alt`.\n\nAll keys are expected to be lowercase and shortened:\n`Left Arrow` is `left`, `Page Down` is `pagedown`, `Control` is `ctrl`, `F1` is `f1`, `Escape` is `esc` etc.\n\nKeys Syntax Example:\n\nGiven the `keys` attribute value \"ctrl+shift+f7 up pagedown esc space alt+m\", the `<core-a11y-keys>` element will send\nthe `keys-pressed` event if any of the follow key combos are pressed: Control and Shift and F7 keys, Up Arrow key, Page\nDown key, Escape key, Space key, Alt and M key.\n\nSlider Example:\n\nThe following is an example of the set of keys that fulfil the WAI-ARIA \"slider\" role [best\npractices](http://www.w3.org/TR/wai-aria-practices/#slider):\n\n    <core-a11y-keys target=\"{{}}\" keys=\"left pagedown down\" on-keys-pressed=\"{{decrement}}\"></core-a11y-keys>\n    <core-a11y-keys target=\"{{}}\" keys=\"right pageup up\" on-keys-pressed=\"{{increment}}\"></core-a11y-keys>\n    <core-a11y-keys target=\"{{}}\" keys=\"home\" on-keys-pressed=\"{{setMin}}\"></core-a11y-keys>\n    <core-a11y-keys target=\"{{}}\" keys=\"end\" on-keys-pressed=\"{{setMax}}\"></core-a11y-keys>\n\nThe `increment` function will move the slider a set amount toward the maximum value.\nThe `decrement` function will move the slider a set amount toward the minimum value.\nThe `setMin` function will move the slider to the minimum value.\nThe `setMax` function will move the slider to the maximum value.\n\nKeys Syntax Grammar:\n\n[EBNF](http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form) Grammar of the `keys` attribute.\n\n    modifier = \"shift\" | \"ctrl\" | \"alt\";\n    ascii = ? /[a-z0-9]/ ? ;\n    fnkey = ? f1 through f12 ? ;\n    arrow = \"up\" | \"down\" | \"left\" | \"right\" ;\n    key = \"tab\" | \"esc\" | \"space\" | \"*\" | \"pageup\" | \"pagedown\" | \"home\" | \"end\" | arrow | ascii | fnkey ;\n    keycombo = { modifier, \"+\" }, key ;\n    keys = keycombo, { \" \", keycombo } ;",
       "type": "polymer",
@@ -140,8 +142,10 @@
           }
         }
       },
-      "require": {
-        "core-ajax": "github.com/Polymer/core-ajax/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-ajax": "Polymer/core-ajax#master"
+        }
       },
       "description": "The `core-ajax` element exposes `XMLHttpRequest` functionality.\n\n    <core-ajax\n        auto\n        url=\"http://gdata.youtube.com/feeds/api/videos/\"\n        params='{\"alt\":\"json\", \"q\":\"chrome\"}'\n        handleAs=\"json\"\n        on-core-response=\"{{handleResponse}}\"></core-ajax>\n\nWith `auto` set to `true`, the element performs a request whenever\nits `url`, `params` or `body` properties are changed.\n\nNote: The `params` attribute must be double quoted JSON.\n\nYou can trigger a request explicitly by calling `go` on the\nelement.",
       "type": "polymer",
@@ -175,8 +179,10 @@
           }
         }
       },
-      "require": {
-        "core-animated-pages": "github.com/Polymer/core-animated-pages/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-animated-pages": "Polymer/core-animated-pages#master"
+        }
       },
       "description": "`core-animated-pages` selects one of its children \"pages\" to show and runs a transition\nwhen switching between them. The transitions are designed to be pluggable, and can\naccept any object that is an instance of a `core-transition-pages`. Transitions to run\nare specified in the `transitions` attribute as a space-delimited string of `id`s of\ntransition elements. Several transitions are available with `core-animated-pages` by\ndefault, including `hero-transition`, `cross-fade`, and `tile-cascade`.\n\nExample:\n\n    <style>\n      #hero1 {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 300px;\n        height: 300px;\n        background-color: orange;\n      }\n      #hero2 {\n        position: absolute;\n        top: 200px;\n        left: 300px;\n        width: 300px;\n        height: 300px;\n        background-color: orange;\n      }\n      #bottom1, #bottom2 {\n        position: absolute;\n        bottom: 0;\n        top: 0;\n        left: 0;\n        height: 50px;\n      }\n      #bottom1 {\n        background-color: blue;\n      }\n      #bottom2 {\n        background-color: green;\n      }\n    </style>\n    // hero-transition and cross-fade are declared elsewhere\n    <core-animated-pages transitions=\"hero-transition cross-fade\">\n      <section id=\"page1\">\n        <div id=\"hero1\" hero-id=\"hero\" hero></div>\n        <div id=\"bottom1\" cross-fade></div>\n      </section>\n      <section id=\"page2\">\n        <div id=\"hero2\" hero-id=\"hero\" hero></div>\n        <div id=\"bottom2\" cross-fade></div>\n      </section>\n    </core-animated-pages>\n\nIn the above example, two transitions (`hero-transition` and `cross-fade`) are run when switching\nbetween `page1` and `page2`. `hero-transition` transforms elements with the same `hero-id` such\nthat they appear to be shared across different pages. `cross-fade` fades out the elements marked\n`cross-fade` in the outgoing page, and fades in those in the incoming page. See the individual\ntransition's documentation for specific details.\n\nFinding elements to transition\n------------------------------\n\nIn general, a transition is applied to elements marked with a certain attribute. For example,\n`hero-transition` applies the transition on elements with the `hero` and `hero-id` attribute.\nAmong the transitions included with `core-animated-pages`, script-based transitions such as\n`hero-transition` generally look for elements up to one level of shadowRoot from the\n`core-animated-pages` element, and CSS-based transitions such as `cross-fade` look for elements\nwithin any shadowRoot within the `core-animated-pages` element. This means you can use \ncustom elements as pages and mark elements in their shadowRoots as heroes, or mark \nelements in deeper shadowRoots with other transitions.\n\nExample:\n\n    <polymer-element name=\"x-el\" noscript>\n    <template>\n      <style>\n        #hero {\n          position: absolute;\n          top: 0;\n          right: 0;\n          width: 50px;\n          height: 300px;\n          background-color: blue;\n        }\n      </style>\n      <div id=\"hero\" hero-id=\"bar\" hero></div>\n    </template>\n    </polymer-element>\n\n    <polymer-element name=\"x-page-1\" noscript>\n    <template>\n      <style>\n        #hero1 {\n          position: absolute;\n          top: 0;\n          left: 0;\n          width: 300px;\n          height: 300px;\n          background-color: orange;\n        }\n      </style>\n      <div id=\"hero1\" hero-id=\"foo\" hero></div>\n      <div id=\"hero2\" hero-id=\"bar\" hero></div>\n    </template>\n    </polymer-element>\n\n    <polymer-element name=\"x-page-2\" noscript>\n    <template>\n      <style>\n        #hero1 {\n          position: absolute;\n          top: 200px;\n          left: 300px;\n          width: 300px;\n          height: 300px;\n          background-color: orange;\n        }\n        #hero2 {\n          background-color: blue;\n          height: 150px;\n          width: 400px;\n        }\n      </style>\n      // The below element is one level of shadow from the core-animated-pages and will\n      // be transitioned.\n      <div id=\"hero1\" hero-id=\"foo\" hero></div>\n      // The below element contains a hero inside its shadowRoot making it two levels away\n      // from the core-animated-pages, and will not be transitioned.\n      <x-el></x-el>\n    </template>\n    </polymer-element>\n\n    <core-animated-pages transitions=\"hero-transition\">\n      <x-page-1></x-page-1>\n      <x-page-2></x-page-2>\n    </core-animated-pages>\n\nNote that the container element of the page does not participate in the transition.\n\n    // This does not work\n    <core-animated-pages transitions=\"cross-fade\">\n      <section cross-fade></section>\n      <section cross-fade></section>\n    </core-animated-pages>\n\n    // This works\n    <core-animated-pages transitions=\"cross-fade\">\n      <section>\n        <div cross-fade></div>\n      </section>\n      <section>\n        <div cross-fade></div>\n      </section>\n    </core-animated-pages>\n\nDynamically setting up transitions\n----------------------------------\n\nAn easy way to set up transitions dynamically is to use property binding on\nthe transition attributes. \n\nExample:\n\n    <core-animated-pages selected=\"{{selected}}\">\n      <section id=\"page1\">\n        <div hero-id=\"hero\" hero></div>\n      </section>\n      <section id=\"page2\">\n        <div id=\"foo\" hero-id=\"hero\" hero?=\"{{selected === 1 || selected === 0}}\" cross-fade=\"{{selected === 2}}\"></div>\n      </section>\n      <section id=\"page3\">\n      </section>\n    </core-animated-pages>\n\nIn the above example, the \"foo\" element only behaves as a hero element if transitioning between\n`#page1` and `#page2`. It gets cross-faded when transition to or from `#page3`.\n\nNesting pages\n-------------\n\nIt is possible to nest core-animated-pages elements for organization. Excessive nesting is\nnot encouraged, however, since it makes setting up the transition more complex.\n\nTo nest core-animated-pages, the page containing the nested core-animated-pages element should\nhave a `selectedItem` property bound to the `selectedItem` property of the nested element. This\nwill allow the outer core-animated-pages to know which nested page it is actually transitioning\nto.\n\nExample:\n\n    <polymer-element name=\"nested-page\" attributes=\"selectedItem\">\n    <template>\n      <core-animated-pages selectedItem=\"{{selectedItem}}\">\n        ...\n      </core-animated-pages>\n    </template>\n    </polymer-element>\n\n    <core-animated-pages>\n      <section id=\"page1\"></section>\n      <nested-page id=\"page2\"></nested-page>\n    </core-animated-pages>",
       "type": "polymer",
@@ -222,8 +228,10 @@
           }
         }
       },
-      "require": {
-        "core-animation": "github.com/Polymer/core-animation/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-animation": "Polymer/core-animation#master"
+        }
       },
       "description": "`core-animation` is a convenience element to use web animations with Polymer elements. It\nallows you to create a web animation declaratively. You can extend this class to create\nnew types of animations and combine them with `core-animation-group`.\n\nExample to create animation to fade out an element over 500ms:\n\n    <core-animation id=\"fadeout\" duration=\"500\">\n      <core-animation-keyframe>\n        <core-animation-prop name=\"opacity\" value=\"1\"></core-animation-prop>\n      </core-animation-keyframe>\n      <core-animation-keyframe>\n        <core-animation-prop name=\"opacity\" value=\"0\"></core-animation-prop>\n      </core-animation-keyframe>\n    </core-animation>\n\n    <div id=\"el\">Fade me out</div>\n\n    <script>\n      var animation = document.getElementById('fadeout');\n      animation.target = document.getElementById('el');\n      animation.play();\n    </script>\n\nOr do the same imperatively:\n\n    var animation = new CoreAnimation();\n    animation.duration = 500;\n    animation.keyframes = [\n      {opacity: 1},\n      {opacity: 0}\n    ];\n    animation.target = document.getElementById('el');\n    animation.play();\n\nYou can also provide a javascript function instead of keyframes to the animation. This\nbehaves essentially the same as `requestAnimationFrame`:\n\n    var animation = new CoreAnimation();\n    animation.customEffect = function(timeFraction, target, animation) {\n      // do something custom\n    };\n    animation.play();\n\nElements that are targets to a `core-animation` are given the `core-animation-target` class.",
       "type": "polymer",
@@ -285,8 +293,10 @@
           }
         }
       },
-      "require": {
-        "core-collapse": "github.com/Polymer/core-collapse/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-collapse": "Polymer/core-collapse#master"
+        }
       },
       "description": "`core-collapse` creates a collapsible block of content.  By default, the content\nwill be collapsed.  Use `opened` or `toggle()` to show/hide the content.\n\n    <button on-click=\"{{toggle}}\">toggle collapse</button>\n    \n    <core-collapse id=\"collapse\">\n      Content goes here...\n    </core-collapse>\n    \n    ...\n\n    toggle: function() {\n      this.$.collapse.toggle();\n    }\n    \n`core-collapse` adjusts the height/width of the collapsible element to show/hide\nthe content.  So avoid putting padding/margin/border on the collapsible directly,\nand instead put a div inside and style that.\n\n    <style>\n      .collapse-content {\n        padding: 15px;\n        border: 1px solid #dedede;\n      }\n    </style>\n\n    <core-collapse>\n      <div class=\"collapse-content\">\n        Content goes here...\n      </div>\n    </core-collapse>",
       "type": "polymer",
@@ -311,8 +321,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-doc-viewer": "github.com/Polymer/core-doc-viewer/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-doc-viewer": "Polymer/core-doc-viewer#master"
+        }
       },
       "description": "Displays formatted source documentation scraped from input urls.\n\nDocumentation can be encoded into html comments (&lt;!-- ... --&gt;) or using JsDoc notation (/&#42;&#42; ... &#42;/).\n\nWhen using JsDoc notation, remember that the left-margin includes an asterisk and a single space.\nThis is important for markdown constructs that count spaces. Code blocks for example, must be\nfive spaces from the first asterisk.\n\n## Markdown\n\nMarkdown format is supported.\n\n### Links\n\nArbitrary links can be encoded using [standard markdown format](http://daringfireball.net/projects/markdown/syntax). \n[GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown) is also supported.\n\nLinks to other topics can be made with hash-links [core-doc-viewer](#core-doc-viewer).\n\n### Code\n\nExample\n\n    Four space indents indicate code blocks.\n    \n    <code>blocks are syntax highlighted</code>\n    \n    <script>\n      while(true) {\n        javascript('is highlighted also');\n      }\n    </script>\n\n### Blockquote\n\n > Blockquote is supported for long text that needs to wrap with a common left side indent.\n > Blockquote is supported for long text that needs to wrap with a common left side indent.  \n\n### Lists\n \n1.  enumerated\n1.  lists\n \nUse - or + for bullet points:\n \n- bullet\n- lists\n\n### Tables\n\n| First Header  | Second Header |\n| ------------- | ------------- |\n| Content Cell  | Content Cell  |\n| Content Cell  | Content Cell  |\n\n### HTML\n\nArbitrary HTML is also supported\n\n<input><button>Button</button><hr/>",
       "type": "polymer",
@@ -397,8 +409,10 @@
           }
         }
       },
-      "require": {
-        "core-drawer-panel": "github.com/Polymer/core-drawer-panel/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-drawer-panel": "Polymer/core-drawer-panel#master"
+        }
       },
       "description": "`core-drawer-panel` contains a drawer panel and a main panel.  The drawer\nand the main panel are side-by-side with drawer on the left.  When browser\nwindow size is smaller than the `responsiveWidth`, `core-drawer-panel`\nchanges to narrow layout.  In narrow layout, the drawer will be stacked on top\nof the main panel.  The drawer will be slided in/out to hide/reveal the main\npanel.\n\nUse the attribute `drawer` to indicate the element is a drawer panel and\n`main` to indicate is a main panel.\n\nExample:\n\n    <core-drawer-panel>\n      <div drawer> Drawer panel... </div>\n      <div main> Main panel... </div>\n    </core-drawer-panel>\n\nThe drawer and the main panels are not scrollable.  You can set CSS overflow\nproperty on the elements to make them scrollable or use `core-header-panel`.\n\nExample:\n\n    <core-drawer-panel>\n      <core-header-panel drawer>\n        <core-toolbar></core-toolbar>\n        <div> Drawer content... </div>\n      </core-header-panel>\n      <core-header-panel main>\n        <core-toolbar></core-toolbar>\n        <div> Main content... </div>\n      </core-header-panel>\n    </core-drawer-panel>\n\nAn element that should toggle the drawer will automatically do so if it's \ngiven the `core-drawer-toggle` attribute.  Also this element will automatically\nbe hidden in wide layout.\n\nExample:\n\n    <core-drawer-panel>\n      <core-header-panel drawer>\n        <core-toolbar>\n          <div>Application</div>\n        </core-toolbar>\n        <div> Drawer content... </div>\n      </core-header-panel>\n      <core-header-panel main>\n        <core-toolbar>\n          <core-icon-button icon=\"menu\" core-drawer-toggle></core-icon-button>\n          <div>Title</div>\n        </core-toolbar>\n        <div> Main content... </div>\n      </core-header-panel>\n    </core-drawer-panel>\n\nTo position the drawer to the right, add `rightDrawer` attribute.\n\n    <core-drawer-panel rightDrawer>\n      <div drawer> Drawer panel... </div>\n      <div main> Main panel... </div>\n    </core-drawer-panel>",
       "type": "polymer",
@@ -429,8 +443,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-dropdown-menu": "github.com/Polymer/core-dropdown-menu/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-dropdown-menu": "Polymer/core-dropdown-menu#master"
+        }
       },
       "description": "`core-dropdown-menu` works together with `core-dropdown` and `core-selector` to\nimplement a drop-down menu. The currently selected item is displayed in the\ncontrol. If no item is selected, the `label` is displayed instead.\n\nThe child element with the class `dropdown` will be used as the drop-down\nmenu. It should be a `core-dropdown` or other overlay element. You should\nalso provide a `core-selector` or other selector element, such as `core-menu`,\nin the drop-down.\n\nExample:\n\n    <core-dropdown-menu label=\"Choose a pastry\">\n        <core-dropdown class=\"dropdown\">\n            <core-selector>\n              <core-item label=\"Croissant\"></core-item>\n              <core-item label=\"Donut\"></core-item>\n              <core-item label=\"Financier\"></core-item>\n              <core-item label=\"Madeleine\"></core-item>\n            </core-selector>\n        </core-dropdown>\n    </core-dropdown-menu>",
       "type": "polymer",
@@ -460,8 +476,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-dropdown": "github.com/Polymer/core-dropdown/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-dropdown": "Polymer/core-dropdown#master"
+        }
       },
       "description": "`core-dropdown` is an element that is initially hidden and is positioned relatively to another\nelement, usually the element that triggers the dropdown. The dropdown and the triggering element\nshould be children of the same offsetParent, e.g. the same `<div>` with `position: relative`.\nIt can be used to implement dropdown menus, menu buttons, etc..\n\nExample:\n\n    <template is=\"auto-binding\">\n      <div relative>\n        <core-icon-button id=\"trigger\" icon=\"menu\"></core-icon-button>\n        <core-dropdown relatedTarget=\"{{$.trigger}}\">\n          <core-menu>\n            <core-item>Cut</core-item>\n            <core-item>Copy</core-item>\n            <core-item>Paste</core-item>\n          </core-menu>\n        </core-dropdown>\n      </div>\n    </template>\n\nPositioning\n-----------\n\nBy default, the dropdown is absolutely positioned on top of the `relatedTarget` with the top and\nleft edges aligned. The `halign` and `valign` properties controls the various alignments. The size\nof the dropdown is automatically restrained such that it is entirely visible on the screen. Use the\n`margin`\n\nIf you need more control over the dropdown's position, use CSS. The `halign` and `valign` properties are\nignored if the dropdown is positioned with CSS.\n\nExample:\n\n    <style>\n      /* manually position the dropdown below the trigger */\n      core-dropdown {\n        position: absolute;\n        top: 38px;\n        left: 0;\n      }\n    </style>\n\n    <template is=\"auto-binding\">\n      <div relative>\n        <core-icon-button id=\"trigger\" icon=\"menu\"></core-icon-button>\n        <core-dropdown relatedTarget=\"{{$.trigger}}\">\n          <core-menu>\n            <core-item>Cut</core-item>\n            <core-item>Copy</core-item>\n            <core-item>Paste</core-item>\n          </core-menu>\n        </core-dropdown>\n      </div>\n    </template>\n\nThe `layered` property\n----------------------\n\nSometimes you may need to render the dropdown in a separate layer. For example,\nit may be nested inside an element that needs to be `overflow: hidden`, or\nits parent may be overlapped by elements above it in stacking order.\n\nThe `layered` property will place the dropdown in a separate layer to ensure\nit appears on top of everything else. Note that this implies the dropdown will\nnot scroll with its container.",
       "type": "polymer",
@@ -497,8 +515,10 @@
           }
         }
       },
-      "require": {
-        "core-header-panel": "github.com/Polymer/core-header-panel/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-header-panel": "Polymer/core-header-panel#master"
+        }
       },
       "description": "`core-header-panel` contains a header section and a content panel section.\n\n__Important:__ The `core-header-panel` will not display if its parent does not have a height.\n\nUsing [layout attributes](http://www.polymer-project.org/docs/polymer/layout-attrs.html), you can easily make the `core-header-panel` fill the screen\n\n    <body fullbleed layout vertical>\n      <core-header-panel flex>\n        <core-toolbar>\n          <div>Hello World!</div>\n        </core-toolbar>\n      </core-header-panel>\n    </body>\n\nor, if you would prefer to do it in CSS, just give `html`, `body`, and `core-header-panel` a height of 100%:\n\n    html, body {\n      height: 100%;\n      margin: 0;\n    }\n    core-header-panel {\n      height: 100%;\n    }\n\nSpecial support is provided for scrolling modes when one uses a core-toolbar or equivalent\nfor the header section.\n\nExample:\n\n    <core-header-panel>\n      <core-toolbar>Header</core-toolbar>\n      <div>Content goes here...</div>\n    </core-header-panel>\n\nIf you want to use other than `core-toolbar` for the header, add\n`core-header` class to that element.\n\nExample:\n\n    <core-header-panel>\n      <div class=\"core-header\">Header</div>\n      <div>Content goes here...</div>\n    </core-header-panel>\n\nTo have the content fits to the main area, use `fit` attribute.\n\n    <core-header-panel>\n      <div class=\"core-header\">standard</div>\n      <div class=\"content\" fit>content fits 100% below the header</div>\n    </core-header-panel>\n\nUse `mode` to control the header and scrolling behavior.",
       "type": "polymer",
@@ -529,8 +549,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-icon-button": "github.com/Polymer/core-icon-button/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-icon-button": "Polymer/core-icon-button#master"
+        }
       },
       "description": "`core-icon-button` is an icon with button behaviors.\n\n    <core-icon-button src=\"star.png\"></core-icon-button>\n\n`core-icon-button` includes a default icon set.  Use `icon` to specify \nwhich icon from the icon set to use.\n\n    <core-icon-button icon=\"menu\"></core-icon-button>\n\nSee [`core-iconset`](#core-iconset) for more information about \nhow to use a custom icon set.",
       "type": "polymer",
@@ -561,8 +583,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-icon": "github.com/Polymer/core-icon/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-icon": "Polymer/core-icon#master"
+        }
       },
       "description": "The `core-icon` element displays an icon. By default an icon renders as a 24px square.\n\nExample using src:\n\n    <core-icon src=\"star.png\"></core-icon>\n\nExample setting size to 32px x 32px:\n\n    <core-icon class=\"big\" src=\"big_star.png\"></core-icon>\n\n    <style>\n      .big {\n        height: 32px;\n        width: 32px;\n      }\n    </style>\n\nThe core elements include several sets of icons. \nTo use the default set of icons, import  `core-icons.html` and use the `icon` attribute to specify an icon:\n\n    &lt;!-- import default iconset and core-icon --&gt;\n    <link rel=\"import\" href=\"/components/core-icons/core-icons.html\">\n\n    <core-icon icon=\"menu\"></core-icon>\n    \nTo use a different built-in set of icons, import  `core-icons/<iconset>-icons.html`, and\nspecify the icon as `<iconset>:<icon>`. For example:\n\n    &lt;!-- import communication iconset and core-icon --&gt;\n    <link rel=\"import\" href=\"/components/core-icons/communication-icons.html\">\n\n    <core-icon icon=\"communication:email\"></core-icon>\n    \nYou can also create custom icon sets of bitmap or SVG icons. \n\nExample of using an icon named `cherry` from a custom iconset with the ID `fruit`:\n\n    <core-icon icon=\"fruit:cherry\"></core-icon>\n\nSee [core-iconset](#core-iconset) and [core-iconset-svg](#core-iconset-svg) for more information about\nhow to create a custom iconset.\n\nSee [core-icons](http://www.polymer-project.org/components/core-icons/demo.html) for the default set of icons.",
       "type": "polymer",
@@ -613,8 +637,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-iconset-svg": "github.com/Polymer/core-iconset-svg/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-iconset-svg": "Polymer/core-iconset-svg#master"
+        }
       },
       "description": "The `core-iconset-svg` element allows users to define their own icon sets\nthat contain svg icons. The svg icon elements should be children of the\n`core-iconset-svg` element. Multiple icons should be given distinct id's.\n\nUsing svg elements to create icons has a few advantages over traditional\nbitmap graphics like jpg or png. Icons that use svg are vector based so they\nare resolution independent and should look good on any device. They are\nstylable via css. Icons can be themed, colorized, and even animated.\n\nExample:\n\n    <core-iconset-svg id=\"my-svg-icons\" iconSize=\"24\">\n      <svg>\n        <defs>\n          <g id=\"shape\">\n            <rect x=\"50\" y=\"50\" width=\"50\" height=\"50\" />\n            <circle cx=\"50\" cy=\"50\" r=\"50\" />\n          </g>\n        </defs>\n      </svg>\n    </core-iconset-svg>\n\nThis will automatically register the icon set \"my-svg-icons\" to the iconset\ndatabase.  To use these icons from within another element, make a\n`core-iconset` element and call the `byId` method\nto retrieve a given iconset. To apply a particular icon inside an\nelement use the `applyIcon` method. For example:\n\n    iconset.applyIcon(iconNode, 'car');",
       "type": "polymer",
@@ -700,8 +726,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-iconset": "github.com/Polymer/core-iconset/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-iconset": "Polymer/core-iconset#master"
+        }
       },
       "description": "The `core-iconset` element allows users to define their own icon sets. \nThe `src` property specifies the url of the icon image. Multiple icons may\nbe included in this image and they may be organized into rows.\nThe `icons` property is a space separated list of names corresponding to the\nicons. The names must be ordered as the icons are ordered in the icon image.\nIcons are expected to be square and are the size specified by the `iconSize`\nproperty. The `width` property corresponds to the width of the icon image \nand must be specified if icons are arranged into multiple rows in the image.\n\nAll `core-iconset` elements are available for use by other `core-iconset`\nelements via a database keyed by id. Typically, an element author that wants\nto support a set of custom icons uses a `core-iconset` to retrieve \nand use another, user-defined iconset.\n\nExample:\n\n    <core-iconset id=\"my-icons\" src=\"my-icons.png\" width=\"96\" iconSize=\"24\"\n        icons=\"location place starta stopb bus car train walk\">\n    </core-iconset>\n\nThis will automatically register the icon set \"my-icons\" to the iconset\ndatabase.  To use these icons from within another element, make a \n`core-iconset` element and call the `byId` method to retrieve a\ngiven iconset. To apply a particular icon to an element, use the \n`applyIcon` method. For example:\n\n    iconset.applyIcon(iconNode, 'car');\n\nThemed icon sets are also supported. The `core-iconset` can contain child\n`property` elements that specify a theme with an offsetX and offsetY of the\ntheme within the icon resource. For example.\n\n    <core-iconset id=\"my-icons\" src=\"my-icons.png\" width=\"96\" iconSize=\"24\"\n        icons=\"location place starta stopb bus car train walk\">\n      <property theme=\"special\" offsetX=\"256\" offsetY=\"24\"></property>\n    </core-iconset>\n\nThen a themed icon can be applied like this:\n\n    iconset.applyIcon(iconNode, 'car', 'special');",
       "type": "polymer",
@@ -768,8 +796,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-image": "github.com/Polymer/core-image/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-image": "Polymer/core-image#master"
+        }
       },
       "description": "`core-image` is an element for displaying an image that provides useful sizing and\npreloading options not found on the standard `<img>` tag.\n\nThe `sizing` option allows the image to be either cropped (`cover`) or\nletterboxed (`contain`) to fill a fixed user-size placed on the element.\n\nThe `preload` option prevents the browser from rendering the image until the\nimage is fully loaded.  In the interim, either the element's CSS `background-color`\ncan be be used as the placeholder, or the `placeholder` property can be \nset to a URL (preferably a data-URI, for instant rendering) for an\nplaceholder image.\n\nThe `fade` option (only valid when `preload` is set) will cause the placeholder\nimage/color to be faded out once the image is rendered.\n\nExamples:\n\n  Basically identical to &lt;img src=\"...\"&gt; tag:\n\n    <core-image src=\"http://lorempixel.com/400/400\"></core-image>\n\n  Will letterbox the image to fit:\n\n    <core-image style=\"width:400px; height:400px;\" sizing=\"contain\"\n      src=\"http://lorempixel.com/600/400\"></core-image>\n\n  Will crop the image to fit:\n\n    <core-image style=\"width:400px; height:400px;\" sizing=\"cover\"\n      src=\"http://lorempixel.com/600/400\"></core-image>\n\n  Will show light-gray background until the image loads:\n\n    <core-image style=\"width:400px; height:400px; background-color: lightgray;\" \n      sizing=\"cover\" preload src=\"http://lorempixel.com/600/400\"></core-image>\n\n  Will show a base-64 encoded placeholder image until the image loads:\n\n    <core-image style=\"width:400px; height:400px;\" placeholder=\"data:image/gif;base64,...\" \n      sizing=\"cover\" preload src=\"http://lorempixel.com/600/400\"></core-image>\n\n  Will fade the light-gray background out once the image is loaded:\n\n    <core-image style=\"width:400px; height:400px; background-color: lightgray;\" \n      sizing=\"cover\" preload fade src=\"http://lorempixel.com/600/400\"></core-image>",
       "type": "polymer",
@@ -798,8 +828,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-input": "github.com/Polymer/core-input/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-input": "Polymer/core-input#master"
+        }
       },
       "description": "`core-input` is an unstyled single-line input field. It extends the native\n`input` element.\n\nExample:\n\n    <input is=\"core-input\">\n\nThe input's value is considered \"committed\" if the user hits the \"enter\" key\nor blurs the input after changing the value. The committed value is stored in\nthe `committedValue` property.\n\nIf the input has `type = number`, this element will also prevent non-numeric characters\nfrom being typed into the text field.\n\nAccessibility\n-------------\n\nThe following ARIA attributes are set automatically:\n\n- `aria-label`: set to the `placeholder` attribute\n- `aria-disabled`: set if `disabled` is true",
       "type": "polymer",
@@ -830,8 +862,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-item": "github.com/Polymer/core-item/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-item": "Polymer/core-item#master"
+        }
       },
       "description": "`core-item` is a simple line-item object: a label and/or an icon that can also \nact as a link.\n\nExample:\n\n    <core-item icon=\"settings\" label=\"Settings\"></core-item>\n    \nTo use as a link, put &lt;a&gt; element in the item.\n\nExample:\n\n    <core-item icon=\"settings\" label=\"Settings\">\n      <a href=\"#settings\" target=\"_self\"></a>\n    </core-item>",
       "type": "polymer",
@@ -850,8 +884,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-label": "github.com/Polymer/core-label/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-label": "Polymer/core-label#master"
+        }
       },
       "description": "`<core-label>` provides a version of the `<label>` element that works with Custom Elements as well as native elements.\n\nAll text in the `core-label` will be applied to the target element as a screen-reader accessible description.\n\nThere are two ways to use `core-label` to target an element:\n\n1. place an element inside core-label with the `for` attribute:\n\n        <core-label>\n          Context for the Button\n          <paper-button for>button</paper-button>\n        </core-label>\n\n2. Set the `for` attribute on the `core-label` element to point to a target element in the same scope with a query\nstring:\n\n        <core-label for=\".foo\">\n          Context for the button witht the \"foo\" class\"\n        </core-label>\n        <paper-button class=\"foo\">Far away button</paper-button>\n\nAll taps on the `core-label` will be forwarded to the \"target\" element.",
       "type": "polymer",
@@ -868,8 +904,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-layout-trbl": "github.com/Polymer/core-layout-trbl/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-layout-trbl": "Polymer/core-layout-trbl#master"
+        }
       },
       "description": "`<core-layout-trbl>` arranges nodes horizontally via absolute positioning.\nSet the `vertical` attribute (boolean) to arrange vertically instead.\n\n`<core-layout-trbl>` arranges it's <b>sibling elements</b>, not\nit's children.\n\nOne arranged node may be marked as elastic by giving it a `flex`\nattribute (boolean).\n\nYou may remove a node from layout by giving it a `nolayout`\nattribute (boolean).\n\nCSS Notes:\n\n`padding` is ignored on the parent node.\n`margin` is ignored on arranged nodes.\n`min-width` is ignored on arranged nodes, use `min-width` on the parent node \ninstead.\n\nExample: \n\nArrange three `div` into columns. `flex` attribute on Column Two makes that\ncolumn elastic.\n\n     <core-layout-trbl></core-layout-trbl>\n     <div>Column One</div>\n     <div flex>Column Two</div>\n     <div>Column Three</div>\n\nRemember that `<core-layout-trbl>` arranges it's sibling elements, not it's children.\n\nIf body has width 52 device pixels (in this case, ascii characters), call that 52px.\nColumn One has it's natural width of 12px (including border), Column Three has it's\nnatural width of 14px, body border uses 2px, and Column Two automatically uses the\nremaining space: 24px.\n\n     |-                    52px                        -| \n     ----------------------------------------------------\n     ||Column One||      Column Two      ||Column Three||\n     ----------------------------------------------------\n      |-  12px  -||-     (24px)         -||    14px   -|\n\nAs the parent node resizes, the elastic column reacts via CSS to adjust it's size.\nNo javascript is used during parent resizing, for best performance. \n\nChanges in content or sibling size are not handled automatically. \n\n     ----------------------------------------------------------------\n     ||Column One|             Column Two             |Column Three||\n     ----------------------------------------------------------------\n\n     --------------------------------------\n     ||Column One|Column Two|Column Three||\n     --------------------------------------\n\nArrange in rows by adding the `vertical` attribute.\n\nExample:\n\n     <core-layout-trbl vertical></core-layout-trbl>\n     <div>Row One</div>\n     <div flex>Row Two</div>\n     <div>Row Three</div>\n\nThis setup will cause Row Two to stretch to fill the container.\n\n     -----------             -----------\n     |---------|             |---------|\n     |         |             |         |\n     |Row One  |             |Row One  |\n     |         |             |         |\n     |---------|             |---------|\n     |         |             |         |\n     |Row Two  |             |Row Two  |\n     |         |             |         |\n     |---------|             |         |\n     |         |             |         |\n     |Row Three|             |         |\n     |         |             |---------|\n     |---------|             |         |\n     -----------             |Row Three|\n                             |         |\n                             |---------|\n                             |---------|\n\nLayouts can be nested arbitrarily.\n\n     <core-layout-trbl></core-layout-trbl>\n     <div>Menu</div>\n     <div flex>\n        <core-layout-trbl vertical></core-layout-trbl>\n        <div>Title</div>\n        <div>Toolbar</div>\n        <div flex>Main</div>\n        <div>Footer</div>\n     </div>\n\nRenders something like this\n\n     --------------------------------\n     ||Menu     ||Title            ||\n     ||         ||-----------------||\n     ||         ||Toolbar          ||\n     ||         ||-----------------||\n     ||         ||Main             ||\n     ||         ||                 ||\n     ||         ||-----------------||\n     ||         ||Footer           ||\n     --------------------------------",
       "type": "polymer",
@@ -1027,8 +1065,10 @@
           }
         }
       },
-      "require": {
-        "core-list": "github.com/Polymer/core-list/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-list": "Polymer/core-list#master"
+        }
       },
       "description": "`core-list` displays a virtual, 'infinite' list. The template inside the \n`core-list` element represents the DOM to create for each list item. The\n`data` property specifies an array of list item data.\n\nFor performance reasons, not every item in the list is rendered at once; instead\na small subset of actual template elements (enough to fill the viewport) are\nrendered and reused as the user scrolls.  As such, it is important that all\nstate of the list template be bound to the model driving it, since the view \nmay be reused with a new model at any time.  Particularly, any state that \nmay change as the result of a user interaction with the list item must be\nbound to the model to avoid view state inconsistency.\n\n### Template model\n\nList item templates should bind to template models of the following structure:\n\n    {\n      index: 0,           // data index for this item\n      selected: false,    // selection state for this item\n      model: {            // user data corresponding to data[index]\n        /* user item data  */\n      }\n    }\n\nFor example, given the following data array:\n\n    [\n      {name: 'Bob', checked: true},\n      {name: 'Tim', checked: false},\n      ...\n    ]\n\nThe following code would render the list (note the `name` and `checked`\nproperties are bound from the `model` object provided to the template\nscope):\n\n    <core-list data=\"{{data}}\">\n      <template>\n        <div class=\"row {{ {selected: selected} | tokenList }}\">\n          List row: {{index}}, User data from model: {{model.name}}\n          <input type=\"checkbox\" checked=\"{{model.checked}}\">\n        </div>\n      </template>\n    </core-list>\n\n### Selection\n\nBy default, the list supports selection via tapping. Styling selected items\nshould be done via binding to the `selected` property of each model (see examples\nabove.  The data model for the selected item (for single-selection) or array of\nmodels (for multi-selection) is published to the `selection` property.\n\n### Grouping **(experimental)**\n\n`core-list` supports showing dividers between groups of data by setting the \n`groups` property to an array containing group information.  An element with\na `divider` attribute set should be supplied a the top level of the template\nnext to the template item to provide the divider template.  The template model\ncontains extra fields when `groups` is used, as follows:\n\n    {\n      index: 0,           // data index for this item\n      groupIndex: 0,      // group index for this item\n      groupItemIndex: 0,  // index within group for this item\n      selected: false,    // selection state for this item\n      model: {            // user data corresponding to data[index]\n        /* user item data  */\n      },\n      groupModel: {       // user group data corresponding to groups[index]\n        /* user group data */\n      }\n    }\n\nGroups may be specified one of two ways (users should choose the data format \nthat closest matches their source data, to avoid the performance impact of \nneeding totransform data to fit the required structure):\n\n1. Flat data array - In this scenario, the `data` array is provided as \na flat list of models.  Group lengths are determined by the `length` property\non each group object, with the `data` property providing user-specified group\ndata, typically for binding to dividers.  For example:\n\n        data = [\n          { name: 'Adam' },\n          { name: 'Alex' },\n          { name: 'Bob' },\n          { name: 'Chuck' },\n          { name: 'Cathy' },\n          ...\n        ];\n\n        groups = [\n          { length: 2, data: { letter: 'A' } },\n          { length: 1, data: { letter: 'B' } },\n          { length: 2, data: { letter: 'C' } },\n          ...\n        ];\n\n        <core-list data=\"{{data}}\" groups=\"{{groups}}\">\n          <template>\n            <div divider class=\"divider\">{{groupModel.letter}}</div>\n            <div class=\"item\">{{model.name}}</div>\n          </template>\n        </core-list>\n\n2. Nested data array - In this scenario, the `data` array is a nested\narray of arrays of models, where each array determines the length of the\ngroup, and the `groups` models provide the user-specified data directly.\nFor example:\n\n        data = [\n          [ { name: 'Adam' }, { name: 'Alex' } ],\n          [ { name: 'Bob' } ],\n          [ { name: 'Chuck' }, { name: 'Cathy' } ],\n          ...\n        ];\n\n        groups = [\n          { letter: 'A' },\n          { letter: 'B' },\n          { letter: 'C' },\n          ...\n        ];\n\n        <core-list data=\"{{data}}\" groups=\"{{groups}}\">\n          <template>\n            <div divider class=\"divider\">{{groupModel.letter}}</div>\n            <div class=\"item\">{{model.name}}</div>\n          </template>\n        </core-list>\n\n### Grid layout **(experimental)**\n\n`core-list` supports a grid layout in addition to linear layout by setting\nthe `grid` attribute.  In this case, the list template item must have both fixed\nwidth and height (e.g. via CSS), with the desired width of each grid item\nspecified by the `width` attribute.  Based on this, the number of items \nper row are determined automatically based on the size of the list viewport.\n\n### Non-native scrollers **(experimental)**\n\nBy default, core-list assumes the `scrollTarget` (if set) is a native scrollable\nelement (e.g. `overflow:auto` or `overflow:y`) that fires the `scroll` event and\nwhose scroll position can be read/set via the `scrollTop` property.\n`core-list` provides experimental support for setting `scrollTarget`\nto a custom scroller element (e.g. a JS-based scroller) as long as it provides \nthe following abstract API:\n\n  - `getScrollTop()` - returns the current scroll position\n  - `setScrollTop(y)` - sets the current scroll position\n  - Fires a `scroll` event indicating when the scroll position has changed",
       "type": "polymer",
@@ -1074,8 +1114,10 @@
           }
         }
       },
-      "require": {
-        "core-localstorage": "github.com/Polymer/core-localstorage/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-localstorage": "Polymer/core-localstorage#master"
+        }
       },
       "description": "Element access to localStorage.  The \"name\" property\nis the key to the data (\"value\" property) stored in localStorage.\n\n`core-localstorage` automatically saves the value to localStorage when\nvalue is changed.  Note that if value is an object auto-save will be\ntriggered only when value is a different instance.\n\n    <core-localstorage name=\"my-app-storage\" value=\"{{value}}\"></core-localstorage>",
       "type": "polymer",
@@ -1105,8 +1147,10 @@
           }
         }
       },
-      "require": {
-        "core-media-query": "github.com/Polymer/core-media-query/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-media-query": "Polymer/core-media-query#master"
+        }
       },
       "description": "core-media-query can be used to data bind to a CSS media query.\nThe \"query\" property is a bare CSS media query.\nThe \"queryMatches\" property will be a boolean representing if the page matches that media query.\n\ncore-media-query uses media query listeners to dynamically update the \"queryMatches\" property.\nA \"core-media-change\" event also fires when queryMatches changes.\n\nExample:\n\n     <core-media-query query=\"max-width: 640px\" queryMatches=\"{{phoneScreen}}\"></core-media-query>\n\n\n\nFired when the media query state changes",
       "type": "polymer",
@@ -1136,8 +1180,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-meta": "github.com/Polymer/core-meta/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-meta": "Polymer/core-meta#master"
+        }
       },
       "description": "`core-meta` provides a method of constructing a self-organizing database.\nIt is useful to collate element meta-data for things like catalogs and for \ndesigner.\n\nExample, an element folder has a `metadata.html` file in it, that contains a \n`core-meta`, something like this:\n\n    <core-meta id=\"my-element\" label=\"My Element\">\n      <property name=\"color\" value=\"blue\"></property>\n    </core-meta>\n\nAn application can import as many of these files as it wants, and then use \n`core-meta` again to access the collected data.\n\n    <script>\n      var meta = document.createElement('core-meta');\n      console.log(meta.list); // dump a list of all meta-data elements that have been created\n    </script>\n\nUse `byId(id)` to retrive a specific core-meta.\n\n    <script>\n      var meta = document.createElement('core-meta');\n      console.log(meta.byId('my-element'));\n    </script>\n\nBy default all meta-data are stored in a single databse.  If your meta-data \nhave different types and want them to be stored separately, use `type` to \ndifferentiate them.\n\nExample:\n\n    <core-meta id=\"x-foo\" type=\"xElt\"></core-meta>\n    <core-meta id=\"x-bar\" type=\"xElt\"></core-meta>\n    <core-meta id=\"y-bar\" type=\"yElt\"></core-meta>\n\n    <script>\n      var meta = document.createElement('core-meta');\n      meta.type = 'xElt';\n      console.log(meta.list);\n    </script>",
       "type": "polymer",
@@ -1267,8 +1313,10 @@
           }
         }
       },
-      "require": {
-        "core-overlay": "github.com/Polymer/core-overlay/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-overlay": "Polymer/core-overlay#master"
+        }
       },
       "description": "The `core-overlay` element displays overlayed on top of other content. It starts\nout hidden and is displayed by setting its `opened` property to true.\nA `core-overlay's` opened state can be toggled by calling the `toggle`\nmethod.\n\nThe `core-overlay` will, by default, show/hide itself when it's opened. The \n`target` property may be set to another element to cause that element to \nbe shown when the overlay is opened.\n\nIt's common to want a `core-overlay` to animate to its opened\nposition. The `core-overlay` element uses a `core-transition` to handle\nanimation. The default transition is `core-transition-fade` which \ncauses the overlay to fade in when displayed. See \n<a href=\"../core-transition/\">`core-transition`</a> for more\ninformation about customizing a `core-overlay's` opening animation. The\n`backdrop` property can be set to true to show a backdrop behind the overlay\nthat will darken the rest of the window.\n\nAn element that should close the `core-overlay` will automatically\ndo so if it's given the `core-overlay-toggle` attribute. This attribute\ncan be customized with the `closeAttribute` property. You can also use\n`closeSelector` if more general matching is needed.\n\nBy default  `core-overlay` will close whenever the user taps outside it or\npresses the escape key. This behavior can be turned off via the\n`autoCloseDisabled` property.\n\n    <core-overlay>\n      <h2>Dialog</h2>\n      <input placeholder=\"say something...\" autofocus>\n      <div>I agree with this wholeheartedly.</div>\n      <button core-overlay-toggle>OK</button>\n    </core-overlay>\n\n`core-overlay` will automatically size and position itself according to the \nfollowing rules. The overlay's size is constrained such that it does not\noverflow the screen. This is done by setting maxHeight/maxWidth on the \n`sizingTarget`. If the `sizingTarget` already has a setting for one of these\nproperties, it will not be overridden. The overlay should\nbe positioned via css or imperatively using the `core-overlay-position` event.\nIf the overlay is not positioned vertically via setting `top` or `bottom`, it\nwill be centered vertically. The same is true horizontally via a setting to \n`left` or `right`. In addition, css `margin` can be used to provide some space\naround the overlay. This can be used to ensure\nthat, for example, a drop shadow is always visible around the overlay.",
       "type": "polymer",
@@ -1311,8 +1359,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-range": "github.com/Polymer/core-range/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-range": "Polymer/core-range#master"
+        }
       },
       "description": "The `core-range` element is used for managing a numeric value within a given \nrange.  It has no visual appearance and is typically used in conjunction with \nanother element.\n\nOne can build a progress bar using `core-range` like this:\n\n    <core-range min=\"0\" max=\"200\" value=\"100\" ratio=\"{{ratio}}\"></core-range>\n    <div class=\"progress-bar\" style=\"width: {{ratio}}%;\"></div>",
       "type": "polymer",
@@ -1372,8 +1422,10 @@
           }
         }
       },
-      "require": {
-        "core-scaffold": "github.com/Polymer/core-scaffold/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-scaffold": "Polymer/core-scaffold#master"
+        }
       },
       "description": "`core-scaffold` provides general application layout, introducing a \nresponsive scaffold containing a header, toolbar, menu, title and \nareas for application content.\n\nExample:\n\n    <core-scaffold>\n      <core-header-panel navigation flex mode=\"seamed\">\n        <core-toolbar>Application</core-toolbar>\n        <core-menu theme=\"core-light-theme\">\n          <core-item icon=\"settings\" label=\"item1\"></core-item>\n          <core-item icon=\"settings\" label=\"item2\"></core-item>\n        </core-menu>\n      </core-header-panel>\n      <div tool>Title</div>\n      <div>Main content goes here...</div>\n    </core-scaffold>\n\nUse `mode` to control the header and scrolling behavior of `core-header-panel`\nand `responsiveWidth` to change the layout of the scaffold.  Use 'disableSwipe'\nto disable swipe-to-open on toolbar.\n\nUse `rightDrawer` to move position of folding toolbar to the right instead of\nleft (default).  This will also position content to the left of the menu button\ninstead of the right.  You can use `flex` within your `tool` content to push the menu\nbutton to the far right:\n\n    <core-scaffold rightDrawer>\n      <div tool flex >Title</div>\n    </core-scaffold>\n    \nYou may also add `middle` or `bottom` classes to your `tool` content when using tall\nmodes to adjust vertical content positioning in the core-toolbar (e.g. when using \nmode=\"waterfall-tall\"):\n\n    <core-scaffold rightDrawer mode=\"waterfall-tall\">\n      <div tool flex >Title</div>\n      <div tool horizontal layout flex center-justified class=\"middle\">Title-middle</div>\n      <div tool horizontal layout flex end-justified class=\"bottom\">Title-bottom</div>\n    </core-scaffold>\n\nTo have the content fit to the main area, use `fit` attribute.\n\n    <core-scaffold>\n      <core-header-panel navigation flex mode=\"seamed\">\n        ....\n      </core-header-panel>\n      <div tool>Title</div>\n      <div fit>Content fits to the main area</div>\n    </core-scaffold>",
       "type": "polymer",
@@ -1447,8 +1499,10 @@
           }
         }
       },
-      "require": {
-        "core-scroll-header-panel": "github.com/Polymer/core-scroll-header-panel/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-scroll-header-panel": "Polymer/core-scroll-header-panel#master"
+        }
       },
       "description": "`core-scroll-header-panel` contains a header section and a content section.  The\nheader is initially on the top part of the view but it scrolls away with the \nrest of the scrollable content.  Upon scrolling slightly up at any point, the \nheader scrolls back into view.  This saves screen space and allows users to\naccess important controls by easily moving them back to the view.\n\n__Important:__ The `core-scroll-header-panel` will not display if its parent does not have a height.\n\nUsing [layout attributes](http://www.polymer-project.org/docs/polymer/layout-attrs.html), you can easily make the `core-scroll-header-panel` fill the screen\n\n    <body fullbleed layout vertical>\n      <core-scroll-header-panel flex>\n        <core-toolbar>\n          <div>Hello World!</div>\n        </core-toolbar>\n      </core-scroll-header-panel>\n    </body>\n\nor, if you would prefer to do it in CSS, just give `html`, `body`, and `core-scroll-header-panel` a height of 100%:\n\n    html, body {\n      height: 100%;\n      margin: 0;\n    }\n    core-scroll-header-panel {\n      height: 100%;\n    }\n\n`core-scroll-header-panel` works well with `core-toolbar` but can use any element \nthat represents a header by adding a `core-header` class to it.\n\n    <core-scroll-header-panel>\n      <core-toolbar>Header</core-toolbar>\n      <div>Content goes here...</div>\n    </core-scroll-header-panel>",
       "type": "polymer",
@@ -1507,8 +1561,10 @@
           }
         }
       },
-      "require": {
-        "core-selection": "github.com/Polymer/core-selection/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-selection": "Polymer/core-selection#master"
+        }
       },
       "description": "The `<core-selection>` element is used to manage selection state. It has no\nvisual appearance and is typically used in conjunction with another element.\nFor example, [core-selector](#core-selector)\nuse a `<core-selection>` to manage selection.\n\nTo mark an item as selected, call the `select(item)` method on \n`<core-selection>`. The item itself is an argument to this method.\n\nThe `<core-selection>`element manages selection state for any given set of\nitems. When an item is selected, the `core-select` event is fired.\n\nThe attribute `multi` indicates if multiple items can be selected at once.\n  \nExample:\n \n    <polymer-element name=\"selection-example\">\n       <template>\n         <style>\n           polyfill-next-selector { content: ':host > .selected'; }\n           ::content > .selected {\n             font-weight: bold;\n             font-style: italic;\n           }\n         </style>\n         <ul on-tap=\"{{itemTapAction}}\">\n           <content></content>\n         </ul>\n         <core-selection id=\"selection\" multi\n                         on-core-select=\"{{selectAction}}\"></core-selection>\n       </template>\n       <script>\n         Polymer('selection-example', {\n           itemTapAction: function(e, detail, sender) {\n             this.$.selection.select(e.target);\n           },\n           selectAction: function(e, detail, sender) {\n             detail.item.classList.toggle('selected', detail.isSelected);\n           }\n         });\n       </script>\n    </polymer-element>\n\n    <selection-example>\n      <li>Red</li>\n      <li>Green</li>\n      <li>Blue</li>\n    </selection-example>",
       "type": "polymer",
@@ -1655,8 +1711,10 @@
           }
         }
       },
-      "require": {
-        "core-selector": "github.com/Polymer/core-selector/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-selector": "Polymer/core-selector#master"
+        }
       },
       "description": "`<core-selector>` is used to manage a list of elements that can be selected.\n\nThe attribute `selected` indicates which item element is being selected.\nThe attribute `multi` indicates if multiple items can be selected at once.\nTapping on the item element would fire `core-activate` event. Use\n`core-select` event to listen for selection changes.\n\nExample:\n\n    <core-selector selected=\"0\">\n      <div>Item 1</div>\n      <div>Item 2</div>\n      <div>Item 3</div>\n    </core-selector>\n\n`<core-selector>` is not styled. Use the `core-selected` CSS class to style the selected element.\n\n    <style>\n      .item.core-selected {\n        background: #eee;\n      }\n    </style>\n    ...\n    <core-selector>\n      <div class=\"item\">Item 1</div>\n      <div class=\"item\">Item 2</div>\n      <div class=\"item\">Item 3</div>\n    </core-selector>",
       "type": "polymer",
@@ -1693,8 +1751,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-splitter": "github.com/Polymer/core-splitter/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-splitter": "Polymer/core-splitter#master"
+        }
       },
       "description": "`core-splitter` provides a split bar and dragging on the split bar\nwill resize the sibling element.  Use its `direction` property to indicate\nwhich sibling element to be resized and the orientation.  Usually you would want\nto use `core-splitter` along with flex layout so that the other sibling\nelement can be _flexible_.\n\nExample:\n\n    <div horizontal layout>\n      <div>left</div>\n      <core-splitter direction=\"left\"></core-splitter>\n      <div flex>right</div>\n    </div>\n\nIn the above example, dragging the splitter will resize the _left_ element.  And\nsince the parent container is a flexbox and the _right_ element has\n`flex`, the _right_ element will be auto-resized.\n\nFor horizontal splitter set `direction` to `up` or `down`.\n\nExample:\n\n    <div vertical layout>\n      <div>top</div>\n      <core-splitter direction=\"up\"></core-splitter>\n      <div flex>bottom</div>\n    </div>",
       "type": "polymer",
@@ -1725,8 +1785,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-style": "github.com/Polymer/core-style/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-style": "Polymer/core-style#master"
+        }
       },
       "description": "The `core-style` element helps manage styling inside other elements and can \nbe used to make themes. The `core-style` element can be either a producer \nor consumer of styling. If it has its `id` property set, it's a producer. \nElements that are producers should include css styling as their text content.\nIf a `core-style` has its `ref` property set, it's a consumer. A `core-style`\ntypically sets its `ref` property to the value of the `id` property of the\n`core-style` it wants to use. This allows a single producer to be used in \nmultiple places, for example, in many different elements.\n\nIt's common to place `core-style` producer elements inside HTMLImports.\nRemote stylesheets should be included this way, the &#64;import css mechanism is\nnot currently supported.\n\nHere's a basic example:\n\n    <polymer-element name=\"x-test\" noscript>\n      <template>\n        <core-style ref=\"x-test\"></core-style>\n        <content></content>\n      </template>\n    </polymer-element>\n\nThe `x-test` element above will be styled by any `core-style` elements that have\n`id` set to `x-test`. These `core-style` producers are separate from the element\ndefinition, allowing a user of the element to style it independent of the author's \nstyling. For example:\n\n    <core-style id=\"x-test\">\n      :host {\n        backgound-color: steelblue;\n      }\n    </core-style>\n\nThe content of the `x-test` `core-style` producer gets included inside the\nshadowRoot of the `x-test` element. If the content of the `x-test` producer\n`core-style` changes, all consumers of it are automatically kept in sync. This\nallows updating styling on the fly.\n\nThe `core-style` element also supports bindings, in which case the producer\n`core-style` element is the model. Here's an example:\n\n    <core-style id=\"x-test\">\n      :host {\n        background-color: {{myColor}};\n      }\n    </core-style>\n    <script>\n      document._currentScript.ownerDocument.getElementById('x-test').myColor = 'orange';\n    </script>\n\nFinally, to facilitate sharing data between `core-style` elements, all\n`core-style` elements have a `g` property which is set to the global \n`CoreStyle.g`. Here's an example:\n\n    <core-style id=\"x-test\">\n      :host {\n        background-color: {{g.myColor}};\n      }\n    </core-style>\n    <script>\n      CoreStyle.g.myColor = 'tomato';\n    </script>\n\nFinally, one `core-style` can be nested inside another. The `core-style`\nelement has a `list` property which is a map of all the `core-style` producers.\nA `core-style` producer's content is available via its `cssText` property. \nPutting this together:\n\n    <core-style id=\"common\">\n      :host {\n        font-family: sans-serif;\n      }\n    </core-style>\n\n    <core-style id=\"x-test\">\n      {{list.common.cssText}}\n\n      :host {\n        background-color: {{g.myColor}};\n      }\n    </core-style>",
       "type": "polymer",
@@ -1757,8 +1819,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-toolbar": "github.com/Polymer/core-toolbar/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-toolbar": "Polymer/core-toolbar#master"
+        }
       },
       "description": "`core-toolbar` is a horizontal bar containing items that can be used for\nlabel, navigation, search and actions.  The items place inside the \n`core-toolbar` are projected into a `horizontal center layout` container inside of \n`core-toolbar`'s Shadow DOM.  You can use flex attributes to control the items'\nsizing.\n\nExample:\n\n    <core-toolbar>\n      <core-icon-button icon=\"menu\" on-tap=\"{{menuAction}}\"></core-icon-button>\n      <div flex>Title</div>\n      <core-icon-button icon=\"more\" on-tap=\"{{moreAction}}\"></core-icon-button>\n    </core-toolbar>\n\n`core-toolbar` has a standard height, but can made be taller by setting `tall`\nclass on the `core-toolbar`.  This will make the toolbar 3x the normal height.\n\n    <core-toolbar class=\"tall\">\n      <core-icon-button icon=\"menu\"></core-icon-button>\n    </core-toolbar>\n\nApply `medium-tall` class to make the toolbar medium tall.  This will make the\ntoolbar 2x the normal height.\n\n    <core-toolbar class=\"medium-tall\">\n      <core-icon-button icon=\"menu\"></core-icon-button>\n    </core-toolbar>\n\nWhen `tall`, items can pin to either the top (default), middle or bottom.  Use\n`middle` class for middle content and `bottom` class for bottom content.\n\n    <core-toolbar class=\"tall\">\n      <core-icon-button icon=\"menu\"></core-icon-button>\n      <div class=\"middle indent\">Middle Title</div>\n      <div class=\"bottom indent\">Bottom Title</div>\n    </core-toolbar>\n    \nFor `medium-tall` toolbar, the middle and bottom contents overlap and are\npinned to the bottom.  But `middleJustify` and `bottomJustify` attributes are \nstill honored separately.\n    \nTo make an element completely fit at the bottom of the toolbar, use `fit` along\nwith `bottom`.\n\n    <core-toolbar class=\"tall\">\n      <div id=\"progressBar\" class=\"bottom fit\"></div>\n    </core-toolbar>\n\n`core-toolbar` adapts to mobile/narrow layout when there is a `core-narrow` class set\non itself or any of its ancestors.",
       "type": "polymer",
@@ -1801,8 +1865,10 @@
         },
         "output": {}
       },
-      "require": {
-        "core-tooltip": "github.com/Polymer/core-tooltip/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-tooltip": "Polymer/core-tooltip#master"
+        }
       },
       "description": "The `core-tooltip` element creates a hover tooltip centered for the content\nit contains. It can be positioned on the top|bottom|left|right of content using\nthe `position` attribute.\n\nTo include HTML in the tooltip, include the `tip` attribute on the relevant\ncontent.\n\n<b>Example</b>:\n\n    <core-tooltip label=\"I'm a tooltip\">\n      <span>Hover over me.</span>\n    </core-tooltip>\n\n<b>Example</b> - positioning the tooltip to the right:\n\n    <core-tooltip label=\"I'm a tooltip to the right\" position=\"right\">\n      <core-icon-button icon=\"drawer\"></core-icon-button>\n    </core-tooltip>\n\n<b>Example</b> - no arrow and showing by default:\n\n    <core-tooltip label=\"Tooltip with no arrow and always on\" noarrow show>\n      <img src=\"image.jpg\">\n    </core-tooltip>\n\n<b>Example</b> - disable the tooltip.\n\n    <core-tooltip label=\"Disabled label never shows\" disabled>\n      ...\n    </core-tooltip>\n\n<b>Example</b> - rich tooltip using the `tip` attribute:\n\n    <core-tooltip>\n      <div>Example of a rich information tooltip</div>\n      <div tip>\n        <img src=\"profile.jpg\">Foo <b>Bar</b> - <a href=\"#\">@baz</a>\n      </div>\n    </core-tooltip>\n\nBy default, the `tip` attribute specifies the HTML content for a rich tooltip.\nYou can customize this attribute with the `tipAttribute` attribute:\n\n    <core-tooltip tipAttribute=\"htmltooltip\">\n      <div>Example of a rich information tooltip</div>\n      <div htmltooltip>\n        ...\n      </div>\n    </core-tooltip>",
       "type": "polymer",
@@ -1902,8 +1968,10 @@
           }
         }
       },
-      "require": {
-        "core-transition": "github.com/Polymer/core-transition/bower#master"
+      "dependencies": {
+        "bower": {
+          "core-transition": "Polymer/core-transition#master"
+        }
       },
       "description": "`<core-transition>` is an abstraction of an animation. It is used to implement pluggable\ntransitions, for example in `<core-overlay>`. You can extend this class to create a custom\nanimation, instantiate it, and import it where you need the animation.\n\nAll instances of `<core-transition>` are stored in a single database with `type=transition`.\nFor more about the database, please see the documentation for `<core-meta>`.\n\nEach instance of `<core-transition>` objects are shared across all the clients, so you should\nnot store state information specific to the animated element in the transition. Rather, store\nit on the element.\n\nExample:\n\nmy-transition.html:\n\n    <polymer-element name=\"my-transition\" extends=\"core-transition\">\n        <script>\n            go: function(node) {\n                node.style.transition = 'opacity 1s ease-out';\n                node.style.opacity = 0;\n            }\n        </script>\n    </polymer-element>\n\n    <my-transition id=\"my-fade-out\"></my-transition>\n\nmy-transition-demo.html:\n\n    <link href=\"components/core-meta/core-meta.html\" rel=\"import\">\n    <link href=\"my-transition.html\" rel=\"import\">\n\n    <div id=\"animate-me\"></div>\n\n    <script>\n        // Get the core-transition\n        var meta = document.createElement('core-meta');\n        meta.type = 'transition';\n        var transition = meta.byId('my-fade-out');\n\n        // Run the animation\n        var animated = document.getElementById('animate-me');\n        transition.go(animated);\n    </script>",
       "type": "polymer",
@@ -1934,8 +2002,10 @@
         },
         "output": {}
       },
-      "require": {
-        "paper-button": "github.com/Polymer/paper-button/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-button": "Polymer/paper-button#master"
+        }
       },
       "description": "Material Design: <a href=\"http://www.google.com/design/spec/components/buttons.html\">Buttons</a>\n\n`paper-button` is a button. When the user touches the button, a ripple effect emanates\nfrom the point of contact. It may be flat or raised. A raised button is styled with a\nshadow.\n\nExample:\n\n    <paper-button>flat button</paper-button>\n    <paper-button raised>raised button</paper-button>\n    <paper-button noink>No ripple effect</paper-button>\n\nYou may use custom DOM in the button body to create a variety of buttons. For example, to\ncreate a button with an icon and some text:\n\n    <paper-button>\n      <core-icon icon=\"favorite\"></core-icon>\n      custom button content\n    </paper-button>\n\nStyling\n-------\n\nStyle the button with CSS as you would a normal DOM element.\n\n    /* make #my-button green with yellow text */\n    #my-button {\n        background: green;\n        color: yellow;\n    }\n\nBy default, the ripple is the same color as the foreground at 25% opacity. You may\ncustomize the color using this selector:\n\n    /* make #my-button use a blue ripple instead of foreground color */\n    #my-button::shadow #ripple {\n      color: blue;\n    }\n\nThe opacity of the ripple is not customizable via CSS.",
       "type": "polymer",
@@ -1956,8 +2026,10 @@
           }
         }
       },
-      "require": {
-        "paper-checkbox": "github.com/Polymer/paper-checkbox/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-checkbox": "Polymer/paper-checkbox#master"
+        }
       },
       "description": "`paper-checkbox` is a button that can be either checked or unchecked.  User\ncan tap the checkbox to check or uncheck it.  Usually you use checkboxes\nto allow user to select multiple options from a set.  If you have a single\nON/OFF option, avoid using a single checkbox and use `paper-toggle-button`\ninstead.\n\nExample:\n\n    <paper-checkbox></paper-checkbox>\n\n    <paper-checkbox checked></paper-checkbox>\n    \nStyling checkbox:\n\nTo change the ink color for checked state:\n\n    paper-checkbox::shadow #ink[checked] {\n      color: #4285f4;\n    }\n    \nTo change the checkbox checked color:\n\n    paper-checkbox::shadow #checkbox.checked {\n      border-color: #4285f4;\n    }\n\nTo change the ink color for unchecked state:\n\n    paper-checkbox::shadow #ink {\n      color: #b5b5b5;\n    }\n\nTo change the checbox unchecked color:\n\n    paper-checkbox::shadow #checkbox {\n      border-color: #b5b5b5;\n    }",
       "type": "polymer",
@@ -2005,8 +2077,10 @@
           }
         }
       },
-      "require": {
-        "paper-dropdown-menu": "github.com/Polymer/paper-dropdown-menu/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-dropdown-menu": "Polymer/paper-dropdown-menu#master"
+        }
       },
       "description": "`paper-dropdown-menu` works together with `paper-dropdown` and `core-menu` to\nimplement a drop-down menu. The currently selected item is displayed in the\ncontrol. If no item is selected, the `label` is displayed instead.\n\nThe child element with the class `dropdown` will be used as the drop-down\nmenu. It should be a `paper-dropdown` or other overlay element. You should\nalso provide a `core-selector` or other selector element, such as `core-menu`,\nin the drop-down. You should apply the class `menu` to the selector element.\n\nExample:\n\n    <paper-dropdown-menu label=\"Your favorite pastry\">\n        <paper-dropdown class=\"dropdown\">\n            <core-menu class=\"menu\">\n                <paper-item>Croissant</paper-item>\n                <paper-item>Donut</paper-item>\n                <paper-item>Financier</paper-item>\n                <paper-item>Madeleine</paper-item>\n            </core-menu>\n        </paper-dropdown>\n    </paper-dropdown-menu>\n\nThis example renders a drop-down menu with 4 options.",
       "type": "polymer",
@@ -2037,8 +2111,10 @@
         },
         "output": {}
       },
-      "require": {
-        "paper-fab": "github.com/Polymer/paper-fab/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-fab": "Polymer/paper-fab#master"
+        }
       },
       "description": "Material Design: <a href=\"http://www.google.com/design/spec/components/buttons.html\">Button</a>\n\n`paper-fab` is a floating action button. It contains an image placed in the center and\ncomes in two sizes: regular size and a smaller size by applying the attribute `mini`. When\nthe user touches the button, a ripple effect emanates from the center of the button.\n\nYou may import `core-icons` to use with this element, or provide an URL to a custom icon.\nSee `core-iconset` for more information about how to use a custom icon set.\n\nExample:\n\n    <link href=\"path/to/core-icons/core-icons.html\" rel=\"import\">\n\n    <paper-fab icon=\"add\"></paper-fab>\n    <paper-fab mini icon=\"favorite\"></paper-fab>\n    <paper-fab src=\"star.png\"></paper-fab>\n\nStyling\n-------\n\nStyle the button with CSS as you would a normal DOM element. If you are using the icons\nprovided by `core-icons`, the icon will inherit the foreground color of the button.\n\n    /* make a blue \"cloud\" button */\n    <paper-fab icon=\"cloud\" style=\"color: blue;\"></paper-fab>\n\nBy default, the ripple is the same color as the foreground at 25% opacity. You may\ncustomize the color using this selector:\n\n    /* make #my-button use a blue ripple instead of foreground color */\n    #my-button::shadow #ripple {\n      color: blue;\n    }\n\nThe opacity of the ripple is not customizable via CSS.\n\nAccessibility\n-------------\n\nThe button is accessible by default if you use the `icon` property. By default, the\n`aria-label` attribute will be set to the `icon` property. If you use a custom icon,\nyou should ensure that the `aria-label` attribute is set.\n\n    <paper-fab src=\"star.png\" aria-label=\"star\"></paper-fab>",
       "type": "polymer",
@@ -2063,8 +2139,10 @@
         },
         "output": {}
       },
-      "require": {
-        "paper-icon-button": "github.com/Polymer/paper-icon-button/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-icon-button": "Polymer/paper-icon-button#master"
+        }
       },
       "description": "Material Design: <a href=\"http://www.google.com/design/spec/components/buttons.html\">Buttons</a>\n\n`paper-icon-button` is a button with an image placed at the center. When the user touches\nthe button, a ripple effect emanates from the center of the button.\n\n`paper-icon-button` includes a default icon set.  Use `icon` to specify which icon\nfrom the icon set to use.\n\n    <paper-icon-button icon=\"menu\"></paper-icon-button>\n\nSee [`core-iconset`](#core-iconset) for more information about\nhow to use a custom icon set.\n\nExample:\n\n    <link href=\"path/to/core-icons/core-icons.html\" rel=\"import\">\n\n    <paper-icon-button icon=\"favorite\"></paper-icon-button>\n    <paper-icon-button src=\"star.png\"></paper-icon-button>\n\nStyling\n-------\n\nStyle the button with CSS as you would a normal DOM element. If you are using the icons\nprovided by `core-icons`, they will inherit the foreground color of the button.\n\n    /* make a red \"favorite\" button */\n    <paper-icon-button icon=\"favorite\" style=\"color: red;\"></paper-icon-button>\n\nBy default, the ripple is the same color as the foreground at 25% opacity. You may\ncustomize the color using this selector:\n\n    /* make #my-button use a blue ripple instead of foreground color */\n    #my-button::shadow #ripple {\n      color: blue;\n    }\n\nThe opacity of the ripple is not customizable via CSS.\n\nAccessibility\n-------------\n\nThe button is accessible by default if you use the `icon` property. By default, the\n`aria-label` attribute will be set to the `icon` property. If you use a custom icon,\nyou should ensure that the `aria-label` attribute is set.\n\n    <paper-icon-button src=\"star.png\" aria-label=\"star\"></paper-icon-button>",
       "type": "polymer",
@@ -2095,8 +2173,10 @@
         },
         "output": {}
       },
-      "require": {
-        "paper-input": "github.com/Polymer/paper-input/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-input": "Polymer/paper-input#master"
+        }
       },
       "description": "Material Design: <a href=\"http://www.google.com/design/spec/components/text-fields.html#text-fields-single-line-text-field\">Single line text field</a>\n\n`paper-input` is a single-line text field for user input. It is a convenience element composed of\na `paper-input-decorator` and a `input is=\"core-input\"`.\n\nExample:\n\n    <paper-input label=\"Your Name\"></paper-input>\n\nIf you need more control over the `input` element, use `paper-input-decorator`.\n\nTheming\n-------\n\n`paper-input` can be styled similarly to `paper-input-decorator`.\n\nForm submission\n---------------\n\nUnlike inputs using `paper-input-decorator` directly, `paper-input` does not work out of\nthe box with the native `form` element. This is because the native `form` is not aware of\nshadow DOM and does not treat `paper-input` as a form element.\n\nUse `paper-input-decorator` directly, or see\n<a href=\"https://github.com/garstasio/ajax-form\">`ajax-form`</a> for a possible solution\nto submitting a `paper-input`.",
       "type": "polymer",
@@ -2127,8 +2207,10 @@
         },
         "output": {}
       },
-      "require": {
-        "paper-item": "github.com/Polymer/paper-item/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-item": "Polymer/paper-item#master"
+        }
       },
       "description": "Material Design: <a href=\"http://www.google.com/design/spec/components/menus.html\">Menus</a>\n\n`paper-item` is a simple item object for use in menus. When the user touches the item, a ripple\neffect emanates from the point of contact. If used in a `core-selector`, the selected item will\nbe highlighted.\n\nExample:\n\n    <core-menu>\n        <paper-item>Cut</paper-item>\n        <paper-item>Copy</paper-item>\n        <paper-item>Paste</paper-item>\n    </core-menu>\n\nLinks\n-----\n\nTo use as a link, put an `<a>` element in the item. You may also use the `noink` attribute to\nprevent the ripple from \"freezing\" during a page navigation.\n\nExample:\n\n    <paper-item noink>\n        <a href=\"http://www.polymer-project.org\" layout horizontal center>Polymer</a>\n    </paper-item>",
       "type": "polymer",
@@ -2153,8 +2235,10 @@
         },
         "output": {}
       },
-      "require": {
-        "paper-progress": "github.com/Polymer/paper-progress/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-progress": "Polymer/paper-progress#master"
+        }
       },
       "description": "The progress bars are for situations where the percentage completed can be \ndetermined. They give users a quick sense of how much longer an operation \nwill take.\n\nExample:\n\n    <paper-progress value=\"10\"></paper-progress>\n    \nThere is also a secondary progress which is useful for displaying intermediate \nprogress, such as the buffer level during a streaming playback progress bar.\n\nExample:\n\n    <paper-progress value=\"10\" secondaryProgesss=\"30\"></paper-progress>\n\nStyling progress bar:\n\nTo change the active progress bar color:\n\n    paper-progress::shadow #activeProgress {\n      background-color: #e91e63;\n    }\n\nTo change the secondary progress bar color:\n\n    paper-progress::shadow #secondaryProgress {\n      background-color: #f8bbd0;\n    }\n    \nTo change the progress bar background color:\n\n    paper-progress::shadow #progressContainer {\n      background-color: #64ffda;\n    }",
       "type": "polymer",
@@ -2200,8 +2284,10 @@
           }
         }
       },
-      "require": {
-        "paper-radio-button": "github.com/Polymer/paper-radio-button/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-radio-button": "Polymer/paper-radio-button#master"
+        }
       },
       "description": "`paper-radio-button` is a button that can be either checked or unchecked.\nUser can tap the radio button to check it.  But it cannot be unchecked by\ntapping once checked.\n\nUse `paper-radio-group` to group a set of radio buttons.  When radio buttons\nare inside a radio group, only one radio button in the group can be checked.\n\nExample:\n\n    <paper-radio-button></paper-radio-button>\n    \nStyling radio button:\n\nTo change the ink color for checked state:\n\n    paper-radio-button::shadow #ink[checked] {\n      color: #4285f4;\n    }\n    \nTo change the radio checked color:\n    \n    paper-radio-button::shadow #onRadio {\n      background-color: #4285f4;\n    }\n    \nTo change the ink color for unchecked state:\n\n    paper-radio-button::shadow #ink {\n      color: #b5b5b5;\n    }\n    \nTo change the radio unchecked color:\n    \n    paper-radio-button::shadow #offRadio {\n      border-color: #b5b5b5;\n    }",
       "type": "polymer",
@@ -2238,8 +2324,10 @@
           }
         }
       },
-      "require": {
-        "paper-ripple": "github.com/Polymer/paper-ripple/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-ripple": "Polymer/paper-ripple#master"
+        }
       },
       "description": "`paper-ripple` provides a visual effect that other paper elements can\nuse to simulate a rippling effect emanating from the point of contact.  The\neffect can be visualized as a concentric circle with motion.\n\nExample:\n\n    <paper-ripple></paper-ripple>\n\n`paper-ripple` listens to \"down\" and \"up\" events so it would display ripple\neffect when touches on it.  You can also defeat the default behavior and\nmanually route the down and up actions to the ripple element.  Note that it is\nimportant if you call downAction() you will have to make sure to call upAction()\nso that `paper-ripple` would end the animation loop.\n\nExample:\n\n    <paper-ripple id=\"ripple\" style=\"pointer-events: none;\"></paper-ripple>\n    ...\n    downAction: function(e) {\n      this.$.ripple.downAction({x: e.x, y: e.y});\n    },\n    upAction: function(e) {\n      this.$.ripple.upAction();\n    }\n\nStyling ripple effect:\n\n  Use CSS color property to style the ripple:\n\n    paper-ripple {\n      color: #4285f4;\n    }\n\n  Note that CSS color property is inherited so it is not required to set it on\n  the `paper-ripple` element directly.\n\nApply `recenteringTouch` class to make the recentering rippling effect.\n\n    <paper-ripple class=\"recenteringTouch\"></paper-ripple>\n\nApply `circle` class to make the rippling effect within a circle.\n\n    <paper-ripple class=\"circle\"></paper-ripple>",
       "type": "polymer",
@@ -2264,8 +2352,10 @@
         },
         "output": {}
       },
-      "require": {
-        "paper-shadow": "github.com/Polymer/paper-shadow/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-shadow": "Polymer/paper-shadow#master"
+        }
       },
       "description": "`paper-shadow` is a container that renders two shadows on top of each other to\ncreate the effect of a lifted piece of paper.\n\nExample:\n\n    <paper-shadow z=\"1\">\n      ... card content ...\n    </paper-shadow>",
       "type": "polymer",
@@ -2323,8 +2413,10 @@
           }
         }
       },
-      "require": {
-        "paper-slider": "github.com/Polymer/paper-slider/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-slider": "Polymer/paper-slider#master"
+        }
       },
       "description": "`paper-slider` allows user to select a value from a range of values by\nmoving the slider thumb.  The interactive nature of the slider makes it a \ngreat choice for settings that reflect intensity levels, such as volume, \nbrightness, or color saturation.\n\nExample:\n\n    <paper-slider></paper-slider>\n\nUse `min` and `max` to specify the slider range.  Default is 0 to 100.\n\nExample:\n\n    <paper-slider min=\"10\" max=\"200\" value=\"110\"></paper-slider>\n\nStyling slider:\n\nTo change the slider progress bar color:\n\n    paper-slider::shadow #sliderBar::shadow #activeProgress {\n      background-color: #0f9d58;\n    }\n\nTo change the slider knob color:\n\n    paper-slider::shadow #sliderKnobInner {\n      background-color: #0f9d58;\n    }\n\nTo change the slider pin color:\n\n    paper-slider::shadow #sliderKnobInner::before {\n      background-color: #0f9d58;\n    }\n\nTo change the slider pin's font color:\n\n    paper-slider::shadow #sliderKnob > #sliderKnobInner::after {\n      color: #0f9d58\n    }\n\nTo change the slider secondary progress bar color:\n\n    paper-slider::shadow #sliderBar::shadow #secondaryProgress {\n      background-color: #0f9d58;\n    }",
       "type": "polymer",
@@ -2343,8 +2435,10 @@
         },
         "output": {}
       },
-      "require": {
-        "paper-spinner": "github.com/Polymer/paper-spinner/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-spinner": "Polymer/paper-spinner#master"
+        }
       },
       "description": "Element providing material design circular spinner.\n\n##### Example\n\n    <paper-spinner active></paper-spinner>\n\nThe default spinner cycles between blue, red, yellow and green. It can be customized so\nthat it uses one color only.\n\n##### Example\n\n    <style shim-shadowdom>\n      paper-spinner.blue::shadow .circle {\n        border-color: #4285f4;\n      }\n    </style>\n\n    <paper-spinner class=\"blue\" active></paper-spinner>",
       "type": "polymer",
@@ -2397,8 +2491,10 @@
         },
         "output": {}
       },
-      "require": {
-        "paper-tabs": "github.com/Polymer/paper-tabs/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-tabs": "Polymer/paper-tabs#master"
+        }
       },
       "description": "`paper-tabs` is a `core-selector` styled to look like tabs. Tabs make it easy to \nexplore and switch between different views or functional aspects of an app, or \nto browse categorized data sets.\n\nUse `selected` property to get or set the selected tab.\n\nExample:\n\n    <paper-tabs selected=\"0\">\n      <paper-tab>TAB 1</paper-tab>\n      <paper-tab>TAB 2</paper-tab>\n      <paper-tab>TAB 3</paper-tab>\n    </paper-tabs>\n\nSee <a href=\"#paper-tab\">paper-tab</a> for more information about \n`paper-tab`.\n\nA common usage for `paper-tabs` is to use it along with `core-pages` to switch\nbetween different views.\n\n    <paper-tabs selected=\"{{selected}}\">\n      <paper-tab>Tab 1</paper-tab>\n      <paper-tab>Tab 2</paper-tab>\n      <paper-tab>Tab 3</paper-tab>\n    </paper-tabs>\n  \n    <core-pages selected=\"{{selected}}>\n      <div>Page 1</div>\n      <div>Page 2</div>\n      <div>Page 3</div>\n    </core-pages>\n    \n`paper-tabs` adapt to mobile/narrow layout when there is a `core-narrow` class set\non itself or any of its ancestors.\n\nTo use links in tabs, add `link` attribute to `paper-tabs` and put an `<a>`\nelement in `paper-tab`.\n\nExample:\n\n    <paper-tabs selected=\"0\" link>\n      <paper-tab>\n        <a href=\"#link1\" horizontal center-center layout>TAB ONE</a>\n      </paper-tab>\n      <paper-tab>\n        <a href=\"#link2\" horizontal center-center layout>TAB TWO</a>\n      </paper-tab>\n      <paper-tab>\n        <a href=\"#link3\" horizontal center-center layout>TAB THREE</a>\n      </paper-tab>\n    </paper-tabs>\n\nStyling tabs:\n\nTo change the sliding bar color:\n\n    paper-tabs.pink::shadow #selectionBar {\n      background-color: #ff4081;\n    }\n    \nTo change the ink ripple color:\n\n    paper-tabs.pink paper-tab::shadow #ink {\n      color: #ff4081;\n    }",
       "type": "polymer",
@@ -2479,8 +2575,10 @@
           }
         }
       },
-      "require": {
-        "paper-toast": "github.com/Polymer/paper-toast/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-toast": "Polymer/paper-toast#master"
+        }
       },
       "description": "`paper-toast` provides lightweight feedback about an operation in a small popup \nat the base of the screen on mobile and at the lower left on desktop. Toasts are \nabove all other elements on screen, including the FAB.\n\nToasts automatically disappear after a timeout or after user interaction \nelsewhere on the screen, whichever comes first. Toasts can be swiped off \nscreen.  There can be only one on the screen at a time.\n\nExample:\n\n    <paper-toast text=\"Your draft has been discarded.\" onclick=\"discardDraft(el)\"></paper-toast>\n    \n    <script>\n      function discardDraft(el) {\n        el.show();\n      }\n    </script>\n    \nAn action button can be presented in the toast.\n\nExample (using Polymer's data-binding features):\n\n    <paper-toast id=\"toast2\" text=\"Connection timed out. Showing limited messages.\">\n      <div style=\"color: blue;\" on-tap=\"{{retry}}\">Retry</div>\n    </paper-toast>\n    \nPositioning toast:\n\nA standard toast appears near the lower left of the screen.  You can change the\nposition by overriding bottom and left positions.\n\n    paper-toast {\n      bottom: 40px;\n      left: 10px;\n    }\n    \nTo position the toast to the right:\n\n    paper-toast {\n      right: 10px;\n      left: auto;\n    } \n  \nTo make it fit at the bottom of the screen:\n\n    paper-toast {\n      bottom: 0;\n      left: 0;\n      width: 100%;\n    }\n  \nWhen the screen size is smaller than the `responsiveWidth` (default to 480px),\nthe toast will automatically fits at the bottom of the screen.",
       "type": "polymer",
@@ -2514,8 +2612,10 @@
           }
         }
       },
-      "require": {
-        "paper-toggle-button": "github.com/Polymer/paper-toggle-button/bower#master"
+      "dependencies": {
+        "bower": {
+          "paper-toggle-button": "Polymer/paper-toggle-button#master"
+        }
       },
       "description": "`paper-toggle-button` provides a ON/OFF switch that user can toggle the state\nby tapping or by dragging the swtich.\n\nExample:\n\n    <paper-toggle-button></paper-toggle-button>\n\nStyling toggle button:\n\nTo change the ink color for checked state:\n\n    paper-toggle-button::shadow paper-radio-button::shadow #ink[checked] {\n      color: #4285f4;\n    }\n    \nTo change the radio checked color:\n    \n    paper-toggle-button::shadow paper-radio-button::shadow #onRadio {\n      background-color: #4285f4;\n    }\n    \nTo change the bar color for checked state:\n\n    paper-toggle-button::shadow #toggleBar[checked] {\n      background-color: #4285f4;\n    }\n    \nTo change the ink color for unchecked state:\n\n    paper-toggle-button::shadow paper-radio-button::shadow #ink {\n      color: #b5b5b5;\n    }\n    \nTo change the radio unchecked color:\n    \n    paper-toggle-button::shadow paper-radio-button::shadow #offRadio {\n      border-color: #b5b5b5;\n    }\n\nTo change the bar color for unchecked state:\n\n    paper-toggle-button::shadow #toggleBar {\n      background-color: red;\n    }",
       "type": "polymer",
@@ -2538,8 +2638,10 @@
         },
         "output": {}
       },
-      "require": {
-        "sampler-scaffold": "github.com/Polymer/sampler-scaffold/bower#master"
+      "dependencies": {
+        "bower": {
+          "sampler-scaffold": "Polymer/sampler-scaffold#master"
+        }
       },
       "description": "`sampler-scaffold` provides a responsive layout for elements sampler.\n\nExampler:\n\n    <sampler-scaffold label=\"HTML Input Elements\">\n\n      <core-item label=\"String\" url=\"demos/string.html\"></core-item>\n      <core-item label=\"Checkbox\" url=\"demos/checkbox.html\"></core-item>\n      <core-item label=\"Radio\" url=\"demos/radio.html\"></core-item>\n      <core-item label=\"Range\" url=\"demos/range.html\"></core-item>\n      <core-item label=\"Color\" url=\"demos/color.html\"></core-item>\n    \n    </sampler-scaffold>\n\nUse `label` to set the sampler label and `responsiveWidth` to change the layout \nof the scaffold.",
       "type": "polymer",

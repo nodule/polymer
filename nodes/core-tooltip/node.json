@@ -3,8 +3,10 @@
   "ns": "polymer",
   "type": "polymer",
   "description": "The `core-tooltip` element creates a hover tooltip centered for the content\nit contains. It can be positioned on the top|bottom|left|right of content using\nthe `position` attribute.\n\nTo include HTML in the tooltip, include the `tip` attribute on the relevant\ncontent.\n\n<b>Example</b>:\n\n    <core-tooltip label=\"I'm a tooltip\">\n      <span>Hover over me.</span>\n    </core-tooltip>\n\n<b>Example</b> - positioning the tooltip to the right:\n\n    <core-tooltip label=\"I'm a tooltip to the right\" position=\"right\">\n      <core-icon-button icon=\"drawer\"></core-icon-button>\n    </core-tooltip>\n\n<b>Example</b> - no arrow and showing by default:\n\n    <core-tooltip label=\"Tooltip with no arrow and always on\" noarrow show>\n      <img src=\"image.jpg\">\n    </core-tooltip>\n\n<b>Example</b> - disable the tooltip.\n\n    <core-tooltip label=\"Disabled label never shows\" disabled>\n      ...\n    </core-tooltip>\n\n<b>Example</b> - rich tooltip using the `tip` attribute:\n\n    <core-tooltip>\n      <div>Example of a rich information tooltip</div>\n      <div tip>\n        <img src=\"profile.jpg\">Foo <b>Bar</b> - <a href=\"#\">@baz</a>\n      </div>\n    </core-tooltip>\n\nBy default, the `tip` attribute specifies the HTML content for a rich tooltip.\nYou can customize this attribute with the `tipAttribute` attribute:\n\n    <core-tooltip tipAttribute=\"htmltooltip\">\n      <div>Example of a rich information tooltip</div>\n      <div htmltooltip>\n        ...\n      </div>\n    </core-tooltip>",
-  "require": {
-    "core-tooltip": "github.com/Polymer/core-tooltip/bower#master"
+  "dependencies": {
+    "bower": {
+      "core-tooltip": "Polymer/core-tooltip#master"
+    }
   },
   "ports": {
     "input": {

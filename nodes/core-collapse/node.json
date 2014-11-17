@@ -3,8 +3,10 @@
   "ns": "polymer",
   "type": "polymer",
   "description": "`core-collapse` creates a collapsible block of content.  By default, the content\nwill be collapsed.  Use `opened` or `toggle()` to show/hide the content.\n\n    <button on-click=\"{{toggle}}\">toggle collapse</button>\n    \n    <core-collapse id=\"collapse\">\n      Content goes here...\n    </core-collapse>\n    \n    ...\n\n    toggle: function() {\n      this.$.collapse.toggle();\n    }\n    \n`core-collapse` adjusts the height/width of the collapsible element to show/hide\nthe content.  So avoid putting padding/margin/border on the collapsible directly,\nand instead put a div inside and style that.\n\n    <style>\n      .collapse-content {\n        padding: 15px;\n        border: 1px solid #dedede;\n      }\n    </style>\n\n    <core-collapse>\n      <div class=\"collapse-content\">\n        Content goes here...\n      </div>\n    </core-collapse>",
-  "require": {
-    "core-collapse": "github.com/Polymer/core-collapse/bower#master"
+  "dependencies": {
+    "bower": {
+      "core-collapse": "Polymer/core-collapse#master"
+    }
   },
   "ports": {
     "input": {

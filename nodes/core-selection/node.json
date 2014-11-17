@@ -3,8 +3,10 @@
   "ns": "polymer",
   "type": "polymer",
   "description": "The `<core-selection>` element is used to manage selection state. It has no\nvisual appearance and is typically used in conjunction with another element.\nFor example, [core-selector](#core-selector)\nuse a `<core-selection>` to manage selection.\n\nTo mark an item as selected, call the `select(item)` method on \n`<core-selection>`. The item itself is an argument to this method.\n\nThe `<core-selection>`element manages selection state for any given set of\nitems. When an item is selected, the `core-select` event is fired.\n\nThe attribute `multi` indicates if multiple items can be selected at once.\n  \nExample:\n \n    <polymer-element name=\"selection-example\">\n       <template>\n         <style>\n           polyfill-next-selector { content: ':host > .selected'; }\n           ::content > .selected {\n             font-weight: bold;\n             font-style: italic;\n           }\n         </style>\n         <ul on-tap=\"{{itemTapAction}}\">\n           <content></content>\n         </ul>\n         <core-selection id=\"selection\" multi\n                         on-core-select=\"{{selectAction}}\"></core-selection>\n       </template>\n       <script>\n         Polymer('selection-example', {\n           itemTapAction: function(e, detail, sender) {\n             this.$.selection.select(e.target);\n           },\n           selectAction: function(e, detail, sender) {\n             detail.item.classList.toggle('selected', detail.isSelected);\n           }\n         });\n       </script>\n    </polymer-element>\n\n    <selection-example>\n      <li>Red</li>\n      <li>Green</li>\n      <li>Blue</li>\n    </selection-example>",
-  "require": {
-    "core-selection": "github.com/Polymer/core-selection/bower#master"
+  "dependencies": {
+    "bower": {
+      "core-selection": "Polymer/core-selection#master"
+    }
   },
   "ports": {
     "input": {

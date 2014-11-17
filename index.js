@@ -34,9 +34,9 @@ g.on('match', function(file) {
       nD.ns = 'polymer';
       nD.type = 'polymer';
       nD.description = def.description.trim();
-      nD.require = {};
-      nD.require[def.name] =
-        'github.com/Polymer/' + def.name + '/bower#master';
+      nD.dependencies = { bower: { } };
+      nD.dependencies.bower[def.name] =
+        'Polymer/' + def.name + '#master';
       nD.ports = {
         input: {},
         output: {}

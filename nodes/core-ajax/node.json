@@ -3,8 +3,10 @@
   "ns": "polymer",
   "type": "polymer",
   "description": "The `core-ajax` element exposes `XMLHttpRequest` functionality.\n\n    <core-ajax\n        auto\n        url=\"http://gdata.youtube.com/feeds/api/videos/\"\n        params='{\"alt\":\"json\", \"q\":\"chrome\"}'\n        handleAs=\"json\"\n        on-core-response=\"{{handleResponse}}\"></core-ajax>\n\nWith `auto` set to `true`, the element performs a request whenever\nits `url`, `params` or `body` properties are changed.\n\nNote: The `params` attribute must be double quoted JSON.\n\nYou can trigger a request explicitly by calling `go` on the\nelement.",
-  "require": {
-    "core-ajax": "github.com/Polymer/core-ajax/bower#master"
+  "dependencies": {
+    "bower": {
+      "core-ajax": "Polymer/core-ajax#master"
+    }
   },
   "ports": {
     "input": {

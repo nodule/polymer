@@ -3,8 +3,10 @@
   "ns": "polymer",
   "type": "polymer",
   "description": "`core-scaffold` provides general application layout, introducing a \nresponsive scaffold containing a header, toolbar, menu, title and \nareas for application content.\n\nExample:\n\n    <core-scaffold>\n      <core-header-panel navigation flex mode=\"seamed\">\n        <core-toolbar>Application</core-toolbar>\n        <core-menu theme=\"core-light-theme\">\n          <core-item icon=\"settings\" label=\"item1\"></core-item>\n          <core-item icon=\"settings\" label=\"item2\"></core-item>\n        </core-menu>\n      </core-header-panel>\n      <div tool>Title</div>\n      <div>Main content goes here...</div>\n    </core-scaffold>\n\nUse `mode` to control the header and scrolling behavior of `core-header-panel`\nand `responsiveWidth` to change the layout of the scaffold.  Use 'disableSwipe'\nto disable swipe-to-open on toolbar.\n\nUse `rightDrawer` to move position of folding toolbar to the right instead of\nleft (default).  This will also position content to the left of the menu button\ninstead of the right.  You can use `flex` within your `tool` content to push the menu\nbutton to the far right:\n\n    <core-scaffold rightDrawer>\n      <div tool flex >Title</div>\n    </core-scaffold>\n    \nYou may also add `middle` or `bottom` classes to your `tool` content when using tall\nmodes to adjust vertical content positioning in the core-toolbar (e.g. when using \nmode=\"waterfall-tall\"):\n\n    <core-scaffold rightDrawer mode=\"waterfall-tall\">\n      <div tool flex >Title</div>\n      <div tool horizontal layout flex center-justified class=\"middle\">Title-middle</div>\n      <div tool horizontal layout flex end-justified class=\"bottom\">Title-bottom</div>\n    </core-scaffold>\n\nTo have the content fit to the main area, use `fit` attribute.\n\n    <core-scaffold>\n      <core-header-panel navigation flex mode=\"seamed\">\n        ....\n      </core-header-panel>\n      <div tool>Title</div>\n      <div fit>Content fits to the main area</div>\n    </core-scaffold>",
-  "require": {
-    "core-scaffold": "github.com/Polymer/core-scaffold/bower#master"
+  "dependencies": {
+    "bower": {
+      "core-scaffold": "Polymer/core-scaffold#master"
+    }
   },
   "ports": {
     "input": {

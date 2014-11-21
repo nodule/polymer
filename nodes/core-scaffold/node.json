@@ -42,15 +42,18 @@
       },
       "togglePanel": {
         "name": "togglePanel",
-        "description": "Toggle the drawer panel"
+        "description": "Toggle the drawer panel",
+        "async": true
       },
       "openDrawer": {
         "name": "openDrawer",
-        "description": "Open the drawer panel"
+        "description": "Open the drawer panel",
+        "async": true
       },
       "closeDrawer": {
         "name": "closeDrawer",
-        "description": "Close the drawer panel"
+        "description": "Close the drawer panel",
+        "async": true
       }
     },
     "output": {

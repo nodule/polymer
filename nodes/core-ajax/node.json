@@ -90,7 +90,8 @@
       },
       "go": {
         "name": "go",
-        "description": "Performs an Ajax request to the specified URL."
+        "description": "Performs an Ajax request to the specified URL.",
+        "async": true
       }
     },
     "output": {

@@ -60,15 +60,18 @@
       },
       "togglePanel": {
         "name": "togglePanel",
-        "description": "Toggles the panel open and closed."
+        "description": "Toggles the panel open and closed.",
+        "async": true
       },
       "openDrawer": {
         "name": "openDrawer",
-        "description": "Opens the drawer."
+        "description": "Opens the drawer.",
+        "async": true
       },
       "closeDrawer": {
         "name": "closeDrawer",
-        "description": "Closes the drawer."
+        "description": "Closes the drawer.",
+        "async": true
       }
     },
     "output": {

@@ -48,7 +48,8 @@
       },
       "toggle": {
         "name": "toggle",
-        "description": "Toggle the opened state."
+        "description": "Toggle the opened state.",
+        "async": true
       }
     },
     "output": {

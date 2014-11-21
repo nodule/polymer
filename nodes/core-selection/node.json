@@ -18,7 +18,8 @@
       },
       "getSelection": {
         "name": "getSelection",
-        "description": "Retrieves the selected item(s).\ngetSelection will return an array, otherwise it will return \nthe selected item or undefined if there is no selection."
+        "description": "Retrieves the selected item(s).\ngetSelection will return an array, otherwise it will return \nthe selected item or undefined if there is no selection.",
+        "async": true
       },
       "isSelected": {
         "name": "isSelected",
@@ -29,15 +30,18 @@
             "name": "item",
             "description": "The item whose selection state should be checked."
           }
-        ]
+        ],
+        "async": true
       },
       "select": {
         "name": "select",
-        "description": "Set the selection state for a given `item`. If the multi property\nis true, then the selected state of `item` will be toggled; otherwise\nthe `item` will be selected."
+        "description": "Set the selection state for a given `item`. If the multi property\nis true, then the selected state of `item` will be toggled; otherwise\nthe `item` will be selected.",
+        "async": true
       },
       "toggle": {
         "name": "toggle",
-        "description": "Toggles the selection state for `item`."
+        "description": "Toggles the selection state for `item`.",
+        "async": true
       }
     },
     "output": {

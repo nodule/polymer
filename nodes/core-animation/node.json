@@ -12,27 +12,33 @@
     "input": {
       "play": {
         "name": "play",
-        "description": "Plays the animation. If the animation is currently paused, seeks the animation\nto the beginning before starting playback."
+        "description": "Plays the animation. If the animation is currently paused, seeks the animation\nto the beginning before starting playback.",
+        "async": true
       },
       "cancel": {
         "name": "cancel",
-        "description": "Stops the animation and clears all effects on the target."
+        "description": "Stops the animation and clears all effects on the target.",
+        "async": true
       },
       "finish": {
         "name": "finish",
-        "description": "Seeks the animation to the end."
+        "description": "Seeks the animation to the end.",
+        "async": true
       },
       "pause": {
         "name": "pause",
-        "description": "Pauses the animation."
+        "description": "Pauses the animation.",
+        "async": true
       },
       "hasTarget": {
         "name": "hasTarget",
-        "description": ""
+        "description": "",
+        "async": true
       },
       "apply": {
         "name": "apply",
-        "description": "Creates a web animations object based on this object's properties, and\nplays it if autoplay is true."
+        "description": "Creates a web animations object based on this object's properties, and\nplays it if autoplay is true.",
+        "async": true
       }
     },
     "output": {

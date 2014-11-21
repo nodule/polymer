@@ -64,6 +64,10 @@ g.on('match', function(file) {
               a.description = a.description.trim();
             }
             nD.ports.input[a.name] = a;
+            /* not sure if I want to mark methods this way
+             * but for now it will do
+             */
+            nD.ports.input[a.name].async = true;
           }
         });
       } else {

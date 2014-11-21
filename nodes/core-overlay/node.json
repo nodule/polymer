@@ -72,19 +72,23 @@
       },
       "toggle": {
         "name": "toggle",
-        "description": "Toggle the opened state of the overlay."
+        "description": "Toggle the opened state of the overlay.",
+        "async": true
       },
       "open": {
         "name": "open",
-        "description": "Open the overlay. This is equivalent to setting the `opened`\nproperty to true."
+        "description": "Open the overlay. This is equivalent to setting the `opened`\nproperty to true.",
+        "async": true
       },
       "close": {
         "name": "close",
-        "description": "Close the overlay. This is equivalent to setting the `opened` \nproperty to false."
+        "description": "Close the overlay. This is equivalent to setting the `opened` \nproperty to false.",
+        "async": true
       },
       "resizeHandler": {
         "name": "resizeHandler",
-        "description": "Extensions of core-overlay should implement the `resizeHandler`\nmethod to adjust the size and position of the overlay when the \nbrowser window resizes."
+        "description": "Extensions of core-overlay should implement the `resizeHandler`\nmethod to adjust the size and position of the overlay when the \nbrowser window resizes.",
+        "async": true
       }
     },
     "output": {

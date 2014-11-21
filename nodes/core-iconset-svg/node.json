@@ -30,7 +30,8 @@
             "name": "icon",
             "description": "The name the icon to apply."
           }
-        ]
+        ],
+        "async": true
       },
       "updateIcons": {
         "name": "updateIcons",
@@ -46,7 +47,8 @@
             "name": "method",
             "description": "to call on found elements, "
           }
-        ]
+        ],
+        "async": true
       }
     },
     "output": {}

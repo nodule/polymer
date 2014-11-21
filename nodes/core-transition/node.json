@@ -24,7 +24,8 @@
             "name": "state",
             "description": "State info"
           }
-        ]
+        ],
+        "async": true
       },
       "setup": {
         "name": "setup",
@@ -35,7 +36,8 @@
             "name": "node",
             "description": "The animated node"
           }
-        ]
+        ],
+        "async": true
       },
       "teardown": {
         "name": "teardown",
@@ -46,7 +48,8 @@
             "name": "node",
             "description": "The animated node"
           }
-        ]
+        ],
+        "async": true
       },
       "complete": {
         "name": "complete",
@@ -57,7 +60,8 @@
             "name": "node",
             "description": "The animated node"
           }
-        ]
+        ],
+        "async": true
       },
       "listenOnce": {
         "name": "listenOnce",
@@ -83,7 +87,8 @@
             "name": "args",
             "description": "Additional arguments to pass to `fn`"
           }
-        ]
+        ],
+        "async": true
       }
     },
     "output": {

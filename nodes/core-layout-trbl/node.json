@@ -12,7 +12,8 @@
     "input": {
       "layout": {
         "name": "layout",
-        "description": "Arrange sibling nodes end-to-end in one dimension.\n\nArrangement is horizontal unless the `vertical`\nattribute is applied on this node."
+        "description": "Arrange sibling nodes end-to-end in one dimension.\n\nArrangement is horizontal unless the `vertical`\nattribute is applied on this node.",
+        "async": true
       }
     },
     "output": {}

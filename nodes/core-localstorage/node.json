@@ -36,7 +36,8 @@
       },
       "save": {
         "name": "save",
-        "description": "Saves the value to localStorage."
+        "description": "Saves the value to localStorage.",
+        "async": true
       }
     },
     "output": {

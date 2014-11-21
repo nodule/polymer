@@ -60,7 +60,8 @@
       },
       "measureHeaderHeight": {
         "name": "measureHeaderHeight",
-        "description": "Invoke this to tell `core-scroll-header-panel` to re-measure the header's\nheight."
+        "description": "Invoke this to tell `core-scroll-header-panel` to re-measure the header's\nheight.",
+        "async": true
       }
     },
     "output": {

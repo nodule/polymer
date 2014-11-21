@@ -25,7 +25,8 @@
             "name": "id",
             "description": "The ID of the meta-data to be returned."
           }
-        ]
+        ],
+        "async": true
       }
     },
     "output": {}

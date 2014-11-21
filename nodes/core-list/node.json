@@ -72,7 +72,8 @@
       },
       "updateSize": {
         "name": "updateSize",
-        "description": "To be called by the user when the list is resized or shown\nafter being hidden.  Note, `core-list` calls this automatically\nwhen the window is resized."
+        "description": "To be called by the user when the list is resized or shown\nafter being hidden.  Note, `core-list` calls this automatically\nwhen the window is resized.",
+        "async": true
       },
       "selectItem": {
         "name": "selectItem",
@@ -83,7 +84,8 @@
             "name": "index",
             "description": ""
           }
-        ]
+        ],
+        "async": true
       },
       "setItemSelected": {
         "name": "setItemSelected",
@@ -99,11 +101,13 @@
             "name": "isSelected",
             "description": ""
           }
-        ]
+        ],
+        "async": true
       },
       "clearSelection": {
         "name": "clearSelection",
-        "description": "Clears the current selection state of the list."
+        "description": "Clears the current selection state of the list.",
+        "async": true
       },
       "scrollToItem": {
         "name": "scrollToItem",
@@ -114,7 +118,8 @@
             "name": "index",
             "description": ""
           }
-        ]
+        ],
+        "async": true
       },
       "scrollToGroup": {
         "name": "scrollToGroup",
@@ -125,7 +130,8 @@
             "name": "group",
             "description": ""
           }
-        ]
+        ],
+        "async": true
       },
       "scrollToGroupItem": {
         "name": "scrollToGroupItem",
@@ -141,7 +147,8 @@
             "name": "index",
             "description": ""
           }
-        ]
+        ],
+        "async": true
       }
     },
     "output": {

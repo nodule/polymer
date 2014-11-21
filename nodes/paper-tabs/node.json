@@ -48,7 +48,8 @@
       },
       "updateBar": {
         "name": "updateBar",
-        "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible."
+        "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.",
+        "async": true
       }
     },
     "output": {}

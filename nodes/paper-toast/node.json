@@ -48,15 +48,18 @@
       },
       "toggle": {
         "name": "toggle",
-        "description": "Toggle the opened state of the toast."
+        "description": "Toggle the opened state of the toast.",
+        "async": true
       },
       "show": {
         "name": "show",
-        "description": "Show the toast for the specified duration"
+        "description": "Show the toast for the specified duration",
+        "async": true
       },
       "dismiss": {
         "name": "dismiss",
-        "description": "Dismiss the toast and hide it."
+        "description": "Dismiss the toast and hide it.",
+        "async": true
       }
     },
     "output": {

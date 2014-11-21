@@ -60,7 +60,8 @@
             "name": "theme",
             "description": "The name of the theme."
           }
-        ]
+        ],
+        "async": true
       },
       "applyIcon": {
         "name": "applyIcon",
@@ -81,7 +82,8 @@
             "name": "scale",
             "description": "(optional, defaults to 1) A scaling factor "
           }
-        ]
+        ],
+        "async": true
       }
     },
     "output": {}

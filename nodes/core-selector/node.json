@@ -103,7 +103,8 @@
             "name": "wrapped",
             "description": "if true and it is already at the first item,"
           }
-        ]
+        ],
+        "async": true
       },
       "selectNext": {
         "name": "selectNext",
@@ -114,7 +115,8 @@
             "name": "wrapped",
             "description": "if true and it is already at the last item,"
           }
-        ]
+        ],
+        "async": true
       }
     },
     "output": {

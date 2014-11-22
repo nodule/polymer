@@ -113,11 +113,18 @@
         "title": "Core overlay open",
         "type": "object",
         "properties": {
-          "detail.opened": {
+          "detail": {
             "type": "Object",
-            "name": "detail.opened",
-            "description": "the opened state",
-            "title": "Detail.opened"
+            "name": "detail",
+            "title": "Detail",
+            "properties": {
+              "opened": {
+                "type": "Object",
+                "name": "opened",
+                "description": "the opened state",
+                "title": "Opened"
+              }
+            }
           }
         }
       },
@@ -137,23 +144,30 @@
         "title": "Core overlay position",
         "type": "object",
         "properties": {
-          "detail.target": {
+          "detail": {
             "type": "Object",
-            "name": "detail.target",
-            "description": "the overlay target",
-            "title": "Detail.target"
-          },
-          "detail.sizingTarget": {
-            "type": "Object",
-            "name": "detail.sizingTarget",
-            "description": "the overlay sizing target",
-            "title": "Detail.sizing target"
-          },
-          "detail.opened": {
-            "type": "Object",
-            "name": "detail.opened",
-            "description": "the opened state",
-            "title": "Detail.opened"
+            "name": "detail",
+            "title": "Detail",
+            "properties": {
+              "target": {
+                "type": "Object",
+                "name": "target",
+                "description": "the overlay target",
+                "title": "Target"
+              },
+              "sizingTarget": {
+                "type": "Object",
+                "name": "sizingTarget",
+                "description": "the overlay sizing target",
+                "title": "Sizing target"
+              },
+              "opened": {
+                "type": "Object",
+                "name": "opened",
+                "description": "the opened state",
+                "title": "Opened"
+              }
+            }
           }
         }
       }

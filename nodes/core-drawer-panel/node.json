@@ -93,11 +93,18 @@
         "title": "Core responsive change",
         "type": "object",
         "properties": {
-          "detail.narrow": {
-            "type": "boolean",
-            "name": "detail.narrow",
-            "description": "true if the panel is in narrow layout.",
-            "title": "Detail.narrow"
+          "detail": {
+            "type": "Object",
+            "name": "detail",
+            "title": "Detail",
+            "properties": {
+              "narrow": {
+                "type": "boolean",
+                "name": "narrow",
+                "description": "true if the panel is in narrow layout.",
+                "title": "Narrow"
+              }
+            }
           }
         }
       }

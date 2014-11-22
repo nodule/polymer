@@ -131,11 +131,18 @@
         "title": "Core transitionend",
         "type": "object",
         "properties": {
-          "detail.node": {
+          "detail": {
             "type": "Object",
-            "name": "detail.node",
-            "description": "The animated node",
-            "title": "Detail.node"
+            "name": "detail",
+            "title": "Detail",
+            "properties": {
+              "node": {
+                "type": "Object",
+                "name": "node",
+                "description": "The animated node",
+                "title": "Node"
+              }
+            }
           }
         }
       }

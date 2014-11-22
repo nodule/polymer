@@ -18,59 +18,66 @@
         "async": true,
         "type": "object",
         "properties": {
-          "inOptions.url": {
-            "type": "String",
-            "name": "inOptions.url",
-            "description": "The url to which the request is sent.",
-            "title": "In options.url"
-          },
-          "inOptions.method": {
-            "type": "String",
-            "name": "inOptions.method",
-            "description": "The HTTP method to use, default is GET.",
-            "title": "In options.method"
-          },
-          "inOptions.sync": {
-            "type": "boolean",
-            "name": "inOptions.sync",
-            "description": "By default, all requests are sent asynchronously. To send synchronous requests, set to true.",
-            "title": "In options.sync"
-          },
-          "inOptions.params": {
+          "inOptions": {
             "type": "Object",
-            "name": "inOptions.params",
-            "description": "Data to be sent to the server.",
-            "title": "In options.params"
-          },
-          "inOptions.body": {
-            "type": "Object",
-            "name": "inOptions.body",
-            "description": "The content for the request body for POST method.",
-            "title": "In options.body"
-          },
-          "inOptions.headers": {
-            "type": "Object",
-            "name": "inOptions.headers",
-            "description": "HTTP request headers.",
-            "title": "In options.headers"
-          },
-          "inOptions.responseType": {
-            "type": "String",
-            "name": "inOptions.responseType",
-            "description": "The response type. Default is 'text'.",
-            "title": "In options.response type"
-          },
-          "inOptions.withCredentials": {
-            "type": "boolean",
-            "name": "inOptions.withCredentials",
-            "description": "Whether or not to send credentials on the request. Default is false.",
-            "title": "In options.with credentials"
-          },
-          "inOptions.callback": {
-            "type": "Object",
-            "name": "inOptions.callback",
-            "description": "Called when request is completed.",
-            "title": "In options.callback"
+            "name": "inOptions",
+            "title": "In options",
+            "properties": {
+              "url": {
+                "type": "String",
+                "name": "url",
+                "description": "The url to which the request is sent.",
+                "title": "Url"
+              },
+              "method": {
+                "type": "String",
+                "name": "method",
+                "description": "The HTTP method to use, default is GET.",
+                "title": "Method"
+              },
+              "sync": {
+                "type": "boolean",
+                "name": "sync",
+                "description": "By default, all requests are sent asynchronously. To send synchronous requests, set to true.",
+                "title": "Sync"
+              },
+              "params": {
+                "type": "Object",
+                "name": "params",
+                "description": "Data to be sent to the server.",
+                "title": "Params"
+              },
+              "body": {
+                "type": "Object",
+                "name": "body",
+                "description": "The content for the request body for POST method.",
+                "title": "Body"
+              },
+              "headers": {
+                "type": "Object",
+                "name": "headers",
+                "description": "HTTP request headers.",
+                "title": "Headers"
+              },
+              "responseType": {
+                "type": "String",
+                "name": "responseType",
+                "description": "The response type. Default is 'text'.",
+                "title": "Response type"
+              },
+              "withCredentials": {
+                "type": "boolean",
+                "name": "withCredentials",
+                "description": "Whether or not to send credentials on the request. Default is false.",
+                "title": "With credentials"
+              },
+              "callback": {
+                "type": "Object",
+                "name": "callback",
+                "description": "Called when request is completed.",
+                "title": "Callback"
+              }
+            }
           }
         }
       }

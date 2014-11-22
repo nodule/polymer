@@ -147,17 +147,24 @@
         "title": "Core animated pages transition prepare",
         "type": "object",
         "properties": {
-          "detail.isSelected": {
-            "type": "boolean",
-            "name": "detail.isSelected",
-            "description": "true for selection and false for deselection",
-            "title": "Detail.is selected"
-          },
-          "detail.item": {
+          "detail": {
             "type": "Object",
-            "name": "detail.item",
-            "description": "the item element",
-            "title": "Detail.item"
+            "name": "detail",
+            "title": "Detail",
+            "properties": {
+              "isSelected": {
+                "type": "boolean",
+                "name": "isSelected",
+                "description": "true for selection and false for deselection",
+                "title": "Is selected"
+              },
+              "item": {
+                "type": "Object",
+                "name": "item",
+                "description": "the item element",
+                "title": "Item"
+              }
+            }
           }
         }
       },
@@ -167,11 +174,18 @@
         "title": "Core animated pages transition end",
         "type": "object",
         "properties": {
-          "detail.item": {
+          "detail": {
             "type": "Object",
-            "name": "detail.item",
-            "description": "the item element",
-            "title": "Detail.item"
+            "name": "detail",
+            "title": "Detail",
+            "properties": {
+              "item": {
+                "type": "Object",
+                "name": "item",
+                "description": "the item element",
+                "title": "Item"
+              }
+            }
           }
         }
       }

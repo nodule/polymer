@@ -11,19 +11,19 @@
   },
   "ports": {
     "input": {
-      "noink": {
-        "name": "noink",
-        "description": "If true, ink ripple effect is disabled.",
-        "type": "boolean",
-        "default": "false",
-        "title": "Noink"
+      "transitions": {
+        "name": "transitions",
+        "description": "A space-delimited string of transitions to use when switching between pages in this element.\nThe strings are `id`s of `core-transition-pages` elements included elsewhere. See the\nindividual transition's document for specific details.",
+        "type": "string",
+        "default": "''",
+        "title": "Transitions"
       },
-      "nobar": {
-        "name": "nobar",
-        "description": "If true, the bottom bar to indicate the selected tab will not be shown.",
-        "type": "boolean",
-        "default": "false",
-        "title": "Nobar"
+      "lastSelected": {
+        "name": "lastSelected",
+        "description": "The last page selected. This property is useful to dynamically set transitions based\non incoming and outgoing pages.",
+        "type": "Object",
+        "default": "null",
+        "title": "Last selected"
       },
       "noslide": {
         "name": "noslide",
@@ -141,37 +141,51 @@
       }
     },
     "output": {
-      "core-select": {
-        "name": "core-select",
-        "description": "Fired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.",
-        "title": "Core select",
+      "core-animated-pages-transition-prepare": {
+        "name": "core-animated-pages-transition-prepare",
+        "description": "Fired before a page transition occurs. Both pages involved in the transition are visible when\nthis event fires. This is useful if there is something the client needs to do when a page becomes\nvisible.",
+        "title": "Core animated pages transition prepare",
         "type": "object",
         "properties": {
-          "detail.isSelected": {
-            "type": "boolean",
-            "name": "detail.isSelected",
-            "description": "true for selection and false for deselection",
-            "title": "Detail.is selected"
-          },
-          "detail.item": {
+          "detail": {
             "type": "Object",
-            "name": "detail.item",
-            "description": "the item element",
-            "title": "Detail.item"
+            "name": "detail",
+            "title": "Detail",
+            "properties": {
+              "isSelected": {
+                "type": "boolean",
+                "name": "isSelected",
+                "description": "true for selection and false for deselection",
+                "title": "Is selected"
+              },
+              "item": {
+                "type": "Object",
+                "name": "item",
+                "description": "the item element",
+                "title": "Item"
+              }
+            }
           }
         }
       },
-      "core-activate": {
-        "name": "core-activate",
-        "description": "Fired when an item element is tapped.",
-        "title": "Core activate",
+      "core-animated-pages-transition-end": {
+        "name": "core-animated-pages-transition-end",
+        "description": "Fired when a page transition completes.",
+        "title": "Core animated pages transition end",
         "type": "object",
         "properties": {
-          "detail.item": {
+          "detail": {
             "type": "Object",
-            "name": "detail.item",
-            "description": "the item element",
-            "title": "Detail.item"
+            "name": "detail",
+            "title": "Detail",
+            "properties": {
+              "item": {
+                "type": "Object",
+                "name": "item",
+                "description": "the item element",
+                "title": "Item"
+              }
+            }
           }
         }
       }

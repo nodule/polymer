@@ -112,6 +112,10 @@ function processDef(def, base) {
 
 function paramsToProperties(a) {
 
+  var name;
+  var prop;
+  var param;
+
   // .params is an array.
   // I would like to always pass them as an object
   // so PolymerNode must understand this.
@@ -123,14 +127,39 @@ function paramsToProperties(a) {
 
     for(var i = 0; i < a.params.length; i++) {
       param = a.params[i];
-      param.title = humanize(param.name);
-      a.properties[param.name] = param;
+
+      // only one level deep for now detail.isSelected
+      var m = param.name.split('.');
+      name = m[0];
+
+      param.title = humanize(m[0]);
+
+      if(m[1]) {
+        prop = m[1];
+        // type is object/
+        // we are handling a property.
+        if (!a.properties.hasOwnProperty(name)) {
+          a.properties[name] = {
+            type: 'Object',
+            name: name,
+            title: humanize(name)
+            // description:  can have a description?
+          };
+          a.properties[name].properties = {};
+        }
+        param.name = prop;
+        param.title = humanize(prop);
+        a.properties[name].properties[prop] = param;
+
+      } else {
+        a.properties[param.name] = param;
+      }
     }
 
     delete a.params;
   }
 
-};
+}
 
 function createNodeDefinition(def) {
 

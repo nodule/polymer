@@ -188,11 +188,18 @@
         "title": "Core activate",
         "type": "object",
         "properties": {
-          "detail.item": {
+          "detail": {
             "type": "Object",
-            "name": "detail.item",
-            "description": "the item element",
-            "title": "Detail.item"
+            "name": "detail",
+            "title": "Detail",
+            "properties": {
+              "item": {
+                "type": "Object",
+                "name": "item",
+                "description": "the item element",
+                "title": "Item"
+              }
+            }
           }
         }
       }

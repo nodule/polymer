@@ -19,7 +19,8 @@
   "dependencies": {},
   "devDependencies": {
     "polymer-context-free-parser": "git://github.com/Polymer/context-free-parser",
-    "extend": "^2.0.0"
+    "extend": "^2.0.0",
+    "underscore.string": "^2.4.0"
   },
   "chix": {
     "name": "polymer",

@@ -1,5 +1,6 @@
 {
   "name": "core-image",
+  "title": "Core image",
   "ns": "polymer",
   "type": "polymer",
   "description": "`core-scroll-threshold` is a utility element that listens for `scroll` events from a\nscrollable region and fires events to indicate when the scroller has reached a pre-defined\nlimit, specified in pixels from the upper and lower bounds of the scrollable region.\n\nThis element may wrap a scrollable region and will listen for `scroll` events bubbling\nthrough it from its children.  In this case, care should be taken that only one scrollable\nregion with the same orientation as this element is contained within.  Alternatively,\nthe `scrollTarget` property can be set/bound to a non-child scrollable region, from which\nit will listen for events.\n\nOnce a threshold has been reached, a `lower-threshold` or `upper-threshold` event will\nbe fired, at which point the user may perform actions such as lazily-loading more data\nto be displayed.  After any work is done, the user must then clear the threshold by\ncalling the `clearUpper` or `clearLower` methods on this element, after which it will\nbegin listening again for the scroll position to reach the threshold again (assuming\nthe content in the) scrollable region has grown.  If the user no longer wishes to receive\nevents (e.g. all data has been exhausted), the \n\nExample:\n\n    <core-scroll-threshold id=\"threshold\" lowerThreshold=\"500\" \n      on-lower-triggered=\"{{loadMore}}\" lowerTriggered=\"{{spinnerShouldShow}}\">\n    </scroll-threshold>\n\n    ...\n\n    loadMore: function() {\n      this.asyncLoadStuffThen(function() {\n        this.$.threshold.clearLower();\n      }.bind(this));\n    }",
@@ -14,46 +15,54 @@
         "name": "scrollTarget",
         "description": "When set, the given element is observed for scroll position.  When undefined,\nchildren can be placed inside and element itself can be used as the scrollable\nelement.",
         "type": "string",
-        "default": "null"
+        "default": "null",
+        "title": "Scroll target"
       },
       "orient": {
         "name": "orient",
         "description": "Orientation of the scroller to be observed (`v` for vertical, `h` for horizontal)",
         "type": "boolean",
-        "default": "'v'"
+        "default": "'v'",
+        "title": "Orient"
       },
       "upperThreshold": {
         "name": "upperThreshold",
         "description": "Distance from the top (or left, for horizontal) bound of the scroller\nwhere the \"upper trigger\" will fire.",
         "type": "integer",
-        "default": "null"
+        "default": "null",
+        "title": "Upper threshold"
       },
       "lowerThreshold": {
         "name": "lowerThreshold",
         "description": "Distance from the bottom (or right, for horizontal) bound of the scroller\nwhere the \"lower trigger\" will fire.",
         "type": "integer",
-        "default": "false"
+        "default": "false",
+        "title": "Lower threshold"
       },
       "upperTriggered": {
         "name": "upperTriggered",
         "description": "Read-only value that tracks the triggered state of the upper threshold",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Upper triggered"
       },
       "lowerTriggered": {
         "name": "lowerTriggered",
         "description": "Read-only value that tracks the triggered state of the lower threshold",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Lower triggered"
       },
       "clearUpper": {
         "name": "clearUpper",
         "description": "Clear the upper threshold, following an `upper-trigger` event.",
+        "title": "Clear upper",
         "async": true
       },
       "clearLower": {
         "name": "clearLower",
         "description": "Clear the lower threshold, following a `lower-trigger` event.",
+        "title": "Clear lower",
         "async": true
       }
     },

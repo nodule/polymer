@@ -1,5 +1,6 @@
 {
   "name": "core-transition",
+  "title": "Core transition",
   "ns": "polymer",
   "type": "polymer",
   "description": "`<core-transition>` is an abstraction of an animation. It is used to implement pluggable\ntransitions, for example in `<core-overlay>`. You can extend this class to create a custom\nanimation, instantiate it, and import it where you need the animation.\n\nAll instances of `<core-transition>` are stored in a single database with `type=transition`.\nFor more about the database, please see the documentation for `<core-meta>`.\n\nEach instance of `<core-transition>` objects are shared across all the clients, so you should\nnot store state information specific to the animated element in the transition. Rather, store\nit on the element.\n\nExample:\n\nmy-transition.html:\n\n    <polymer-element name=\"my-transition\" extends=\"core-transition\">\n        <script>\n            go: function(node) {\n                node.style.transition = 'opacity 1s ease-out';\n                node.style.opacity = 0;\n            }\n        </script>\n    </polymer-element>\n\n    <my-transition id=\"my-fade-out\"></my-transition>\n\nmy-transition-demo.html:\n\n    <link href=\"components/core-meta/core-meta.html\" rel=\"import\">\n    <link href=\"my-transition.html\" rel=\"import\">\n\n    <div id=\"animate-me\"></div>\n\n    <script>\n        // Get the core-transition\n        var meta = document.createElement('core-meta');\n        meta.type = 'transition';\n        var transition = meta.byId('my-fade-out');\n\n        // Run the animation\n        var animated = document.getElementById('animate-me');\n        transition.go(animated);\n    </script>",
@@ -14,100 +15,129 @@
         "name": "type",
         "description": "The type of meta-data.  All meta-data with the same type with be\nstored together.",
         "type": "string",
-        "default": "'default'"
+        "default": "'default'",
+        "title": "Type"
       },
       "go": {
         "name": "go",
         "description": "Run the animation.",
-        "params": [
-          {
+        "title": "Go",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "String",
+            "name": "id",
+            "description": "The ID of the meta-data to be returned.",
+            "title": "Id"
+          },
+          "node": {
             "type": "Node",
             "name": "node",
-            "description": "The node to apply the animation on"
+            "description": "The node to apply the animation on",
+            "title": "Node"
           },
-          {
+          "state": {
             "type": "Object",
             "name": "state",
-            "description": "State info"
+            "description": "State info",
+            "title": "State"
           }
-        ],
-        "async": true
+        }
       },
       "setup": {
         "name": "setup",
         "description": "Set up the animation. This may include injecting a stylesheet,\napplying styles, creating a web animations object, etc.. This",
-        "params": [
-          {
+        "title": "Setup",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "node": {
             "type": "Node",
             "name": "node",
-            "description": "The animated node"
+            "description": "The animated node",
+            "title": "Node"
           }
-        ],
-        "async": true
+        }
       },
       "teardown": {
         "name": "teardown",
         "description": "Tear down the animation.",
-        "params": [
-          {
+        "title": "Teardown",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "node": {
             "type": "Node",
             "name": "node",
-            "description": "The animated node"
+            "description": "The animated node",
+            "title": "Node"
           }
-        ],
-        "async": true
+        }
       },
       "complete": {
         "name": "complete",
         "description": "Called when the animation completes. This function also fires the\n`core-transitionend` event.",
-        "params": [
-          {
+        "title": "Complete",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "node": {
             "type": "Node",
             "name": "node",
-            "description": "The animated node"
+            "description": "The animated node",
+            "title": "Node"
           }
-        ],
-        "async": true
+        }
       },
       "listenOnce": {
         "name": "listenOnce",
         "description": "Utility function to listen to an event on a node once.",
-        "params": [
-          {
+        "title": "Listen once",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "node": {
             "type": "Node",
             "name": "node",
-            "description": "The animated node"
+            "description": "The animated node",
+            "title": "Node"
           },
-          {
+          "event": {
             "type": "string",
             "name": "event",
-            "description": "Name of an event"
+            "description": "Name of an event",
+            "title": "Event"
           },
-          {
+          "fn": {
             "type": "Function",
             "name": "fn",
-            "description": "Event handler"
+            "description": "Event handler",
+            "title": "Fn"
           },
-          {
+          "args": {
             "type": "Array",
             "name": "args",
-            "description": "Additional arguments to pass to `fn`"
+            "description": "Additional arguments to pass to `fn`",
+            "title": "Args"
           }
-        ],
-        "async": true
+        }
       }
     },
     "output": {
       "core-transitionend": {
         "name": "core-transitionend",
         "description": "Fired when the animation finishes.",
-        "params": [
-          {
+        "title": "Core transitionend",
+        "type": "object",
+        "properties": {
+          "detail.node": {
             "type": "Object",
             "name": "detail.node",
-            "description": "The animated node"
+            "description": "The animated node",
+            "title": "Detail.node"
           }
-        ]
+        }
       }
     }
   }

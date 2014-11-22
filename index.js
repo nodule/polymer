@@ -7,6 +7,7 @@ var d = require('dot-object')();
 var extend = require('extend');
 var defs = {};
 var extenders = [];
+var humanize = require('underscore.string').humanize;
 var g = glob('./bower_components/*/*.html');
 
 /**
@@ -86,11 +87,57 @@ function processDef(def, base) {
 
 }
 
+/*
+
+  Still faulty, is a described object
+
+  "properties": {
++          "detail.isSelected": {
+             "type": "boolean",
+             "name": "detail.isSelected",
+-            "description": "true for selection and false for deselection"
++            "description": "true for selection and false for deselection",
++            "title": "Detail.is selected"
+           },
+-          {
++          "detail.item": {
+             "type": "Object",
+             "name": "detail.item",
+-            "description": "the item element"
++            "description": "the item element",
++            "title": "Detail.item"
+           }
+*/
+
+
+function paramsToProperties(a) {
+
+  // .params is an array.
+  // I would like to always pass them as an object
+  // so PolymerNode must understand this.
+  if(a.params) {
+
+    // not overwriting anything?
+    a.type = 'object';
+    a.properties = {};
+
+    for(var i = 0; i < a.params.length; i++) {
+      param = a.params[i];
+      param.title = humanize(param.name);
+      a.properties[param.name] = param;
+    }
+
+    delete a.params;
+  }
+
+};
+
 function createNodeDefinition(def) {
 
   var nD = {};
 
   nD.name = def.name;
+  nD.title = humanize(def.name);
   nD.ns = 'polymer';
   nD.type = 'polymer';
   nD.description = def.description.trim();
@@ -105,6 +152,9 @@ function createNodeDefinition(def) {
   if (def.attributes) {
 
     def.attributes.forEach(function(a) {
+
+      a.title = humanize(a.name);
+
       if (a.description) {
         a.description = a.description.trim();
       }
@@ -118,23 +168,32 @@ function createNodeDefinition(def) {
       if (nD.ports.input.hasOwnProperty(a.name)) {
         throw Error('Conflicting port names');
       } else {
+
         if (a.description) {
           a.description = a.description.trim();
         }
+
+        a.title = humanize(a.name);
+
+        a.async = true;
+
+        paramsToProperties(a);
+
         nD.ports.input[a.name] = a;
-        /* not sure if I want to mark methods this way
-         * but for now it will do
-         */
-        nD.ports.input[a.name].async = true;
+
       }
     });
   }
 
   if (def.events) {
     def.events.forEach(function(e) {
+      e.title = humanize(e.name);
       if (e.description) {
         e.description = e.description.trim();
       }
+
+      paramsToProperties(e);
+
       nD.ports.output[e.name] = e;
     });
   }

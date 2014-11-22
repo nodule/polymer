@@ -1,5 +1,6 @@
 {
   "name": "core-menu",
+  "title": "Core menu",
   "ns": "polymer",
   "type": "polymer",
   "description": "`core-menu` is a selector which styles to looks like a menu.\n\n    <core-menu selected=\"0\">\n      <core-item icon=\"settings\" label=\"Settings\"></core-item>\n      <core-item icon=\"dialog\" label=\"Dialog\"></core-item>\n      <core-item icon=\"search\" label=\"Search\"></core-item>\n    </core-menu>\n    \nWhen an item is selected the `core-selected` class is added to it.  The user can\nuse the class to add more stylings to the selected item.\n\n    core-item.core-selected {\n      color: red;\n    }\n\nThe `selectedItem` property references the selected item.\n\n    <core-menu selected=\"0\" selectedItem=\"{{item}}\">\n      <core-item icon=\"settings\" label=\"Settings\"></core-item>\n      <core-item icon=\"dialog\" label=\"Dialog\"></core-item>\n      <core-item icon=\"search\" label=\"Search\"></core-item>\n    </core-menu>\n\n    <div>selected label: {{item.label}}</div>\n\nThe `core-select` event signals selection change.\n\n    <core-menu selected=\"0\" on-core-select=\"{{selectAction}}\">\n      <core-item icon=\"settings\" label=\"Settings\"></core-item>\n      <core-item icon=\"dialog\" label=\"Dialog\"></core-item>\n      <core-item icon=\"search\" label=\"Search\"></core-item>\n    </core-menu>\n\n    ...\n\n    selectAction: function(e, detail) {\n      if (detail.isSelected) {\n        var selectedItem = detail.item;\n        ...\n      }\n    }",
@@ -14,138 +15,165 @@
         "name": "noink",
         "description": "If true, ink ripple effect is disabled.",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Noink"
       },
       "nobar": {
         "name": "nobar",
         "description": "If true, the bottom bar to indicate the selected tab will not be shown.",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Nobar"
       },
       "noslide": {
         "name": "noslide",
         "description": "If true, the slide effect for the bottom bar is disabled.",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Noslide"
       },
       "scrollable": {
         "name": "scrollable",
         "description": "If true, tabs are scrollable and the tab width is based on the label width.",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Scrollable"
       },
       "disableDrag": {
         "name": "disableDrag",
         "description": "If true, dragging on the tabs to scroll is disabled.",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Disable drag"
       },
       "hideScrollButton": {
         "name": "hideScrollButton",
         "description": "If true, scroll buttons (left/right arrow) will be hidden for scrollable tabs.",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Hide scroll button"
       },
       "selectedItem": {
         "name": "selectedItem",
         "description": "Returns the currently selected element. In multi-selection this returns\nan array of selected elements.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
         "type": "Object",
-        "default": "null"
+        "default": "null",
+        "title": "Selected item"
       },
       "selectedModel": {
         "name": "selectedModel",
         "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
         "type": "Object",
-        "default": "null"
+        "default": "null",
+        "title": "Selected model"
       },
       "selectedIndex": {
         "name": "selectedIndex",
         "description": "In single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
         "type": "number",
-        "default": "-1"
+        "default": "-1",
+        "title": "Selected index"
       },
       "excludedLocalNames": {
         "name": "excludedLocalNames",
         "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
         "type": "string",
-        "default": "''"
+        "default": "''",
+        "title": "Excluded local names"
       },
       "target": {
         "name": "target",
         "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
         "type": "Object",
-        "default": "null"
+        "default": "null",
+        "title": "Target"
       },
       "itemsSelector": {
         "name": "itemsSelector",
         "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
         "type": "string",
-        "default": "''"
+        "default": "''",
+        "title": "Items selector"
       },
       "activateEvent": {
         "name": "activateEvent",
         "description": "The event that would be fired from the item element to indicate\nit is being selected.",
         "type": "string",
-        "default": "'tap'"
+        "default": "'tap'",
+        "title": "Activate event"
       },
       "notap": {
         "name": "notap",
         "description": "Set this to true to disallow changing the selection via the\n`activateEvent`.",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Notap"
       },
       "updateBar": {
         "name": "updateBar",
         "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.",
-        "params": [
-          {
+        "title": "Update bar",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "wrapped": {
             "type": "boolean",
             "name": "wrapped",
-            "description": "if true and it is already at the first item,"
+            "description": "if true and it is already at the first item,",
+            "title": "Wrapped"
           }
-        ],
-        "async": true
+        }
       },
       "selectNext": {
         "name": "selectNext",
         "description": "Selects the next item.  This should be used in single selection only.\n\n                 wrap to the front",
-        "params": [
-          {
+        "title": "Select next",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "wrapped": {
             "type": "boolean",
             "name": "wrapped",
-            "description": "if true and it is already at the last item,"
+            "description": "if true and it is already at the last item,",
+            "title": "Wrapped"
           }
-        ],
-        "async": true
+        }
       }
     },
     "output": {
       "core-select": {
         "name": "core-select",
         "description": "Fired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.",
-        "params": [
-          {
+        "title": "Core select",
+        "type": "object",
+        "properties": {
+          "detail.isSelected": {
             "type": "boolean",
             "name": "detail.isSelected",
-            "description": "true for selection and false for deselection"
+            "description": "true for selection and false for deselection",
+            "title": "Detail.is selected"
           },
-          {
+          "detail.item": {
             "type": "Object",
             "name": "detail.item",
-            "description": "the item element"
+            "description": "the item element",
+            "title": "Detail.item"
           }
-        ]
+        }
       },
       "core-activate": {
         "name": "core-activate",
         "description": "Fired when an item element is tapped.",
-        "params": [
-          {
+        "title": "Core activate",
+        "type": "object",
+        "properties": {
+          "detail.item": {
             "type": "Object",
             "name": "detail.item",
-            "description": "the item element"
+            "description": "the item element",
+            "title": "Detail.item"
           }
-        ]
+        }
       }
     }
   }

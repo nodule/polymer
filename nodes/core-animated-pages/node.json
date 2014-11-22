@@ -1,5 +1,6 @@
 {
   "name": "core-animated-pages",
+  "title": "Core animated pages",
   "ns": "polymer",
   "type": "polymer",
   "description": "`core-animated-pages` selects one of its children \"pages\" to show and runs a transition\nwhen switching between them. The transitions are designed to be pluggable, and can\naccept any object that is an instance of a `core-transition-pages`. Transitions to run\nare specified in the `transitions` attribute as a space-delimited string of `id`s of\ntransition elements. Several transitions are available with `core-animated-pages` by\ndefault, including `hero-transition`, `cross-fade`, and `tile-cascade`.\n\nExample:\n\n    <style>\n      #hero1 {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 300px;\n        height: 300px;\n        background-color: orange;\n      }\n      #hero2 {\n        position: absolute;\n        top: 200px;\n        left: 300px;\n        width: 300px;\n        height: 300px;\n        background-color: orange;\n      }\n      #bottom1, #bottom2 {\n        position: absolute;\n        bottom: 0;\n        top: 0;\n        left: 0;\n        height: 50px;\n      }\n      #bottom1 {\n        background-color: blue;\n      }\n      #bottom2 {\n        background-color: green;\n      }\n    </style>\n    // hero-transition and cross-fade are declared elsewhere\n    <core-animated-pages transitions=\"hero-transition cross-fade\">\n      <section id=\"page1\">\n        <div id=\"hero1\" hero-id=\"hero\" hero></div>\n        <div id=\"bottom1\" cross-fade></div>\n      </section>\n      <section id=\"page2\">\n        <div id=\"hero2\" hero-id=\"hero\" hero></div>\n        <div id=\"bottom2\" cross-fade></div>\n      </section>\n    </core-animated-pages>\n\nIn the above example, two transitions (`hero-transition` and `cross-fade`) are run when switching\nbetween `page1` and `page2`. `hero-transition` transforms elements with the same `hero-id` such\nthat they appear to be shared across different pages. `cross-fade` fades out the elements marked\n`cross-fade` in the outgoing page, and fades in those in the incoming page. See the individual\ntransition's documentation for specific details.\n\nFinding elements to transition\n------------------------------\n\nIn general, a transition is applied to elements marked with a certain attribute. For example,\n`hero-transition` applies the transition on elements with the `hero` and `hero-id` attribute.\nAmong the transitions included with `core-animated-pages`, script-based transitions such as\n`hero-transition` generally look for elements up to one level of shadowRoot from the\n`core-animated-pages` element, and CSS-based transitions such as `cross-fade` look for elements\nwithin any shadowRoot within the `core-animated-pages` element. This means you can use \ncustom elements as pages and mark elements in their shadowRoots as heroes, or mark \nelements in deeper shadowRoots with other transitions.\n\nExample:\n\n    <polymer-element name=\"x-el\" noscript>\n    <template>\n      <style>\n        #hero {\n          position: absolute;\n          top: 0;\n          right: 0;\n          width: 50px;\n          height: 300px;\n          background-color: blue;\n        }\n      </style>\n      <div id=\"hero\" hero-id=\"bar\" hero></div>\n    </template>\n    </polymer-element>\n\n    <polymer-element name=\"x-page-1\" noscript>\n    <template>\n      <style>\n        #hero1 {\n          position: absolute;\n          top: 0;\n          left: 0;\n          width: 300px;\n          height: 300px;\n          background-color: orange;\n        }\n      </style>\n      <div id=\"hero1\" hero-id=\"foo\" hero></div>\n      <div id=\"hero2\" hero-id=\"bar\" hero></div>\n    </template>\n    </polymer-element>\n\n    <polymer-element name=\"x-page-2\" noscript>\n    <template>\n      <style>\n        #hero1 {\n          position: absolute;\n          top: 200px;\n          left: 300px;\n          width: 300px;\n          height: 300px;\n          background-color: orange;\n        }\n        #hero2 {\n          background-color: blue;\n          height: 150px;\n          width: 400px;\n        }\n      </style>\n      // The below element is one level of shadow from the core-animated-pages and will\n      // be transitioned.\n      <div id=\"hero1\" hero-id=\"foo\" hero></div>\n      // The below element contains a hero inside its shadowRoot making it two levels away\n      // from the core-animated-pages, and will not be transitioned.\n      <x-el></x-el>\n    </template>\n    </polymer-element>\n\n    <core-animated-pages transitions=\"hero-transition\">\n      <x-page-1></x-page-1>\n      <x-page-2></x-page-2>\n    </core-animated-pages>\n\nNote that the container element of the page does not participate in the transition.\n\n    // This does not work\n    <core-animated-pages transitions=\"cross-fade\">\n      <section cross-fade></section>\n      <section cross-fade></section>\n    </core-animated-pages>\n\n    // This works\n    <core-animated-pages transitions=\"cross-fade\">\n      <section>\n        <div cross-fade></div>\n      </section>\n      <section>\n        <div cross-fade></div>\n      </section>\n    </core-animated-pages>\n\nDynamically setting up transitions\n----------------------------------\n\nAn easy way to set up transitions dynamically is to use property binding on\nthe transition attributes. \n\nExample:\n\n    <core-animated-pages selected=\"{{selected}}\">\n      <section id=\"page1\">\n        <div hero-id=\"hero\" hero></div>\n      </section>\n      <section id=\"page2\">\n        <div id=\"foo\" hero-id=\"hero\" hero?=\"{{selected === 1 || selected === 0}}\" cross-fade=\"{{selected === 2}}\"></div>\n      </section>\n      <section id=\"page3\">\n      </section>\n    </core-animated-pages>\n\nIn the above example, the \"foo\" element only behaves as a hero element if transitioning between\n`#page1` and `#page2`. It gets cross-faded when transition to or from `#page3`.\n\nNesting pages\n-------------\n\nIt is possible to nest core-animated-pages elements for organization. Excessive nesting is\nnot encouraged, however, since it makes setting up the transition more complex.\n\nTo nest core-animated-pages, the page containing the nested core-animated-pages element should\nhave a `selectedItem` property bound to the `selectedItem` property of the nested element. This\nwill allow the outer core-animated-pages to know which nested page it is actually transitioning\nto.\n\nExample:\n\n    <polymer-element name=\"nested-page\" attributes=\"selectedItem\">\n    <template>\n      <core-animated-pages selectedItem=\"{{selectedItem}}\">\n        ...\n      </core-animated-pages>\n    </template>\n    </polymer-element>\n\n    <core-animated-pages>\n      <section id=\"page1\"></section>\n      <nested-page id=\"page2\"></nested-page>\n    </core-animated-pages>",
@@ -14,138 +15,165 @@
         "name": "transitions",
         "description": "A space-delimited string of transitions to use when switching between pages in this element.\nThe strings are `id`s of `core-transition-pages` elements included elsewhere. See the\nindividual transition's document for specific details.",
         "type": "string",
-        "default": "''"
+        "default": "''",
+        "title": "Transitions"
       },
       "lastSelected": {
         "name": "lastSelected",
         "description": "The last page selected. This property is useful to dynamically set transitions based\non incoming and outgoing pages.",
         "type": "Object",
-        "default": "null"
+        "default": "null",
+        "title": "Last selected"
       },
       "noslide": {
         "name": "noslide",
         "description": "If true, the slide effect for the bottom bar is disabled.",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Noslide"
       },
       "scrollable": {
         "name": "scrollable",
         "description": "If true, tabs are scrollable and the tab width is based on the label width.",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Scrollable"
       },
       "disableDrag": {
         "name": "disableDrag",
         "description": "If true, dragging on the tabs to scroll is disabled.",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Disable drag"
       },
       "hideScrollButton": {
         "name": "hideScrollButton",
         "description": "If true, scroll buttons (left/right arrow) will be hidden for scrollable tabs.",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Hide scroll button"
       },
       "selectedItem": {
         "name": "selectedItem",
         "description": "Returns the currently selected element. In multi-selection this returns\nan array of selected elements.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
         "type": "Object",
-        "default": "null"
+        "default": "null",
+        "title": "Selected item"
       },
       "selectedModel": {
         "name": "selectedModel",
         "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
         "type": "Object",
-        "default": "null"
+        "default": "null",
+        "title": "Selected model"
       },
       "selectedIndex": {
         "name": "selectedIndex",
         "description": "In single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
         "type": "number",
-        "default": "-1"
+        "default": "-1",
+        "title": "Selected index"
       },
       "excludedLocalNames": {
         "name": "excludedLocalNames",
         "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
         "type": "string",
-        "default": "''"
+        "default": "''",
+        "title": "Excluded local names"
       },
       "target": {
         "name": "target",
         "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
         "type": "Object",
-        "default": "null"
+        "default": "null",
+        "title": "Target"
       },
       "itemsSelector": {
         "name": "itemsSelector",
         "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
         "type": "string",
-        "default": "''"
+        "default": "''",
+        "title": "Items selector"
       },
       "activateEvent": {
         "name": "activateEvent",
         "description": "The event that would be fired from the item element to indicate\nit is being selected.",
         "type": "string",
-        "default": "'tap'"
+        "default": "'tap'",
+        "title": "Activate event"
       },
       "notap": {
         "name": "notap",
         "description": "Set this to true to disallow changing the selection via the\n`activateEvent`.",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Notap"
       },
       "updateBar": {
         "name": "updateBar",
         "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.",
-        "params": [
-          {
+        "title": "Update bar",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "wrapped": {
             "type": "boolean",
             "name": "wrapped",
-            "description": "if true and it is already at the first item,"
+            "description": "if true and it is already at the first item,",
+            "title": "Wrapped"
           }
-        ],
-        "async": true
+        }
       },
       "selectNext": {
         "name": "selectNext",
         "description": "Selects the next item.  This should be used in single selection only.\n\n                 wrap to the front",
-        "params": [
-          {
+        "title": "Select next",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "wrapped": {
             "type": "boolean",
             "name": "wrapped",
-            "description": "if true and it is already at the last item,"
+            "description": "if true and it is already at the last item,",
+            "title": "Wrapped"
           }
-        ],
-        "async": true
+        }
       }
     },
     "output": {
       "core-animated-pages-transition-prepare": {
         "name": "core-animated-pages-transition-prepare",
         "description": "Fired before a page transition occurs. Both pages involved in the transition are visible when\nthis event fires. This is useful if there is something the client needs to do when a page becomes\nvisible.",
-        "params": [
-          {
+        "title": "Core animated pages transition prepare",
+        "type": "object",
+        "properties": {
+          "detail.isSelected": {
             "type": "boolean",
             "name": "detail.isSelected",
-            "description": "true for selection and false for deselection"
+            "description": "true for selection and false for deselection",
+            "title": "Detail.is selected"
           },
-          {
+          "detail.item": {
             "type": "Object",
             "name": "detail.item",
-            "description": "the item element"
+            "description": "the item element",
+            "title": "Detail.item"
           }
-        ]
+        }
       },
       "core-animated-pages-transition-end": {
         "name": "core-animated-pages-transition-end",
         "description": "Fired when a page transition completes.",
-        "params": [
-          {
+        "title": "Core animated pages transition end",
+        "type": "object",
+        "properties": {
+          "detail.item": {
             "type": "Object",
             "name": "detail.item",
-            "description": "the item element"
+            "description": "the item element",
+            "title": "Detail.item"
           }
-        ]
+        }
       }
     }
   }

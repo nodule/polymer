@@ -1,5 +1,6 @@
 {
   "name": "core-xhr",
+  "title": "Core xhr",
   "ns": "polymer",
   "type": "polymer",
   "description": "core-xhr can be used to perform XMLHttpRequests.\n\n    <core-xhr id=\"xhr\"></core-xhr>\n    ...\n    this.$.xhr.request({url: url, params: params, callback: callback});",
@@ -13,54 +14,65 @@
       "request": {
         "name": "request",
         "description": "Sends a HTTP request to the server and returns the XHR object.",
-        "params": [
-          {
+        "title": "Request",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "inOptions.url": {
             "type": "String",
             "name": "inOptions.url",
-            "description": "The url to which the request is sent."
+            "description": "The url to which the request is sent.",
+            "title": "In options.url"
           },
-          {
+          "inOptions.method": {
             "type": "String",
             "name": "inOptions.method",
-            "description": "The HTTP method to use, default is GET."
+            "description": "The HTTP method to use, default is GET.",
+            "title": "In options.method"
           },
-          {
+          "inOptions.sync": {
             "type": "boolean",
             "name": "inOptions.sync",
-            "description": "By default, all requests are sent asynchronously. To send synchronous requests, set to true."
+            "description": "By default, all requests are sent asynchronously. To send synchronous requests, set to true.",
+            "title": "In options.sync"
           },
-          {
+          "inOptions.params": {
             "type": "Object",
             "name": "inOptions.params",
-            "description": "Data to be sent to the server."
+            "description": "Data to be sent to the server.",
+            "title": "In options.params"
           },
-          {
+          "inOptions.body": {
             "type": "Object",
             "name": "inOptions.body",
-            "description": "The content for the request body for POST method."
+            "description": "The content for the request body for POST method.",
+            "title": "In options.body"
           },
-          {
+          "inOptions.headers": {
             "type": "Object",
             "name": "inOptions.headers",
-            "description": "HTTP request headers."
+            "description": "HTTP request headers.",
+            "title": "In options.headers"
           },
-          {
+          "inOptions.responseType": {
             "type": "String",
             "name": "inOptions.responseType",
-            "description": "The response type. Default is 'text'."
+            "description": "The response type. Default is 'text'.",
+            "title": "In options.response type"
           },
-          {
+          "inOptions.withCredentials": {
             "type": "boolean",
             "name": "inOptions.withCredentials",
-            "description": "Whether or not to send credentials on the request. Default is false."
+            "description": "Whether or not to send credentials on the request. Default is false.",
+            "title": "In options.with credentials"
           },
-          {
+          "inOptions.callback": {
             "type": "Object",
             "name": "inOptions.callback",
-            "description": "Called when request is completed."
+            "description": "Called when request is completed.",
+            "title": "In options.callback"
           }
-        ],
-        "async": true
+        }
       }
     },
     "output": {}

@@ -1,5 +1,6 @@
 {
   "name": "paper-spinner",
+  "title": "Paper spinner",
   "ns": "polymer",
   "type": "polymer",
   "description": "Element providing material design circular spinner.\n\n##### Example\n\n    <paper-spinner active></paper-spinner>\n\nThe default spinner cycles between blue, red, yellow and green. It can be customized so\nthat it uses one color only.\n\n##### Example\n\n    <style shim-shadowdom>\n      paper-spinner.blue::shadow .circle {\n        border-color: #4285f4;\n      }\n    </style>\n\n    <paper-spinner class=\"blue\" active></paper-spinner>",
@@ -14,7 +15,8 @@
         "name": "active",
         "description": "Displays the spinner.",
         "type": "boolean",
-        "default": "false"
+        "default": "false",
+        "title": "Active"
       }
     },
     "output": {}

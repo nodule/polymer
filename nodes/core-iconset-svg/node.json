@@ -1,5 +1,6 @@
 {
   "name": "core-iconset-svg",
+  "title": "Core iconset svg",
   "ns": "polymer",
   "type": "polymer",
   "description": "The `core-iconset-svg` element allows users to define their own icon sets\nthat contain svg icons. The svg icon elements should be children of the\n`core-iconset-svg` element. Multiple icons should be given distinct id's.\n\nUsing svg elements to create icons has a few advantages over traditional\nbitmap graphics like jpg or png. Icons that use svg are vector based so they\nare resolution independent and should look good on any device. They are\nstylable via css. Icons can be themed, colorized, and even animated.\n\nExample:\n\n    <core-iconset-svg id=\"my-svg-icons\" iconSize=\"24\">\n      <svg>\n        <defs>\n          <g id=\"shape\">\n            <rect x=\"50\" y=\"50\" width=\"50\" height=\"50\" />\n            <circle cx=\"50\" cy=\"50\" r=\"50\" />\n          </g>\n        </defs>\n      </svg>\n    </core-iconset-svg>\n\nThis will automatically register the icon set \"my-svg-icons\" to the iconset\ndatabase.  To use these icons from within another element, make a\n`core-iconset` element and call the `byId` method\nto retrieve a given iconset. To apply a particular icon inside an\nelement use the `applyIcon` method. For example:\n\n    iconset.applyIcon(iconNode, 'car');",
@@ -14,105 +15,153 @@
         "name": "iconSize",
         "description": "The size of an individual icon. Note that icons must be square.",
         "type": "number",
-        "default": "24"
+        "default": "24",
+        "title": "Icon size"
       },
       "applyIcon": {
         "name": "applyIcon",
         "description": "Applies an icon to the given element. The svg icon is added to the\nelement's shadowRoot if one exists or directly to itself.\n\napplied.",
-        "params": [
-          {
+        "title": "Apply icon",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "String",
+            "name": "id",
+            "description": "The ID of the meta-data to be returned.",
+            "title": "Id"
+          },
+          "node": {
+            "type": "Node",
+            "name": "node",
+            "description": "The node to apply the animation on",
+            "title": "Node"
+          },
+          "state": {
+            "type": "Object",
+            "name": "state",
+            "description": "State info",
+            "title": "State"
+          },
+          "element": {
             "type": "Element",
             "name": "element",
-            "description": "The element to which the icon is"
+            "description": "The element to which the icon is",
+            "title": "Element"
           },
-          {
+          "icon": {
             "type": "String|Number",
             "name": "icon",
-            "description": "The name the icon to apply."
+            "description": "The name the icon to apply.",
+            "title": "Icon"
           }
-        ],
-        "async": true
+        }
       },
       "updateIcons": {
         "name": "updateIcons",
         "description": "Tell users of the iconset, that the set has loaded.\nThis finds all elements matching the selector argument and calls \nthe method argument on them.\ndefaults to '[icon]'\ndefaults to 'updateIcon'",
-        "params": [
-          {
+        "title": "Update icons",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "node": {
+            "type": "Node",
+            "name": "node",
+            "description": "The animated node",
+            "title": "Node"
+          },
+          "css": {
             "type": "string",
             "name": "css",
-            "description": "selector to identify iconset users, "
+            "description": "selector to identify iconset users, ",
+            "title": "Css"
           },
-          {
+          "method": {
             "type": "string",
             "name": "method",
-            "description": "to call on found elements, "
+            "description": "to call on found elements, ",
+            "title": "Method"
           }
-        ],
-        "async": true
+        }
       },
       "teardown": {
         "name": "teardown",
         "description": "Tear down the animation.",
-        "params": [
-          {
+        "title": "Teardown",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "node": {
             "type": "Node",
             "name": "node",
-            "description": "The animated node"
+            "description": "The animated node",
+            "title": "Node"
           }
-        ],
-        "async": true
+        }
       },
       "complete": {
         "name": "complete",
         "description": "Called when the animation completes. This function also fires the\n`core-transitionend` event.",
-        "params": [
-          {
+        "title": "Complete",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "node": {
             "type": "Node",
             "name": "node",
-            "description": "The animated node"
+            "description": "The animated node",
+            "title": "Node"
           }
-        ],
-        "async": true
+        }
       },
       "listenOnce": {
         "name": "listenOnce",
         "description": "Utility function to listen to an event on a node once.",
-        "params": [
-          {
+        "title": "Listen once",
+        "async": true,
+        "type": "object",
+        "properties": {
+          "node": {
             "type": "Node",
             "name": "node",
-            "description": "The animated node"
+            "description": "The animated node",
+            "title": "Node"
           },
-          {
+          "event": {
             "type": "string",
             "name": "event",
-            "description": "Name of an event"
+            "description": "Name of an event",
+            "title": "Event"
           },
-          {
+          "fn": {
             "type": "Function",
             "name": "fn",
-            "description": "Event handler"
+            "description": "Event handler",
+            "title": "Fn"
           },
-          {
+          "args": {
             "type": "Array",
             "name": "args",
-            "description": "Additional arguments to pass to `fn`"
+            "description": "Additional arguments to pass to `fn`",
+            "title": "Args"
           }
-        ],
-        "async": true
+        }
       }
     },
     "output": {
       "core-transitionend": {
         "name": "core-transitionend",
         "description": "Fired when the animation finishes.",
-        "params": [
-          {
+        "title": "Core transitionend",
+        "type": "object",
+        "properties": {
+          "detail.node": {
             "type": "Object",
             "name": "detail.node",
-            "description": "The animated node"
+            "description": "The animated node",
+            "title": "Detail.node"
           }
-        ]
+        }
       }
     }
   }

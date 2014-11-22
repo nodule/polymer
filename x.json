@@ -124,7 +124,8 @@
           },
           "go": {
             "name": "go",
-            "description": "Performs an Ajax request to the specified URL."
+            "description": "Performs an Ajax request to the specified URL.",
+            "async": true
           }
         },
         "output": {
@@ -166,16 +167,131 @@
             "description": "The last page selected. This property is useful to dynamically set transitions based\non incoming and outgoing pages.",
             "type": "Object",
             "default": "null"
+          },
+          "noslide": {
+            "name": "noslide",
+            "description": "If true, the slide effect for the bottom bar is disabled.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "scrollable": {
+            "name": "scrollable",
+            "description": "If true, tabs are scrollable and the tab width is based on the label width.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "disableDrag": {
+            "name": "disableDrag",
+            "description": "If true, dragging on the tabs to scroll is disabled.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "hideScrollButton": {
+            "name": "hideScrollButton",
+            "description": "If true, scroll buttons (left/right arrow) will be hidden for scrollable tabs.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "selectedItem": {
+            "name": "selectedItem",
+            "description": "Returns the currently selected element. In multi-selection this returns\nan array of selected elements.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
+            "type": "Object",
+            "default": "null"
+          },
+          "selectedModel": {
+            "name": "selectedModel",
+            "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
+            "type": "Object",
+            "default": "null"
+          },
+          "selectedIndex": {
+            "name": "selectedIndex",
+            "description": "In single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
+            "type": "number",
+            "default": "-1"
+          },
+          "excludedLocalNames": {
+            "name": "excludedLocalNames",
+            "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
+            "type": "string",
+            "default": "''"
+          },
+          "target": {
+            "name": "target",
+            "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
+            "type": "Object",
+            "default": "null"
+          },
+          "itemsSelector": {
+            "name": "itemsSelector",
+            "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
+            "type": "string",
+            "default": "''"
+          },
+          "activateEvent": {
+            "name": "activateEvent",
+            "description": "The event that would be fired from the item element to indicate\nit is being selected.",
+            "type": "string",
+            "default": "'tap'"
+          },
+          "notap": {
+            "name": "notap",
+            "description": "Set this to true to disallow changing the selection via the\n`activateEvent`.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "updateBar": {
+            "name": "updateBar",
+            "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "wrapped",
+                "description": "if true and it is already at the first item,"
+              }
+            ],
+            "async": true
+          },
+          "selectNext": {
+            "name": "selectNext",
+            "description": "Selects the next item.  This should be used in single selection only.\n\n                 wrap to the front",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "wrapped",
+                "description": "if true and it is already at the last item,"
+              }
+            ],
+            "async": true
           }
         },
         "output": {
           "core-animated-pages-transition-prepare": {
             "name": "core-animated-pages-transition-prepare",
-            "description": "Fired before a page transition occurs. Both pages involved in the transition are visible when\nthis event fires. This is useful if there is something the client needs to do when a page becomes\nvisible."
+            "description": "Fired before a page transition occurs. Both pages involved in the transition are visible when\nthis event fires. This is useful if there is something the client needs to do when a page becomes\nvisible.",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "detail.isSelected",
+                "description": "true for selection and false for deselection"
+              },
+              {
+                "type": "Object",
+                "name": "detail.item",
+                "description": "the item element"
+              }
+            ]
           },
           "core-animated-pages-transition-end": {
             "name": "core-animated-pages-transition-end",
-            "description": "Fired when a page transition completes."
+            "description": "Fired when a page transition completes.",
+            "params": [
+              {
+                "type": "Object",
+                "name": "detail.item",
+                "description": "the item element"
+              }
+            ]
           }
         }
       },
@@ -194,27 +310,33 @@
         "input": {
           "play": {
             "name": "play",
-            "description": "Plays the animation. If the animation is currently paused, seeks the animation\nto the beginning before starting playback."
+            "description": "Plays the animation. If the animation is currently paused, seeks the animation\nto the beginning before starting playback.",
+            "async": true
           },
           "cancel": {
             "name": "cancel",
-            "description": "Stops the animation and clears all effects on the target."
+            "description": "Stops the animation and clears all effects on the target.",
+            "async": true
           },
           "finish": {
             "name": "finish",
-            "description": "Seeks the animation to the end."
+            "description": "Seeks the animation to the end.",
+            "async": true
           },
           "pause": {
             "name": "pause",
-            "description": "Pauses the animation."
+            "description": "Pauses the animation.",
+            "async": true
           },
           "hasTarget": {
             "name": "hasTarget",
-            "description": ""
+            "description": "",
+            "async": true
           },
           "apply": {
             "name": "apply",
-            "description": "Creates a web animations object based on this object's properties, and\nplays it if autoplay is true."
+            "description": "Creates a web animations object based on this object's properties, and\nplays it if autoplay is true.",
+            "async": true
           }
         },
         "output": {
@@ -279,7 +401,8 @@
           },
           "toggle": {
             "name": "toggle",
-            "description": "Toggle the opened state."
+            "description": "Toggle the opened state.",
+            "async": true
           }
         },
         "output": {
@@ -384,15 +507,18 @@
           },
           "togglePanel": {
             "name": "togglePanel",
-            "description": "Toggles the panel open and closed."
+            "description": "Toggles the panel open and closed.",
+            "async": true
           },
           "openDrawer": {
             "name": "openDrawer",
-            "description": "Opens the drawer."
+            "description": "Opens the drawer.",
+            "async": true
           },
           "closeDrawer": {
             "name": "closeDrawer",
-            "description": "Closes the drawer."
+            "description": "Closes the drawer.",
+            "async": true
           }
         },
         "output": {
@@ -422,6 +548,28 @@
     {
       "ports": {
         "input": {
+          "opened": {
+            "name": "opened",
+            "description": "True if the menu is open.",
+            "type": "boolean",
+            "default": "false"
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "core-dropdown-base": "Polymer/core-dropdown-base#master"
+        }
+      },
+      "description": "`core-dropdown-base` is a base class for implementing controls that displays\nan overlay when tapped on.\n\nThe child element with the class `dropdown` will be used as the drop-down. It\nshould be a `core-dropdown` or other overlay element.",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "core-dropdown-base"
+    },
+    {
+      "ports": {
+        "input": {
           "label": {
             "name": "label",
             "description": "A label for the control. The label is displayed if no item is selected.",
@@ -441,7 +589,24 @@
             "default": "'arrow-drop-down'"
           }
         },
-        "output": {}
+        "output": {
+          "core-select": {
+            "name": "core-select",
+            "description": "Fired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "detail.isSelected",
+                "description": "true for selection and false for deselection"
+              },
+              {
+                "type": "Object",
+                "name": "detail.item",
+                "description": "the item element"
+              }
+            ]
+          }
+        }
       },
       "dependencies": {
         "bower": {
@@ -616,7 +781,8 @@
                 "name": "icon",
                 "description": "The name the icon to apply."
               }
-            ]
+            ],
+            "async": true
           },
           "updateIcons": {
             "name": "updateIcons",
@@ -632,10 +798,74 @@
                 "name": "method",
                 "description": "to call on found elements, "
               }
-            ]
+            ],
+            "async": true
+          },
+          "teardown": {
+            "name": "teardown",
+            "description": "Tear down the animation.",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The animated node"
+              }
+            ],
+            "async": true
+          },
+          "complete": {
+            "name": "complete",
+            "description": "Called when the animation completes. This function also fires the\n`core-transitionend` event.",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The animated node"
+              }
+            ],
+            "async": true
+          },
+          "listenOnce": {
+            "name": "listenOnce",
+            "description": "Utility function to listen to an event on a node once.",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The animated node"
+              },
+              {
+                "type": "string",
+                "name": "event",
+                "description": "Name of an event"
+              },
+              {
+                "type": "Function",
+                "name": "fn",
+                "description": "Event handler"
+              },
+              {
+                "type": "Array",
+                "name": "args",
+                "description": "Additional arguments to pass to `fn`"
+              }
+            ],
+            "async": true
           }
         },
-        "output": {}
+        "output": {
+          "core-transitionend": {
+            "name": "core-transitionend",
+            "description": "Fired when the animation finishes.",
+            "params": [
+              {
+                "type": "Object",
+                "name": "detail.node",
+                "description": "The animated node"
+              }
+            ]
+          }
+        }
       },
       "dependencies": {
         "bower": {
@@ -700,7 +930,8 @@
                 "name": "theme",
                 "description": "The name of the theme."
               }
-            ]
+            ],
+            "async": true
           },
           "applyIcon": {
             "name": "applyIcon",
@@ -721,10 +952,74 @@
                 "name": "scale",
                 "description": "(optional, defaults to 1) A scaling factor "
               }
-            ]
+            ],
+            "async": true
+          },
+          "teardown": {
+            "name": "teardown",
+            "description": "Tear down the animation.",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The animated node"
+              }
+            ],
+            "async": true
+          },
+          "complete": {
+            "name": "complete",
+            "description": "Called when the animation completes. This function also fires the\n`core-transitionend` event.",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The animated node"
+              }
+            ],
+            "async": true
+          },
+          "listenOnce": {
+            "name": "listenOnce",
+            "description": "Utility function to listen to an event on a node once.",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The animated node"
+              },
+              {
+                "type": "string",
+                "name": "event",
+                "description": "Name of an event"
+              },
+              {
+                "type": "Function",
+                "name": "fn",
+                "description": "Event handler"
+              },
+              {
+                "type": "Array",
+                "name": "args",
+                "description": "Additional arguments to pass to `fn`"
+              }
+            ],
+            "async": true
           }
         },
-        "output": {}
+        "output": {
+          "core-transitionend": {
+            "name": "core-transitionend",
+            "description": "Fired when the animation finishes.",
+            "params": [
+              {
+                "type": "Object",
+                "name": "detail.node",
+                "description": "The animated node"
+              }
+            ]
+          }
+        }
       },
       "dependencies": {
         "bower": {
@@ -739,59 +1034,51 @@
     {
       "ports": {
         "input": {
-          "src": {
-            "name": "src",
-            "description": "When false, the image is prevented from loading and any placeholder is\nshown.  This may be useful when a binding to the src property is known to\nbe invalid, to prevent 404 requests.",
+          "scrollTarget": {
+            "name": "scrollTarget",
+            "description": "When set, the given element is observed for scroll position.  When undefined,\nchildren can be placed inside and element itself can be used as the scrollable\nelement.",
             "type": "string",
             "default": "null"
           },
-          "sizing": {
-            "name": "sizing",
-            "description": "Sets a sizing option for the image.  Valid values are `contain` (full \naspect ratio of the image is contained within the element and \nletterboxed) or `cover` (image is cropped in order to fully cover the\nbounds of the element), or `null` (default: image takes natural size).",
-            "type": "string",
+          "orient": {
+            "name": "orient",
+            "description": "Orientation of the scroller to be observed (`v` for vertical, `h` for horizontal)",
+            "type": "boolean",
+            "default": "'v'"
+          },
+          "upperThreshold": {
+            "name": "upperThreshold",
+            "description": "Distance from the top (or left, for horizontal) bound of the scroller\nwhere the \"upper trigger\" will fire.",
+            "type": "integer",
             "default": "null"
           },
-          "position": {
-            "name": "position",
-            "description": "When a sizing option is uzed (`cover` or `contain`), this determines\nhow the image is aligned within the element bounds.",
-            "type": "string",
-            "default": "'center'"
+          "lowerThreshold": {
+            "name": "lowerThreshold",
+            "description": "Distance from the bottom (or right, for horizontal) bound of the scroller\nwhere the \"lower trigger\" will fire.",
+            "type": "integer",
+            "default": "false"
           },
-          "preload": {
-            "name": "preload",
-            "description": "When `true`, any change to the `src` property will cause the `placeholder`\nimage to be shown until the",
+          "upperTriggered": {
+            "name": "upperTriggered",
+            "description": "Read-only value that tracks the triggered state of the upper threshold",
             "type": "boolean",
             "default": "false"
           },
-          "placeholder": {
-            "name": "placeholder",
-            "description": "This image will be used as a background/placeholder until the src image has\nloaded.  Use of a data-URI for placeholder is encouraged for instant rendering.",
-            "type": "string",
-            "default": "null"
-          },
-          "fade": {
-            "name": "fade",
-            "description": "When `preload` is true, setting `fade` to true will cause the image to\nfade into place.",
+          "lowerTriggered": {
+            "name": "lowerTriggered",
+            "description": "Read-only value that tracks the triggered state of the lower threshold",
             "type": "boolean",
             "default": "false"
           },
-          "loading": {
-            "name": "loading",
-            "description": "Read-only value that tracks the loading state of the image when the `preload`\noption is used.",
-            "type": "boolean",
-            "default": "false"
+          "clearUpper": {
+            "name": "clearUpper",
+            "description": "Clear the upper threshold, following an `upper-trigger` event.",
+            "async": true
           },
-          "width": {
-            "name": "width",
-            "description": "Can be used to set the width of image (e.g. via binding); size may also be\nset via CSS.",
-            "type": "number",
-            "default": "null"
-          },
-          "height": {
-            "name": "height",
-            "description": "Can be used to set the height of image (e.g. via binding); size may also be\nset via CSS.",
-            "type": "number",
-            "default": "null"
+          "clearLower": {
+            "name": "clearLower",
+            "description": "Clear the lower threshold, following a `lower-trigger` event.",
+            "async": true
           }
         },
         "output": {}
@@ -801,7 +1088,7 @@
           "core-image": "Polymer/core-image#master"
         }
       },
-      "description": "`core-image` is an element for displaying an image that provides useful sizing and\npreloading options not found on the standard `<img>` tag.\n\nThe `sizing` option allows the image to be either cropped (`cover`) or\nletterboxed (`contain`) to fill a fixed user-size placed on the element.\n\nThe `preload` option prevents the browser from rendering the image until the\nimage is fully loaded.  In the interim, either the element's CSS `background-color`\ncan be be used as the placeholder, or the `placeholder` property can be \nset to a URL (preferably a data-URI, for instant rendering) for an\nplaceholder image.\n\nThe `fade` option (only valid when `preload` is set) will cause the placeholder\nimage/color to be faded out once the image is rendered.\n\nExamples:\n\n  Basically identical to &lt;img src=\"...\"&gt; tag:\n\n    <core-image src=\"http://lorempixel.com/400/400\"></core-image>\n\n  Will letterbox the image to fit:\n\n    <core-image style=\"width:400px; height:400px;\" sizing=\"contain\"\n      src=\"http://lorempixel.com/600/400\"></core-image>\n\n  Will crop the image to fit:\n\n    <core-image style=\"width:400px; height:400px;\" sizing=\"cover\"\n      src=\"http://lorempixel.com/600/400\"></core-image>\n\n  Will show light-gray background until the image loads:\n\n    <core-image style=\"width:400px; height:400px; background-color: lightgray;\" \n      sizing=\"cover\" preload src=\"http://lorempixel.com/600/400\"></core-image>\n\n  Will show a base-64 encoded placeholder image until the image loads:\n\n    <core-image style=\"width:400px; height:400px;\" placeholder=\"data:image/gif;base64,...\" \n      sizing=\"cover\" preload src=\"http://lorempixel.com/600/400\"></core-image>\n\n  Will fade the light-gray background out once the image is loaded:\n\n    <core-image style=\"width:400px; height:400px; background-color: lightgray;\" \n      sizing=\"cover\" preload fade src=\"http://lorempixel.com/600/400\"></core-image>",
+      "description": "`core-scroll-threshold` is a utility element that listens for `scroll` events from a\nscrollable region and fires events to indicate when the scroller has reached a pre-defined\nlimit, specified in pixels from the upper and lower bounds of the scrollable region.\n\nThis element may wrap a scrollable region and will listen for `scroll` events bubbling\nthrough it from its children.  In this case, care should be taken that only one scrollable\nregion with the same orientation as this element is contained within.  Alternatively,\nthe `scrollTarget` property can be set/bound to a non-child scrollable region, from which\nit will listen for events.\n\nOnce a threshold has been reached, a `lower-threshold` or `upper-threshold` event will\nbe fired, at which point the user may perform actions such as lazily-loading more data\nto be displayed.  After any work is done, the user must then clear the threshold by\ncalling the `clearUpper` or `clearLower` methods on this element, after which it will\nbegin listening again for the scroll position to reach the threshold again (assuming\nthe content in the) scrollable region has grown.  If the user no longer wishes to receive\nevents (e.g. all data has been exhausted), the \n\nExample:\n\n    <core-scroll-threshold id=\"threshold\" lowerThreshold=\"500\" \n      on-lower-triggered=\"{{loadMore}}\" lowerTriggered=\"{{spinnerShouldShow}}\">\n    </scroll-threshold>\n\n    ...\n\n    loadMore: function() {\n      this.asyncLoadStuffThen(function() {\n        this.$.threshold.clearLower();\n      }.bind(this));\n    }",
       "type": "polymer",
       "ns": "polymer",
       "name": "core-image"
@@ -823,7 +1110,8 @@
           },
           "commit": {
             "name": "commit",
-            "description": "Commits the `value` to `committedValue`"
+            "description": "Commits the `value` to `committedValue`",
+            "async": true
           }
         },
         "output": {}
@@ -899,7 +1187,8 @@
         "input": {
           "layout": {
             "name": "layout",
-            "description": "Arrange sibling nodes end-to-end in one dimension.\n\nArrangement is horizontal unless the `vertical`\nattribute is applied on this node."
+            "description": "Arrange sibling nodes end-to-end in one dimension.\n\nArrangement is horizontal unless the `vertical`\nattribute is applied on this node.",
+            "async": true
           }
         },
         "output": {}
@@ -979,7 +1268,8 @@
           },
           "updateSize": {
             "name": "updateSize",
-            "description": "To be called by the user when the list is resized or shown\nafter being hidden.  Note, `core-list` calls this automatically\nwhen the window is resized."
+            "description": "To be called by the user when the list is resized or shown\nafter being hidden.  Note, `core-list` calls this automatically\nwhen the window is resized.",
+            "async": true
           },
           "selectItem": {
             "name": "selectItem",
@@ -990,7 +1280,8 @@
                 "name": "index",
                 "description": ""
               }
-            ]
+            ],
+            "async": true
           },
           "setItemSelected": {
             "name": "setItemSelected",
@@ -1006,11 +1297,13 @@
                 "name": "isSelected",
                 "description": ""
               }
-            ]
+            ],
+            "async": true
           },
           "clearSelection": {
             "name": "clearSelection",
-            "description": "Clears the current selection state of the list."
+            "description": "Clears the current selection state of the list.",
+            "async": true
           },
           "scrollToItem": {
             "name": "scrollToItem",
@@ -1021,7 +1314,8 @@
                 "name": "index",
                 "description": ""
               }
-            ]
+            ],
+            "async": true
           },
           "scrollToGroup": {
             "name": "scrollToGroup",
@@ -1032,7 +1326,8 @@
                 "name": "group",
                 "description": ""
               }
-            ]
+            ],
+            "async": true
           },
           "scrollToGroupItem": {
             "name": "scrollToGroupItem",
@@ -1048,7 +1343,8 @@
                 "name": "index",
                 "description": ""
               }
-            ]
+            ],
+            "async": true
           }
         },
         "output": {
@@ -1104,7 +1400,8 @@
           },
           "save": {
             "name": "save",
-            "description": "Saves the value to localStorage."
+            "description": "Saves the value to localStorage.",
+            "async": true
           }
         },
         "output": {
@@ -1160,6 +1457,209 @@
     {
       "ports": {
         "input": {
+          "label": {
+            "name": "label",
+            "description": "A label for the control. The label is displayed if no item is selected.",
+            "type": "string",
+            "default": "'Select an item'"
+          },
+          "openedIcon": {
+            "name": "openedIcon",
+            "description": "The icon to display when the drop-down is opened.",
+            "type": "string",
+            "default": "'arrow-drop-up'"
+          },
+          "closedIcon": {
+            "name": "closedIcon",
+            "description": "The icon to display when the drop-down is closed.",
+            "type": "string",
+            "default": "'arrow-drop-down'"
+          }
+        },
+        "output": {
+          "core-select": {
+            "name": "core-select",
+            "description": "Fired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "detail.isSelected",
+                "description": "true for selection and false for deselection"
+              },
+              {
+                "type": "Object",
+                "name": "detail.item",
+                "description": "the item element"
+              }
+            ]
+          }
+        }
+      },
+      "dependencies": {
+        "bower": {
+          "core-menu-button": "Polymer/core-menu-button#master"
+        }
+      },
+      "description": "`core-menu-button` works together with a button and `core-dropdown` to implement\nan button that displays a drop-down when tapped on.\n\nThe child element with the class `dropdown` will be used as the drop-down\nmenu. It should be a `core-dropdown` or other overlay element.\n\nExample:\n\n    <core-menu-button>\n        <core-icon-button icon=\"menu\"></core-icon-button>\n        <core-dropdown class=\"dropdown\" layered>\n            <core-menu>\n                <core-item>Share</core-item>\n                <core-item>Settings</core-item>\n                <core-item>Help</core-item>\n            </core-menu>\n        </core-dropdown>\n    </core-menu-button>",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "core-menu-button"
+    },
+    {
+      "ports": {
+        "input": {
+          "noink": {
+            "name": "noink",
+            "description": "If true, ink ripple effect is disabled.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "nobar": {
+            "name": "nobar",
+            "description": "If true, the bottom bar to indicate the selected tab will not be shown.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "noslide": {
+            "name": "noslide",
+            "description": "If true, the slide effect for the bottom bar is disabled.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "scrollable": {
+            "name": "scrollable",
+            "description": "If true, tabs are scrollable and the tab width is based on the label width.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "disableDrag": {
+            "name": "disableDrag",
+            "description": "If true, dragging on the tabs to scroll is disabled.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "hideScrollButton": {
+            "name": "hideScrollButton",
+            "description": "If true, scroll buttons (left/right arrow) will be hidden for scrollable tabs.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "selectedItem": {
+            "name": "selectedItem",
+            "description": "Returns the currently selected element. In multi-selection this returns\nan array of selected elements.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
+            "type": "Object",
+            "default": "null"
+          },
+          "selectedModel": {
+            "name": "selectedModel",
+            "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
+            "type": "Object",
+            "default": "null"
+          },
+          "selectedIndex": {
+            "name": "selectedIndex",
+            "description": "In single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
+            "type": "number",
+            "default": "-1"
+          },
+          "excludedLocalNames": {
+            "name": "excludedLocalNames",
+            "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
+            "type": "string",
+            "default": "''"
+          },
+          "target": {
+            "name": "target",
+            "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
+            "type": "Object",
+            "default": "null"
+          },
+          "itemsSelector": {
+            "name": "itemsSelector",
+            "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
+            "type": "string",
+            "default": "''"
+          },
+          "activateEvent": {
+            "name": "activateEvent",
+            "description": "The event that would be fired from the item element to indicate\nit is being selected.",
+            "type": "string",
+            "default": "'tap'"
+          },
+          "notap": {
+            "name": "notap",
+            "description": "Set this to true to disallow changing the selection via the\n`activateEvent`.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "updateBar": {
+            "name": "updateBar",
+            "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "wrapped",
+                "description": "if true and it is already at the first item,"
+              }
+            ],
+            "async": true
+          },
+          "selectNext": {
+            "name": "selectNext",
+            "description": "Selects the next item.  This should be used in single selection only.\n\n                 wrap to the front",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "wrapped",
+                "description": "if true and it is already at the last item,"
+              }
+            ],
+            "async": true
+          }
+        },
+        "output": {
+          "core-select": {
+            "name": "core-select",
+            "description": "Fired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "detail.isSelected",
+                "description": "true for selection and false for deselection"
+              },
+              {
+                "type": "Object",
+                "name": "detail.item",
+                "description": "the item element"
+              }
+            ]
+          },
+          "core-activate": {
+            "name": "core-activate",
+            "description": "Fired when an item element is tapped.",
+            "params": [
+              {
+                "type": "Object",
+                "name": "detail.item",
+                "description": "the item element"
+              }
+            ]
+          }
+        }
+      },
+      "dependencies": {
+        "bower": {
+          "core-menu": "Polymer/core-menu#master"
+        }
+      },
+      "description": "`core-menu` is a selector which styles to looks like a menu.\n\n    <core-menu selected=\"0\">\n      <core-item icon=\"settings\" label=\"Settings\"></core-item>\n      <core-item icon=\"dialog\" label=\"Dialog\"></core-item>\n      <core-item icon=\"search\" label=\"Search\"></core-item>\n    </core-menu>\n    \nWhen an item is selected the `core-selected` class is added to it.  The user can\nuse the class to add more stylings to the selected item.\n\n    core-item.core-selected {\n      color: red;\n    }\n\nThe `selectedItem` property references the selected item.\n\n    <core-menu selected=\"0\" selectedItem=\"{{item}}\">\n      <core-item icon=\"settings\" label=\"Settings\"></core-item>\n      <core-item icon=\"dialog\" label=\"Dialog\"></core-item>\n      <core-item icon=\"search\" label=\"Search\"></core-item>\n    </core-menu>\n\n    <div>selected label: {{item.label}}</div>\n\nThe `core-select` event signals selection change.\n\n    <core-menu selected=\"0\" on-core-select=\"{{selectAction}}\">\n      <core-item icon=\"settings\" label=\"Settings\"></core-item>\n      <core-item icon=\"dialog\" label=\"Dialog\"></core-item>\n      <core-item icon=\"search\" label=\"Search\"></core-item>\n    </core-menu>\n\n    ...\n\n    selectAction: function(e, detail) {\n      if (detail.isSelected) {\n        var selectedItem = detail.item;\n        ...\n      }\n    }",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "core-menu"
+    },
+    {
+      "ports": {
+        "input": {
           "type": {
             "name": "type",
             "description": "The type of meta-data.  All meta-data with the same type with be\nstored together.",
@@ -1175,7 +1675,8 @@
                 "name": "id",
                 "description": "The ID of the meta-data to be returned."
               }
-            ]
+            ],
+            "async": true
           }
         },
         "output": {}
@@ -1255,19 +1756,23 @@
           },
           "toggle": {
             "name": "toggle",
-            "description": "Toggle the opened state of the overlay."
+            "description": "Toggle the opened state of the overlay.",
+            "async": true
           },
           "open": {
             "name": "open",
-            "description": "Open the overlay. This is equivalent to setting the `opened`\nproperty to true."
+            "description": "Open the overlay. This is equivalent to setting the `opened`\nproperty to true.",
+            "async": true
           },
           "close": {
             "name": "close",
-            "description": "Close the overlay. This is equivalent to setting the `opened` \nproperty to false."
+            "description": "Close the overlay. This is equivalent to setting the `opened` \nproperty to false.",
+            "async": true
           },
           "resizeHandler": {
             "name": "resizeHandler",
-            "description": "Extensions of core-overlay should implement the `resizeHandler`\nmethod to adjust the size and position of the overlay when the \nbrowser window resizes."
+            "description": "Extensions of core-overlay should implement the `resizeHandler`\nmethod to adjust the size and position of the overlay when the \nbrowser window resizes.",
+            "async": true
           }
         },
         "output": {
@@ -1322,6 +1827,158 @@
       "type": "polymer",
       "ns": "polymer",
       "name": "core-overlay"
+    },
+    {
+      "ports": {
+        "input": {
+          "noink": {
+            "name": "noink",
+            "description": "If true, ink ripple effect is disabled.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "nobar": {
+            "name": "nobar",
+            "description": "If true, the bottom bar to indicate the selected tab will not be shown.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "noslide": {
+            "name": "noslide",
+            "description": "If true, the slide effect for the bottom bar is disabled.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "scrollable": {
+            "name": "scrollable",
+            "description": "If true, tabs are scrollable and the tab width is based on the label width.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "disableDrag": {
+            "name": "disableDrag",
+            "description": "If true, dragging on the tabs to scroll is disabled.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "hideScrollButton": {
+            "name": "hideScrollButton",
+            "description": "If true, scroll buttons (left/right arrow) will be hidden for scrollable tabs.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "selectedItem": {
+            "name": "selectedItem",
+            "description": "Returns the currently selected element. In multi-selection this returns\nan array of selected elements.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
+            "type": "Object",
+            "default": "null"
+          },
+          "selectedModel": {
+            "name": "selectedModel",
+            "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
+            "type": "Object",
+            "default": "null"
+          },
+          "selectedIndex": {
+            "name": "selectedIndex",
+            "description": "In single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
+            "type": "number",
+            "default": "-1"
+          },
+          "excludedLocalNames": {
+            "name": "excludedLocalNames",
+            "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
+            "type": "string",
+            "default": "''"
+          },
+          "target": {
+            "name": "target",
+            "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
+            "type": "Object",
+            "default": "null"
+          },
+          "itemsSelector": {
+            "name": "itemsSelector",
+            "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
+            "type": "string",
+            "default": "''"
+          },
+          "activateEvent": {
+            "name": "activateEvent",
+            "description": "The event that would be fired from the item element to indicate\nit is being selected.",
+            "type": "string",
+            "default": "'tap'"
+          },
+          "notap": {
+            "name": "notap",
+            "description": "Set this to true to disallow changing the selection via the\n`activateEvent`.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "updateBar": {
+            "name": "updateBar",
+            "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "wrapped",
+                "description": "if true and it is already at the first item,"
+              }
+            ],
+            "async": true
+          },
+          "selectNext": {
+            "name": "selectNext",
+            "description": "Selects the next item.  This should be used in single selection only.\n\n                 wrap to the front",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "wrapped",
+                "description": "if true and it is already at the last item,"
+              }
+            ],
+            "async": true
+          }
+        },
+        "output": {
+          "core-select": {
+            "name": "core-select",
+            "description": "Fired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "detail.isSelected",
+                "description": "true for selection and false for deselection"
+              },
+              {
+                "type": "Object",
+                "name": "detail.item",
+                "description": "the item element"
+              }
+            ]
+          },
+          "core-activate": {
+            "name": "core-activate",
+            "description": "Fired when an item element is tapped.",
+            "params": [
+              {
+                "type": "Object",
+                "name": "detail.item",
+                "description": "the item element"
+              }
+            ]
+          }
+        }
+      },
+      "dependencies": {
+        "bower": {
+          "core-pages": "Polymer/core-pages#master"
+        }
+      },
+      "description": "`core-pages` is used to select one of its children to show. One use is to cycle through a list of children \"pages\".\n\nExample: \n\n    <core-pages selected=\"0\">\n      <div>One</div>\n      <div>Two</div>\n      <div>Three</div>\n    </core-pages>\n\n    <script>\n      document.addEventListener('click', function(e) {\n        var pages = document.querySelector('core-pages');\n        pages.selected = (pages.selected + 1) % pages.children.length;\n      });\n    </script>",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "core-pages"
     },
     {
       "ports": {
@@ -1404,15 +2061,18 @@
           },
           "togglePanel": {
             "name": "togglePanel",
-            "description": "Toggle the drawer panel"
+            "description": "Toggle the drawer panel",
+            "async": true
           },
           "openDrawer": {
             "name": "openDrawer",
-            "description": "Open the drawer panel"
+            "description": "Open the drawer panel",
+            "async": true
           },
           "closeDrawer": {
             "name": "closeDrawer",
-            "description": "Close the drawer panel"
+            "description": "Close the drawer panel",
+            "async": true
           }
         },
         "output": {
@@ -1485,7 +2145,8 @@
           },
           "measureHeaderHeight": {
             "name": "measureHeaderHeight",
-            "description": "Invoke this to tell `core-scroll-header-panel` to re-measure the header's\nheight."
+            "description": "Invoke this to tell `core-scroll-header-panel` to re-measure the header's\nheight.",
+            "async": true
           }
         },
         "output": {
@@ -1512,6 +2173,68 @@
     {
       "ports": {
         "input": {
+          "scrollTarget": {
+            "name": "scrollTarget",
+            "description": "When set, the given element is observed for scroll position.  When undefined,\nchildren can be placed inside and element itself can be used as the scrollable\nelement.",
+            "type": "string",
+            "default": "null"
+          },
+          "orient": {
+            "name": "orient",
+            "description": "Orientation of the scroller to be observed (`v` for vertical, `h` for horizontal)",
+            "type": "boolean",
+            "default": "'v'"
+          },
+          "upperThreshold": {
+            "name": "upperThreshold",
+            "description": "Distance from the top (or left, for horizontal) bound of the scroller\nwhere the \"upper trigger\" will fire.",
+            "type": "integer",
+            "default": "null"
+          },
+          "lowerThreshold": {
+            "name": "lowerThreshold",
+            "description": "Distance from the bottom (or right, for horizontal) bound of the scroller\nwhere the \"lower trigger\" will fire.",
+            "type": "integer",
+            "default": "false"
+          },
+          "upperTriggered": {
+            "name": "upperTriggered",
+            "description": "Read-only value that tracks the triggered state of the upper threshold",
+            "type": "boolean",
+            "default": "false"
+          },
+          "lowerTriggered": {
+            "name": "lowerTriggered",
+            "description": "Read-only value that tracks the triggered state of the lower threshold",
+            "type": "boolean",
+            "default": "false"
+          },
+          "clearUpper": {
+            "name": "clearUpper",
+            "description": "Clear the upper threshold, following an `upper-trigger` event.",
+            "async": true
+          },
+          "clearLower": {
+            "name": "clearLower",
+            "description": "Clear the lower threshold, following a `lower-trigger` event.",
+            "async": true
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "core-image": "Polymer/core-image#master"
+        }
+      },
+      "description": "`core-scroll-threshold` is a utility element that listens for `scroll` events from a\nscrollable region and fires events to indicate when the scroller has reached a pre-defined\nlimit, specified in pixels from the upper and lower bounds of the scrollable region.\n\nThis element may wrap a scrollable region and will listen for `scroll` events bubbling\nthrough it from its children.  In this case, care should be taken that only one scrollable\nregion with the same orientation as this element is contained within.  Alternatively,\nthe `scrollTarget` property can be set/bound to a non-child scrollable region, from which\nit will listen for events.\n\nOnce a threshold has been reached, a `lower-threshold` or `upper-threshold` event will\nbe fired, at which point the user may perform actions such as lazily-loading more data\nto be displayed.  After any work is done, the user must then clear the threshold by\ncalling the `clearUpper` or `clearLower` methods on this element, after which it will\nbegin listening again for the scroll position to reach the threshold again (assuming\nthe content in the) scrollable region has grown.  If the user no longer wishes to receive\nevents (e.g. all data has been exhausted), the \n\nExample:\n\n    <core-scroll-threshold id=\"threshold\" lowerThreshold=\"500\" \n      on-lower-triggered=\"{{loadMore}}\" lowerTriggered=\"{{spinnerShouldShow}}\">\n    </scroll-threshold>\n\n    ...\n\n    loadMore: function() {\n      this.asyncLoadStuffThen(function() {\n        this.$.threshold.clearLower();\n      }.bind(this));\n    }",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "core-image"
+    },
+    {
+      "ports": {
+        "input": {
           "multi": {
             "name": "multi",
             "description": "If true, multiple selections are allowed.",
@@ -1520,7 +2243,8 @@
           },
           "getSelection": {
             "name": "getSelection",
-            "description": "Retrieves the selected item(s).\ngetSelection will return an array, otherwise it will return \nthe selected item or undefined if there is no selection."
+            "description": "Retrieves the selected item(s).\ngetSelection will return an array, otherwise it will return \nthe selected item or undefined if there is no selection.",
+            "async": true
           },
           "isSelected": {
             "name": "isSelected",
@@ -1531,15 +2255,18 @@
                 "name": "item",
                 "description": "The item whose selection state should be checked."
               }
-            ]
+            ],
+            "async": true
           },
           "select": {
             "name": "select",
-            "description": "Set the selection state for a given `item`. If the multi property\nis true, then the selected state of `item` will be toggled; otherwise\nthe `item` will be selected."
+            "description": "Set the selection state for a given `item`. If the multi property\nis true, then the selected state of `item` will be toggled; otherwise\nthe `item` will be selected.",
+            "async": true
           },
           "toggle": {
             "name": "toggle",
-            "description": "Toggles the selection state for `item`."
+            "description": "Toggles the selection state for `item`.",
+            "async": true
           }
         },
         "output": {
@@ -1667,7 +2394,8 @@
                 "name": "wrapped",
                 "description": "if true and it is already at the first item,"
               }
-            ]
+            ],
+            "async": true
           },
           "selectNext": {
             "name": "selectNext",
@@ -1678,7 +2406,8 @@
                 "name": "wrapped",
                 "description": "if true and it is already at the last item,"
               }
-            ]
+            ],
+            "async": true
           }
         },
         "output": {
@@ -1798,6 +2527,40 @@
     {
       "ports": {
         "input": {
+          "src": {
+            "name": "src",
+            "description": "The URL of an image for the icon.",
+            "type": "string",
+            "default": "''"
+          },
+          "icon": {
+            "name": "icon",
+            "description": "Specifies the icon from the Polymer icon set.",
+            "type": "string",
+            "default": "''"
+          },
+          "label": {
+            "name": "label",
+            "description": "Specifies the label for the menu item.",
+            "type": "string",
+            "default": "''"
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "core-submenu": "Polymer/core-submenu#master"
+        }
+      },
+      "description": "Use to create nested menus inside of `core-menu` elements.\n\n    <core-menu selected=\"0\">\n    \n      <core-submenu icon=\"settings\" label=\"Topics\">\n        <core-item label=\"Topic 1\"></core-item>\n        <core-item label=\"Topic 2\"></core-item>\n      </core-submenu>\n      \n      <core-submenu icon=\"settings\" label=\"Favorites\">\n        <core-item label=\"Favorite 1\"></core-item>\n        <core-item label=\"Favorite 2\"></core-item>\n        <core-item label=\"Favorite 3\"></core-item>\n      </core-submenu>\n      \n    </core-menu>\n    \nThere is a margin set on the submenu to indent the items.\nYou can override the margin by doing:\n\n    core-submenu::shadow #submenu {\n      margin-left: 20px;\n    }\n\nTo style the item for the submenu, do something like this:\n\n    core-submenu::shadow > #submenuItem {\n      color: blue;\n    }\n    \nTo style all the `core-item`s in the light DOM:\n\n    polyfill-next-selector { content: 'core-submenu > #submenu > core-item'; }\n    core-submenu > core-item {\n      color: red;\n    }\n    \nThe above will style `Topic1` and `Topic2` to have font color red.\n\n    <core-submenu icon=\"settings\" label=\"Topics\">\n      <core-item label=\"Topic1\"></core-item>\n      <core-item label=\"Topic2\"></core-item>\n    </core-submenu>",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "core-submenu"
+    },
+    {
+      "ports": {
+        "input": {
           "justify": {
             "name": "justify",
             "description": "Controls how the items are aligned horizontally.\nOptions are `start`, `center`, `end`, `between` and `around`.",
@@ -1878,6 +2641,57 @@
     {
       "ports": {
         "input": {
+          "baseClass": {
+            "name": "baseClass",
+            "description": "The class that will be applied to all animated nodes.",
+            "type": "string",
+            "default": "\"core-transition\""
+          },
+          "openedClass": {
+            "name": "openedClass",
+            "description": "The class that will be applied to nodes in the opened state.",
+            "type": "string",
+            "default": "\"core-opened\""
+          },
+          "closedClass": {
+            "name": "closedClass",
+            "description": "The class that will be applied to nodes in the closed state.",
+            "type": "string",
+            "default": "\"core-closed\""
+          },
+          "completeEventName": {
+            "name": "completeEventName",
+            "description": "Event to listen to for animation completion.",
+            "type": "string",
+            "default": "\"transitionEnd\""
+          },
+          "transitionType": {
+            "name": "transitionType",
+            "description": "A secondary configuration attribute for the animation. The class\n`<baseClass>-<transitionType` is applied to the animated node during\n`setup`.",
+            "type": "string"
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "core-transition-css": "Polymer/core-transition-css#master"
+        }
+      },
+      "description": "`<core-transition-css>` implements CSS transitions as `<core-transition>` objects so they can be\nreused in a pluggable transition system such as in `<core-overlay>`. Currently this class has\nsome specific support to animate an element from and to the viewport such as a dialog, but you\ncan override it for different effects.\n\nExample:\n\nmy-css-transition.html:\n\n    <polymer-element name=\"my-css-transition\" extends=\"core-transition-css\">\n    <template>\n        <style>\n            :host(.my-transition) {\n                opacity: 0;\n                transition: transform 1s ease-out, opacity 1s ease-out;\n            }\n            :host(.my-transition.my-opened) {\n                opacity: 1;\n                transform: none;\n            }\n            :host(.my-transition-top) {\n                transform: translateY(-100vh);\n            }\n            :host(.my-transition-bottom) {\n                transform: translateY(100vh);\n            }\n        </style>\n    </template>\n    <script>\n      Polymer({\n        baseClass: 'my-transition',\n        openedClass: 'my-opened'\n      });\n    </script>\n    </polymer-element>\n\n    <my-css-transition id=\"my-transition-top\" transitionType=\"top\"></my-css-transition>\n    <my-css-transition id=\"my-transition-bottom\" transitionType=\"bottom\"></my-css-transition>\n\nmy-css-transition-demo.html\n\n    <link href=\"components/core-meta/core-meta.html\" rel=\"import\">\n    <link href=\"my-css-transition.html\">\n\n    <div id=\"animate-me\"></div>\n\n    <script>\n        // Get the core-transition\n        var meta = document.createElement('core-meta');\n        meta.type = 'transition';\n        var transition1 = meta.byId('my-transition-top');\n\n        // Set up the animation\n        var animated = document.getElementById('animate-me');\n        transition1.setup(animated);\n        transition1.go(animated, {opened: true});\n    </script>\n\nThe first element in the template of a `<core-transition-css>` object should be a stylesheet. It\nwill be injected to the scope of the animated node in the `setup` function. The node is initially\ninvisible with `opacity: 0`, and you can transition it to an \"opened\" state by passing\n`{opened: true}` to the `go` function.\n\nAll nodes being animated will get the class `my-transition` added in the `setup` function.\nAdditionally, the class `my-transition-<transitionType>` will be applied. You can use the\n`transitionType` attribute to implement several different behaviors with the same\n`<core-transition-css>` object. In the above example, `<my-css-transition>` implements both\nsliding the node from the top of the viewport and from the bottom of the viewport.\n\nAvailable transitions\n---------------------\n\n`<core-transition-css>` includes several commonly used transitions.\n\n`core-transition-fade`: Animates from `opacity: 0` to `opacity: 1` when it opens.\n\n`core-transition-center`: Zooms the node into the final size.\n\n`core-transition-top`: Slides the node into the final position from the top.\n\n`core-transition-bottom`: Slides the node into the final position from the bottom.\n\n`core-transition-left`: Slides the node into the final position from the left.\n\n`core-transition-right`: Slides the node into the final position from the right.",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "core-transition-css"
+    },
+    {
+      "ports": {
+        "input": {
+          "type": {
+            "name": "type",
+            "description": "The type of meta-data.  All meta-data with the same type with be\nstored together.",
+            "type": "string",
+            "default": "'default'"
+          },
           "go": {
             "name": "go",
             "description": "Run the animation.",
@@ -1892,7 +2706,8 @@
                 "name": "state",
                 "description": "State info"
               }
-            ]
+            ],
+            "async": true
           },
           "setup": {
             "name": "setup",
@@ -1903,7 +2718,8 @@
                 "name": "node",
                 "description": "The animated node"
               }
-            ]
+            ],
+            "async": true
           },
           "teardown": {
             "name": "teardown",
@@ -1914,7 +2730,8 @@
                 "name": "node",
                 "description": "The animated node"
               }
-            ]
+            ],
+            "async": true
           },
           "complete": {
             "name": "complete",
@@ -1925,7 +2742,8 @@
                 "name": "node",
                 "description": "The animated node"
               }
-            ]
+            ],
+            "async": true
           },
           "listenOnce": {
             "name": "listenOnce",
@@ -1951,7 +2769,8 @@
                 "name": "args",
                 "description": "Additional arguments to pass to `fn`"
               }
-            ]
+            ],
+            "async": true
           }
         },
         "output": {
@@ -1977,6 +2796,181 @@
       "type": "polymer",
       "ns": "polymer",
       "name": "core-transition"
+    },
+    {
+      "ports": {
+        "input": {
+          "request": {
+            "name": "request",
+            "description": "Sends a HTTP request to the server and returns the XHR object.",
+            "params": [
+              {
+                "type": "String",
+                "name": "inOptions.url",
+                "description": "The url to which the request is sent."
+              },
+              {
+                "type": "String",
+                "name": "inOptions.method",
+                "description": "The HTTP method to use, default is GET."
+              },
+              {
+                "type": "boolean",
+                "name": "inOptions.sync",
+                "description": "By default, all requests are sent asynchronously. To send synchronous requests, set to true."
+              },
+              {
+                "type": "Object",
+                "name": "inOptions.params",
+                "description": "Data to be sent to the server."
+              },
+              {
+                "type": "Object",
+                "name": "inOptions.body",
+                "description": "The content for the request body for POST method."
+              },
+              {
+                "type": "Object",
+                "name": "inOptions.headers",
+                "description": "HTTP request headers."
+              },
+              {
+                "type": "String",
+                "name": "inOptions.responseType",
+                "description": "The response type. Default is 'text'."
+              },
+              {
+                "type": "boolean",
+                "name": "inOptions.withCredentials",
+                "description": "Whether or not to send credentials on the request. Default is false."
+              },
+              {
+                "type": "Object",
+                "name": "inOptions.callback",
+                "description": "Called when request is completed."
+              }
+            ],
+            "async": true
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "core-xhr": "Polymer/core-xhr#master"
+        }
+      },
+      "description": "core-xhr can be used to perform XMLHttpRequests.\n\n    <core-xhr id=\"xhr\"></core-xhr>\n    ...\n    this.$.xhr.request({url: url, params: params, callback: callback});",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "core-xhr"
+    },
+    {
+      "ports": {
+        "input": {
+          "closeSelector": {
+            "name": "closeSelector",
+            "description": "",
+            "type": "string",
+            "default": "'[affirmative],[dismissive]'"
+          },
+          "transition": {
+            "name": "transition",
+            "description": "",
+            "type": "string",
+            "default": "''"
+          },
+          "layered": {
+            "name": "layered",
+            "description": "",
+            "type": "boolean",
+            "default": "true"
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "paper-action-dialog": "Polymer/paper-action-dialog#master"
+        }
+      },
+      "description": "Material Design: <a href=\"http://www.google.com/design/spec/components/dialogs.html\">Dialogs</a>\n\n`paper-action-dialog` is a `paper-dialog` a row of buttons at the bottom that\nindicate user action. The action buttons do not scroll with the dialog body.\n\nThe buttons should have either the `affirmative` or `dismissive` attribute. See\nthe Material Design spec for more info.\n\nExample:\n\n    <paper-action-dialog heading=\"Dialog Title\">\n      <p>Some content</p>\n      <paper-button dismissive>More Info</paper-button>\n      <paper-button affirmative>Decline</paper-button>\n      <paper-button affirmative>Accept</paper-button>\n    </paper-action-dialog>",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "paper-action-dialog"
+    },
+    {
+      "ports": {
+        "input": {
+          "target": {
+            "name": "target",
+            "description": "The textarea that should auto grow.",
+            "type": "HTMLTextAreaElement",
+            "default": "null"
+          },
+          "rows": {
+            "name": "rows",
+            "description": "The initial number of rows.",
+            "type": "number",
+            "default": "1"
+          },
+          "maxRows": {
+            "name": "maxRows",
+            "description": "The maximum number of rows this element can grow to until it\nscrolls. 0 means no maximum.",
+            "type": "number",
+            "default": "0"
+          },
+          "update": {
+            "name": "update",
+            "description": "Sizes this element to fit the input value. This function is automatically called\nwhen the user types in new input, but you must call this function if the value\nis updated imperatively.",
+            "async": true
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "paper-autogrow-textarea": "Polymer/paper-autogrow-textarea#master"
+        }
+      },
+      "description": "`paper-autogrow-textarea` is an element containing a textarea that grows in height as more\nlines of input are entered. Unless an explicit height or the `maxRows` property is set, it will\nnever scroll.\n\nExample:\n\n    <paper-autogrow-textarea id=\"a1\">\n        <textarea id=\"t1\"></textarea>\n    <paper-autogrow-textarea>\n\nBecause the `textarea`'s `value` property is not observable, if you set the `value` imperatively\nyou must call `update` to notify this element the value has changed.\n\nExample:\n\n    /* using example HTML above */\n    t1.value = 'some\\ntext';\n    a1.update();",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "paper-autogrow-textarea"
+    },
+    {
+      "ports": {
+        "input": {
+          "raised": {
+            "name": "raised",
+            "description": "If true, the button will be styled with a shadow.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "recenteringTouch": {
+            "name": "recenteringTouch",
+            "description": "By default the ripple emanates from where the user touched the button.\nSet this to true to always center the ripple.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "fill": {
+            "name": "fill",
+            "description": "By default the ripple expands to fill the button. Set this to false to\nconstrain the ripple to a circle within the button.",
+            "type": "boolean",
+            "default": "true"
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "paper-button-base": "Polymer/paper-button-base#master"
+        }
+      },
+      "description": "`paper-button-base` is the base class for button-like elements with ripple and optional shadow.",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "paper-button-base"
     },
     {
       "ports": {
@@ -2014,7 +3008,32 @@
     },
     {
       "ports": {
-        "input": {},
+        "input": {
+          "checked": {
+            "name": "checked",
+            "description": "Gets or sets the state, `true` is checked and `false` is unchecked.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "label": {
+            "name": "label",
+            "description": "The label for the radio button.",
+            "type": "string",
+            "default": "''"
+          },
+          "toggles": {
+            "name": "toggles",
+            "description": "Normally the user cannot uncheck the radio button by tapping once\nchecked.  Setting this property to `true` makes the radio button\ntoggleable from checked to unchecked.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "disabled": {
+            "name": "disabled",
+            "description": "If true, the user cannot interact with this element.",
+            "type": "boolean",
+            "default": "false"
+          }
+        },
         "output": {
           "change": {
             "name": "change",
@@ -2035,6 +3054,74 @@
       "type": "polymer",
       "ns": "polymer",
       "name": "paper-checkbox"
+    },
+    {
+      "ports": {
+        "input": {
+          "heading": {
+            "name": "heading",
+            "description": "The title of the dialog.",
+            "type": "string",
+            "default": "''"
+          },
+          "transition": {
+            "name": "transition",
+            "description": "",
+            "type": "string",
+            "default": "''"
+          },
+          "layered": {
+            "name": "layered",
+            "description": "",
+            "type": "boolean",
+            "default": "true"
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "paper-dialog-base": "Polymer/paper-dialog-base#master"
+        }
+      },
+      "description": "Material Design: <a href=\"http://www.google.com/design/spec/components/dialogs.html\">Dialogs</a>\n\n`paper-dialog-base` is a base class used to implement Material Design styled\ndialogs.",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "paper-dialog-base"
+    },
+    {
+      "ports": {
+        "input": {
+          "heading": {
+            "name": "heading",
+            "description": "The title of the dialog.",
+            "type": "string",
+            "default": "''"
+          },
+          "transition": {
+            "name": "transition",
+            "description": "",
+            "type": "string",
+            "default": "''"
+          },
+          "layered": {
+            "name": "layered",
+            "description": "",
+            "type": "boolean",
+            "default": "true"
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "paper-dialog": "Polymer/paper-dialog#master"
+        }
+      },
+      "description": "Material Design: <a href=\"http://www.google.com/design/spec/components/dialogs.html\">Dialogs</a>\n\n`paper-dialog` is an overlay with a drop shadow.\n\nExample:\n\n    <paper-dialog heading=\"Dialog Title\">\n      <p>Some content</p>\n    </paper-dialog>\n\nStyling\n-------\n\nBecause a `paper-dialog` is `layered` by default, you need to use the `/deep/`\ncombinator to style all instances of the `paper-dialog`. Style the position,\ncolors and other inherited properties of the dialog using the\n`html /deep/ paper-dialog` selector. Use the `html /deep/ paper-dialog::shadow #scroller` selector to size the dialog. Note that if you provided actions, the height\nof the actions will be added to the height of the dialog.\n\n    html /deep/ paper-dialog {\n        color: green;\n    }\n\n    html /deep/ paper-dialog::shadow #scroller {\n        height: 300px;\n        width: 300px;\n    }\n\nTransitions\n-----------\n\nYou can use transitions provided by `core-transition` with this element.\n\n    <paper-dialog transition=\"core-transition-center\">\n      <p>Some content</p>\n    </paper-dialog>\n\nAccessibility\n-------------\n\nBy default, the `aria-label` will be set to the value of the `heading` attribute.",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "paper-dialog"
     },
     {
       "ports": {
@@ -2090,6 +3177,84 @@
     {
       "ports": {
         "input": {
+          "duration": {
+            "name": "duration",
+            "description": "The duration of the transition in ms. You can also set the duration by\nsetting a `duration` attribute on the target:\n\n   <paper-dropdown duration=\"1000\"></paper-dropdown>",
+            "type": "number",
+            "default": "500"
+          },
+          "openedClass": {
+            "name": "openedClass",
+            "description": "The class that will be applied to nodes in the opened state.",
+            "type": "string",
+            "default": "\"core-opened\""
+          },
+          "closedClass": {
+            "name": "closedClass",
+            "description": "The class that will be applied to nodes in the closed state.",
+            "type": "string",
+            "default": "\"core-closed\""
+          },
+          "completeEventName": {
+            "name": "completeEventName",
+            "description": "Event to listen to for animation completion.",
+            "type": "string",
+            "default": "\"transitionEnd\""
+          },
+          "transitionType": {
+            "name": "transitionType",
+            "description": "A secondary configuration attribute for the animation. The class\n`<baseClass>-<transitionType` is applied to the animated node during\n`setup`.",
+            "type": "string"
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "paper-dropdown-transition": "Polymer/paper-dropdown-transition#master"
+        }
+      },
+      "description": "`paper-dropdown-transition` is a transition for `paper-dropdown`.\n\nAdd the class `menu` to a `core-selector` child of the `paper-dropdown` to\nenable the optional list cascade transition.",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "paper-dropdown-transition"
+    },
+    {
+      "ports": {
+        "input": {
+          "relatedTarget": {
+            "name": "relatedTarget",
+            "description": "The element associated with this dropdown, usually the element that triggers\nthe menu. If unset, this property will default to the target's parent node\nor shadow host.",
+            "type": "Node"
+          },
+          "halign": {
+            "name": "halign",
+            "description": "The horizontal alignment of the popup relative to `relatedTarget`. `left`\nmeans the left edges are aligned together. `right` means the right edges\nare aligned together.",
+            "type": "'left' | 'right'",
+            "default": "'left'"
+          },
+          "valign": {
+            "name": "valign",
+            "description": "The vertical alignment of the popup relative to `relatedTarget`. `top` means\nthe top edges are aligned together. `bottom` means the bottom edges are\naligned together.",
+            "type": "'top' | 'bottom'",
+            "default": "'top'"
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "paper-dropdown": "Polymer/paper-dropdown#master"
+        }
+      },
+      "description": "`paper-dropdown` is a `core-dropdown` with a `paper-shadow`. By default, it\nis animated on open with `paper-dropdown-transition`. Use this element with\n`paper-dropdown-menu` or `paper-menu-button` to implement UI controls that\nopen a drop-down.\n\nExample:\n\n    <paper-dropdown>\n      Hi!\n    </paper-dropdown>\n\nTheming\n-------\n\nStyle the background color of the dropdown with these selectors:\n\n    paper-dropdown::shadow #ripple,\n    paper-dropdown::shadow #background {\n        background-color: green;\n    }",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "paper-dropdown"
+    },
+    {
+      "ports": {
+        "input": {
           "src": {
             "name": "src",
             "description": "The URL of an image for the icon. If the src property is specified,\nthe icon property should not be.",
@@ -2135,6 +3300,12 @@
             "description": "Specifies the icon name or index in the set of icons available in\nthe icon's icon set. If the icon property is specified,\nthe src property should not be.",
             "type": "string",
             "default": "''"
+          },
+          "fill": {
+            "name": "fill",
+            "description": "By default the ripple expands to fill the button. Set this to false to\nconstrain the ripple to a circle within the button.",
+            "type": "boolean",
+            "default": "true"
           }
         },
         "output": {}
@@ -2148,6 +3319,62 @@
       "type": "polymer",
       "ns": "polymer",
       "name": "paper-icon-button"
+    },
+    {
+      "ports": {
+        "input": {
+          "label": {
+            "name": "label",
+            "description": "The label for this input. It normally appears as grey text inside\nthe text input and disappears once the user enters text.",
+            "type": "string",
+            "default": "''"
+          },
+          "floatingLabel": {
+            "name": "floatingLabel",
+            "description": "If true, the label will \"float\" above the text input once the\nuser enters text instead of disappearing.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "disabled": {
+            "name": "disabled",
+            "description": "Set to true to style the element as disabled.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "labelVisible": {
+            "name": "labelVisible",
+            "description": "Use this property to override the automatic label visibility.\nIf this property is set to `true` or `false`, the label visibility\nwill respect this value instead of be based on whether there is\na non-null value in the input.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "isInvalid": {
+            "name": "isInvalid",
+            "description": "Set this property to true to show the error message.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "error": {
+            "name": "error",
+            "description": "The message to display if the input value fails validation. If this\nis unset or the empty string, a default message is displayed depending\non the type of validation error.",
+            "type": "string"
+          },
+          "updateLabelVisibility": {
+            "name": "updateLabelVisibility",
+            "description": "Updates the label visibility based on a value. This is handled automatically\nif the user is typing, but if you imperatively set the input value you need\nto call this function.",
+            "async": true
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "paper-input-decorator": "Polymer/paper-input-decorator#master"
+        }
+      },
+      "description": "Material Design: <a href=\"http://www.google.com/design/spec/components/text-fields.html\">Text fields</a>\n\n`paper-input-decorator` adds Material Design input field styling and animations to an element.\n\nExample:\n\n    <paper-input-decorator label=\"Your Name\">\n        <input is=\"core-input\">\n    </paper-input-decorator>\n\n    <paper-input-decorator floatingLabel label=\"Your address\">\n        <textarea></textarea>\n    </paper-input-decorator>\n\nTheming\n-------\n\n`paper-input-decorator` uses `core-style` for global theming. The following options are available:\n\n- `CoreStyle.g.paperInput.labelColor` - The inline label, floating label, error message and error icon color when the input does not have focus.\n- `CoreStyle.g.paperInput.focusedColor` - The floating label and the underline color when the input has focus.\n- `CoreStyle.g.paperInput.cursorColor` - The cursor color during the focus animation. Typically this is the same as `focusedColor`.\n- `CoreStyle.g.paperInput.invalidColor` - The error message, the error icon, the cursor, the floating label and the underline's color when the input is invalid and has focus.\n\nTo add custom styling to only some elements, use these selectors:\n\n    paper-input-decorator /deep/ .label-text,\n    paper-input-decorator /deep/ .error {\n        /* inline label,  floating label, error message and error icon color when the input is unfocused */\n        color: green;\n    }\n\n    paper-input-decorator /deep/ ::-webkit-input-placeholder {\n        /* platform specific rules for placeholder text */\n        color: green;\n    }\n    paper-input-decorator /deep/ ::-moz-placeholder {\n        color: green;\n    }\n    paper-input-decorator /deep/ :-ms-input-placeholder {\n        color: green;\n    }\n\n    paper-input-decorator /deep/ .unfocused-underline {\n        /* line color when the input is unfocused */\n        background-color: green;\n    }\n\n    paper-input-decorator[focused] /deep/ .floating-label .label-text {\n        /* floating label color when the input is focused */\n        color: orange;\n    }\n\n    paper-input-decorator /deep/ .focused-underline {\n        /* line color when the input is focused */\n        background-color: orange;\n    }\n\n    paper-input-decorator /deep/ .cursor {\n        /* cursor color during the focus transition */\n        background-color: orange;\n    }\n\n    paper-input-decorator.invalid[focused] /deep/ .floated-label .label-text,\n    paper-input-decorator[focused] /deep/ .error {\n        /* floating label, error message nad error icon color when the input is invalid and focused */\n        color: salmon;\n    }\n\n    paper-input-decorator.invalid /deep/ .focused-underline,\n    paper-input-decorator.invalid /deep/ .cursor {\n        /* line and cursor color when the input is invalid and focused */\n        background-color: salmon;\n    }\n\nForm submission\n---------------\n\nYou can use inputs decorated with this element in a `form` as usual.\n\nAccessibility\n-------------\n\n`paper-input-decorator` will automatically set the `aria-label` attribute on the nested input\nto the value of `label`. Do not set the `placeholder` attribute on the nested input, as it will\nconflict with this element.",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "paper-input-decorator"
     },
     {
       "ports": {
@@ -2220,6 +3447,28 @@
     {
       "ports": {
         "input": {
+          "opened": {
+            "name": "opened",
+            "description": "True if the menu is open.",
+            "type": "boolean",
+            "default": "false"
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "paper-menu-button": "Polymer/paper-menu-button#master"
+        }
+      },
+      "description": "`paper-menu-button` works together with a button and a `paper-dropdown` to\nimplement a button that displays a drop-down when tapped on.\n\nThe child element with the class `dropdown` will be used as the drop-down\nmenu. It should be a `paper-dropdown` or other overlay element.\n\nExample:\n\n    <paper-menu-button>\n        <paper-icon-button icon=\"menu\" noink></paper-icon-button>\n        <paper-dropdown class=\"dropdown\">\n            <core-menu class=\"menu\">\n                <paper-item>Share</paper-item>\n                <paper-item>Settings</paper-item>\n                <paper-item>Help</paper-item>\n            </core-menu>\n        </paper-dropdown>\n    </paper-menu-button>",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "paper-menu-button"
+    },
+    {
+      "ports": {
+        "input": {
           "secondaryProgress": {
             "name": "secondaryProgress",
             "description": "The number that represents the current secondary progress.",
@@ -2231,9 +3480,36 @@
             "description": "Use an indeterminate progress indicator.",
             "type": "boolean",
             "default": "false"
+          },
+          "disabled": {
+            "name": "disabled",
+            "description": "If true, this slider is disabled.  A disabled slider cannot be tapped\nor dragged to change the slider value.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "editable": {
+            "name": "editable",
+            "description": "If true, an input is shown and user can use it to set the slider value.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "immediateValue": {
+            "name": "immediateValue",
+            "description": "The immediate value of the slider.  This value is updated while the user\nis dragging the slider.",
+            "type": "number",
+            "default": "0"
           }
         },
-        "output": {}
+        "output": {
+          "core-change": {
+            "name": "core-change",
+            "description": "Fired when the slider's value changes."
+          },
+          "change": {
+            "name": "change",
+            "description": "Fired when the slider's value changes due to user interaction.\n\nChanges to the slider's value due to changes in an underlying\nbound variable will not trigger this event."
+          }
+        }
       },
       "dependencies": {
         "bower": {
@@ -2293,6 +3569,158 @@
       "type": "polymer",
       "ns": "polymer",
       "name": "paper-radio-button"
+    },
+    {
+      "ports": {
+        "input": {
+          "noink": {
+            "name": "noink",
+            "description": "If true, ink ripple effect is disabled.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "nobar": {
+            "name": "nobar",
+            "description": "If true, the bottom bar to indicate the selected tab will not be shown.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "noslide": {
+            "name": "noslide",
+            "description": "If true, the slide effect for the bottom bar is disabled.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "scrollable": {
+            "name": "scrollable",
+            "description": "If true, tabs are scrollable and the tab width is based on the label width.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "disableDrag": {
+            "name": "disableDrag",
+            "description": "If true, dragging on the tabs to scroll is disabled.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "hideScrollButton": {
+            "name": "hideScrollButton",
+            "description": "If true, scroll buttons (left/right arrow) will be hidden for scrollable tabs.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "selectedItem": {
+            "name": "selectedItem",
+            "description": "Returns the currently selected element. In multi-selection this returns\nan array of selected elements.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
+            "type": "Object",
+            "default": "null"
+          },
+          "selectedModel": {
+            "name": "selectedModel",
+            "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
+            "type": "Object",
+            "default": "null"
+          },
+          "selectedIndex": {
+            "name": "selectedIndex",
+            "description": "In single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
+            "type": "number",
+            "default": "-1"
+          },
+          "excludedLocalNames": {
+            "name": "excludedLocalNames",
+            "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
+            "type": "string",
+            "default": "''"
+          },
+          "target": {
+            "name": "target",
+            "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
+            "type": "Object",
+            "default": "null"
+          },
+          "itemsSelector": {
+            "name": "itemsSelector",
+            "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
+            "type": "string",
+            "default": "''"
+          },
+          "activateEvent": {
+            "name": "activateEvent",
+            "description": "The event that would be fired from the item element to indicate\nit is being selected.",
+            "type": "string",
+            "default": "'tap'"
+          },
+          "notap": {
+            "name": "notap",
+            "description": "Set this to true to disallow changing the selection via the\n`activateEvent`.",
+            "type": "boolean",
+            "default": "false"
+          },
+          "updateBar": {
+            "name": "updateBar",
+            "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "wrapped",
+                "description": "if true and it is already at the first item,"
+              }
+            ],
+            "async": true
+          },
+          "selectNext": {
+            "name": "selectNext",
+            "description": "Selects the next item.  This should be used in single selection only.\n\n                 wrap to the front",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "wrapped",
+                "description": "if true and it is already at the last item,"
+              }
+            ],
+            "async": true
+          }
+        },
+        "output": {
+          "core-select": {
+            "name": "core-select",
+            "description": "Fired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "detail.isSelected",
+                "description": "true for selection and false for deselection"
+              },
+              {
+                "type": "Object",
+                "name": "detail.item",
+                "description": "the item element"
+              }
+            ]
+          },
+          "core-activate": {
+            "name": "core-activate",
+            "description": "Fired when an item element is tapped.",
+            "params": [
+              {
+                "type": "Object",
+                "name": "detail.item",
+                "description": "the item element"
+              }
+            ]
+          }
+        }
+      },
+      "dependencies": {
+        "bower": {
+          "paper-radio-group": "Polymer/paper-radio-group#master"
+        }
+      },
+      "description": "`paper-radio-group` allows user to select only one radio button from a set.\nChecking one radio button that belongs to a radio group unchecks any \npreviously checked radio button within the same group. Use\n`selected` to get or set the selected radio button.\n\nExample:\n\n    <paper-radio-group selected=\"small\">\n      <paper-radio-button name=\"small\" label=\"Small\"></paper-radio-button>\n      <paper-radio-button name=\"medium\" label=\"Medium\"></paper-radio-button>\n      <paper-radio-button name=\"large\" label=\"Large\"></paper-radio-button>\n    </paper-radio-group>\n\nSee <a href=\"../paper-radio-button/\">paper-radio-button</a> for more\ninformation about `paper-radio-button`.",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "paper-radio-group"
     },
     {
       "ports": {
@@ -2453,6 +3881,28 @@
             "description": "If true, ink ripple effect is disabled.",
             "type": "boolean",
             "default": "false"
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "paper-tab": "Polymer/paper-tab#master"
+        }
+      },
+      "description": "`paper-tab` is styled to look like a tab.  It should be used in conjunction with\n`paper-tabs`.\n\nExample:\n\n    <paper-tabs selected=\"0\">\n      <paper-tab>TAB 1</paper-tab>\n      <paper-tab>TAB 2</paper-tab>\n      <paper-tab>TAB 3</paper-tab>\n    </paper-tabs>\n    \nStyling tab:\n\nTo change the ink color:\n\n    .pink paper-tab::shadow #ink {\n      color: #ff4081;\n    }",
+      "type": "polymer",
+      "ns": "polymer",
+      "name": "paper-tab"
+    },
+    {
+      "ports": {
+        "input": {
+          "noink": {
+            "name": "noink",
+            "description": "If true, ink ripple effect is disabled.",
+            "type": "boolean",
+            "default": "false"
           },
           "nobar": {
             "name": "nobar",
@@ -2484,12 +3934,108 @@
             "type": "boolean",
             "default": "false"
           },
+          "selectedItem": {
+            "name": "selectedItem",
+            "description": "Returns the currently selected element. In multi-selection this returns\nan array of selected elements.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
+            "type": "Object",
+            "default": "null"
+          },
+          "selectedModel": {
+            "name": "selectedModel",
+            "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
+            "type": "Object",
+            "default": "null"
+          },
+          "selectedIndex": {
+            "name": "selectedIndex",
+            "description": "In single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
+            "type": "number",
+            "default": "-1"
+          },
+          "excludedLocalNames": {
+            "name": "excludedLocalNames",
+            "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
+            "type": "string",
+            "default": "''"
+          },
+          "target": {
+            "name": "target",
+            "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
+            "type": "Object",
+            "default": "null"
+          },
+          "itemsSelector": {
+            "name": "itemsSelector",
+            "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
+            "type": "string",
+            "default": "''"
+          },
+          "activateEvent": {
+            "name": "activateEvent",
+            "description": "The event that would be fired from the item element to indicate\nit is being selected.",
+            "type": "string",
+            "default": "'tap'"
+          },
+          "notap": {
+            "name": "notap",
+            "description": "Set this to true to disallow changing the selection via the\n`activateEvent`.",
+            "type": "boolean",
+            "default": "false"
+          },
           "updateBar": {
             "name": "updateBar",
-            "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible."
+            "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "wrapped",
+                "description": "if true and it is already at the first item,"
+              }
+            ],
+            "async": true
+          },
+          "selectNext": {
+            "name": "selectNext",
+            "description": "Selects the next item.  This should be used in single selection only.\n\n                 wrap to the front",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "wrapped",
+                "description": "if true and it is already at the last item,"
+              }
+            ],
+            "async": true
           }
         },
-        "output": {}
+        "output": {
+          "core-select": {
+            "name": "core-select",
+            "description": "Fired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "detail.isSelected",
+                "description": "true for selection and false for deselection"
+              },
+              {
+                "type": "Object",
+                "name": "detail.item",
+                "description": "the item element"
+              }
+            ]
+          },
+          "core-activate": {
+            "name": "core-activate",
+            "description": "Fired when an item element is tapped.",
+            "params": [
+              {
+                "type": "Object",
+                "name": "detail.item",
+                "description": "the item element"
+              }
+            ]
+          }
+        }
       },
       "dependencies": {
         "bower": {
@@ -2542,15 +4088,18 @@
           },
           "toggle": {
             "name": "toggle",
-            "description": "Toggle the opened state of the toast."
+            "description": "Toggle the opened state of the toast.",
+            "async": true
           },
           "show": {
             "name": "show",
-            "description": "Show the toast for the specified duration"
+            "description": "Show the toast for the specified duration",
+            "async": true
           },
           "dismiss": {
             "name": "dismiss",
-            "description": "Dismiss the toast and hide it."
+            "description": "Dismiss the toast and hide it.",
+            "async": true
           }
         },
         "output": {

@@ -18,7 +18,8 @@
   "homepage": "https://github.com/nodule/polymer",
   "dependencies": {},
   "devDependencies": {
-    "polymer-context-free-parser": "git://github.com/Polymer/context-free-parser"
+    "polymer-context-free-parser": "git://github.com/Polymer/context-free-parser",
+    "extend": "^2.0.0"
   },
   "chix": {
     "name": "polymer",

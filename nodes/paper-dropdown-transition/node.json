@@ -1,0 +1,45 @@
+{
+  "name": "paper-dropdown-transition",
+  "ns": "polymer",
+  "type": "polymer",
+  "description": "`paper-dropdown-transition` is a transition for `paper-dropdown`.\n\nAdd the class `menu` to a `core-selector` child of the `paper-dropdown` to\nenable the optional list cascade transition.",
+  "dependencies": {
+    "bower": {
+      "paper-dropdown-transition": "Polymer/paper-dropdown-transition#master"
+    }
+  },
+  "ports": {
+    "input": {
+      "duration": {
+        "name": "duration",
+        "description": "The duration of the transition in ms. You can also set the duration by\nsetting a `duration` attribute on the target:\n\n   <paper-dropdown duration=\"1000\"></paper-dropdown>",
+        "type": "number",
+        "default": "500"
+      },
+      "openedClass": {
+        "name": "openedClass",
+        "description": "The class that will be applied to nodes in the opened state.",
+        "type": "string",
+        "default": "\"core-opened\""
+      },
+      "closedClass": {
+        "name": "closedClass",
+        "description": "The class that will be applied to nodes in the closed state.",
+        "type": "string",
+        "default": "\"core-closed\""
+      },
+      "completeEventName": {
+        "name": "completeEventName",
+        "description": "Event to listen to for animation completion.",
+        "type": "string",
+        "default": "\"transitionEnd\""
+      },
+      "transitionType": {
+        "name": "transitionType",
+        "description": "A secondary configuration attribute for the animation. The class\n`<baseClass>-<transitionType` is applied to the animated node during\n`setup`.",
+        "type": "string"
+      }
+    },
+    "output": {}
+  }
+}

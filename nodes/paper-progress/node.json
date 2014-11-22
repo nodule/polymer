@@ -21,8 +21,35 @@
         "description": "Use an indeterminate progress indicator.",
         "type": "boolean",
         "default": "false"
+      },
+      "disabled": {
+        "name": "disabled",
+        "description": "If true, this slider is disabled.  A disabled slider cannot be tapped\nor dragged to change the slider value.",
+        "type": "boolean",
+        "default": "false"
+      },
+      "editable": {
+        "name": "editable",
+        "description": "If true, an input is shown and user can use it to set the slider value.",
+        "type": "boolean",
+        "default": "false"
+      },
+      "immediateValue": {
+        "name": "immediateValue",
+        "description": "The immediate value of the slider.  This value is updated while the user\nis dragging the slider.",
+        "type": "number",
+        "default": "0"
       }
     },
-    "output": {}
+    "output": {
+      "core-change": {
+        "name": "core-change",
+        "description": "Fired when the slider's value changes."
+      },
+      "change": {
+        "name": "change",
+        "description": "Fired when the slider's value changes due to user interaction.\n\nChanges to the slider's value due to changes in an underlying\nbound variable will not trigger this event."
+      }
+    }
   }
 }

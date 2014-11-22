@@ -21,6 +21,12 @@
         "description": "Specifies the icon name or index in the set of icons available in\nthe icon's icon set. If the icon property is specified,\nthe src property should not be.",
         "type": "string",
         "default": "''"
+      },
+      "fill": {
+        "name": "fill",
+        "description": "By default the ripple expands to fill the button. Set this to false to\nconstrain the ripple to a circle within the button.",
+        "type": "boolean",
+        "default": "true"
       }
     },
     "output": {}

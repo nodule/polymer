@@ -49,8 +49,71 @@
           }
         ],
         "async": true
+      },
+      "teardown": {
+        "name": "teardown",
+        "description": "Tear down the animation.",
+        "params": [
+          {
+            "type": "Node",
+            "name": "node",
+            "description": "The animated node"
+          }
+        ],
+        "async": true
+      },
+      "complete": {
+        "name": "complete",
+        "description": "Called when the animation completes. This function also fires the\n`core-transitionend` event.",
+        "params": [
+          {
+            "type": "Node",
+            "name": "node",
+            "description": "The animated node"
+          }
+        ],
+        "async": true
+      },
+      "listenOnce": {
+        "name": "listenOnce",
+        "description": "Utility function to listen to an event on a node once.",
+        "params": [
+          {
+            "type": "Node",
+            "name": "node",
+            "description": "The animated node"
+          },
+          {
+            "type": "string",
+            "name": "event",
+            "description": "Name of an event"
+          },
+          {
+            "type": "Function",
+            "name": "fn",
+            "description": "Event handler"
+          },
+          {
+            "type": "Array",
+            "name": "args",
+            "description": "Additional arguments to pass to `fn`"
+          }
+        ],
+        "async": true
       }
     },
-    "output": {}
+    "output": {
+      "core-transitionend": {
+        "name": "core-transitionend",
+        "description": "Fired when the animation finishes.",
+        "params": [
+          {
+            "type": "Object",
+            "name": "detail.node",
+            "description": "The animated node"
+          }
+        ]
+      }
+    }
   }
 }

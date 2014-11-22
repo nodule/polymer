@@ -10,6 +10,12 @@
   },
   "ports": {
     "input": {
+      "type": {
+        "name": "type",
+        "description": "The type of meta-data.  All meta-data with the same type with be\nstored together.",
+        "type": "string",
+        "default": "'default'"
+      },
       "go": {
         "name": "go",
         "description": "Run the animation.",

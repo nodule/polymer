@@ -1,0 +1,33 @@
+{
+  "name": "paper-dropdown",
+  "ns": "polymer",
+  "type": "polymer",
+  "description": "`paper-dropdown` is a `core-dropdown` with a `paper-shadow`. By default, it\nis animated on open with `paper-dropdown-transition`. Use this element with\n`paper-dropdown-menu` or `paper-menu-button` to implement UI controls that\nopen a drop-down.\n\nExample:\n\n    <paper-dropdown>\n      Hi!\n    </paper-dropdown>\n\nTheming\n-------\n\nStyle the background color of the dropdown with these selectors:\n\n    paper-dropdown::shadow #ripple,\n    paper-dropdown::shadow #background {\n        background-color: green;\n    }",
+  "dependencies": {
+    "bower": {
+      "paper-dropdown": "Polymer/paper-dropdown#master"
+    }
+  },
+  "ports": {
+    "input": {
+      "relatedTarget": {
+        "name": "relatedTarget",
+        "description": "The element associated with this dropdown, usually the element that triggers\nthe menu. If unset, this property will default to the target's parent node\nor shadow host.",
+        "type": "Node"
+      },
+      "halign": {
+        "name": "halign",
+        "description": "The horizontal alignment of the popup relative to `relatedTarget`. `left`\nmeans the left edges are aligned together. `right` means the right edges\nare aligned together.",
+        "type": "'left' | 'right'",
+        "default": "'left'"
+      },
+      "valign": {
+        "name": "valign",
+        "description": "The vertical alignment of the popup relative to `relatedTarget`. `top` means\nthe top edges are aligned together. `bottom` means the bottom edges are\naligned together.",
+        "type": "'top' | 'bottom'",
+        "default": "'top'"
+      }
+    },
+    "output": {}
+  }
+}

@@ -15,7 +15,7 @@
         "name": "type",
         "description": "The type of meta-data.  All meta-data with the same type with be\nstored together.",
         "type": "string",
-        "default": "'default'",
+        "default": "default",
         "title": "Type"
       },
       "go": {

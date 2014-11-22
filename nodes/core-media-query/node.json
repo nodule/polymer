@@ -22,7 +22,7 @@
         "name": "query",
         "description": "The CSS media query to evaulate",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Query"
       }
     },

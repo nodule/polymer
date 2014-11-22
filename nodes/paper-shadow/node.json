@@ -22,7 +22,7 @@
         "name": "animated",
         "description": "Set this to true to animate the shadow when setting a new\n`z` value.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Animated"
       }
     },

@@ -15,21 +15,21 @@
         "name": "url",
         "description": "The URL target of the request.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Url"
       },
       "handleAs": {
         "name": "handleAs",
         "description": "Specifies what data to store in the `response` property, and\nto deliver as `event.response` in `response` events.\n\nOne of:\n\n   `text`: uses `XHR.responseText`.\n\n   `xml`: uses `XHR.responseXML`.\n\n   `json`: uses `XHR.responseText` parsed as JSON.\n\n   `arraybuffer`: uses `XHR.response`.\n\n   `blob`: uses `XHR.response`.\n\n   `document`: uses `XHR.response`.",
         "type": "string",
-        "default": "'text'",
+        "default": "text",
         "title": "Handle as"
       },
       "auto": {
         "name": "auto",
         "description": "If true, automatically performs an Ajax request when either `url` or `params` changes.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Auto"
       },
       "params": {
@@ -43,21 +43,21 @@
         "name": "response",
         "description": "The response for the current request, or null if it hasn't\ncompleted yet or the request resulted in error.",
         "type": "Object",
-        "default": "null",
+        "default": null,
         "title": "Response"
       },
       "error": {
         "name": "error",
         "description": "The error for the current request, or null if it hasn't\ncompleted yet or the request resulted in success.",
         "type": "Object",
-        "default": "null",
+        "default": null,
         "title": "Error"
       },
       "loading": {
         "name": "loading",
         "description": "Whether the current request is currently loading.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Loading"
       },
       "progress": {
@@ -71,35 +71,35 @@
         "name": "method",
         "description": "The HTTP method to use such as 'GET', 'POST', 'PUT', or 'DELETE'.\nDefault is 'GET'.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Method"
       },
       "headers": {
         "name": "headers",
         "description": "HTTP request headers to send.\n\nExample:\n\n    <core-ajax\n        auto\n        url=\"http://somesite.com\"\n        headers='{\"X-Requested-With\": \"XMLHttpRequest\"}'\n        handleAs=\"json\"\n        on-core-response=\"{{handleResponse}}\"></core-ajax>",
         "type": "Object",
-        "default": "null",
+        "default": null,
         "title": "Headers"
       },
       "body": {
         "name": "body",
         "description": "Optional raw body content to send when method === \"POST\".\n\nExample:\n\n    <core-ajax method=\"POST\" auto url=\"http://somesite.com\"\n        body='{\"foo\":1, \"bar\":2}'>\n    </core-ajax>",
         "type": "Object",
-        "default": "null",
+        "default": null,
         "title": "Body"
       },
       "contentType": {
         "name": "contentType",
         "description": "Content type to use when sending data.",
         "type": "string",
-        "default": "'application/x-www-form-urlencoded'",
+        "default": "application/x-www-form-urlencoded",
         "title": "Content type"
       },
       "withCredentials": {
         "name": "withCredentials",
         "description": "Set the withCredentials flag on the request.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "With credentials"
       },
       "go": {

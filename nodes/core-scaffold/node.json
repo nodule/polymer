@@ -15,35 +15,35 @@
         "name": "drawerWidth",
         "description": "Width of the drawer panel.",
         "type": "string",
-        "default": "'256px'",
+        "default": "256px",
         "title": "Drawer width"
       },
       "responsiveWidth": {
         "name": "responsiveWidth",
         "description": "When the browser window size is smaller than the `responsiveWidth`, \n`core-drawer-panel` changes to a narrow layout. In narrow layout, \nthe drawer will be stacked on top of the main panel.",
         "type": "string",
-        "default": "'600px'",
+        "default": "600px",
         "title": "Responsive width"
       },
       "rightDrawer": {
         "name": "rightDrawer",
         "description": "If true, position the drawer to the right. Also place menu icon to\nthe right of the content instead of left.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Right drawer"
       },
       "disableSwipe": {
         "name": "disableSwipe",
         "description": "If true, swipe to open/close the drawer is disabled.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Disable swipe"
       },
       "mode": {
         "name": "mode",
         "description": "Used to control the header and scrolling behaviour of `core-header-panel`",
         "type": "string",
-        "default": "'seamed'",
+        "default": "seamed",
         "title": "Mode"
       },
       "togglePanel": {

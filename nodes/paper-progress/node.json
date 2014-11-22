@@ -22,21 +22,21 @@
         "name": "indeterminate",
         "description": "Use an indeterminate progress indicator.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Indeterminate"
       },
       "disabled": {
         "name": "disabled",
         "description": "If true, this slider is disabled.  A disabled slider cannot be tapped\nor dragged to change the slider value.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Disabled"
       },
       "editable": {
         "name": "editable",
         "description": "If true, an input is shown and user can use it to set the slider value.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Editable"
       },
       "immediateValue": {

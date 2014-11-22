@@ -15,21 +15,21 @@
         "name": "closeSelector",
         "description": "",
         "type": "string",
-        "default": "'[affirmative],[dismissive]'",
+        "default": "[affirmative],[dismissive]",
         "title": "Close selector"
       },
       "transition": {
         "name": "transition",
         "description": "",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Transition"
       },
       "layered": {
         "name": "layered",
         "description": "",
         "type": "boolean",
-        "default": "true",
+        "default": true,
         "title": "Layered"
       }
     },

@@ -15,21 +15,21 @@
         "name": "src",
         "description": "The URL of an image for the icon.  Should not use `icon` property\nif you are using this property.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Src"
       },
       "active": {
         "name": "active",
         "description": "If true, border is placed around the button to indicate it's\nactive state.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Active"
       },
       "icon": {
         "name": "icon",
         "description": "Specifies the icon name or index in the set of icons available in\nthe icon set.  Should not use `src` property if you are using this\nproperty.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Icon"
       }
     },

@@ -15,21 +15,21 @@
         "name": "src",
         "description": "The URL of an image for the icon. If the src property is specified,\nthe icon property should not be.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Src"
       },
       "icon": {
         "name": "icon",
         "description": "Specifies the icon name or index in the set of icons available in\nthe icon's icon set. If the icon property is specified,\nthe src property should not be.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Icon"
       },
       "mini": {
         "name": "mini",
         "description": "Set this to true to style this is a \"mini\" FAB.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Mini"
       }
     },

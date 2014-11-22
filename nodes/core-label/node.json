@@ -15,7 +15,7 @@
         "name": "for",
         "description": "A query selector string for a \"target\" element not nested in the `<core-label>`",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "For"
       }
     },

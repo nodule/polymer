@@ -15,21 +15,21 @@
         "name": "label",
         "description": "A label for the control. The label is displayed if no item is selected.",
         "type": "string",
-        "default": "'Select an item'",
+        "default": "Select an item",
         "title": "Label"
       },
       "openedIcon": {
         "name": "openedIcon",
         "description": "The icon to display when the drop-down is opened.",
         "type": "string",
-        "default": "'arrow-drop-up'",
+        "default": "arrow-drop-up",
         "title": "Opened icon"
       },
       "closedIcon": {
         "name": "closedIcon",
         "description": "The icon to display when the drop-down is closed.",
         "type": "string",
-        "default": "'arrow-drop-down'",
+        "default": "arrow-drop-down",
         "title": "Closed icon"
       }
     },

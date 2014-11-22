@@ -15,21 +15,21 @@
         "name": "justify",
         "description": "Controls how the items are aligned horizontally.\nOptions are `start`, `center`, `end`, `between` and `around`.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Justify"
       },
       "middleJustify": {
         "name": "middleJustify",
         "description": "Controls how the items are aligned horizontally when they are placed\nin the middle.\nOptions are `start`, `center`, `end`, `between` and `around`.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Middle justify"
       },
       "bottomJustify": {
         "name": "bottomJustify",
         "description": "Controls how the items are aligned horizontally when they are placed\nat the bottom.\nOptions are `start`, `center`, `end`, `between` and `around`.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Bottom justify"
       }
     },

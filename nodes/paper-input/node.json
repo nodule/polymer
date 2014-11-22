@@ -15,21 +15,21 @@
         "name": "label",
         "description": "The label for this input. It normally appears as grey text inside\nthe text input and disappears once the user enters text.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Label"
       },
       "floatingLabel": {
         "name": "floatingLabel",
         "description": "If true, the label will \"float\" above the text input once the\nuser enters text instead of disappearing.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Floating label"
       },
       "disabled": {
         "name": "disabled",
         "description": "Set to true to style the element as disabled.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Disabled"
       }
     },

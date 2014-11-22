@@ -15,14 +15,14 @@
         "name": "data",
         "description": "An array of source data for the list to display.  Elements\nfrom this array will be set to the `model` peroperty on each\ntemplate instance scope for binding.\n\nWhen `groups` is used, this array may either be flat, with\nthe group lengths specified in the `groups` array; otherwise\n`data` may be specified as an array of arrays, such that the\neach array in `data` specifies a group.  See examples above.",
         "type": "array",
-        "default": "null",
+        "default": null,
         "title": "Data"
       },
       "groups": {
         "name": "groups",
         "description": "An array of data conveying information about groupings of items\nin the `data` array.  Elements from this array will be set to the\n`groupModel` property of each template instance scope for binding.\n\nWhen `groups` is used, template children with the `divider` attribute\nwill be shown above each group.  Typically data from the `groupModel`\nwould be bound to dividers.\n\nIf `data` is specified as a flat array, the `groups` array must\ncontain objects of the format `{ length: n, data: {...} }`, where\n`length` determines the number of items from the `data` array\nthat should be grouped, and `data` specifies the user data that will\nbe assigned to the `groupModel` property on the template instance\nscope.\n\nIf `data` is specified as a nested array of arrays, group lengths\nare derived from these arrays, so each object in `groups` need only\ncontain the user data to be assigned to `groupModel`.",
         "type": "array",
-        "default": "null",
+        "default": null,
         "title": "Groups"
       },
       "scrollTarget": {
@@ -43,28 +43,28 @@
         "name": "multi",
         "description": "Set to true to support multiple selection.  Note, existing selection\nstate is maintained only when changing `multi` from `false` to `true`;\nit is cleared when changing from `true` to `false`.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Multi"
       },
       "selection": {
         "name": "selection",
         "description": "Data record (or array of records, if `multi: true`) corresponding to\nthe currently selected set of items.",
         "type": "{any}",
-        "default": "null",
+        "default": null,
         "title": "Selection"
       },
       "grid": {
         "name": "grid",
         "description": "When true, the list is rendered as a grid.  Grid items must be fixed\nheight and width, with the width of each item specified in the `width`\nproperty.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Grid"
       },
       "width": {
         "name": "width",
         "description": "When `grid` is used, `width` determines the width of each grid item.\nThis property has no meaning when not in `grid` mode.",
         "type": "number",
-        "default": "null",
+        "default": null,
         "title": "Width"
       },
       "height": {

@@ -15,7 +15,7 @@
         "name": "text",
         "description": "The text shows in a toast.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Text"
       },
       "duration": {
@@ -29,28 +29,28 @@
         "name": "opened",
         "description": "Set opened to true to show the toast and to false to hide it.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Opened"
       },
       "responsiveWidth": {
         "name": "responsiveWidth",
         "description": "Min-width when the toast changes to narrow layout.  In narrow layout,\nthe toast fits at the bottom of the screen when opened.",
         "type": "string",
-        "default": "'480px'",
+        "default": "480px",
         "title": "Responsive width"
       },
       "swipeDisabled": {
         "name": "swipeDisabled",
         "description": "If true, the toast can't be swiped.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Swipe disabled"
       },
       "autoCloseDisabled": {
         "name": "autoCloseDisabled",
         "description": "By default, the toast will close automatically if the user taps\noutside it or presses the escape key. Disable this behavior by setting\nthe `autoCloseDisabled` property to true.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Auto close disabled"
       },
       "toggle": {

@@ -15,21 +15,21 @@
         "name": "scrollTarget",
         "description": "When set, the given element is observed for scroll position.  When undefined,\nchildren can be placed inside and element itself can be used as the scrollable\nelement.",
         "type": "string",
-        "default": "null",
+        "default": null,
         "title": "Scroll target"
       },
       "orient": {
         "name": "orient",
         "description": "Orientation of the scroller to be observed (`v` for vertical, `h` for horizontal)",
         "type": "boolean",
-        "default": "'v'",
+        "default": false,
         "title": "Orient"
       },
       "upperThreshold": {
         "name": "upperThreshold",
         "description": "Distance from the top (or left, for horizontal) bound of the scroller\nwhere the \"upper trigger\" will fire.",
         "type": "integer",
-        "default": "null",
+        "default": null,
         "title": "Upper threshold"
       },
       "lowerThreshold": {
@@ -43,14 +43,14 @@
         "name": "upperTriggered",
         "description": "Read-only value that tracks the triggered state of the upper threshold",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Upper triggered"
       },
       "lowerTriggered": {
         "name": "lowerTriggered",
         "description": "Read-only value that tracks the triggered state of the lower threshold",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Lower triggered"
       },
       "clearUpper": {

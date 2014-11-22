@@ -15,14 +15,14 @@
         "name": "id",
         "description": "The `id` property should be set if the `core-style` is a producer\nof styles. In this case, the `core-style` should have text content\nthat is cssText.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Id"
       },
       "ref": {
         "name": "ref",
         "description": "The `ref` property should be set if the `core-style` element is a \nconsumer of styles. Set it to the `id` of the desired `core-style`\nelement.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Ref"
       },
       "list": {

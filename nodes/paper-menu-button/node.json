@@ -15,7 +15,7 @@
         "name": "opened",
         "description": "True if the menu is open.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Opened"
       }
     },

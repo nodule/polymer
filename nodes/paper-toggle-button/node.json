@@ -15,14 +15,14 @@
         "name": "checked",
         "description": "Gets or sets the state, `true` is checked and `false` is unchecked.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Checked"
       },
       "disabled": {
         "name": "disabled",
         "description": "If true, the toggle button is disabled.  A disabled toggle button cannot\nbe tapped or dragged to change the checked state.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Disabled"
       }
     },

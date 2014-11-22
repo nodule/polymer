@@ -15,7 +15,7 @@
         "name": "noink",
         "description": "If true, ink ripple effect is disabled.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Noink"
       }
     },

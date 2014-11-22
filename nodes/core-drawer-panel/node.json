@@ -15,56 +15,56 @@
         "name": "drawerWidth",
         "description": "Width of the drawer panel.",
         "type": "string",
-        "default": "'256px'",
+        "default": "256px",
         "title": "Drawer width"
       },
       "responsiveWidth": {
         "name": "responsiveWidth",
         "description": "Max-width when the panel changes to narrow layout.",
         "type": "string",
-        "default": "'640px'",
+        "default": "640px",
         "title": "Responsive width"
       },
       "selected": {
         "name": "selected",
         "description": "The panel that is being selected. `drawer` for the drawer panel and\n`main` for the main panel.",
         "type": "string",
-        "default": "null",
+        "default": null,
         "title": "Selected"
       },
       "defaultSelected": {
         "name": "defaultSelected",
         "description": "The panel to be selected when `core-drawer-panel` changes to narrow\nlayout.",
         "type": "string",
-        "default": "'main'",
+        "default": "main",
         "title": "Default selected"
       },
       "narrow": {
         "name": "narrow",
         "description": "Returns true if the panel is in narrow layout.  This is useful if you\nneed to show/hide elements based on the layout.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Narrow"
       },
       "rightDrawer": {
         "name": "rightDrawer",
         "description": "If true, position the drawer to the right.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Right drawer"
       },
       "disableSwipe": {
         "name": "disableSwipe",
         "description": "If true, swipe to open/close the drawer is disabled.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Disable swipe"
       },
       "forceNarrow": {
         "name": "forceNarrow",
         "description": "If true, ignore `responsiveWidth` setting and force the narrow layout.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Force narrow"
       },
       "togglePanel": {

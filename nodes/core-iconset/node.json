@@ -15,7 +15,7 @@
         "name": "src",
         "description": "The URL of the iconset image.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Src"
       },
       "width": {
@@ -29,7 +29,7 @@
         "name": "icons",
         "description": "A space separated list of names corresponding to icons in the iconset\nimage file. This list must be ordered the same as the icon images\nin the image file.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Icons"
       },
       "iconSize": {

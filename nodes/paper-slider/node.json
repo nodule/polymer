@@ -15,21 +15,21 @@
         "name": "snaps",
         "description": "If true, the slider thumb snaps to tick marks evenly spaced based\non the `step` property value.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Snaps"
       },
       "pin": {
         "name": "pin",
         "description": "If true, a pin with numeric value label is shown when the slider thumb \nis pressed.  Use for settings for which users need to know the exact \nvalue of the setting.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Pin"
       },
       "disabled": {
         "name": "disabled",
         "description": "If true, this slider is disabled.  A disabled slider cannot be tapped\nor dragged to change the slider value.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Disabled"
       },
       "secondaryProgress": {
@@ -43,7 +43,7 @@
         "name": "editable",
         "description": "If true, an input is shown and user can use it to set the slider value.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Editable"
       },
       "immediateValue": {

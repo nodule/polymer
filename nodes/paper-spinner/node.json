@@ -15,7 +15,7 @@
         "name": "active",
         "description": "Displays the spinner.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Active"
       }
     },

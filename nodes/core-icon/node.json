@@ -15,21 +15,21 @@
         "name": "src",
         "description": "The URL of an image for the icon. If the src property is specified,\nthe icon property should not be.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Src"
       },
       "icon": {
         "name": "icon",
         "description": "Specifies the icon name or index in the set of icons available in\nthe icon's icon set. If the icon property is specified,\nthe src property should not be.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Icon"
       },
       "alt": {
         "name": "alt",
         "description": "Alternative text content for accessibility support.\nIf alt is present and not empty, it will set the element's role to img and add an aria-label whose content matches alt.\nIf alt is present and is an empty string, '', it will hide the element from the accessibility layer\nIf alt is not present, it will set the element's role to img and the element will fallback to using the icon attribute for its aria-label.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Alt"
       }
     },

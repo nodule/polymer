@@ -15,35 +15,35 @@
         "name": "condenses",
         "description": "If true, the header's height will condense to `_condensedHeaderHeight`\nas the user scrolls down from the top of the content area.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Condenses"
       },
       "noDissolve": {
         "name": "noDissolve",
         "description": "If true, no cross-fade transition from one background to another.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "No dissolve"
       },
       "noReveal": {
         "name": "noReveal",
         "description": "If true, the header doesn't slide back in when scrolling back up.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "No reveal"
       },
       "fixed": {
         "name": "fixed",
         "description": "If true, the header is fixed to the top and never moves away.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Fixed"
       },
       "keepCondensedHeader": {
         "name": "keepCondensedHeader",
         "description": "If true, the condensed header is always shown and does not move away.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Keep condensed header"
       },
       "headerHeight": {
@@ -64,7 +64,7 @@
         "name": "scrollAwayTopbar",
         "description": "By default, the top part of the header stays when the header is being\ncondensed.  Set this to true if you want the top part of the header\nto be scrolled away.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Scroll away topbar"
       },
       "measureHeaderHeight": {

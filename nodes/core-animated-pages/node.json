@@ -15,56 +15,56 @@
         "name": "transitions",
         "description": "A space-delimited string of transitions to use when switching between pages in this element.\nThe strings are `id`s of `core-transition-pages` elements included elsewhere. See the\nindividual transition's document for specific details.",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Transitions"
       },
       "lastSelected": {
         "name": "lastSelected",
         "description": "The last page selected. This property is useful to dynamically set transitions based\non incoming and outgoing pages.",
         "type": "Object",
-        "default": "null",
+        "default": null,
         "title": "Last selected"
       },
       "noslide": {
         "name": "noslide",
         "description": "If true, the slide effect for the bottom bar is disabled.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Noslide"
       },
       "scrollable": {
         "name": "scrollable",
         "description": "If true, tabs are scrollable and the tab width is based on the label width.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Scrollable"
       },
       "disableDrag": {
         "name": "disableDrag",
         "description": "If true, dragging on the tabs to scroll is disabled.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Disable drag"
       },
       "hideScrollButton": {
         "name": "hideScrollButton",
         "description": "If true, scroll buttons (left/right arrow) will be hidden for scrollable tabs.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Hide scroll button"
       },
       "selectedItem": {
         "name": "selectedItem",
         "description": "Returns the currently selected element. In multi-selection this returns\nan array of selected elements.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
         "type": "Object",
-        "default": "null",
+        "default": null,
         "title": "Selected item"
       },
       "selectedModel": {
         "name": "selectedModel",
         "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
         "type": "Object",
-        "default": "null",
+        "default": null,
         "title": "Selected model"
       },
       "selectedIndex": {
@@ -78,35 +78,35 @@
         "name": "excludedLocalNames",
         "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Excluded local names"
       },
       "target": {
         "name": "target",
         "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
         "type": "Object",
-        "default": "null",
+        "default": null,
         "title": "Target"
       },
       "itemsSelector": {
         "name": "itemsSelector",
         "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Items selector"
       },
       "activateEvent": {
         "name": "activateEvent",
         "description": "The event that would be fired from the item element to indicate\nit is being selected.",
         "type": "string",
-        "default": "'tap'",
+        "default": "tap",
         "title": "Activate event"
       },
       "notap": {
         "name": "notap",
         "description": "Set this to true to disallow changing the selection via the\n`activateEvent`.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Notap"
       },
       "updateBar": {

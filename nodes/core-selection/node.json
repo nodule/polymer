@@ -15,7 +15,7 @@
         "name": "multi",
         "description": "If true, multiple selections are allowed.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Multi"
       },
       "getSelection": {

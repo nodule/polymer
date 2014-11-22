@@ -29,35 +29,35 @@
         "name": "opened",
         "description": "Set opened to true to show an overlay and to false to hide it.\nA `core-overlay` may be made initially opened by setting its\n`opened` attribute.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Opened"
       },
       "backdrop": {
         "name": "backdrop",
         "description": "If true, the overlay has a backdrop darkening the rest of the screen.\nThe backdrop element is attached to the document body and may be styled\nwith the class `core-overlay-backdrop`. When opened the `core-opened`\nclass is applied.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Backdrop"
       },
       "layered": {
         "name": "layered",
         "description": "If true, the overlay is guaranteed to display above page content.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Layered"
       },
       "autoCloseDisabled": {
         "name": "autoCloseDisabled",
         "description": "By default an overlay will close automatically if the user\ntaps outside it or presses the escape key. Disable this\nbehavior by setting the `autoCloseDisabled` property to true.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Auto close disabled"
       },
       "autoFocusDisabled": {
         "name": "autoFocusDisabled",
         "description": "By default an overlay will focus its target or an element inside\nit with the `autoFocus` attribute. Disable this\nbehavior by setting the `autoFocusDisabled` property to true.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Auto focus disabled"
       },
       "closeAttribute": {
@@ -78,7 +78,7 @@
         "name": "transition",
         "description": "The transition property specifies a string which identifies a \n<a href=\"../core-transition/\">`core-transition`</a> element that \nwill be used to help the overlay open and close. The default\n`core-transition-fade` will cause the overlay to fade in and out.",
         "type": "string",
-        "default": "'core-transition-fade'",
+        "default": "core-transition-fade",
         "title": "Transition"
       },
       "toggle": {

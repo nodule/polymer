@@ -15,7 +15,7 @@
         "name": "target",
         "description": "The textarea that should auto grow.",
         "type": "HTMLTextAreaElement",
-        "default": "null",
+        "default": null,
         "title": "Target"
       },
       "rows": {

@@ -134,7 +134,7 @@ function paramsToProperties(a) {
 
       param.title = humanize(m[0]);
 
-      //convertDefault(param);
+      convertDefault(param);
 
       if(m[1]) {
         prop = m[1];
@@ -164,14 +164,13 @@ function paramsToProperties(a) {
 }
 
 function convertDefault(def) {
-
   if (def.default) {
     if (def.default === 'null') {
       def.default = null;
     } else {
       switch (def.type) {
         case 'string':
-          def.default = def.default.replace(/^'+$/, '');
+          def.default = def.default.replace(/(^'|'$)/g, '');
         break;
 
         case 'boolean':
@@ -180,9 +179,6 @@ function convertDefault(def) {
       }
     }
   }
-
-
-
 }
 
 function createNodeDefinition(def) {
@@ -208,6 +204,8 @@ function createNodeDefinition(def) {
 
       a.title = humanize(a.name);
 
+      convertDefault(a);
+
       if (a.description) {
         a.description = a.description.trim();
       }
@@ -227,6 +225,8 @@ function createNodeDefinition(def) {
         }
 
         a.title = humanize(a.name);
+
+        convertDefault(a);
 
         a.async = true;
 

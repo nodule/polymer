@@ -15,21 +15,21 @@
         "name": "mode",
         "description": "Controls header and scrolling behavior. Options are\n`standard`, `seamed`, `waterfall`, `waterfall-tall`, `scroll` and \n`cover`. Default is `standard`.\n\n`standard`: The header is a step above the panel. The header will consume the\npanel at the point of entry, preventing it from passing through to the\nopposite side.\n\n`seamed`: The header is presented as seamed with the panel.\n\n`waterfall`: Similar to standard mode, but header is initially presented as\nseamed with panel, but then separates to form the step.\n\n`waterfall-tall`: The header is initially taller (`tall` class is added to\nthe header).  As the user scrolls, the header separates (forming an edge)\nwhile condensing (`tall` class is removed from the header).\n\n`scroll`: The header keeps its seam with the panel, and is pushed off screen.\n\n`cover`: The panel covers the whole `core-header-panel` including the\nheader. This allows user to style the panel in such a way that the panel is\npartially covering the header.\n\n    <style>\n      core-header-panel[mode=cover]::shadow #mainContainer {\n        left: 80px;\n      }\n      .content {\n        margin: 60px 60px 60px 0;\n      }\n    </style>\n\n    <core-header-panel mode=\"cover\">\n      <core-toolbar class=\"tall\">\n        <core-icon-button icon=\"menu\"></core-icon-button>\n      </core-toolbar>\n      <div class=\"content\"></div>\n    </core-header-panel>",
         "type": "string",
-        "default": "''",
+        "default": "",
         "title": "Mode"
       },
       "tallClass": {
         "name": "tallClass",
         "description": "The class used in waterfall-tall mode.  Change this if the header\naccepts a different class for toggling height, e.g. \"medium-tall\"",
         "type": "string",
-        "default": "'tall'",
+        "default": "tall",
         "title": "Tall class"
       },
       "shadow": {
         "name": "shadow",
         "description": "If true, the drop-shadow is always shown no matter what mode is set to.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Shadow"
       }
     },

@@ -15,21 +15,21 @@
         "name": "raised",
         "description": "If true, the button will be styled with a shadow.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Raised"
       },
       "recenteringTouch": {
         "name": "recenteringTouch",
         "description": "By default the ripple emanates from where the user touched the button.\nSet this to true to always center the ripple.",
         "type": "boolean",
-        "default": "false",
+        "default": false,
         "title": "Recentering touch"
       },
       "fill": {
         "name": "fill",
         "description": "By default the ripple expands to fill the button. Set this to false to\nconstrain the ripple to a circle within the button.",
         "type": "boolean",
-        "default": "true",
+        "default": true,
         "title": "Fill"
       }
     },

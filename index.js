@@ -134,6 +134,8 @@ function paramsToProperties(a) {
 
       param.title = humanize(m[0]);
 
+      //convertDefault(param);
+
       if(m[1]) {
         prop = m[1];
         // type is object/
@@ -158,6 +160,28 @@ function paramsToProperties(a) {
 
     delete a.params;
   }
+
+}
+
+function convertDefault(def) {
+
+  if (def.default) {
+    if (def.default === 'null') {
+      def.default = null;
+    } else {
+      switch (def.type) {
+        case 'string':
+          def.default = def.default.replace(/^'+$/, '');
+        break;
+
+        case 'boolean':
+          def.default = /^t/i.test(def.default);
+        break;
+      }
+    }
+  }
+
+
 
 }
 

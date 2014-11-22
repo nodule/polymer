@@ -17,7 +17,7 @@ var g = glob('./bower_components/*/*.html');
  *
  */
 
-g.on('match', function(file) {
+function parseFile(file) {
 
   var basename  = path.basename(file);
   var component = basename + '.html';
@@ -26,13 +26,13 @@ g.on('match', function(file) {
   var text = fs.readFileSync(file, 'utf8');
 
   var result = parser.parse(text);
-  result.forEach(function(def) {
-    processDef(def);
-  });
+  result.forEach(processDef);
 
-});
+}
 
-g.on('end', function() {
+g.on('end', function(files) {
+
+  files.forEach(parseFile);
 
   while (extenders.length) {
     var def  = extenders.pop();

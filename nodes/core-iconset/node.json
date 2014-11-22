@@ -78,12 +78,6 @@
             "description": "State info",
             "title": "State"
           },
-          "element": {
-            "type": "Element",
-            "name": "element",
-            "description": "The element to which the icon is",
-            "title": "Element"
-          },
           "icon": {
             "type": "String|Number",
             "name": "icon",
@@ -110,18 +104,6 @@
             "name": "node",
             "description": "The animated node",
             "title": "Node"
-          },
-          "css": {
-            "type": "string",
-            "name": "css",
-            "description": "selector to identify iconset users, ",
-            "title": "Css"
-          },
-          "method": {
-            "type": "string",
-            "name": "method",
-            "description": "to call on found elements, ",
-            "title": "Method"
           },
           "element": {
             "type": "Element",

@@ -15,14 +15,14 @@
         "name": "initialOpacity",
         "description": "The initial opacity set on the wave.",
         "type": "number",
-        "default": "0.25",
+        "default": 0,
         "title": "Initial opacity"
       },
       "opacityDecayVelocity": {
         "name": "opacityDecayVelocity",
         "description": "How fast (opacity per second) the wave fades out.",
         "type": "number",
-        "default": "0.8",
+        "default": 0,
         "title": "Opacity decay velocity"
       }
     },

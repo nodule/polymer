@@ -15,7 +15,7 @@
         "name": "secondaryProgress",
         "description": "The number that represents the current secondary progress.",
         "type": "number",
-        "default": "0",
+        "default": 0,
         "title": "Secondary progress"
       },
       "indeterminate": {
@@ -43,7 +43,7 @@
         "name": "immediateValue",
         "description": "The immediate value of the slider.  This value is updated while the user\nis dragging the slider.",
         "type": "number",
-        "default": "0",
+        "default": 0,
         "title": "Immediate value"
       }
     },

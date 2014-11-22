@@ -176,6 +176,10 @@ function convertDefault(def) {
         case 'boolean':
           def.default = /^t/i.test(def.default);
         break;
+
+        case 'number':
+          def.default = parseInt(def.default);
+        break;
       }
     }
   }

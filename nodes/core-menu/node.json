@@ -11,47 +11,47 @@
   },
   "ports": {
     "input": {
-      "noink": {
-        "name": "noink",
-        "description": "If true, ink ripple effect is disabled.",
-        "type": "boolean",
-        "default": false,
-        "title": "Noink"
+      "selected": {
+        "name": "selected",
+        "description": "Gets or sets the selected element.  Default to use the index\nof the item element.\n\nIf you want a specific attribute value of the element to be\nused instead of index, set \"valueattr\" to that attribute name.\n\nExample:\n\n    <core-selector valueattr=\"label\" selected=\"foo\">\n      <div label=\"foo\"></div>\n      <div label=\"bar\"></div>\n      <div label=\"zot\"></div>\n    </core-selector>\n\nIn multi-selection this should be an array of values.\n\nExample:\n\n    <core-selector id=\"selector\" valueattr=\"label\" multi>\n      <div label=\"foo\"></div>\n      <div label=\"bar\"></div>\n      <div label=\"zot\"></div>\n    </core-selector>\n\n    this.$.selector.selected = ['foo', 'zot'];",
+        "type": "Object",
+        "default": null,
+        "title": "Selected"
       },
-      "nobar": {
-        "name": "nobar",
-        "description": "If true, the bottom bar to indicate the selected tab will not be shown.",
+      "multi": {
+        "name": "multi",
+        "description": "If true, multiple selections are allowed.",
         "type": "boolean",
         "default": false,
-        "title": "Nobar"
+        "title": "Multi"
       },
-      "noslide": {
-        "name": "noslide",
-        "description": "If true, the slide effect for the bottom bar is disabled.",
-        "type": "boolean",
-        "default": false,
-        "title": "Noslide"
+      "valueattr": {
+        "name": "valueattr",
+        "description": "Specifies the attribute to be used for \"selected\" attribute.",
+        "type": "string",
+        "default": "name",
+        "title": "Valueattr"
       },
-      "scrollable": {
-        "name": "scrollable",
-        "description": "If true, tabs are scrollable and the tab width is based on the label width.",
-        "type": "boolean",
-        "default": false,
-        "title": "Scrollable"
+      "selectedClass": {
+        "name": "selectedClass",
+        "description": "Specifies the CSS class to be used to add to the selected element.",
+        "type": "string",
+        "default": "core-selected",
+        "title": "Selected class"
       },
-      "disableDrag": {
-        "name": "disableDrag",
-        "description": "If true, dragging on the tabs to scroll is disabled.",
-        "type": "boolean",
-        "default": false,
-        "title": "Disable drag"
+      "selectedProperty": {
+        "name": "selectedProperty",
+        "description": "Specifies the property to be used to set on the selected element\nto indicate its active state.",
+        "type": "string",
+        "default": "",
+        "title": "Selected property"
       },
-      "hideScrollButton": {
-        "name": "hideScrollButton",
-        "description": "If true, scroll buttons (left/right arrow) will be hidden for scrollable tabs.",
-        "type": "boolean",
-        "default": false,
-        "title": "Hide scroll button"
+      "selectedAttribute": {
+        "name": "selectedAttribute",
+        "description": "Specifies the attribute to set on the selected element to indicate\nits active state.",
+        "type": "string",
+        "default": "active",
+        "title": "Selected attribute"
       },
       "selectedItem": {
         "name": "selectedItem",
@@ -71,7 +71,7 @@
         "name": "selectedIndex",
         "description": "In single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
         "type": "number",
-        "default": "-1",
+        "default": -1,
         "title": "Selected index"
       },
       "excludedLocalNames": {
@@ -109,10 +109,10 @@
         "default": false,
         "title": "Notap"
       },
-      "updateBar": {
-        "name": "updateBar",
-        "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.",
-        "title": "Update bar",
+      "selectPrevious": {
+        "name": "selectPrevious",
+        "description": "Selects the previous item. This should be used in single selection only.\n\n                 wrap to the end",
+        "title": "Select previous",
         "async": true,
         "type": "object",
         "properties": {

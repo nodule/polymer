@@ -22,7 +22,7 @@
         "name": "duration",
         "description": "The duration in milliseconds to show the toast.",
         "type": "number",
-        "default": "3000",
+        "default": 3000,
         "title": "Duration"
       },
       "opened": {

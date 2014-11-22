@@ -22,14 +22,14 @@
         "name": "rows",
         "description": "The initial number of rows.",
         "type": "number",
-        "default": "1",
+        "default": 1,
         "title": "Rows"
       },
       "maxRows": {
         "name": "maxRows",
         "description": "The maximum number of rows this element can grow to until it\nscrolls. 0 means no maximum.",
         "type": "number",
-        "default": "0",
+        "default": 0,
         "title": "Max rows"
       },
       "update": {

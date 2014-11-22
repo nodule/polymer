@@ -15,7 +15,7 @@
         "name": "iconSize",
         "description": "The size of an individual icon. Note that icons must be square.",
         "type": "number",
-        "default": "24",
+        "default": 24,
         "title": "Icon size"
       },
       "applyIcon": {

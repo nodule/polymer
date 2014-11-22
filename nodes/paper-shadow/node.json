@@ -15,7 +15,7 @@
         "name": "z",
         "description": "The z-depth of this shadow, from 0-5. Setting this property\nafter element creation has no effect. Use `setZ()` instead.",
         "type": "number",
-        "default": "1",
+        "default": 1,
         "title": "Z"
       },
       "animated": {

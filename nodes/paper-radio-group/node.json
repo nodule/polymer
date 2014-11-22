@@ -71,7 +71,7 @@
         "name": "selectedIndex",
         "description": "In single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
         "type": "number",
-        "default": "-1",
+        "default": -1,
         "title": "Selected index"
       },
       "excludedLocalNames": {

@@ -71,14 +71,14 @@
         "name": "height",
         "description": "The approximate height of a list item, in pixels. This is used only for determining\nthe number of physical elements to render based on the viewport size\nof the list.  Items themselves may vary in height between each other\ndepending on their data model.  There is typically no need to adjust \nthis value unless the average size is much larger or smaller than the default.",
         "type": "number",
-        "default": "200",
+        "default": 200,
         "title": "Height"
       },
       "runwayFactor": {
         "name": "runwayFactor",
         "description": "The amount of scrolling runway the list keeps rendered, as a factor of\nthe list viewport size.  There is typically no need to adjust this value\nother than for performance tuning.  Larger value correspond to more\nphysical elements being rendered.",
         "type": "number",
-        "default": "4",
+        "default": 4,
         "title": "Runway factor"
       },
       "updateSize": {

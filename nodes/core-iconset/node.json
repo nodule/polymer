@@ -22,7 +22,7 @@
         "name": "width",
         "description": "The width of the iconset image. This must only be specified if the\nicons are arranged into separate rows inside the image.",
         "type": "number",
-        "default": "0",
+        "default": 0,
         "title": "Width"
       },
       "icons": {
@@ -36,21 +36,21 @@
         "name": "iconSize",
         "description": "The size of an individual icon. Note that icons must be square.",
         "type": "number",
-        "default": "24",
+        "default": 24,
         "title": "Icon size"
       },
       "offsetX": {
         "name": "offsetX",
         "description": "The horizontal offset of the icon images in the inconset src image.\nThis is typically used if the image resource contains additional images\nbeside those intended for the iconset.",
         "type": "number",
-        "default": "0",
+        "default": 0,
         "title": "Offset x"
       },
       "offsetY": {
         "name": "offsetY",
         "description": "The vertical offset of the icon images in the inconset src image.\nThis is typically used if the image resource contains additional images\nbeside those intended for the iconset.",
         "type": "number",
-        "default": "0",
+        "default": 0,
         "title": "Offset y"
       },
       "getOffset": {

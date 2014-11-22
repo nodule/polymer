@@ -36,7 +36,7 @@
         "name": "duration",
         "description": "Collapsing/expanding animation duration in second.",
         "type": "number",
-        "default": "0.33",
+        "default": 0,
         "title": "Duration"
       },
       "fixedSize": {

@@ -15,7 +15,7 @@
         "name": "duration",
         "description": "The duration of the transition in ms. You can also set the duration by\nsetting a `duration` attribute on the target:\n\n   <paper-dropdown duration=\"1000\"></paper-dropdown>",
         "type": "number",
-        "default": "500",
+        "default": 500,
         "title": "Duration"
       },
       "openedClass": {

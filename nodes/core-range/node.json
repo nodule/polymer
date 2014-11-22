@@ -15,35 +15,35 @@
         "name": "value",
         "description": "The number that represents the current value.",
         "type": "number",
-        "default": "0",
+        "default": 0,
         "title": "Value"
       },
       "min": {
         "name": "min",
         "description": "The number that indicates the minimum value of the range.",
         "type": "number",
-        "default": "0",
+        "default": 0,
         "title": "Min"
       },
       "max": {
         "name": "max",
         "description": "The number that indicates the maximum value of the range.",
         "type": "number",
-        "default": "100",
+        "default": 100,
         "title": "Max"
       },
       "step": {
         "name": "step",
         "description": "Specifies the value granularity of the range's value.",
         "type": "number",
-        "default": "1",
+        "default": 1,
         "title": "Step"
       },
       "ratio": {
         "name": "ratio",
         "description": "Returns the ratio of the value.",
         "type": "number",
-        "default": "0",
+        "default": 0,
         "title": "Ratio"
       }
     },

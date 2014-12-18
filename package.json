@@ -16,7 +16,9 @@
     "url": "https://github.com/nodule/polymer/issues"
   },
   "homepage": "https://github.com/nodule/polymer",
-  "dependencies": {},
+  "dependencies": {
+    "underscore": "^1.7.0"
+  },
   "devDependencies": {
     "polymer-context-free-parser": "git://github.com/Polymer/context-free-parser",
     "extend": "^2.0.0",

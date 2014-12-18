@@ -24,40 +24,8 @@
         "type": "boolean",
         "default": false,
         "title": "Indeterminate"
-      },
-      "disabled": {
-        "name": "disabled",
-        "description": "If true, this slider is disabled.  A disabled slider cannot be tapped\nor dragged to change the slider value.",
-        "type": "boolean",
-        "default": false,
-        "title": "Disabled"
-      },
-      "editable": {
-        "name": "editable",
-        "description": "If true, an input is shown and user can use it to set the slider value.",
-        "type": "boolean",
-        "default": false,
-        "title": "Editable"
-      },
-      "immediateValue": {
-        "name": "immediateValue",
-        "description": "The immediate value of the slider.  This value is updated while the user\nis dragging the slider.",
-        "type": "number",
-        "default": 0,
-        "title": "Immediate value"
       }
     },
-    "output": {
-      "core-change": {
-        "name": "core-change",
-        "description": "Fired when the slider's value changes.",
-        "title": "Core change"
-      },
-      "change": {
-        "name": "change",
-        "description": "Fired when the slider's value changes due to user interaction.\n\nChanges to the slider's value due to changes in an underlying\nbound variable will not trigger this event.",
-        "title": "Change"
-      }
-    }
+    "output": {}
   }
 }

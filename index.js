@@ -4,10 +4,10 @@ var util = require('util');
 var glob = require('glob');
 var path = require('path');
 var d = require('dot-object')();
-var extend = require('extend');
 var defs = {};
 var extenders = [];
 var humanize = require('underscore.string').humanize;
+var _ = require('underscore');
 var g = glob('./bower_components/*/*.html');
 
 /**
@@ -15,6 +15,9 @@ var g = glob('./bower_components/*/*.html');
  * Todo: some packages define multiple components.
  * Maybe use metadata.
  *
+ *
+ * core-slider extends core-range
+ * But the attributes are not merged..
  */
 
 function parseFile(file) {
@@ -38,9 +41,17 @@ g.on('end', function(files) {
     var def  = extenders.pop();
     var base = defs[def.extends];
 
+    console.log('doing extender', def.extends);
+
     if(base) {
       def.extends = null;
-      def = extend(true, base, def);
+      //def = extend(true, base, def);
+      def = _.extend(true, def, base);
+      console.log(def.name);
+      if(def.name === 'paper-slider') {
+        console.log('MERGED!', def);
+      }
+
       processDef(def);
     } else {
       console.log('Unable to find:', def.extends);
@@ -55,24 +66,28 @@ function processDef(def, base) {
     return false;
   }
 
-  if (def.extends) {
-    extenders.push(def);
-  }
-
-  // register to resolve extends
-  defs[def.name] = def;
-
-  if (!def.methods && !def.attributes && !def.events) {
-    // ain't no web component or is base
-    return false;
-  }
-
   console.log('Processing', def.name, [
     'attributes', 'methods', 'events'
   ].filter(function(prop) { return def.hasOwnProperty(prop);  })
     .join(', '));
 
   var nD = createNodeDefinition(def);
+
+  console.log('nD.name', nD.name);
+
+  // register to resolve extends
+  defs[nD.name] = nD;
+
+  if (def.extends) {
+    nD.extends = def.extends;
+    extenders.push(nD);
+    return;
+  }
+
+  if (!def.methods && !def.attributes && !def.events) {
+    // ain't no web component or is base
+    return false;
+  }
 
   // only write if there are any ports.
   if (Object.keys(nD.ports.input).length || Object.keys(nD.ports.output).length) {
@@ -193,7 +208,9 @@ function createNodeDefinition(def) {
   nD.title = humanize(def.name);
   nD.ns = 'polymer';
   nD.type = 'polymer';
-  nD.description = def.description.trim();
+  if(def.description) {
+    nD.description = def.description.trim();
+  }
   nD.dependencies = { bower: { } };
   nD.dependencies.bower[def.name] =
     'Polymer/' + def.name + '#master';

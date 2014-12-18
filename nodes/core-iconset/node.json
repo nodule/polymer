@@ -60,24 +60,6 @@
         "async": true,
         "type": "object",
         "properties": {
-          "id": {
-            "type": "String",
-            "name": "id",
-            "description": "The ID of the meta-data to be returned.",
-            "title": "Id"
-          },
-          "node": {
-            "type": "Node",
-            "name": "node",
-            "description": "The node to apply the animation on",
-            "title": "Node"
-          },
-          "state": {
-            "type": "Object",
-            "name": "state",
-            "description": "State info",
-            "title": "State"
-          },
           "icon": {
             "type": "String|Number",
             "name": "icon",
@@ -99,12 +81,6 @@
         "async": true,
         "type": "object",
         "properties": {
-          "node": {
-            "type": "Node",
-            "name": "node",
-            "description": "The animated node",
-            "title": "Node"
-          },
           "element": {
             "type": "Element",
             "name": "element",
@@ -124,93 +100,8 @@
             "title": "Scale"
           }
         }
-      },
-      "teardown": {
-        "name": "teardown",
-        "description": "Tear down the animation.",
-        "title": "Teardown",
-        "async": true,
-        "type": "object",
-        "properties": {
-          "node": {
-            "type": "Node",
-            "name": "node",
-            "description": "The animated node",
-            "title": "Node"
-          }
-        }
-      },
-      "complete": {
-        "name": "complete",
-        "description": "Called when the animation completes. This function also fires the\n`core-transitionend` event.",
-        "title": "Complete",
-        "async": true,
-        "type": "object",
-        "properties": {
-          "node": {
-            "type": "Node",
-            "name": "node",
-            "description": "The animated node",
-            "title": "Node"
-          }
-        }
-      },
-      "listenOnce": {
-        "name": "listenOnce",
-        "description": "Utility function to listen to an event on a node once.",
-        "title": "Listen once",
-        "async": true,
-        "type": "object",
-        "properties": {
-          "node": {
-            "type": "Node",
-            "name": "node",
-            "description": "The animated node",
-            "title": "Node"
-          },
-          "event": {
-            "type": "string",
-            "name": "event",
-            "description": "Name of an event",
-            "title": "Event"
-          },
-          "fn": {
-            "type": "Function",
-            "name": "fn",
-            "description": "Event handler",
-            "title": "Fn"
-          },
-          "args": {
-            "type": "Array",
-            "name": "args",
-            "description": "Additional arguments to pass to `fn`",
-            "title": "Args"
-          }
-        }
       }
     },
-    "output": {
-      "core-transitionend": {
-        "name": "core-transitionend",
-        "description": "Fired when the animation finishes.",
-        "title": "Core transitionend",
-        "type": "object",
-        "properties": {
-          "detail": {
-            "type": "Object",
-            "name": "detail",
-            "title": "Detail",
-            "properties": {
-              "node": {
-                "type": "Object",
-                "name": "node",
-                "description": "The animated node",
-                "title": "Node"
-              }
-            }
-          }
-        }
-      }
-    }
+    "output": {}
   }
 }

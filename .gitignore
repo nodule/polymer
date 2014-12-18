@@ -3,6 +3,8 @@ logs
 *.log
 *.txt
 
+polymer-browserify*
+
 # vim
 *.swp
 

@@ -17,33 +17,6 @@
         "type": "number",
         "default": 500,
         "title": "Duration"
-      },
-      "openedClass": {
-        "name": "openedClass",
-        "description": "The class that will be applied to nodes in the opened state.",
-        "type": "string",
-        "default": "\"core-opened\"",
-        "title": "Opened class"
-      },
-      "closedClass": {
-        "name": "closedClass",
-        "description": "The class that will be applied to nodes in the closed state.",
-        "type": "string",
-        "default": "\"core-closed\"",
-        "title": "Closed class"
-      },
-      "completeEventName": {
-        "name": "completeEventName",
-        "description": "Event to listen to for animation completion.",
-        "type": "string",
-        "default": "\"transitionEnd\"",
-        "title": "Complete event name"
-      },
-      "transitionType": {
-        "name": "transitionType",
-        "description": "A secondary configuration attribute for the animation. The class\n`<baseClass>-<transitionType` is applied to the animated node during\n`setup`.",
-        "type": "string",
-        "title": "Transition type"
       }
     },
     "output": {}

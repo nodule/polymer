@@ -18,34 +18,6 @@
         "default": 24,
         "title": "Icon size"
       },
-      "width": {
-        "name": "width",
-        "description": "The width of the iconset image. This must only be specified if the\nicons are arranged into separate rows inside the image.",
-        "type": "number",
-        "default": 0,
-        "title": "Width"
-      },
-      "icons": {
-        "name": "icons",
-        "description": "A space separated list of names corresponding to icons in the iconset\nimage file. This list must be ordered the same as the icon images\nin the image file.",
-        "type": "string",
-        "default": "",
-        "title": "Icons"
-      },
-      "offsetX": {
-        "name": "offsetX",
-        "description": "The horizontal offset of the icon images in the inconset src image.\nThis is typically used if the image resource contains additional images\nbeside those intended for the iconset.",
-        "type": "number",
-        "default": 0,
-        "title": "Offset x"
-      },
-      "offsetY": {
-        "name": "offsetY",
-        "description": "The vertical offset of the icon images in the inconset src image.\nThis is typically used if the image resource contains additional images\nbeside those intended for the iconset.",
-        "type": "number",
-        "default": 0,
-        "title": "Offset y"
-      },
       "applyIcon": {
         "name": "applyIcon",
         "description": "Applies an icon to the given element. The svg icon is added to the\nelement's shadowRoot if one exists or directly to itself.\n\napplied.",
@@ -53,41 +25,17 @@
         "async": true,
         "type": "object",
         "properties": {
-          "id": {
-            "type": "String",
-            "name": "id",
-            "description": "The ID of the meta-data to be returned.",
-            "title": "Id"
-          },
-          "node": {
-            "type": "Node",
-            "name": "node",
-            "description": "The node to apply the animation on",
-            "title": "Node"
-          },
-          "state": {
-            "type": "Object",
-            "name": "state",
-            "description": "State info",
-            "title": "State"
+          "element": {
+            "type": "Element",
+            "name": "element",
+            "description": "The element to which the icon is",
+            "title": "Element"
           },
           "icon": {
             "type": "String|Number",
             "name": "icon",
             "description": "The name the icon to apply.",
             "title": "Icon"
-          },
-          "theme": {
-            "type": "String",
-            "name": "theme",
-            "description": "The name of the theme.",
-            "title": "Theme"
-          },
-          "element": {
-            "type": "Element",
-            "name": "element",
-            "description": "The element to which the icon is",
-            "title": "Element"
           }
         }
       },
@@ -98,30 +46,6 @@
         "async": true,
         "type": "object",
         "properties": {
-          "node": {
-            "type": "Node",
-            "name": "node",
-            "description": "The animated node",
-            "title": "Node"
-          },
-          "element": {
-            "type": "Element",
-            "name": "element",
-            "description": "The element to which the background is",
-            "title": "Element"
-          },
-          "icon": {
-            "type": "String|Number",
-            "name": "icon",
-            "description": "The name or index of the icon to apply.",
-            "title": "Icon"
-          },
-          "scale": {
-            "type": "Number",
-            "name": "scale",
-            "description": "(optional, defaults to 1) A scaling factor ",
-            "title": "Scale"
-          },
           "css": {
             "type": "string",
             "name": "css",
@@ -135,93 +59,8 @@
             "title": "Method"
           }
         }
-      },
-      "teardown": {
-        "name": "teardown",
-        "description": "Tear down the animation.",
-        "title": "Teardown",
-        "async": true,
-        "type": "object",
-        "properties": {
-          "node": {
-            "type": "Node",
-            "name": "node",
-            "description": "The animated node",
-            "title": "Node"
-          }
-        }
-      },
-      "complete": {
-        "name": "complete",
-        "description": "Called when the animation completes. This function also fires the\n`core-transitionend` event.",
-        "title": "Complete",
-        "async": true,
-        "type": "object",
-        "properties": {
-          "node": {
-            "type": "Node",
-            "name": "node",
-            "description": "The animated node",
-            "title": "Node"
-          }
-        }
-      },
-      "listenOnce": {
-        "name": "listenOnce",
-        "description": "Utility function to listen to an event on a node once.",
-        "title": "Listen once",
-        "async": true,
-        "type": "object",
-        "properties": {
-          "node": {
-            "type": "Node",
-            "name": "node",
-            "description": "The animated node",
-            "title": "Node"
-          },
-          "event": {
-            "type": "string",
-            "name": "event",
-            "description": "Name of an event",
-            "title": "Event"
-          },
-          "fn": {
-            "type": "Function",
-            "name": "fn",
-            "description": "Event handler",
-            "title": "Fn"
-          },
-          "args": {
-            "type": "Array",
-            "name": "args",
-            "description": "Additional arguments to pass to `fn`",
-            "title": "Args"
-          }
-        }
       }
     },
-    "output": {
-      "core-transitionend": {
-        "name": "core-transitionend",
-        "description": "Fired when the animation finishes.",
-        "title": "Core transitionend",
-        "type": "object",
-        "properties": {
-          "detail": {
-            "type": "Object",
-            "name": "detail",
-            "title": "Detail",
-            "properties": {
-              "node": {
-                "type": "Object",
-                "name": "node",
-                "description": "The animated node",
-                "title": "Node"
-              }
-            }
-          }
-        }
-      }
-    }
+    "output": {}
   }
 }

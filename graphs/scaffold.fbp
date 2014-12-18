@@ -1,0 +1,13 @@
+title: Scaffolding
+
+# Generate with fbpx compile
+# however it should understand polymer.
+# and it always needs a html page as host
+# but it would be nice if it could be generated for us.
+# maybe fbpx serve graphs/scaffold.fbp ?
+# or not sure what vulcanize does.
+# would that handle bower dependencies also?
+
+Scaffold(polymer/core-scaffold)
+
+

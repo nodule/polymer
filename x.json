@@ -6,7 +6,9 @@
     "type": "git",
     "url": "git://github.com/nodule/polymer.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "underscore": "^1.7.0"
+  },
   "nodes": [
     {
       "ports": {
@@ -191,170 +193,18 @@
             "type": "Object",
             "default": null,
             "title": "Last selected"
-          },
-          "noslide": {
-            "name": "noslide",
-            "description": "If true, the slide effect for the bottom bar is disabled.",
-            "type": "boolean",
-            "default": false,
-            "title": "Noslide"
-          },
-          "scrollable": {
-            "name": "scrollable",
-            "description": "If true, tabs are scrollable and the tab width is based on the label width.",
-            "type": "boolean",
-            "default": false,
-            "title": "Scrollable"
-          },
-          "disableDrag": {
-            "name": "disableDrag",
-            "description": "If true, dragging on the tabs to scroll is disabled.",
-            "type": "boolean",
-            "default": false,
-            "title": "Disable drag"
-          },
-          "hideScrollButton": {
-            "name": "hideScrollButton",
-            "description": "If true, scroll buttons (left/right arrow) will be hidden for scrollable tabs.",
-            "type": "boolean",
-            "default": false,
-            "title": "Hide scroll button"
-          },
-          "selectedItem": {
-            "name": "selectedItem",
-            "description": "Returns the currently selected element. In multi-selection this returns\nan array of selected elements.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
-            "type": "Object",
-            "default": null,
-            "title": "Selected item"
-          },
-          "selectedModel": {
-            "name": "selectedModel",
-            "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
-            "type": "Object",
-            "default": null,
-            "title": "Selected model"
-          },
-          "selectedIndex": {
-            "name": "selectedIndex",
-            "description": "In single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
-            "type": "number",
-            "default": -1,
-            "title": "Selected index"
-          },
-          "excludedLocalNames": {
-            "name": "excludedLocalNames",
-            "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
-            "type": "string",
-            "default": "",
-            "title": "Excluded local names"
-          },
-          "target": {
-            "name": "target",
-            "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
-            "type": "Object",
-            "default": null,
-            "title": "Target"
-          },
-          "itemsSelector": {
-            "name": "itemsSelector",
-            "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
-            "type": "string",
-            "default": "",
-            "title": "Items selector"
-          },
-          "activateEvent": {
-            "name": "activateEvent",
-            "description": "The event that would be fired from the item element to indicate\nit is being selected.",
-            "type": "string",
-            "default": "tap",
-            "title": "Activate event"
-          },
-          "notap": {
-            "name": "notap",
-            "description": "Set this to true to disallow changing the selection via the\n`activateEvent`.",
-            "type": "boolean",
-            "default": false,
-            "title": "Notap"
-          },
-          "updateBar": {
-            "name": "updateBar",
-            "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.",
-            "title": "Update bar",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "wrapped": {
-                "type": "boolean",
-                "name": "wrapped",
-                "description": "if true and it is already at the first item,",
-                "title": "Wrapped"
-              }
-            }
-          },
-          "selectNext": {
-            "name": "selectNext",
-            "description": "Selects the next item.  This should be used in single selection only.\n\n                 wrap to the front",
-            "title": "Select next",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "wrapped": {
-                "type": "boolean",
-                "name": "wrapped",
-                "description": "if true and it is already at the last item,",
-                "title": "Wrapped"
-              }
-            }
           }
         },
         "output": {
           "core-animated-pages-transition-prepare": {
             "name": "core-animated-pages-transition-prepare",
             "description": "Fired before a page transition occurs. Both pages involved in the transition are visible when\nthis event fires. This is useful if there is something the client needs to do when a page becomes\nvisible.",
-            "title": "Core animated pages transition prepare",
-            "type": "object",
-            "properties": {
-              "detail": {
-                "type": "Object",
-                "name": "detail",
-                "title": "Detail",
-                "properties": {
-                  "isSelected": {
-                    "type": "boolean",
-                    "name": "isSelected",
-                    "description": "true for selection and false for deselection",
-                    "title": "Is selected"
-                  },
-                  "item": {
-                    "type": "Object",
-                    "name": "item",
-                    "description": "the item element",
-                    "title": "Item"
-                  }
-                }
-              }
-            }
+            "title": "Core animated pages transition prepare"
           },
           "core-animated-pages-transition-end": {
             "name": "core-animated-pages-transition-end",
             "description": "Fired when a page transition completes.",
-            "title": "Core animated pages transition end",
-            "type": "object",
-            "properties": {
-              "detail": {
-                "type": "Object",
-                "name": "detail",
-                "title": "Detail",
-                "properties": {
-                  "item": {
-                    "type": "Object",
-                    "name": "item",
-                    "description": "the item element",
-                    "title": "Item"
-                  }
-                }
-              }
-            }
+            "title": "Core animated pages transition end"
           }
         }
       },
@@ -702,35 +552,7 @@
             "title": "Closed icon"
           }
         },
-        "output": {
-          "core-select": {
-            "name": "core-select",
-            "description": "Fired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.",
-            "title": "Core select",
-            "type": "object",
-            "properties": {
-              "detail": {
-                "type": "Object",
-                "name": "detail",
-                "title": "Detail",
-                "properties": {
-                  "isSelected": {
-                    "type": "boolean",
-                    "name": "isSelected",
-                    "description": "true for selection and false for deselection",
-                    "title": "Is selected"
-                  },
-                  "item": {
-                    "type": "Object",
-                    "name": "item",
-                    "description": "the item element",
-                    "title": "Item"
-                  }
-                }
-              }
-            }
-          }
-        }
+        "output": {}
       },
       "dependencies": {
         "bower": {
@@ -910,34 +732,6 @@
             "default": 24,
             "title": "Icon size"
           },
-          "width": {
-            "name": "width",
-            "description": "The width of the iconset image. This must only be specified if the\nicons are arranged into separate rows inside the image.",
-            "type": "number",
-            "default": 0,
-            "title": "Width"
-          },
-          "icons": {
-            "name": "icons",
-            "description": "A space separated list of names corresponding to icons in the iconset\nimage file. This list must be ordered the same as the icon images\nin the image file.",
-            "type": "string",
-            "default": "",
-            "title": "Icons"
-          },
-          "offsetX": {
-            "name": "offsetX",
-            "description": "The horizontal offset of the icon images in the inconset src image.\nThis is typically used if the image resource contains additional images\nbeside those intended for the iconset.",
-            "type": "number",
-            "default": 0,
-            "title": "Offset x"
-          },
-          "offsetY": {
-            "name": "offsetY",
-            "description": "The vertical offset of the icon images in the inconset src image.\nThis is typically used if the image resource contains additional images\nbeside those intended for the iconset.",
-            "type": "number",
-            "default": 0,
-            "title": "Offset y"
-          },
           "applyIcon": {
             "name": "applyIcon",
             "description": "Applies an icon to the given element. The svg icon is added to the\nelement's shadowRoot if one exists or directly to itself.\n\napplied.",
@@ -945,41 +739,17 @@
             "async": true,
             "type": "object",
             "properties": {
-              "id": {
-                "type": "String",
-                "name": "id",
-                "description": "The ID of the meta-data to be returned.",
-                "title": "Id"
-              },
-              "node": {
-                "type": "Node",
-                "name": "node",
-                "description": "The node to apply the animation on",
-                "title": "Node"
-              },
-              "state": {
-                "type": "Object",
-                "name": "state",
-                "description": "State info",
-                "title": "State"
+              "element": {
+                "type": "Element",
+                "name": "element",
+                "description": "The element to which the icon is",
+                "title": "Element"
               },
               "icon": {
                 "type": "String|Number",
                 "name": "icon",
                 "description": "The name the icon to apply.",
                 "title": "Icon"
-              },
-              "theme": {
-                "type": "String",
-                "name": "theme",
-                "description": "The name of the theme.",
-                "title": "Theme"
-              },
-              "element": {
-                "type": "Element",
-                "name": "element",
-                "description": "The element to which the icon is",
-                "title": "Element"
               }
             }
           },
@@ -990,30 +760,6 @@
             "async": true,
             "type": "object",
             "properties": {
-              "node": {
-                "type": "Node",
-                "name": "node",
-                "description": "The animated node",
-                "title": "Node"
-              },
-              "element": {
-                "type": "Element",
-                "name": "element",
-                "description": "The element to which the background is",
-                "title": "Element"
-              },
-              "icon": {
-                "type": "String|Number",
-                "name": "icon",
-                "description": "The name or index of the icon to apply.",
-                "title": "Icon"
-              },
-              "scale": {
-                "type": "Number",
-                "name": "scale",
-                "description": "(optional, defaults to 1) A scaling factor ",
-                "title": "Scale"
-              },
               "css": {
                 "type": "string",
                 "name": "css",
@@ -1027,94 +773,9 @@
                 "title": "Method"
               }
             }
-          },
-          "teardown": {
-            "name": "teardown",
-            "description": "Tear down the animation.",
-            "title": "Teardown",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "node": {
-                "type": "Node",
-                "name": "node",
-                "description": "The animated node",
-                "title": "Node"
-              }
-            }
-          },
-          "complete": {
-            "name": "complete",
-            "description": "Called when the animation completes. This function also fires the\n`core-transitionend` event.",
-            "title": "Complete",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "node": {
-                "type": "Node",
-                "name": "node",
-                "description": "The animated node",
-                "title": "Node"
-              }
-            }
-          },
-          "listenOnce": {
-            "name": "listenOnce",
-            "description": "Utility function to listen to an event on a node once.",
-            "title": "Listen once",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "node": {
-                "type": "Node",
-                "name": "node",
-                "description": "The animated node",
-                "title": "Node"
-              },
-              "event": {
-                "type": "string",
-                "name": "event",
-                "description": "Name of an event",
-                "title": "Event"
-              },
-              "fn": {
-                "type": "Function",
-                "name": "fn",
-                "description": "Event handler",
-                "title": "Fn"
-              },
-              "args": {
-                "type": "Array",
-                "name": "args",
-                "description": "Additional arguments to pass to `fn`",
-                "title": "Args"
-              }
-            }
           }
         },
-        "output": {
-          "core-transitionend": {
-            "name": "core-transitionend",
-            "description": "Fired when the animation finishes.",
-            "title": "Core transitionend",
-            "type": "object",
-            "properties": {
-              "detail": {
-                "type": "Object",
-                "name": "detail",
-                "title": "Detail",
-                "properties": {
-                  "node": {
-                    "type": "Object",
-                    "name": "node",
-                    "description": "The animated node",
-                    "title": "Node"
-                  }
-                }
-              }
-            }
-          }
-        }
+        "output": {}
       },
       "dependencies": {
         "bower": {
@@ -1179,24 +840,6 @@
             "async": true,
             "type": "object",
             "properties": {
-              "id": {
-                "type": "String",
-                "name": "id",
-                "description": "The ID of the meta-data to be returned.",
-                "title": "Id"
-              },
-              "node": {
-                "type": "Node",
-                "name": "node",
-                "description": "The node to apply the animation on",
-                "title": "Node"
-              },
-              "state": {
-                "type": "Object",
-                "name": "state",
-                "description": "State info",
-                "title": "State"
-              },
               "icon": {
                 "type": "String|Number",
                 "name": "icon",
@@ -1218,12 +861,6 @@
             "async": true,
             "type": "object",
             "properties": {
-              "node": {
-                "type": "Node",
-                "name": "node",
-                "description": "The animated node",
-                "title": "Node"
-              },
               "element": {
                 "type": "Element",
                 "name": "element",
@@ -1243,94 +880,9 @@
                 "title": "Scale"
               }
             }
-          },
-          "teardown": {
-            "name": "teardown",
-            "description": "Tear down the animation.",
-            "title": "Teardown",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "node": {
-                "type": "Node",
-                "name": "node",
-                "description": "The animated node",
-                "title": "Node"
-              }
-            }
-          },
-          "complete": {
-            "name": "complete",
-            "description": "Called when the animation completes. This function also fires the\n`core-transitionend` event.",
-            "title": "Complete",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "node": {
-                "type": "Node",
-                "name": "node",
-                "description": "The animated node",
-                "title": "Node"
-              }
-            }
-          },
-          "listenOnce": {
-            "name": "listenOnce",
-            "description": "Utility function to listen to an event on a node once.",
-            "title": "Listen once",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "node": {
-                "type": "Node",
-                "name": "node",
-                "description": "The animated node",
-                "title": "Node"
-              },
-              "event": {
-                "type": "string",
-                "name": "event",
-                "description": "Name of an event",
-                "title": "Event"
-              },
-              "fn": {
-                "type": "Function",
-                "name": "fn",
-                "description": "Event handler",
-                "title": "Fn"
-              },
-              "args": {
-                "type": "Array",
-                "name": "args",
-                "description": "Additional arguments to pass to `fn`",
-                "title": "Args"
-              }
-            }
           }
         },
-        "output": {
-          "core-transitionend": {
-            "name": "core-transitionend",
-            "description": "Fired when the animation finishes.",
-            "title": "Core transitionend",
-            "type": "object",
-            "properties": {
-              "detail": {
-                "type": "Object",
-                "name": "detail",
-                "title": "Detail",
-                "properties": {
-                  "node": {
-                    "type": "Object",
-                    "name": "node",
-                    "description": "The animated node",
-                    "title": "Node"
-                  }
-                }
-              }
-            }
-          }
-        }
+        "output": {}
       },
       "dependencies": {
         "bower": {
@@ -1949,91 +1501,11 @@
             "default": false,
             "title": "Hide scroll button"
           },
-          "selectedItem": {
-            "name": "selectedItem",
-            "description": "Returns the currently selected element. In multi-selection this returns\nan array of selected elements.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
-            "type": "Object",
-            "default": null,
-            "title": "Selected item"
-          },
-          "selectedModel": {
-            "name": "selectedModel",
-            "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
-            "type": "Object",
-            "default": null,
-            "title": "Selected model"
-          },
-          "selectedIndex": {
-            "name": "selectedIndex",
-            "description": "In single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
-            "type": "number",
-            "default": -1,
-            "title": "Selected index"
-          },
-          "excludedLocalNames": {
-            "name": "excludedLocalNames",
-            "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
-            "type": "string",
-            "default": "",
-            "title": "Excluded local names"
-          },
-          "target": {
-            "name": "target",
-            "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
-            "type": "Object",
-            "default": null,
-            "title": "Target"
-          },
-          "itemsSelector": {
-            "name": "itemsSelector",
-            "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
-            "type": "string",
-            "default": "",
-            "title": "Items selector"
-          },
-          "activateEvent": {
-            "name": "activateEvent",
-            "description": "The event that would be fired from the item element to indicate\nit is being selected.",
-            "type": "string",
-            "default": "tap",
-            "title": "Activate event"
-          },
-          "notap": {
-            "name": "notap",
-            "description": "Set this to true to disallow changing the selection via the\n`activateEvent`.",
-            "type": "boolean",
-            "default": false,
-            "title": "Notap"
-          },
           "updateBar": {
             "name": "updateBar",
             "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.",
             "title": "Update bar",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "wrapped": {
-                "type": "boolean",
-                "name": "wrapped",
-                "description": "if true and it is already at the first item,",
-                "title": "Wrapped"
-              }
-            }
-          },
-          "selectNext": {
-            "name": "selectNext",
-            "description": "Selects the next item.  This should be used in single selection only.\n\n                 wrap to the front",
-            "title": "Select next",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "wrapped": {
-                "type": "boolean",
-                "name": "wrapped",
-                "description": "if true and it is already at the last item,",
-                "title": "Wrapped"
-              }
-            }
+            "async": true
           }
         },
         "output": {
@@ -2358,91 +1830,11 @@
             "default": false,
             "title": "Hide scroll button"
           },
-          "selectedItem": {
-            "name": "selectedItem",
-            "description": "Returns the currently selected element. In multi-selection this returns\nan array of selected elements.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
-            "type": "Object",
-            "default": null,
-            "title": "Selected item"
-          },
-          "selectedModel": {
-            "name": "selectedModel",
-            "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
-            "type": "Object",
-            "default": null,
-            "title": "Selected model"
-          },
-          "selectedIndex": {
-            "name": "selectedIndex",
-            "description": "In single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
-            "type": "number",
-            "default": -1,
-            "title": "Selected index"
-          },
-          "excludedLocalNames": {
-            "name": "excludedLocalNames",
-            "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
-            "type": "string",
-            "default": "",
-            "title": "Excluded local names"
-          },
-          "target": {
-            "name": "target",
-            "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
-            "type": "Object",
-            "default": null,
-            "title": "Target"
-          },
-          "itemsSelector": {
-            "name": "itemsSelector",
-            "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
-            "type": "string",
-            "default": "",
-            "title": "Items selector"
-          },
-          "activateEvent": {
-            "name": "activateEvent",
-            "description": "The event that would be fired from the item element to indicate\nit is being selected.",
-            "type": "string",
-            "default": "tap",
-            "title": "Activate event"
-          },
-          "notap": {
-            "name": "notap",
-            "description": "Set this to true to disallow changing the selection via the\n`activateEvent`.",
-            "type": "boolean",
-            "default": false,
-            "title": "Notap"
-          },
           "updateBar": {
             "name": "updateBar",
             "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.",
             "title": "Update bar",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "wrapped": {
-                "type": "boolean",
-                "name": "wrapped",
-                "description": "if true and it is already at the first item,",
-                "title": "Wrapped"
-              }
-            }
-          },
-          "selectNext": {
-            "name": "selectNext",
-            "description": "Selects the next item.  This should be used in single selection only.\n\n                 wrap to the front",
-            "title": "Select next",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "wrapped": {
-                "type": "boolean",
-                "name": "wrapped",
-                "description": "if true and it is already at the last item,",
-                "title": "Wrapped"
-              }
-            }
+            "async": true
           }
         },
         "output": {
@@ -3331,13 +2723,6 @@
     {
       "ports": {
         "input": {
-          "type": {
-            "name": "type",
-            "description": "The type of meta-data.  All meta-data with the same type with be\nstored together.",
-            "type": "string",
-            "default": "default",
-            "title": "Type"
-          },
           "go": {
             "name": "go",
             "description": "Run the animation.",
@@ -3345,12 +2730,6 @@
             "async": true,
             "type": "object",
             "properties": {
-              "id": {
-                "type": "String",
-                "name": "id",
-                "description": "The ID of the meta-data to be returned.",
-                "title": "Id"
-              },
               "node": {
                 "type": "Node",
                 "name": "node",
@@ -3575,20 +2954,6 @@
             "type": "string",
             "default": "[affirmative],[dismissive]",
             "title": "Close selector"
-          },
-          "transition": {
-            "name": "transition",
-            "description": "",
-            "type": "string",
-            "default": "",
-            "title": "Transition"
-          },
-          "layered": {
-            "name": "layered",
-            "description": "",
-            "type": "boolean",
-            "default": true,
-            "title": "Layered"
           }
         },
         "output": {}
@@ -3655,19 +3020,22 @@
             "name": "raised",
             "description": "If true, the button will be styled with a shadow.",
             "type": "boolean",
-            "default": "false"
+            "default": false,
+            "title": "Raised"
           },
           "recenteringTouch": {
             "name": "recenteringTouch",
             "description": "By default the ripple emanates from where the user touched the button.\nSet this to true to always center the ripple.",
             "type": "boolean",
-            "default": "false"
+            "default": false,
+            "title": "Recentering touch"
           },
           "fill": {
             "name": "fill",
             "description": "By default the ripple expands to fill the button. Set this to false to\nconstrain the ripple to a circle within the button.",
             "type": "boolean",
-            "default": "true"
+            "default": true,
+            "title": "Fill"
           }
         },
         "output": {}
@@ -3680,6 +3048,7 @@
       "description": "`paper-button-base` is the base class for button-like elements with ripple and optional shadow.",
       "type": "polymer",
       "ns": "polymer",
+      "title": "Paper button base",
       "name": "paper-button-base"
     },
     {
@@ -3722,36 +3091,7 @@
     },
     {
       "ports": {
-        "input": {
-          "checked": {
-            "name": "checked",
-            "description": "Gets or sets the state, `true` is checked and `false` is unchecked.",
-            "type": "boolean",
-            "default": false,
-            "title": "Checked"
-          },
-          "label": {
-            "name": "label",
-            "description": "The label for the radio button.",
-            "type": "string",
-            "default": "",
-            "title": "Label"
-          },
-          "toggles": {
-            "name": "toggles",
-            "description": "Normally the user cannot uncheck the radio button by tapping once\nchecked.  Setting this property to `true` makes the radio button\ntoggleable from checked to unchecked.",
-            "type": "boolean",
-            "default": false,
-            "title": "Toggles"
-          },
-          "disabled": {
-            "name": "disabled",
-            "description": "If true, the user cannot interact with this element.",
-            "type": "boolean",
-            "default": false,
-            "title": "Disabled"
-          }
-        },
+        "input": {},
         "output": {
           "change": {
             "name": "change",
@@ -3927,33 +3267,6 @@
             "type": "number",
             "default": 500,
             "title": "Duration"
-          },
-          "openedClass": {
-            "name": "openedClass",
-            "description": "The class that will be applied to nodes in the opened state.",
-            "type": "string",
-            "default": "\"core-opened\"",
-            "title": "Opened class"
-          },
-          "closedClass": {
-            "name": "closedClass",
-            "description": "The class that will be applied to nodes in the closed state.",
-            "type": "string",
-            "default": "\"core-closed\"",
-            "title": "Closed class"
-          },
-          "completeEventName": {
-            "name": "completeEventName",
-            "description": "Event to listen to for animation completion.",
-            "type": "string",
-            "default": "\"transitionEnd\"",
-            "title": "Complete event name"
-          },
-          "transitionType": {
-            "name": "transitionType",
-            "description": "A secondary configuration attribute for the animation. The class\n`<baseClass>-<transitionType` is applied to the animated node during\n`setup`.",
-            "type": "string",
-            "title": "Transition type"
           }
         },
         "output": {}
@@ -4060,13 +3373,6 @@
             "type": "string",
             "default": "",
             "title": "Icon"
-          },
-          "fill": {
-            "name": "fill",
-            "description": "By default the ripple expands to fill the button. Set this to false to\nconstrain the ripple to a circle within the button.",
-            "type": "boolean",
-            "default": true,
-            "title": "Fill"
           }
         },
         "output": {}
@@ -4262,41 +3568,9 @@
             "type": "boolean",
             "default": false,
             "title": "Indeterminate"
-          },
-          "disabled": {
-            "name": "disabled",
-            "description": "If true, this slider is disabled.  A disabled slider cannot be tapped\nor dragged to change the slider value.",
-            "type": "boolean",
-            "default": false,
-            "title": "Disabled"
-          },
-          "editable": {
-            "name": "editable",
-            "description": "If true, an input is shown and user can use it to set the slider value.",
-            "type": "boolean",
-            "default": false,
-            "title": "Editable"
-          },
-          "immediateValue": {
-            "name": "immediateValue",
-            "description": "The immediate value of the slider.  This value is updated while the user\nis dragging the slider.",
-            "type": "number",
-            "default": 0,
-            "title": "Immediate value"
           }
         },
-        "output": {
-          "core-change": {
-            "name": "core-change",
-            "description": "Fired when the slider's value changes.",
-            "title": "Core change"
-          },
-          "change": {
-            "name": "change",
-            "description": "Fired when the slider's value changes due to user interaction.\n\nChanges to the slider's value due to changes in an underlying\nbound variable will not trigger this event.",
-            "title": "Change"
-          }
-        }
+        "output": {}
       },
       "dependencies": {
         "bower": {
@@ -4410,91 +3684,11 @@
             "default": false,
             "title": "Hide scroll button"
           },
-          "selectedItem": {
-            "name": "selectedItem",
-            "description": "Returns the currently selected element. In multi-selection this returns\nan array of selected elements.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
-            "type": "Object",
-            "default": null,
-            "title": "Selected item"
-          },
-          "selectedModel": {
-            "name": "selectedModel",
-            "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
-            "type": "Object",
-            "default": null,
-            "title": "Selected model"
-          },
-          "selectedIndex": {
-            "name": "selectedIndex",
-            "description": "In single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
-            "type": "number",
-            "default": -1,
-            "title": "Selected index"
-          },
-          "excludedLocalNames": {
-            "name": "excludedLocalNames",
-            "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
-            "type": "string",
-            "default": "",
-            "title": "Excluded local names"
-          },
-          "target": {
-            "name": "target",
-            "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
-            "type": "Object",
-            "default": null,
-            "title": "Target"
-          },
-          "itemsSelector": {
-            "name": "itemsSelector",
-            "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
-            "type": "string",
-            "default": "",
-            "title": "Items selector"
-          },
-          "activateEvent": {
-            "name": "activateEvent",
-            "description": "The event that would be fired from the item element to indicate\nit is being selected.",
-            "type": "string",
-            "default": "tap",
-            "title": "Activate event"
-          },
-          "notap": {
-            "name": "notap",
-            "description": "Set this to true to disallow changing the selection via the\n`activateEvent`.",
-            "type": "boolean",
-            "default": false,
-            "title": "Notap"
-          },
           "updateBar": {
             "name": "updateBar",
             "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.",
             "title": "Update bar",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "wrapped": {
-                "type": "boolean",
-                "name": "wrapped",
-                "description": "if true and it is already at the first item,",
-                "title": "Wrapped"
-              }
-            }
-          },
-          "selectNext": {
-            "name": "selectNext",
-            "description": "Selects the next item.  This should be used in single selection only.\n\n                 wrap to the front",
-            "title": "Select next",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "wrapped": {
-                "type": "boolean",
-                "name": "wrapped",
-                "description": "if true and it is already at the last item,",
-                "title": "Wrapped"
-              }
-            }
+            "async": true
           }
         },
         "output": {
@@ -4806,143 +4000,14 @@
             "default": false,
             "title": "Hide scroll button"
           },
-          "selectedItem": {
-            "name": "selectedItem",
-            "description": "Returns the currently selected element. In multi-selection this returns\nan array of selected elements.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
-            "type": "Object",
-            "default": null,
-            "title": "Selected item"
-          },
-          "selectedModel": {
-            "name": "selectedModel",
-            "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
-            "type": "Object",
-            "default": null,
-            "title": "Selected model"
-          },
-          "selectedIndex": {
-            "name": "selectedIndex",
-            "description": "In single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
-            "type": "number",
-            "default": -1,
-            "title": "Selected index"
-          },
-          "excludedLocalNames": {
-            "name": "excludedLocalNames",
-            "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
-            "type": "string",
-            "default": "",
-            "title": "Excluded local names"
-          },
-          "target": {
-            "name": "target",
-            "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
-            "type": "Object",
-            "default": null,
-            "title": "Target"
-          },
-          "itemsSelector": {
-            "name": "itemsSelector",
-            "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
-            "type": "string",
-            "default": "",
-            "title": "Items selector"
-          },
-          "activateEvent": {
-            "name": "activateEvent",
-            "description": "The event that would be fired from the item element to indicate\nit is being selected.",
-            "type": "string",
-            "default": "tap",
-            "title": "Activate event"
-          },
-          "notap": {
-            "name": "notap",
-            "description": "Set this to true to disallow changing the selection via the\n`activateEvent`.",
-            "type": "boolean",
-            "default": false,
-            "title": "Notap"
-          },
           "updateBar": {
             "name": "updateBar",
             "description": "Invoke this to update the size and position of the bottom bar.  Usually\nyou only need to call this if the `paper-tabs` is initially hidden and\nlater becomes visible.",
             "title": "Update bar",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "wrapped": {
-                "type": "boolean",
-                "name": "wrapped",
-                "description": "if true and it is already at the first item,",
-                "title": "Wrapped"
-              }
-            }
-          },
-          "selectNext": {
-            "name": "selectNext",
-            "description": "Selects the next item.  This should be used in single selection only.\n\n                 wrap to the front",
-            "title": "Select next",
-            "async": true,
-            "type": "object",
-            "properties": {
-              "wrapped": {
-                "type": "boolean",
-                "name": "wrapped",
-                "description": "if true and it is already at the last item,",
-                "title": "Wrapped"
-              }
-            }
+            "async": true
           }
         },
-        "output": {
-          "core-select": {
-            "name": "core-select",
-            "description": "Fired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.",
-            "title": "Core select",
-            "type": "object",
-            "properties": {
-              "detail": {
-                "type": "Object",
-                "name": "detail",
-                "title": "Detail",
-                "properties": {
-                  "isSelected": {
-                    "type": "boolean",
-                    "name": "isSelected",
-                    "description": "true for selection and false for deselection",
-                    "title": "Is selected"
-                  },
-                  "item": {
-                    "type": "Object",
-                    "name": "item",
-                    "description": "the item element",
-                    "title": "Item"
-                  }
-                }
-              }
-            }
-          },
-          "core-activate": {
-            "name": "core-activate",
-            "description": "Fired when an item element is tapped.",
-            "title": "Core activate",
-            "type": "object",
-            "properties": {
-              "detail": {
-                "type": "Object",
-                "name": "detail",
-                "title": "Detail",
-                "properties": {
-                  "item": {
-                    "type": "Object",
-                    "name": "item",
-                    "description": "the item element",
-                    "title": "Item"
-                  }
-                }
-              }
-            }
-          }
-        }
+        "output": {}
       },
       "dependencies": {
         "bower": {

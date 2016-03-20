@@ -24,6 +24,12 @@
         "type": "boolean",
         "default": false,
         "title": "Animated"
+      },
+      "setZ": {
+        "name": "setZ",
+        "description": "Set the z-depth of the shadow. This should be used after element\ncreation instead of setting the z property directly.",
+        "title": "Set z",
+        "async": true
       }
     },
     "output": {}

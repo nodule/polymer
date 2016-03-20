@@ -13,9 +13,9 @@
     "input": {
       "keys": {
         "name": "keys",
-        "description": "The set of key combinations to listen for.",
-        "type": "string (keys syntax)",
-        "default": "''",
+        "description": "The set of key combinations that will be matched (in keys syntax).",
+        "type": "string",
+        "default": "",
         "title": "Keys"
       },
       "target": {
@@ -30,7 +30,47 @@
       "keys-pressed": {
         "name": "keys-pressed",
         "description": "Fired when a keycombo in `keys` is pressed.",
-        "title": "Keys pressed"
+        "title": "Keys pressed",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "type": "Object",
+            "name": "detail",
+            "title": "Detail",
+            "properties": {
+              "shift": {
+                "type": "boolean",
+                "name": "shift",
+                "description": "true if shift key is pressed",
+                "title": "Shift"
+              },
+              "ctrl": {
+                "type": "boolean",
+                "name": "ctrl",
+                "description": "true if ctrl key is pressed",
+                "title": "Ctrl"
+              },
+              "meta": {
+                "type": "boolean",
+                "name": "meta",
+                "description": "true if meta key is pressed",
+                "title": "Meta"
+              },
+              "alt": {
+                "type": "boolean",
+                "name": "alt",
+                "description": "true if alt key is pressed",
+                "title": "Alt"
+              },
+              "key": {
+                "type": "String",
+                "name": "key",
+                "description": "the normalized key",
+                "title": "Key"
+              }
+            }
+          }
+        }
       }
     }
   }

@@ -35,8 +35,8 @@
       "params": {
         "name": "params",
         "description": "Parameters to send to the specified URL, as JSON.",
-        "type": "string (JSON)",
-        "default": "''",
+        "type": "string",
+        "default": "",
         "title": "Params"
       },
       "response": {
@@ -106,6 +106,12 @@
         "name": "go",
         "description": "Performs an Ajax request to the specified URL.",
         "title": "Go",
+        "async": true
+      },
+      "abort": {
+        "name": "abort",
+        "description": "Aborts the current active request if there is one and resets internal\nstate appropriately.",
+        "title": "Abort",
         "async": true
       }
     },

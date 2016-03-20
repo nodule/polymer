@@ -62,7 +62,7 @@
       },
       "selectedModel": {
         "name": "selectedModel",
-        "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
+        "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
         "type": "Object",
         "default": null,
         "title": "Selected model"
@@ -76,21 +76,21 @@
       },
       "excludedLocalNames": {
         "name": "excludedLocalNames",
-        "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
+        "description": "Nodes with local name that are in the list will not be included\nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
         "type": "string",
         "default": "",
         "title": "Excluded local names"
       },
       "target": {
         "name": "target",
-        "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
+        "description": "The target element that contains items.  If this is not set\ncore-selector is the container.",
         "type": "Object",
         "default": null,
         "title": "Target"
       },
       "itemsSelector": {
         "name": "itemsSelector",
-        "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
+        "description": "This can be used to query nodes from the target node to be used for\nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
         "type": "string",
         "default": "",
         "title": "Items selector"
@@ -111,7 +111,7 @@
       },
       "selectPrevious": {
         "name": "selectPrevious",
-        "description": "Selects the previous item. This should be used in single selection only.\n\n                 wrap to the end",
+        "description": "Selects the previous item. This should be used in single selection only.\n\nwrap to the end",
         "title": "Select previous",
         "async": true,
         "type": "object",
@@ -126,7 +126,7 @@
       },
       "selectNext": {
         "name": "selectNext",
-        "description": "Selects the next item.  This should be used in single selection only.\n\n                 wrap to the front",
+        "description": "Selects the next item.  This should be used in single selection only.\n\nwrap to the front",
         "title": "Select next",
         "async": true,
         "type": "object",

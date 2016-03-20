@@ -8,6 +8,8 @@ var defs = {};
 var extenders = [];
 var humanize = require('underscore.string').humanize;
 var _ = require('underscore');
+
+// glob the .html file of each installed component
 var g = glob('./bower_components/*/*.html');
 
 /**
@@ -15,11 +17,16 @@ var g = glob('./bower_components/*/*.html');
  * Todo: some packages define multiple components.
  * Maybe use metadata.
  *
- *
  * core-slider extends core-range
  * But the attributes are not merged..
  */
 
+/**
+ *
+ * Parses a webcomponents .html file
+ * Using the context free parser.
+ *
+ */
 function parseFile(file) {
 
   var basename  = path.basename(file);
@@ -29,6 +36,8 @@ function parseFile(file) {
   var text = fs.readFileSync(file, 'utf8');
 
   var result = parser.parse(text);
+
+  // process each context free definition
   result.forEach(processDef);
 
 }
@@ -60,6 +69,44 @@ g.on('end', function(files) {
 
 });
 
+function isWebComponent(def) {
+  if (!def.methods && !def.attributes && !def.events) {
+    // ain't no web component or is base
+    return false;
+  }
+  return true;
+}
+
+/**
+ *
+ * Write the node definition.
+ *
+ * @param {Object} nD Chix Node Definition
+ *
+ */
+function writeNodeDefinition(def) {
+
+  // only write if there are any ports.
+  if (Object.keys(def.ports.input).length || Object.keys(def.ports.output).length) {
+    if (!fs.existsSync('./nodes/' + def.name)) {
+      fs.mkdirSync('./nodes/' + def.name);
+    }
+
+    fs.writeFileSync('./nodes/' + def.name + '/node.json',
+      JSON.stringify(def, null, 2)
+    );
+  }
+
+}
+
+
+/**
+ *
+ *
+ *
+ * @param {Object} def
+ * @param {String} base
+ */
 function processDef(def, base) {
 
   if (def.name === 'Entity') {
@@ -75,6 +122,10 @@ function processDef(def, base) {
 
   console.log('nD.name', nD.name);
 
+  if(!isWebComponent(def)) {
+    return false;
+  }
+
   // register to resolve extends
   defs[nD.name] = nD;
 
@@ -84,21 +135,7 @@ function processDef(def, base) {
     return;
   }
 
-  if (!def.methods && !def.attributes && !def.events) {
-    // ain't no web component or is base
-    return false;
-  }
-
-  // only write if there are any ports.
-  if (Object.keys(nD.ports.input).length || Object.keys(nD.ports.output).length) {
-    if (!fs.existsSync('./nodes/' + def.name)) {
-      fs.mkdirSync('./nodes/' + def.name);
-    }
-
-    fs.writeFileSync('./nodes/' + def.name + '/node.json',
-      JSON.stringify(nD, null, 2)
-    );
-  }
+  writeNodeDefinition(nD);
 
 }
 

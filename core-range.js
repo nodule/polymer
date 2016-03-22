@@ -1,0 +1,52 @@
+module.exports = {
+  name: "core-range",
+  title: "Core range",
+  ns: "polymer",
+  type: "polymer",
+  description: "The `core-range` element is used for managing a numeric value within a given \nrange.  It has no visual appearance and is typically used in conjunction with \nanother element.\n\nOne can build a progress bar using `core-range` like this:\n\n    <core-range min=\"0\" max=\"200\" value=\"100\" ratio=\"{{ratio}}\"></core-range>\n    <div class=\"progress-bar\" style=\"width: {{ratio}}%;\"></div>",
+  dependencies: {
+    bower: {
+      "core-range": "Polymer/core-range#master"
+    }
+  },
+  ports: {
+    input: {
+      value: {
+        name: "value",
+        description: "The number that represents the current value.",
+        type: "number",
+        "default": 0,
+        title: "Value"
+      },
+      min: {
+        name: "min",
+        description: "The number that indicates the minimum value of the range.",
+        type: "number",
+        "default": 0,
+        title: "Min"
+      },
+      max: {
+        name: "max",
+        description: "The number that indicates the maximum value of the range.",
+        type: "number",
+        "default": 100,
+        title: "Max"
+      },
+      step: {
+        name: "step",
+        description: "Specifies the value granularity of the range's value.",
+        type: "number",
+        "default": 1,
+        title: "Step"
+      },
+      ratio: {
+        name: "ratio",
+        description: "Returns the ratio of the value.",
+        type: "number",
+        "default": 0,
+        title: "Ratio"
+      }
+    },
+    output: {}
+  }
+}

@@ -1,0 +1,58 @@
+module.exports = {
+  name: "paper-input",
+  title: "Paper input",
+  ns: "polymer",
+  type: "polymer",
+  description: "Material Design: <a href=\"http://www.google.com/design/spec/components/text-fields.html#text-fields-single-line-text-field\">Single line text field</a>\n\n`paper-input` is a single-line text field for user input. It is a convenience element composed of\na `paper-input-decorator` and a `input is=\"core-input\"`.\n\nExample:\n\n    <paper-input label=\"Your Name\"></paper-input>\n\nIf you need more control over the `input` element, use `paper-input-decorator`.\n\nTheming\n-------\n\n`paper-input` can be styled similarly to `paper-input-decorator`.\n\nForm submission\n---------------\n\nUnlike inputs using `paper-input-decorator` directly, `paper-input` does not work out of\nthe box with the native `form` element. This is because the native `form` is not aware of\nshadow DOM and does not treat `paper-input` as a form element.\n\nUse `paper-input-decorator` directly, or see\n<a href=\"https://github.com/garstasio/ajax-form\">`ajax-form`</a> for a possible solution\nto submitting a `paper-input`.\n\nValidation\n----------\n\nUse `paper-input-decorator` if you would like to implement validation.",
+  dependencies: {
+    bower: {
+      "paper-input": "Polymer/paper-input#master"
+    }
+  },
+  ports: {
+    input: {
+      label: {
+        name: "label",
+        description: "The label for this input. It normally appears as grey text inside\nthe text input and disappears once the user enters text.",
+        type: "string",
+        "default": "",
+        title: "Label"
+      },
+      floatingLabel: {
+        name: "floatingLabel",
+        description: "If true, the label will \"float\" above the text input once the\nuser enters text instead of disappearing.",
+        type: "boolean",
+        "default": false,
+        title: "Floating label"
+      },
+      disabled: {
+        name: "disabled",
+        description: "Set to true to style the element as disabled.",
+        type: "boolean",
+        "default": false,
+        title: "Disabled"
+      },
+      value: {
+        name: "value",
+        description: "The current value of the input.",
+        type: "String",
+        "default": "''",
+        title: "Value"
+      },
+      committedValue: {
+        name: "committedValue",
+        description: "The most recently committed value of the input.",
+        type: "String",
+        "default": "''",
+        title: "Committed value"
+      },
+      focus: {
+        name: "focus",
+        description: "Focuses the `input`.",
+        title: "Focus",
+        async: true
+      }
+    },
+    output: {}
+  }
+}

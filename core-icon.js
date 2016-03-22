@@ -1,0 +1,38 @@
+module.exports = {
+  name: "core-icon",
+  title: "Core icon",
+  ns: "polymer",
+  type: "polymer",
+  description: "The `core-icon` element displays an icon. By default an icon renders as a 24px square.\n\nExample using src:\n\n    <core-icon src=\"star.png\"></core-icon>\n\nExample setting size to 32px x 32px:\n\n    <core-icon class=\"big\" src=\"big_star.png\"></core-icon>\n\n    <style>\n      .big {\n        height: 32px;\n        width: 32px;\n      }\n    </style>\n\nThe core elements include several sets of icons. \nTo use the default set of icons, import  `core-icons.html` and use the `icon` attribute to specify an icon:\n\n    <link rel=\"import\" href=\"/components/core-icons/core-icons.html\">\n\n    <core-icon icon=\"menu\"></core-icon>\n    \nTo use a different built-in set of icons, import  `core-icons/<iconset>-icons.html`, and\nspecify the icon as `<iconset>:<icon>`. For example:\n\n    <link rel=\"import\" href=\"/components/core-icons/communication-icons.html\">\n\n    <core-icon icon=\"communication:email\"></core-icon>\n    \nYou can also create custom icon sets of bitmap or SVG icons. \n\nExample of using an icon named `cherry` from a custom iconset with the ID `fruit`:\n\n    <core-icon icon=\"fruit:cherry\"></core-icon>\n\nSee [core-iconset](https://www.polymer-project.org/0.5/docs/elements/core-iconset.html) and [core-iconset-svg](https://www.polymer-project.org/0.5/docs/elements/core-iconset-svg.html) for more information about\nhow to create a custom iconset.\n\nSee [core-icons](https://www.polymer-project.org/0.5/components/core-icons/demo.html) for the default set of icons.",
+  dependencies: {
+    bower: {
+      "core-icon": "Polymer/core-icon#master"
+    }
+  },
+  ports: {
+    input: {
+      src: {
+        name: "src",
+        description: "The URL of an image for the icon. If the src property is specified,\nthe icon property should not be.",
+        type: "string",
+        "default": "",
+        title: "Src"
+      },
+      icon: {
+        name: "icon",
+        description: "Specifies the icon name or index in the set of icons available in\nthe icon's icon set. If the icon property is specified,\nthe src property should not be.",
+        type: "string",
+        "default": "",
+        title: "Icon"
+      },
+      alt: {
+        name: "alt",
+        description: "Alternative text content for accessibility support.\nIf alt is present and not empty, it will set the element's role to img and add an aria-label whose content matches alt.\nIf alt is present and is an empty string, '', it will hide the element from the accessibility layer\nIf alt is not present, it will set the element's role to img and the element will fallback to using the icon attribute for its aria-label.",
+        type: "string",
+        "default": "",
+        title: "Alt"
+      }
+    },
+    output: {}
+  }
+}

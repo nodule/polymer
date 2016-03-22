@@ -1,0 +1,37 @@
+module.exports = {
+  name: "core-media-query",
+  title: "Core media query",
+  ns: "polymer",
+  type: "polymer",
+  description: "core-media-query can be used to data bind to a CSS media query.\nThe \"query\" property is a bare CSS media query.\nThe \"queryMatches\" property will be a boolean representing if the page matches that media query.\n\ncore-media-query uses media query listeners to dynamically update the \"queryMatches\" property.\nA \"core-media-change\" event also fires when queryMatches changes.\n\nExample:\n\n     <core-media-query query=\"max-width: 640px\" queryMatches=\"{{phoneScreen}}\"></core-media-query>\n\n\n\nFired when the media query state changes",
+  dependencies: {
+    bower: {
+      "core-media-query": "Polymer/core-media-query#master"
+    }
+  },
+  ports: {
+    input: {
+      queryMatches: {
+        name: "queryMatches",
+        description: "The Boolean return value of the media query",
+        type: "Boolean",
+        "default": "false",
+        title: "Query matches"
+      },
+      query: {
+        name: "query",
+        description: "The CSS media query to evaulate",
+        type: "string",
+        "default": "",
+        title: "Query"
+      }
+    },
+    output: {
+      "core-media-change": {
+        name: "core-media-change",
+        description: "core-media-query can be used to data bind to a CSS media query.\nThe \"query\" property is a bare CSS media query.\nThe \"queryMatches\" property will be a boolean representing if the page matches that media query.\n\ncore-media-query uses media query listeners to dynamically update the \"queryMatches\" property.\nA \"core-media-change\" event also fires when queryMatches changes.\n\nExample:\n\n     <core-media-query query=\"max-width: 640px\" queryMatches=\"{{phoneScreen}}\"></core-media-query>\n\n\n\nFired when the media query state changes",
+        title: "Core media change"
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+module.exports = {
+  name: "core-splitter",
+  title: "Core splitter",
+  ns: "polymer",
+  type: "polymer",
+  description: "`core-splitter` provides a split bar and dragging on the split bar\nwill resize the sibling element.  Use its `direction` property to indicate\nwhich sibling element to be resized and the orientation.  Usually you would want\nto use `core-splitter` along with flex layout so that the other sibling\nelement can be _flexible_.\n\nExample:\n\n    <div horizontal layout>\n      <div>left</div>\n      <core-splitter direction=\"left\"></core-splitter>\n      <div flex>right</div>\n    </div>\n\nIn the above example, dragging the splitter will resize the _left_ element.  And\nsince the parent container is a flexbox and the _right_ element has\n`flex`, the _right_ element will be auto-resized.\n\nFor horizontal splitter set `direction` to `up` or `down`.\n\nExample:\n\n    <div vertical layout>\n      <div>top</div>\n      <core-splitter direction=\"up\"></core-splitter>\n      <div flex>bottom</div>\n    </div>",
+  dependencies: {
+    bower: {
+      "core-splitter": "Polymer/core-splitter#master"
+    }
+  },
+  ports: {
+    input: {
+      direction: {
+        name: "direction",
+        description: "Possible values are `left`, `right`, `up` and `down`.",
+        type: "string",
+        "default": "left",
+        title: "Direction"
+      },
+      minSize: {
+        name: "minSize",
+        description: "Minimum width to which the splitter target can be sized, e.g. \n`minSize=\"100px\"`",
+        type: "string",
+        "default": "",
+        title: "Min size"
+      },
+      locked: {
+        name: "locked",
+        description: "Locks the split bar so it can't be dragged.",
+        type: "boolean",
+        "default": false,
+        title: "Locked"
+      },
+      allowOverflow: {
+        name: "allowOverflow",
+        description: "By default the parent and siblings of the splitter are set to overflow hidden. This helps\navoid elements bleeding outside the splitter regions. Set this property to true to allow\nthese elements to overflow.",
+        type: "boolean",
+        "default": false,
+        title: "Allow overflow"
+      }
+    },
+    output: {}
+  }
+}

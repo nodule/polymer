@@ -7,17 +7,48 @@
     "url": "git://github.com/nodule/polymer.git"
   },
   "dependencies": {
-    "underscore": "^1.7.0"
+    "dot-object": "^1.1.0",
+    "glob": "^5.0.14",
+    "underscore": "^1.8.3"
   },
   "nodes": [
     {
       "ports": {
         "input": {
+          "resizableAttachedHandler": {
+            "name": "resizableAttachedHandler",
+            "description": "User must call from `attached` callback",
+            "title": "Resizable attached handler",
+            "async": true
+          },
+          "resizableDetachedHandler": {
+            "name": "resizableDetachedHandler",
+            "description": "User must call from `detached` callback",
+            "title": "Resizable detached handler",
+            "async": true
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "CoreResizable": "Polymer/CoreResizable#master"
+        }
+      },
+      "description": "`Polymer.CoreResizable` and `Polymer.CoreResizer` are a set of mixins that can be used\n  in Polymer elements to coordinate the flow of resize events between \"resizers\" (elements\n  that control the size or hidden state of their children) and \"resizables\" (elements that\n  need to be notified when they are resized or un-hidden by their parents in order to take\n  action on their new measurements).\n\n  Elements that perform measurement should add the `Core.Resizable` mixin to their \n  Polymer prototype definition and listen for the `core-resize` event on themselves.\n  This event will be fired when they become showing after having been hidden,\n  when they are resized explicitly by a `CoreResizer`, or when the window has been resized.\n  Note, the `core-resize` event is non-bubbling.\n\n  `CoreResizable`'s must manually call the `resizableAttachedHandler` from the element's\n  `attached` callback and `resizableDetachedHandler` from the element's `detached`\n  callback.",
+      "type": "polymer",
+      "ns": "polymer",
+      "title": "Core resizable",
+      "name": "CoreResizable"
+    },
+    {
+      "ports": {
+        "input": {
           "keys": {
             "name": "keys",
-            "description": "The set of key combinations to listen for.",
-            "type": "string (keys syntax)",
-            "default": "''",
+            "description": "The set of key combinations that will be matched (in keys syntax).",
+            "type": "string",
+            "default": "",
             "title": "Keys"
           },
           "target": {
@@ -32,7 +63,47 @@
           "keys-pressed": {
             "name": "keys-pressed",
             "description": "Fired when a keycombo in `keys` is pressed.",
-            "title": "Keys pressed"
+            "title": "Keys pressed",
+            "type": "object",
+            "properties": {
+              "detail": {
+                "type": "Object",
+                "name": "detail",
+                "title": "Detail",
+                "properties": {
+                  "shift": {
+                    "type": "boolean",
+                    "name": "shift",
+                    "description": "true if shift key is pressed",
+                    "title": "Shift"
+                  },
+                  "ctrl": {
+                    "type": "boolean",
+                    "name": "ctrl",
+                    "description": "true if ctrl key is pressed",
+                    "title": "Ctrl"
+                  },
+                  "meta": {
+                    "type": "boolean",
+                    "name": "meta",
+                    "description": "true if meta key is pressed",
+                    "title": "Meta"
+                  },
+                  "alt": {
+                    "type": "boolean",
+                    "name": "alt",
+                    "description": "true if alt key is pressed",
+                    "title": "Alt"
+                  },
+                  "key": {
+                    "type": "String",
+                    "name": "key",
+                    "description": "the normalized key",
+                    "title": "Key"
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -74,8 +145,8 @@
           "params": {
             "name": "params",
             "description": "Parameters to send to the specified URL, as JSON.",
-            "type": "string (JSON)",
-            "default": "''",
+            "type": "string",
+            "default": "",
             "title": "Params"
           },
           "response": {
@@ -145,6 +216,12 @@
             "name": "go",
             "description": "Performs an Ajax request to the specified URL.",
             "title": "Go",
+            "async": true
+          },
+          "abort": {
+            "name": "abort",
+            "description": "Aborts the current active request if there is one and resets internal\nstate appropriately.",
+            "title": "Abort",
             "async": true
           }
         },
@@ -288,8 +365,8 @@
         "input": {
           "target": {
             "name": "target",
-            "description": "The target element that will be opened when the `core-collapse` is \nopened. If unspecified, the `core-collapse` itself is the target.",
-            "type": "object",
+            "description": "The target element that will be opened when the `core-collapse` is\nopened. If unspecified, the `core-collapse` itself is the target.",
+            "type": "Object",
             "default": null,
             "title": "Target"
           },
@@ -316,14 +393,14 @@
           },
           "fixedSize": {
             "name": "fixedSize",
-            "description": "If true, the size of the target element is fixed and is set\non the element.  Otherwise it will try to \nuse auto to determine the natural size to use\nfor collapsing/expanding.",
+            "description": "If true, the size of the target element is fixed and is set\non the element.  Otherwise it will try to\nuse auto to determine the natural size to use\nfor collapsing/expanding.",
             "type": "boolean",
             "default": false,
             "title": "Fixed size"
           },
           "allowOverflow": {
             "name": "allowOverflow",
-            "description": "By default the collapsible element is set to overflow hidden. This helps\navoid element bleeding outside the region and provides consistent overflow\nstyle across opened and closed states. Set this property to true to allow \nthe collapsible element to overflow when it's opened.",
+            "description": "By default the collapsible element is set to overflow hidden. This helps\navoid element bleeding outside the region and provides consistent overflow\nstyle across opened and closed states. Set this property to true to allow\nthe collapsible element to overflow when it's opened.",
             "type": "boolean",
             "default": false,
             "title": "Allow overflow"
@@ -353,7 +430,7 @@
           "core-collapse": "Polymer/core-collapse#master"
         }
       },
-      "description": "`core-collapse` creates a collapsible block of content.  By default, the content\nwill be collapsed.  Use `opened` or `toggle()` to show/hide the content.\n\n    <button on-click=\"{{toggle}}\">toggle collapse</button>\n    \n    <core-collapse id=\"collapse\">\n      Content goes here...\n    </core-collapse>\n    \n    ...\n\n    toggle: function() {\n      this.$.collapse.toggle();\n    }\n    \n`core-collapse` adjusts the height/width of the collapsible element to show/hide\nthe content.  So avoid putting padding/margin/border on the collapsible directly,\nand instead put a div inside and style that.\n\n    <style>\n      .collapse-content {\n        padding: 15px;\n        border: 1px solid #dedede;\n      }\n    </style>\n\n    <core-collapse>\n      <div class=\"collapse-content\">\n        Content goes here...\n      </div>\n    </core-collapse>",
+      "description": "`core-collapse` creates a collapsible block of content.  By default, the content\nwill be collapsed.  Use `opened` or `toggle()` to show/hide the content.\n\n    <button on-click=\"{{toggle}}\">toggle collapse</button>\n\n    <core-collapse id=\"collapse\">\n      Content goes here...\n    </core-collapse>\n\n    ...\n\n    toggle: function() {\n      this.$.collapse.toggle();\n    }\n\n`core-collapse` adjusts the height/width of the collapsible element to show/hide\nthe content.  So avoid putting padding/margin/border on the collapsible directly,\nand instead put a div inside and style that.\n\n    <style>\n      .collapse-content {\n        padding: 15px;\n        border: 1px solid #dedede;\n      }\n    </style>\n\n    <core-collapse>\n      <div class=\"collapse-content\">\n        Content goes here...\n      </div>\n    </core-collapse>",
       "type": "polymer",
       "ns": "polymer",
       "title": "Core collapse",
@@ -449,6 +526,13 @@
             "default": false,
             "title": "Force narrow"
           },
+          "disableEdgeSwipe": {
+            "name": "disableEdgeSwipe",
+            "description": "If true, swipe from the edge is disabled.",
+            "type": "boolean",
+            "default": false,
+            "title": "Disable edge swipe"
+          },
           "togglePanel": {
             "name": "togglePanel",
             "description": "Toggles the panel open and closed.",
@@ -489,6 +573,33 @@
                 }
               }
             }
+          },
+          "core-select": {
+            "name": "core-select",
+            "description": "Fired when the selected panel changes.\n\nListening for this event is an alternative to observing changes in the `selected` attribute.\nThis event is fired both when a panel is selected and deselected.\nThe `isSelected` detail property contains the selection state.",
+            "title": "Core select",
+            "type": "object",
+            "properties": {
+              "detail": {
+                "type": "Object",
+                "name": "detail",
+                "title": "Detail",
+                "properties": {
+                  "isSelected": {
+                    "type": "boolean",
+                    "name": "isSelected",
+                    "description": "true for selection and false for deselection",
+                    "title": "Is selected"
+                  },
+                  "item": {
+                    "type": "Object",
+                    "name": "item",
+                    "description": "the panel that the event refers to",
+                    "title": "Item"
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -497,7 +608,7 @@
           "core-drawer-panel": "Polymer/core-drawer-panel#master"
         }
       },
-      "description": "`core-drawer-panel` contains a drawer panel and a main panel.  The drawer\nand the main panel are side-by-side with drawer on the left.  When browser\nwindow size is smaller than the `responsiveWidth`, `core-drawer-panel`\nchanges to narrow layout.  In narrow layout, the drawer will be stacked on top\nof the main panel.  The drawer will be slided in/out to hide/reveal the main\npanel.\n\nUse the attribute `drawer` to indicate the element is a drawer panel and\n`main` to indicate is a main panel.\n\nExample:\n\n    <core-drawer-panel>\n      <div drawer> Drawer panel... </div>\n      <div main> Main panel... </div>\n    </core-drawer-panel>\n\nThe drawer and the main panels are not scrollable.  You can set CSS overflow\nproperty on the elements to make them scrollable or use `core-header-panel`.\n\nExample:\n\n    <core-drawer-panel>\n      <core-header-panel drawer>\n        <core-toolbar></core-toolbar>\n        <div> Drawer content... </div>\n      </core-header-panel>\n      <core-header-panel main>\n        <core-toolbar></core-toolbar>\n        <div> Main content... </div>\n      </core-header-panel>\n    </core-drawer-panel>\n\nAn element that should toggle the drawer will automatically do so if it's \ngiven the `core-drawer-toggle` attribute.  Also this element will automatically\nbe hidden in wide layout.\n\nExample:\n\n    <core-drawer-panel>\n      <core-header-panel drawer>\n        <core-toolbar>\n          <div>Application</div>\n        </core-toolbar>\n        <div> Drawer content... </div>\n      </core-header-panel>\n      <core-header-panel main>\n        <core-toolbar>\n          <core-icon-button icon=\"menu\" core-drawer-toggle></core-icon-button>\n          <div>Title</div>\n        </core-toolbar>\n        <div> Main content... </div>\n      </core-header-panel>\n    </core-drawer-panel>\n\nTo position the drawer to the right, add `rightDrawer` attribute.\n\n    <core-drawer-panel rightDrawer>\n      <div drawer> Drawer panel... </div>\n      <div main> Main panel... </div>\n    </core-drawer-panel>",
+      "description": "`core-drawer-panel` contains a drawer panel and a main panel.  The drawer\nand the main panel are side-by-side with drawer on the left.  When the browser\nwindow size is smaller than the `responsiveWidth`, `core-drawer-panel`\nchanges to narrow layout.  In narrow layout, the drawer will be stacked on top\nof the main panel.  The drawer will slide in/out to hide/reveal the main\npanel.\n\nUse the attribute `drawer` to indicate that the element is the drawer panel and\n`main` to indicate that the element is the main panel.\n\nExample:\n\n    <core-drawer-panel>\n      <div drawer> Drawer panel... </div>\n      <div main> Main panel... </div>\n    </core-drawer-panel>\n\nThe drawer and the main panels are not scrollable.  You can set CSS overflow\nproperty on the elements to make them scrollable or use `core-header-panel`.\n\nExample:\n\n    <core-drawer-panel>\n      <core-header-panel drawer>\n        <core-toolbar></core-toolbar>\n        <div> Drawer content... </div>\n      </core-header-panel>\n      <core-header-panel main>\n        <core-toolbar></core-toolbar>\n        <div> Main content... </div>\n      </core-header-panel>\n    </core-drawer-panel>\n\nAn element that should toggle the drawer will automatically do so if it's \ngiven the `core-drawer-toggle` attribute.  Also this element will automatically\nbe hidden in wide layout.\n\nExample:\n\n    <core-drawer-panel>\n      <core-header-panel drawer>\n        <core-toolbar>\n          <div>Application</div>\n        </core-toolbar>\n        <div> Drawer content... </div>\n      </core-header-panel>\n      <core-header-panel main>\n        <core-toolbar>\n          <core-icon-button icon=\"menu\" core-drawer-toggle></core-icon-button>\n          <div>Title</div>\n        </core-toolbar>\n        <div> Main content... </div>\n      </core-header-panel>\n    </core-drawer-panel>\n\nTo position the drawer to the right, add `rightDrawer` attribute.\n\n    <core-drawer-panel rightDrawer>\n      <div drawer> Drawer panel... </div>\n      <div main> Main panel... </div>\n    </core-drawer-panel>",
       "type": "polymer",
       "ns": "polymer",
       "title": "Core drawer panel",
@@ -640,7 +751,7 @@
           "core-header-panel": "Polymer/core-header-panel#master"
         }
       },
-      "description": "`core-header-panel` contains a header section and a content panel section.\n\n__Important:__ The `core-header-panel` will not display if its parent does not have a height.\n\nUsing [layout attributes](http://www.polymer-project.org/docs/polymer/layout-attrs.html), you can easily make the `core-header-panel` fill the screen\n\n    <body fullbleed layout vertical>\n      <core-header-panel flex>\n        <core-toolbar>\n          <div>Hello World!</div>\n        </core-toolbar>\n      </core-header-panel>\n    </body>\n\nor, if you would prefer to do it in CSS, just give `html`, `body`, and `core-header-panel` a height of 100%:\n\n    html, body {\n      height: 100%;\n      margin: 0;\n    }\n    core-header-panel {\n      height: 100%;\n    }\n\nSpecial support is provided for scrolling modes when one uses a core-toolbar or equivalent\nfor the header section.\n\nExample:\n\n    <core-header-panel>\n      <core-toolbar>Header</core-toolbar>\n      <div>Content goes here...</div>\n    </core-header-panel>\n\nIf you want to use other than `core-toolbar` for the header, add\n`core-header` class to that element.\n\nExample:\n\n    <core-header-panel>\n      <div class=\"core-header\">Header</div>\n      <div>Content goes here...</div>\n    </core-header-panel>\n\nTo have the content fits to the main area, use `fit` attribute.\n\n    <core-header-panel>\n      <div class=\"core-header\">standard</div>\n      <div class=\"content\" fit>content fits 100% below the header</div>\n    </core-header-panel>\n\nUse `mode` to control the header and scrolling behavior.",
+      "description": "`core-header-panel` contains a header section and a content panel section.\n\n__Important:__ The `core-header-panel` will not display if its parent does not have a height.\n\nUsing [layout attributes](http://www.polymer-project.org/docs/polymer/layout-attrs.html), you can easily make the `core-header-panel` fill the screen\n\n    <body fullbleed layout vertical>\n      <core-header-panel flex>\n        <core-toolbar>\n          <div>Hello World!</div>\n        </core-toolbar>\n      </core-header-panel>\n    </body>\n\nor, if you would prefer to do it in CSS, just give `html`, `body`, and `core-header-panel` a height of 100%:\n\n    html, body {\n      height: 100%;\n      margin: 0;\n    }\n    core-header-panel {\n      height: 100%;\n    }\n\nSpecial support is provided for scrolling modes when one uses a core-toolbar or equivalent\nfor the header section.\n\nExample:\n\n    <core-header-panel>\n      <core-toolbar>Header</core-toolbar>\n      <div>Content goes here...</div>\n    </core-header-panel>\n\nIf you want to use other than `core-toolbar` for the header, add\n`core-header` class to that element.\n\nExample:\n\n    <core-header-panel>\n      <div class=\"core-header\">Header</div>\n      <div>Content goes here...</div>\n    </core-header-panel>\n\nTo have the content fit to the main area, use `fit` attribute.\n\n    <core-header-panel>\n      <div class=\"core-header\">standard</div>\n      <div class=\"content\" fit>content fits 100% below the header</div>\n    </core-header-panel>\n\nUse `mode` to control the header and scrolling behavior.",
       "type": "polymer",
       "ns": "polymer",
       "title": "Core header panel",
@@ -716,7 +827,7 @@
           "core-icon": "Polymer/core-icon#master"
         }
       },
-      "description": "The `core-icon` element displays an icon. By default an icon renders as a 24px square.\n\nExample using src:\n\n    <core-icon src=\"star.png\"></core-icon>\n\nExample setting size to 32px x 32px:\n\n    <core-icon class=\"big\" src=\"big_star.png\"></core-icon>\n\n    <style>\n      .big {\n        height: 32px;\n        width: 32px;\n      }\n    </style>\n\nThe core elements include several sets of icons. \nTo use the default set of icons, import  `core-icons.html` and use the `icon` attribute to specify an icon:\n\n    &lt;!-- import default iconset and core-icon --&gt;\n    <link rel=\"import\" href=\"/components/core-icons/core-icons.html\">\n\n    <core-icon icon=\"menu\"></core-icon>\n    \nTo use a different built-in set of icons, import  `core-icons/<iconset>-icons.html`, and\nspecify the icon as `<iconset>:<icon>`. For example:\n\n    &lt;!-- import communication iconset and core-icon --&gt;\n    <link rel=\"import\" href=\"/components/core-icons/communication-icons.html\">\n\n    <core-icon icon=\"communication:email\"></core-icon>\n    \nYou can also create custom icon sets of bitmap or SVG icons. \n\nExample of using an icon named `cherry` from a custom iconset with the ID `fruit`:\n\n    <core-icon icon=\"fruit:cherry\"></core-icon>\n\nSee [core-iconset](#core-iconset) and [core-iconset-svg](#core-iconset-svg) for more information about\nhow to create a custom iconset.\n\nSee [core-icons](http://www.polymer-project.org/components/core-icons/demo.html) for the default set of icons.",
+      "description": "The `core-icon` element displays an icon. By default an icon renders as a 24px square.\n\nExample using src:\n\n    <core-icon src=\"star.png\"></core-icon>\n\nExample setting size to 32px x 32px:\n\n    <core-icon class=\"big\" src=\"big_star.png\"></core-icon>\n\n    <style>\n      .big {\n        height: 32px;\n        width: 32px;\n      }\n    </style>\n\nThe core elements include several sets of icons. \nTo use the default set of icons, import  `core-icons.html` and use the `icon` attribute to specify an icon:\n\n    <link rel=\"import\" href=\"/components/core-icons/core-icons.html\">\n\n    <core-icon icon=\"menu\"></core-icon>\n    \nTo use a different built-in set of icons, import  `core-icons/<iconset>-icons.html`, and\nspecify the icon as `<iconset>:<icon>`. For example:\n\n    <link rel=\"import\" href=\"/components/core-icons/communication-icons.html\">\n\n    <core-icon icon=\"communication:email\"></core-icon>\n    \nYou can also create custom icon sets of bitmap or SVG icons. \n\nExample of using an icon named `cherry` from a custom iconset with the ID `fruit`:\n\n    <core-icon icon=\"fruit:cherry\"></core-icon>\n\nSee [core-iconset](https://www.polymer-project.org/0.5/docs/elements/core-iconset.html) and [core-iconset-svg](https://www.polymer-project.org/0.5/docs/elements/core-iconset-svg.html) for more information about\nhow to create a custom iconset.\n\nSee [core-icons](https://www.polymer-project.org/0.5/components/core-icons/demo.html) for the default set of icons.",
       "type": "polymer",
       "ns": "polymer",
       "title": "Core icon",
@@ -898,59 +1009,82 @@
     {
       "ports": {
         "input": {
-          "scrollTarget": {
-            "name": "scrollTarget",
-            "description": "When set, the given element is observed for scroll position.  When undefined,\nchildren can be placed inside and element itself can be used as the scrollable\nelement.",
+          "src": {
+            "name": "src",
+            "description": "The URL of an image.",
             "type": "string",
             "default": null,
-            "title": "Scroll target"
+            "title": "Src"
           },
-          "orient": {
-            "name": "orient",
-            "description": "Orientation of the scroller to be observed (`v` for vertical, `h` for horizontal)",
+          "load": {
+            "name": "load",
+            "description": "When false, the image is prevented from loading and any placeholder is\nshown.  This may be useful when a binding to the src property is known to\nbe invalid, to prevent 404 requests.",
             "type": "boolean",
-            "default": false,
-            "title": "Orient"
+            "default": true,
+            "title": "Load"
           },
-          "upperThreshold": {
-            "name": "upperThreshold",
-            "description": "Distance from the top (or left, for horizontal) bound of the scroller\nwhere the \"upper trigger\" will fire.",
-            "type": "integer",
+          "sizing": {
+            "name": "sizing",
+            "description": "Sets a sizing option for the image.  Valid values are `contain` (full\naspect ratio of the image is contained within the element and\nletterboxed) or `cover` (image is cropped in order to fully cover the\nbounds of the element), or `null` (default: image takes natural size).",
+            "type": "string",
             "default": null,
-            "title": "Upper threshold"
+            "title": "Sizing"
           },
-          "lowerThreshold": {
-            "name": "lowerThreshold",
-            "description": "Distance from the bottom (or right, for horizontal) bound of the scroller\nwhere the \"lower trigger\" will fire.",
-            "type": "integer",
-            "default": "false",
-            "title": "Lower threshold"
+          "position": {
+            "name": "position",
+            "description": "When a sizing option is uzed (`cover` or `contain`), this determines\nhow the image is aligned within the element bounds.",
+            "type": "string",
+            "default": "center",
+            "title": "Position"
           },
-          "upperTriggered": {
-            "name": "upperTriggered",
-            "description": "Read-only value that tracks the triggered state of the upper threshold",
+          "preload": {
+            "name": "preload",
+            "description": "When `true`, any change to the `src` property will cause the `placeholder`\nimage (or background color, if no `placeholder` is specified) to be shown\nuntil the image has loaded.",
             "type": "boolean",
             "default": false,
-            "title": "Upper triggered"
+            "title": "Preload"
           },
-          "lowerTriggered": {
-            "name": "lowerTriggered",
-            "description": "Read-only value that tracks the triggered state of the lower threshold",
+          "placeholder": {
+            "name": "placeholder",
+            "description": "This image will be used as a background/placeholder until the src image has\nloaded.  Use of a data-URI for placeholder is encouraged for instant rendering.",
+            "type": "string",
+            "default": null,
+            "title": "Placeholder"
+          },
+          "role": {
+            "name": "role",
+            "description": "ARIA role for this element. It defaults to `img` since this element is\nintended to be behave like an `<img>`.",
+            "type": "string",
+            "default": "\"img\"",
+            "title": "Role"
+          },
+          "fade": {
+            "name": "fade",
+            "description": "When `preload` is true, setting `fade` to true will cause the image to\nfade into place.",
             "type": "boolean",
             "default": false,
-            "title": "Lower triggered"
+            "title": "Fade"
           },
-          "clearUpper": {
-            "name": "clearUpper",
-            "description": "Clear the upper threshold, following an `upper-trigger` event.",
-            "title": "Clear upper",
-            "async": true
+          "loading": {
+            "name": "loading",
+            "description": "Read-only value that tracks the loading state of the image when the `preload`\noption is used.",
+            "type": "boolean",
+            "default": false,
+            "title": "Loading"
           },
-          "clearLower": {
-            "name": "clearLower",
-            "description": "Clear the lower threshold, following a `lower-trigger` event.",
-            "title": "Clear lower",
-            "async": true
+          "width": {
+            "name": "width",
+            "description": "Can be used to set the width of image (e.g. via binding); size may also be\nset via CSS.",
+            "type": "number",
+            "default": null,
+            "title": "Width"
+          },
+          "height": {
+            "name": "height",
+            "description": "Can be used to set the height of image (e.g. via binding); size may also be\nset via CSS.",
+            "type": "number",
+            "default": null,
+            "title": "Height"
           }
         },
         "output": {}
@@ -960,7 +1094,7 @@
           "core-image": "Polymer/core-image#master"
         }
       },
-      "description": "`core-scroll-threshold` is a utility element that listens for `scroll` events from a\nscrollable region and fires events to indicate when the scroller has reached a pre-defined\nlimit, specified in pixels from the upper and lower bounds of the scrollable region.\n\nThis element may wrap a scrollable region and will listen for `scroll` events bubbling\nthrough it from its children.  In this case, care should be taken that only one scrollable\nregion with the same orientation as this element is contained within.  Alternatively,\nthe `scrollTarget` property can be set/bound to a non-child scrollable region, from which\nit will listen for events.\n\nOnce a threshold has been reached, a `lower-threshold` or `upper-threshold` event will\nbe fired, at which point the user may perform actions such as lazily-loading more data\nto be displayed.  After any work is done, the user must then clear the threshold by\ncalling the `clearUpper` or `clearLower` methods on this element, after which it will\nbegin listening again for the scroll position to reach the threshold again (assuming\nthe content in the) scrollable region has grown.  If the user no longer wishes to receive\nevents (e.g. all data has been exhausted), the \n\nExample:\n\n    <core-scroll-threshold id=\"threshold\" lowerThreshold=\"500\" \n      on-lower-triggered=\"{{loadMore}}\" lowerTriggered=\"{{spinnerShouldShow}}\">\n    </scroll-threshold>\n\n    ...\n\n    loadMore: function() {\n      this.asyncLoadStuffThen(function() {\n        this.$.threshold.clearLower();\n      }.bind(this));\n    }",
+      "description": "`core-image` is an element for displaying an image that provides useful sizing and\npreloading options not found on the standard `<img>` tag.\n\nThe `sizing` option allows the image to be either cropped (`cover`) or\nletterboxed (`contain`) to fill a fixed user-size placed on the element.\n\nThe `preload` option prevents the browser from rendering the image until the\nimage is fully loaded.  In the interim, either the element's CSS `background-color`\ncan be be used as the placeholder, or the `placeholder` property can be\nset to a URL (preferably a data-URI, for instant rendering) for an\nplaceholder image.\n\nThe `fade` option (only valid when `preload` is set) will cause the placeholder\nimage/color to be faded out once the image is rendered.\n\nExamples:\n\n  Basically identical to &lt;img src=\"...\"&gt; tag:\n\n    <core-image src=\"http://lorempixel.com/400/400\"></core-image>\n\n  Will letterbox the image to fit:\n\n    <core-image style=\"width:400px; height:400px;\" sizing=\"contain\"\n      src=\"http://lorempixel.com/600/400\"></core-image>\n\n  Will crop the image to fit:\n\n    <core-image style=\"width:400px; height:400px;\" sizing=\"cover\"\n      src=\"http://lorempixel.com/600/400\"></core-image>\n\n  Will show light-gray background until the image loads:\n\n    <core-image style=\"width:400px; height:400px; background-color: lightgray;\"\n      sizing=\"cover\" preload src=\"http://lorempixel.com/600/400\"></core-image>\n\n  Will show a base-64 encoded placeholder image until the image loads:\n\n    <core-image style=\"width:400px; height:400px;\" placeholder=\"data:image/gif;base64,...\"\n      sizing=\"cover\" preload src=\"http://lorempixel.com/600/400\"></core-image>\n\n  Will fade the light-gray background out once the image is loaded:\n\n    <core-image style=\"width:400px; height:400px; background-color: lightgray;\"\n      sizing=\"cover\" preload fade src=\"http://lorempixel.com/600/400\"></core-image>",
       "type": "polymer",
       "ns": "polymer",
       "title": "Core image",
@@ -1163,7 +1297,7 @@
           },
           "updateSize": {
             "name": "updateSize",
-            "description": "To be called by the user when the list is resized or shown\nafter being hidden.  Note, `core-list` calls this automatically\nwhen the window is resized.",
+            "description": "To be called by the user when the list is manually resized\nor shown after being hidden.",
             "title": "Update size",
             "async": true
           },
@@ -1290,7 +1424,7 @@
           "core-list": "Polymer/core-list#master"
         }
       },
-      "description": "`core-list` displays a virtual, 'infinite' list. The template inside the \n`core-list` element represents the DOM to create for each list item. The\n`data` property specifies an array of list item data.\n\nFor performance reasons, not every item in the list is rendered at once; instead\na small subset of actual template elements (enough to fill the viewport) are\nrendered and reused as the user scrolls.  As such, it is important that all\nstate of the list template be bound to the model driving it, since the view \nmay be reused with a new model at any time.  Particularly, any state that \nmay change as the result of a user interaction with the list item must be\nbound to the model to avoid view state inconsistency.\n\n### Template model\n\nList item templates should bind to template models of the following structure:\n\n    {\n      index: 0,           // data index for this item\n      selected: false,    // selection state for this item\n      model: {            // user data corresponding to data[index]\n        /* user item data  */\n      }\n    }\n\nFor example, given the following data array:\n\n    [\n      {name: 'Bob', checked: true},\n      {name: 'Tim', checked: false},\n      ...\n    ]\n\nThe following code would render the list (note the `name` and `checked`\nproperties are bound from the `model` object provided to the template\nscope):\n\n    <core-list data=\"{{data}}\">\n      <template>\n        <div class=\"row {{ {selected: selected} | tokenList }}\">\n          List row: {{index}}, User data from model: {{model.name}}\n          <input type=\"checkbox\" checked=\"{{model.checked}}\">\n        </div>\n      </template>\n    </core-list>\n\n### Selection\n\nBy default, the list supports selection via tapping. Styling selected items\nshould be done via binding to the `selected` property of each model (see examples\nabove.  The data model for the selected item (for single-selection) or array of\nmodels (for multi-selection) is published to the `selection` property.\n\n### Grouping **(experimental)**\n\n`core-list` supports showing dividers between groups of data by setting the \n`groups` property to an array containing group information.  An element with\na `divider` attribute set should be supplied a the top level of the template\nnext to the template item to provide the divider template.  The template model\ncontains extra fields when `groups` is used, as follows:\n\n    {\n      index: 0,           // data index for this item\n      groupIndex: 0,      // group index for this item\n      groupItemIndex: 0,  // index within group for this item\n      selected: false,    // selection state for this item\n      model: {            // user data corresponding to data[index]\n        /* user item data  */\n      },\n      groupModel: {       // user group data corresponding to groups[index]\n        /* user group data */\n      }\n    }\n\nGroups may be specified one of two ways (users should choose the data format \nthat closest matches their source data, to avoid the performance impact of \nneeding totransform data to fit the required structure):\n\n1. Flat data array - In this scenario, the `data` array is provided as \na flat list of models.  Group lengths are determined by the `length` property\non each group object, with the `data` property providing user-specified group\ndata, typically for binding to dividers.  For example:\n\n        data = [\n          { name: 'Adam' },\n          { name: 'Alex' },\n          { name: 'Bob' },\n          { name: 'Chuck' },\n          { name: 'Cathy' },\n          ...\n        ];\n\n        groups = [\n          { length: 2, data: { letter: 'A' } },\n          { length: 1, data: { letter: 'B' } },\n          { length: 2, data: { letter: 'C' } },\n          ...\n        ];\n\n        <core-list data=\"{{data}}\" groups=\"{{groups}}\">\n          <template>\n            <div divider class=\"divider\">{{groupModel.letter}}</div>\n            <div class=\"item\">{{model.name}}</div>\n          </template>\n        </core-list>\n\n2. Nested data array - In this scenario, the `data` array is a nested\narray of arrays of models, where each array determines the length of the\ngroup, and the `groups` models provide the user-specified data directly.\nFor example:\n\n        data = [\n          [ { name: 'Adam' }, { name: 'Alex' } ],\n          [ { name: 'Bob' } ],\n          [ { name: 'Chuck' }, { name: 'Cathy' } ],\n          ...\n        ];\n\n        groups = [\n          { letter: 'A' },\n          { letter: 'B' },\n          { letter: 'C' },\n          ...\n        ];\n\n        <core-list data=\"{{data}}\" groups=\"{{groups}}\">\n          <template>\n            <div divider class=\"divider\">{{groupModel.letter}}</div>\n            <div class=\"item\">{{model.name}}</div>\n          </template>\n        </core-list>\n\n### Grid layout **(experimental)**\n\n`core-list` supports a grid layout in addition to linear layout by setting\nthe `grid` attribute.  In this case, the list template item must have both fixed\nwidth and height (e.g. via CSS), with the desired width of each grid item\nspecified by the `width` attribute.  Based on this, the number of items \nper row are determined automatically based on the size of the list viewport.\n\n### Non-native scrollers **(experimental)**\n\nBy default, core-list assumes the `scrollTarget` (if set) is a native scrollable\nelement (e.g. `overflow:auto` or `overflow:y`) that fires the `scroll` event and\nwhose scroll position can be read/set via the `scrollTop` property.\n`core-list` provides experimental support for setting `scrollTarget`\nto a custom scroller element (e.g. a JS-based scroller) as long as it provides \nthe following abstract API:\n\n  - `getScrollTop()` - returns the current scroll position\n  - `setScrollTop(y)` - sets the current scroll position\n  - Fires a `scroll` event indicating when the scroll position has changed",
+      "description": "`core-list` displays a virtual, 'infinite' list. The template inside the \n`core-list` element represents the DOM to create for each list item. The\n`data` property specifies an array of list item data.\n\nFor performance reasons, not every item in the list is rendered at once; instead\na small subset of actual template elements (enough to fill the viewport) are\nrendered and reused as the user scrolls.  As such, it is important that all\nstate of the list template be bound to the model driving it, since the view \nmay be reused with a new model at any time.  Particularly, any state that \nmay change as the result of a user interaction with the list item must be\nbound to the model to avoid view state inconsistency.\n\nIMPORTANT: `core-list` must ether be explicitly sized, or delegate scrolling to\nan explicitly sized parent.  By \"explicitly sized\", we mean it either has an\nexplicit CSS `height` property set via a class or inline style, or else is sized\nby other layout means (e.g. `flex` or `fit`).  Alternatively, `core-list` can\ndelegate scrolling to a scrollable element that contains the list by setting the\n`scrollTarget` property, and the same explicit sizing requiremets will apply\nto that element.\n\n### Template model\n\nList item templates should bind to template models of the following structure:\n\n    {\n      index: 0,           // data index for this item\n      selected: false,    // selection state for this item\n      model: {            // user data corresponding to data[index]\n        /* user item data  */\n      }\n    }\n\nFor example, given the following data array:\n\n    [\n      {name: 'Bob', checked: true},\n      {name: 'Tim', checked: false},\n      ...\n    ]\n\nThe following code would render the list (note the `name` and `checked`\nproperties are bound from the `model` object provided to the template\nscope):\n\n    <core-list data=\"{{data}}\">\n      <template>\n        <div class=\"row {{ {selected: selected} | tokenList }}\">\n          List row: {{index}}, User data from model: {{model.name}}\n          <input type=\"checkbox\" checked=\"{{model.checked}}\">\n        </div>\n      </template>\n    </core-list>\n\n### Selection\n\nBy default, the list supports selection via tapping. Styling selected items\nshould be done via binding to the `selected` property of each model (see examples\nabove.  The data model for the selected item (for single-selection) or array of\nmodels (for multi-selection) is published to the `selection` property.\n\n### Grouping **(experimental)**\n\n`core-list` supports showing dividers between groups of data by setting the \n`groups` property to an array containing group information.  An element with\na `divider` attribute set should be supplied a the top level of the template\nnext to the template item to provide the divider template.  The template model\ncontains extra fields when `groups` is used, as follows:\n\n    {\n      index: 0,           // data index for this item\n      groupIndex: 0,      // group index for this item\n      groupItemIndex: 0,  // index within group for this item\n      selected: false,    // selection state for this item\n      model: {            // user data corresponding to data[index]\n        /* user item data  */\n      },\n      groupModel: {       // user group data corresponding to groups[index]\n        /* user group data */\n      }\n    }\n\nGroups may be specified one of two ways (users should choose the data format \nthat closest matches their source data, to avoid the performance impact of \nneeding totransform data to fit the required structure):\n\n1. Flat data array - In this scenario, the `data` array is provided as \na flat list of models.  Group lengths are determined by the `length` property\non each group object, with the `data` property providing user-specified group\ndata, typically for binding to dividers.  For example:\n\n        data = [\n          { name: 'Adam' },\n          { name: 'Alex' },\n          { name: 'Bob' },\n          { name: 'Chuck' },\n          { name: 'Cathy' },\n          ...\n        ];\n\n        groups = [\n          { length: 2, data: { letter: 'A' } },\n          { length: 1, data: { letter: 'B' } },\n          { length: 2, data: { letter: 'C' } },\n          ...\n        ];\n\n        <core-list data=\"{{data}}\" groups=\"{{groups}}\">\n          <template>\n            <div divider class=\"divider\">{{groupModel.letter}}</div>\n            <div class=\"item\">{{model.name}}</div>\n          </template>\n        </core-list>\n\n2. Nested data array - In this scenario, the `data` array is a nested\narray of arrays of models, where each array determines the length of the\ngroup, and the `groups` models provide the user-specified data directly.\nFor example:\n\n        data = [\n          [ { name: 'Adam' }, { name: 'Alex' } ],\n          [ { name: 'Bob' } ],\n          [ { name: 'Chuck' }, { name: 'Cathy' } ],\n          ...\n        ];\n\n        groups = [\n          { letter: 'A' },\n          { letter: 'B' },\n          { letter: 'C' },\n          ...\n        ];\n\n        <core-list data=\"{{data}}\" groups=\"{{groups}}\">\n          <template>\n            <div divider class=\"divider\">{{groupModel.letter}}</div>\n            <div class=\"item\">{{model.name}}</div>\n          </template>\n        </core-list>\n\n### Grid layout **(experimental)**\n\n`core-list` supports a grid layout in addition to linear layout by setting\nthe `grid` attribute.  In this case, the list template item must have both fixed\nwidth and height (e.g. via CSS), with the desired width of each grid item\nspecified by the `width` attribute.  Based on this, the number of items \nper row are determined automatically based on the size of the list viewport.\n\n### Non-native scrollers **(experimental)**\n\nBy default, core-list assumes the `scrollTarget` (if set) is a native scrollable\nelement (e.g. `overflow:auto` or `overflow:y`) that fires the `scroll` event and\nwhose scroll position can be read/set via the `scrollTop` property.\n`core-list` provides experimental support for setting `scrollTarget`\nto a custom scroller element (e.g. a JS-based scroller) as long as it provides \nthe following abstract API:\n\n  - `getScrollTop()` - returns the current scroll position\n  - `setScrollTop(y)` - sets the current scroll position\n  - Fires a `scroll` event indicating when the scroll position has changed",
       "type": "polymer",
       "ns": "polymer",
       "title": "Core list",
@@ -2123,61 +2257,81 @@
           "scrollTarget": {
             "name": "scrollTarget",
             "description": "When set, the given element is observed for scroll position.  When undefined,\nchildren can be placed inside and element itself can be used as the scrollable\nelement.",
-            "type": "string",
-            "default": "null"
+            "type": "Element",
+            "default": null,
+            "title": "Scroll target"
           },
           "orient": {
             "name": "orient",
             "description": "Orientation of the scroller to be observed (`v` for vertical, `h` for horizontal)",
             "type": "boolean",
-            "default": "'v'"
+            "default": false,
+            "title": "Orient"
           },
           "upperThreshold": {
             "name": "upperThreshold",
             "description": "Distance from the top (or left, for horizontal) bound of the scroller\nwhere the \"upper trigger\" will fire.",
             "type": "integer",
-            "default": "null"
+            "default": null,
+            "title": "Upper threshold"
           },
           "lowerThreshold": {
             "name": "lowerThreshold",
             "description": "Distance from the bottom (or right, for horizontal) bound of the scroller\nwhere the \"lower trigger\" will fire.",
             "type": "integer",
-            "default": "false"
+            "default": null,
+            "title": "Lower threshold"
           },
           "upperTriggered": {
             "name": "upperTriggered",
             "description": "Read-only value that tracks the triggered state of the upper threshold",
             "type": "boolean",
-            "default": "false"
+            "default": false,
+            "title": "Upper triggered"
           },
           "lowerTriggered": {
             "name": "lowerTriggered",
             "description": "Read-only value that tracks the triggered state of the lower threshold",
             "type": "boolean",
-            "default": "false"
+            "default": false,
+            "title": "Lower triggered"
           },
           "clearUpper": {
             "name": "clearUpper",
             "description": "Clear the upper threshold, following an `upper-trigger` event.",
+            "title": "Clear upper",
             "async": true
           },
           "clearLower": {
             "name": "clearLower",
             "description": "Clear the lower threshold, following a `lower-trigger` event.",
+            "title": "Clear lower",
             "async": true
           }
         },
-        "output": {}
+        "output": {
+          "upper-trigger": {
+            "name": "upper-trigger",
+            "description": "Fired when `upperTriggered` becomes `true`.",
+            "title": "Upper trigger"
+          },
+          "lower-trigger": {
+            "name": "lower-trigger",
+            "description": "Fired when `lowerTriggered` becomes `true`.",
+            "title": "Lower trigger"
+          }
+        }
       },
       "dependencies": {
         "bower": {
-          "core-image": "Polymer/core-image#master"
+          "core-scroll-threshold": "Polymer/core-scroll-threshold#master"
         }
       },
-      "description": "`core-scroll-threshold` is a utility element that listens for `scroll` events from a\nscrollable region and fires events to indicate when the scroller has reached a pre-defined\nlimit, specified in pixels from the upper and lower bounds of the scrollable region.\n\nThis element may wrap a scrollable region and will listen for `scroll` events bubbling\nthrough it from its children.  In this case, care should be taken that only one scrollable\nregion with the same orientation as this element is contained within.  Alternatively,\nthe `scrollTarget` property can be set/bound to a non-child scrollable region, from which\nit will listen for events.\n\nOnce a threshold has been reached, a `lower-threshold` or `upper-threshold` event will\nbe fired, at which point the user may perform actions such as lazily-loading more data\nto be displayed.  After any work is done, the user must then clear the threshold by\ncalling the `clearUpper` or `clearLower` methods on this element, after which it will\nbegin listening again for the scroll position to reach the threshold again (assuming\nthe content in the) scrollable region has grown.  If the user no longer wishes to receive\nevents (e.g. all data has been exhausted), the \n\nExample:\n\n    <core-scroll-threshold id=\"threshold\" lowerThreshold=\"500\" \n      on-lower-triggered=\"{{loadMore}}\" lowerTriggered=\"{{spinnerShouldShow}}\">\n    </scroll-threshold>\n\n    ...\n\n    loadMore: function() {\n      this.asyncLoadStuffThen(function() {\n        this.$.threshold.clearLower();\n      }.bind(this));\n    }",
+      "description": "`core-scroll-threshold` is a utility element that listens for `scroll` events from a\nscrollable region and fires events to indicate when the scroller has reached a pre-defined\nlimit, specified in pixels from the upper and lower bounds of the scrollable region.\n\nThis element may wrap a scrollable region and will listen for `scroll` events bubbling\nthrough it from its children.  In this case, care should be taken that only one scrollable\nregion with the same orientation as this element is contained within.  Alternatively,\nthe `scrollTarget` property can be set/bound to a non-child scrollable region, from which\nit will listen for events.\n\nOnce a threshold has been reached, a `lower-trigger` or `upper-trigger` event will\nbe fired, at which point the user may perform actions such as lazily-loading more data\nto be displayed.  After any work is done, the user must then clear the threshold by\ncalling the `clearUpper` or `clearLower` methods on this element, after which it will\nbegin listening again for the scroll position to reach the threshold again assuming\nthe content in the scrollable region has grown.  If the user no longer wishes to receive\nevents (e.g. all data has been exhausted), the threshold property in question (e.g.\n`lowerThreshold`) may be set to a falsy value to disable events and clear the associated\ntriggered property.\n\nExample:\n\n    <core-scroll-threshold id=\"threshold\" lowerThreshold=\"500\"\n      on-lower-trigger=\"{{loadMore}}\" lowerTriggered=\"{{spinnerShouldShow}}\">\n    </core-scroll-threshold>\n\n    ...\n\n    loadMore: function() {\n      this.asyncLoadStuffThen(function() {\n        this.$.threshold.clearLower();\n      }.bind(this));\n    }",
       "type": "polymer",
       "ns": "polymer",
-      "name": "core-image"
+      "title": "Core scroll threshold",
+      "name": "core-scroll-threshold"
     },
     {
       "ports": {
@@ -2258,7 +2412,7 @@
           "core-selection": "Polymer/core-selection#master"
         }
       },
-      "description": "The `<core-selection>` element is used to manage selection state. It has no\nvisual appearance and is typically used in conjunction with another element.\nFor example, [core-selector](#core-selector)\nuse a `<core-selection>` to manage selection.\n\nTo mark an item as selected, call the `select(item)` method on \n`<core-selection>`. The item itself is an argument to this method.\n\nThe `<core-selection>`element manages selection state for any given set of\nitems. When an item is selected, the `core-select` event is fired.\n\nThe attribute `multi` indicates if multiple items can be selected at once.\n  \nExample:\n \n    <polymer-element name=\"selection-example\">\n       <template>\n         <style>\n           polyfill-next-selector { content: ':host > .selected'; }\n           ::content > .selected {\n             font-weight: bold;\n             font-style: italic;\n           }\n         </style>\n         <ul on-tap=\"{{itemTapAction}}\">\n           <content></content>\n         </ul>\n         <core-selection id=\"selection\" multi\n                         on-core-select=\"{{selectAction}}\"></core-selection>\n       </template>\n       <script>\n         Polymer('selection-example', {\n           itemTapAction: function(e, detail, sender) {\n             this.$.selection.select(e.target);\n           },\n           selectAction: function(e, detail, sender) {\n             detail.item.classList.toggle('selected', detail.isSelected);\n           }\n         });\n       </script>\n    </polymer-element>\n\n    <selection-example>\n      <li>Red</li>\n      <li>Green</li>\n      <li>Blue</li>\n    </selection-example>",
+      "description": "The `<core-selection>` element is used to manage selection state. It has no\nvisual appearance and is typically used in conjunction with another element.\nFor example, [core-selector](#core-selector)\nuses a `<core-selection>` to manage selection.\n\nTo mark an item as selected, call the `select(item)` method on \n`<core-selection>`. The item itself is an argument to this method.\n\nThe `<core-selection>`element manages selection state for any given set of\nitems. When an item is selected, the `core-select` event is fired.\n\nThe attribute `multi` indicates if multiple items can be selected at once.\n  \nExample:\n \n    <polymer-element name=\"selection-example\">\n       <template>\n         <style>\n           polyfill-next-selector { content: ':host > .selected'; }\n           ::content > .selected {\n             font-weight: bold;\n             font-style: italic;\n           }\n         </style>\n         <ul on-tap=\"{{itemTapAction}}\">\n           <content></content>\n         </ul>\n         <core-selection id=\"selection\" multi\n                         on-core-select=\"{{selectAction}}\"></core-selection>\n       </template>\n       <script>\n         Polymer('selection-example', {\n           itemTapAction: function(e, detail, sender) {\n             this.$.selection.select(e.target);\n           },\n           selectAction: function(e, detail, sender) {\n             detail.item.classList.toggle('selected', detail.isSelected);\n           }\n         });\n       </script>\n    </polymer-element>\n\n    <selection-example>\n      <li>Red</li>\n      <li>Green</li>\n      <li>Blue</li>\n    </selection-example>",
       "type": "polymer",
       "ns": "polymer",
       "title": "Core selection",
@@ -2318,7 +2472,7 @@
           },
           "selectedModel": {
             "name": "selectedModel",
-            "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use \n`selected`.",
+            "description": "In single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use\n`selected`.",
             "type": "Object",
             "default": null,
             "title": "Selected model"
@@ -2332,21 +2486,21 @@
           },
           "excludedLocalNames": {
             "name": "excludedLocalNames",
-            "description": "Nodes with local name that are in the list will not be included \nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
+            "description": "Nodes with local name that are in the list will not be included\nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>",
             "type": "string",
             "default": "",
             "title": "Excluded local names"
           },
           "target": {
             "name": "target",
-            "description": "The target element that contains items.  If this is not set \ncore-selector is the container.",
+            "description": "The target element that contains items.  If this is not set\ncore-selector is the container.",
             "type": "Object",
             "default": null,
             "title": "Target"
           },
           "itemsSelector": {
             "name": "itemsSelector",
-            "description": "This can be used to query nodes from the target node to be used for \nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
+            "description": "This can be used to query nodes from the target node to be used for\nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>",
             "type": "string",
             "default": "",
             "title": "Items selector"
@@ -2367,7 +2521,7 @@
           },
           "selectPrevious": {
             "name": "selectPrevious",
-            "description": "Selects the previous item. This should be used in single selection only.\n\n                 wrap to the end",
+            "description": "Selects the previous item. This should be used in single selection only.\n\nwrap to the end",
             "title": "Select previous",
             "async": true,
             "type": "object",
@@ -2382,7 +2536,7 @@
           },
           "selectNext": {
             "name": "selectNext",
-            "description": "Selects the next item.  This should be used in single selection only.\n\n                 wrap to the front",
+            "description": "Selects the next item.  This should be used in single selection only.\n\nwrap to the front",
             "title": "Select next",
             "async": true,
             "type": "object",
@@ -2523,7 +2677,7 @@
           "list": {
             "name": "list",
             "description": "The `list` is a map of all `core-style` producers stored by `id`. It \nshould be considered readonly. It's useful for nesting one `core-style`\ninside another.",
-            "type": "object (readonly)",
+            "type": "object",
             "default": "{map of all `core-style` producers}",
             "title": "List"
           }
@@ -2535,7 +2689,7 @@
           "core-style": "Polymer/core-style#master"
         }
       },
-      "description": "The `core-style` element helps manage styling inside other elements and can \nbe used to make themes. The `core-style` element can be either a producer \nor consumer of styling. If it has its `id` property set, it's a producer. \nElements that are producers should include css styling as their text content.\nIf a `core-style` has its `ref` property set, it's a consumer. A `core-style`\ntypically sets its `ref` property to the value of the `id` property of the\n`core-style` it wants to use. This allows a single producer to be used in \nmultiple places, for example, in many different elements.\n\nIt's common to place `core-style` producer elements inside HTMLImports.\nRemote stylesheets should be included this way, the &#64;import css mechanism is\nnot currently supported.\n\nHere's a basic example:\n\n    <polymer-element name=\"x-test\" noscript>\n      <template>\n        <core-style ref=\"x-test\"></core-style>\n        <content></content>\n      </template>\n    </polymer-element>\n\nThe `x-test` element above will be styled by any `core-style` elements that have\n`id` set to `x-test`. These `core-style` producers are separate from the element\ndefinition, allowing a user of the element to style it independent of the author's \nstyling. For example:\n\n    <core-style id=\"x-test\">\n      :host {\n        backgound-color: steelblue;\n      }\n    </core-style>\n\nThe content of the `x-test` `core-style` producer gets included inside the\nshadowRoot of the `x-test` element. If the content of the `x-test` producer\n`core-style` changes, all consumers of it are automatically kept in sync. This\nallows updating styling on the fly.\n\nThe `core-style` element also supports bindings, in which case the producer\n`core-style` element is the model. Here's an example:\n\n    <core-style id=\"x-test\">\n      :host {\n        background-color: {{myColor}};\n      }\n    </core-style>\n    <script>\n      document._currentScript.ownerDocument.getElementById('x-test').myColor = 'orange';\n    </script>\n\nFinally, to facilitate sharing data between `core-style` elements, all\n`core-style` elements have a `g` property which is set to the global \n`CoreStyle.g`. Here's an example:\n\n    <core-style id=\"x-test\">\n      :host {\n        background-color: {{g.myColor}};\n      }\n    </core-style>\n    <script>\n      CoreStyle.g.myColor = 'tomato';\n    </script>\n\nFinally, one `core-style` can be nested inside another. The `core-style`\nelement has a `list` property which is a map of all the `core-style` producers.\nA `core-style` producer's content is available via its `cssText` property. \nPutting this together:\n\n    <core-style id=\"common\">\n      :host {\n        font-family: sans-serif;\n      }\n    </core-style>\n\n    <core-style id=\"x-test\">\n      {{list.common.cssText}}\n\n      :host {\n        background-color: {{g.myColor}};\n      }\n    </core-style>",
+      "description": "The `core-style` element helps manage styling inside other elements and can \nbe used to make themes. The `core-style` element can be either a producer \nor consumer of styling. If it has its `id` property set, it's a producer. \nElements that are producers should include css styling as their text content.\nIf a `core-style` has its `ref` property set, it's a consumer. A `core-style`\ntypically sets its `ref` property to the value of the `id` property of the\n`core-style` it wants to use. This allows a single producer to be used in \nmultiple places, for example, in many different elements.\n\nIt's common to place `core-style` producer elements inside HTMLImports.\nRemote stylesheets should be included this way, the &#64;import css mechanism is\nnot currently supported.\n\nHere's a basic example:\n\n    <polymer-element name=\"x-test\" noscript>\n      <template>\n        <core-style ref=\"x-test\"></core-style>\n        <content></content>\n      </template>\n    </polymer-element>\n\nThe `x-test` element above will be styled by any `core-style` elements that have\n`id` set to `x-test`. These `core-style` producers are separate from the element\ndefinition, allowing a user of the element to style it independent of the author's \nstyling. For example:\n\n    <core-style id=\"x-test\">\n      :host {\n        background-color: steelblue;\n      }\n    </core-style>\n\nThe content of the `x-test` `core-style` producer gets included inside the\nshadowRoot of the `x-test` element. If the content of the `x-test` producer\n`core-style` changes, all consumers of it are automatically kept in sync. This\nallows updating styling on the fly.\n\nThe `core-style` element also supports bindings, in which case the producer\n`core-style` element is the model. Here's an example:\n\n    <core-style id=\"x-test\">\n      :host {\n        background-color: {{myColor}};\n      }\n    </core-style>\n    <script>\n      document._currentScript.ownerDocument.getElementById('x-test').myColor = 'orange';\n    </script>\n\nFinally, to facilitate sharing data between `core-style` elements, all\n`core-style` elements have a `g` property which is set to the global \n`CoreStyle.g`. Here's an example:\n\n    <core-style id=\"x-test\">\n      :host {\n        background-color: {{g.myColor}};\n      }\n    </core-style>\n    <script>\n      CoreStyle.g.myColor = 'tomato';\n    </script>\n\nFinally, one `core-style` can be nested inside another. The `core-style`\nelement has a `list` property which is a map of all the `core-style` producers.\nA `core-style` producer's content is available via its `cssText` property. \nPutting this together:\n\n    <core-style id=\"common\">\n      :host {\n        font-family: sans-serif;\n      }\n    </core-style>\n\n    <core-style id=\"x-test\">\n      {{list.common.cssText}}\n\n      :host {\n        background-color: {{g.myColor}};\n      }\n    </core-style>",
       "type": "polymer",
       "ns": "polymer",
       "title": "Core style",
@@ -2611,7 +2765,7 @@
           "core-toolbar": "Polymer/core-toolbar#master"
         }
       },
-      "description": "`core-toolbar` is a horizontal bar containing items that can be used for\nlabel, navigation, search and actions.  The items place inside the \n`core-toolbar` are projected into a `horizontal center layout` container inside of \n`core-toolbar`'s Shadow DOM.  You can use flex attributes to control the items'\nsizing.\n\nExample:\n\n    <core-toolbar>\n      <core-icon-button icon=\"menu\" on-tap=\"{{menuAction}}\"></core-icon-button>\n      <div flex>Title</div>\n      <core-icon-button icon=\"more\" on-tap=\"{{moreAction}}\"></core-icon-button>\n    </core-toolbar>\n\n`core-toolbar` has a standard height, but can made be taller by setting `tall`\nclass on the `core-toolbar`.  This will make the toolbar 3x the normal height.\n\n    <core-toolbar class=\"tall\">\n      <core-icon-button icon=\"menu\"></core-icon-button>\n    </core-toolbar>\n\nApply `medium-tall` class to make the toolbar medium tall.  This will make the\ntoolbar 2x the normal height.\n\n    <core-toolbar class=\"medium-tall\">\n      <core-icon-button icon=\"menu\"></core-icon-button>\n    </core-toolbar>\n\nWhen `tall`, items can pin to either the top (default), middle or bottom.  Use\n`middle` class for middle content and `bottom` class for bottom content.\n\n    <core-toolbar class=\"tall\">\n      <core-icon-button icon=\"menu\"></core-icon-button>\n      <div class=\"middle indent\">Middle Title</div>\n      <div class=\"bottom indent\">Bottom Title</div>\n    </core-toolbar>\n    \nFor `medium-tall` toolbar, the middle and bottom contents overlap and are\npinned to the bottom.  But `middleJustify` and `bottomJustify` attributes are \nstill honored separately.\n    \nTo make an element completely fit at the bottom of the toolbar, use `fit` along\nwith `bottom`.\n\n    <core-toolbar class=\"tall\">\n      <div id=\"progressBar\" class=\"bottom fit\"></div>\n    </core-toolbar>\n\n`core-toolbar` adapts to mobile/narrow layout when there is a `core-narrow` class set\non itself or any of its ancestors.",
+      "description": "`core-toolbar` is a horizontal bar containing items that can be used for\nlabel, navigation, search and actions.  The items place inside the \n`core-toolbar` are projected into a `horizontal center layout` container inside of \n`core-toolbar`'s Shadow DOM.  You can use flex attributes to control the items'\nsizing.\n\nExample:\n\n    <core-toolbar>\n      <core-icon-button icon=\"menu\" on-tap=\"{{menuAction}}\"></core-icon-button>\n      <div flex>Title</div>\n      <core-icon-button icon=\"more-vert\" on-tap=\"{{moreAction}}\"></core-icon-button>\n    </core-toolbar>\n\n`core-toolbar` has a standard height, but can made be taller by setting `tall`\nclass on the `core-toolbar`.  This will make the toolbar 3x the normal height.\n\n    <core-toolbar class=\"tall\">\n      <core-icon-button icon=\"menu\"></core-icon-button>\n    </core-toolbar>\n\nApply `medium-tall` class to make the toolbar medium tall.  This will make the\ntoolbar 2x the normal height.\n\n    <core-toolbar class=\"medium-tall\">\n      <core-icon-button icon=\"menu\"></core-icon-button>\n    </core-toolbar>\n\nWhen `tall`, items can pin to either the top (default), middle or bottom.  Use\n`middle` class for middle content and `bottom` class for bottom content.\n\n    <core-toolbar class=\"tall\">\n      <core-icon-button icon=\"menu\"></core-icon-button>\n      <div class=\"middle indent\">Middle Title</div>\n      <div class=\"bottom indent\">Bottom Title</div>\n    </core-toolbar>\n    \nFor `medium-tall` toolbar, the middle and bottom contents overlap and are\npinned to the bottom.  But `middleJustify` and `bottomJustify` attributes are \nstill honored separately.\n    \nTo make an element completely fit at the bottom of the toolbar, use `fit` along\nwith `bottom`.\n\n    <core-toolbar class=\"tall\">\n      <div id=\"progressBar\" class=\"bottom fit\"></div>\n    </core-toolbar>\n\n`core-toolbar` adapts to mobile/narrow layout when there is a `core-narrow` class set\non itself or any of its ancestors.",
       "type": "polymer",
       "ns": "polymer",
       "title": "Core toolbar",
@@ -2995,7 +3149,7 @@
           },
           "update": {
             "name": "update",
-            "description": "Sizes this element to fit the input value. This function is automatically called\nwhen the user types in new input, but you must call this function if the value\nis updated imperatively.",
+            "description": "Sizes this element to fit the input value. This function is automatically called\nwhen the user types in new input, but you must call this function if the value\nis updated imperatively. Takes as parameter the textarea containing the input.",
             "title": "Update",
             "async": true
           }
@@ -3007,7 +3161,7 @@
           "paper-autogrow-textarea": "Polymer/paper-autogrow-textarea#master"
         }
       },
-      "description": "`paper-autogrow-textarea` is an element containing a textarea that grows in height as more\nlines of input are entered. Unless an explicit height or the `maxRows` property is set, it will\nnever scroll.\n\nExample:\n\n    <paper-autogrow-textarea id=\"a1\">\n        <textarea id=\"t1\"></textarea>\n    <paper-autogrow-textarea>\n\nBecause the `textarea`'s `value` property is not observable, if you set the `value` imperatively\nyou must call `update` to notify this element the value has changed.\n\nExample:\n\n    /* using example HTML above */\n    t1.value = 'some\\ntext';\n    a1.update();",
+      "description": "`paper-autogrow-textarea` is an element containing a textarea that grows in height as more\nlines of input are entered. Unless an explicit height or the `maxRows` property is set, it will\nnever scroll.\n\nExample:\n\n    <paper-autogrow-textarea id=\"a1\">\n        <textarea id=\"t1\"></textarea>\n    </paper-autogrow-textarea>\n\nBecause the `textarea`'s `value` property is not observable, if you set the `value` imperatively\nyou must call `update` to notify this element the value has changed.\n\nExample:\n\n    /* using example HTML above */\n    t1.value = 'some\\ntext';\n    a1.update(t1);",
       "type": "polymer",
       "ns": "polymer",
       "title": "Paper autogrow textarea",
@@ -3088,6 +3242,37 @@
       "ns": "polymer",
       "title": "Paper button",
       "name": "paper-button"
+    },
+    {
+      "ports": {
+        "input": {
+          "target": {
+            "name": "target",
+            "description": "The id of the textinput or textarea that should be monitored.",
+            "type": "string",
+            "default": null,
+            "title": "Target"
+          },
+          "showCounter": {
+            "name": "showCounter",
+            "description": "If false, don't show the character counter. Used in conjunction with\n`paper-input-decorator's` `error` field.",
+            "type": "boolean",
+            "default": true,
+            "title": "Show counter"
+          }
+        },
+        "output": {}
+      },
+      "dependencies": {
+        "bower": {
+          "paper-char-counter": "Polymer/paper-char-counter#master"
+        }
+      },
+      "description": "Material Design: <a href=\"http://www.google.com/design/spec/components/text-fields.html#text-fields-character-counter\">Character counter</a>\n\n`paper-char-counter` adds a character counter for paper input fields with a character restriction in place.\n\nExample:\n\n    <paper-input-decorator>\n      <input id=\"input1\" is=\"core-input\" maxlength=\"5\">\n      <paper-char-counter class=\"footer\" target=\"input1\"></paper-char-counter>\n    </paper-input-decorator>\n\nTheming\n-------\n\n`paper-char-counter` uses `paper-input-decorator`'s error `core-style` for global theming.",
+      "type": "polymer",
+      "ns": "polymer",
+      "title": "Paper char counter",
+      "name": "paper-char-counter"
     },
     {
       "ports": {
@@ -3426,11 +3611,28 @@
             "default": false,
             "title": "Is invalid"
           },
+          "autoValidate": {
+            "name": "autoValidate",
+            "description": "Set this property to true to validate the input as the user types.\nThis will not validate when changing the input programmatically; call\n`validate()` instead.",
+            "type": "boolean",
+            "default": false,
+            "title": "Auto validate"
+          },
           "error": {
             "name": "error",
             "description": "The message to display if the input value fails validation. If this\nis unset or the empty string, a default message is displayed depending\non the type of validation error.",
             "type": "string",
             "title": "Error"
+          },
+          "validate": {
+            "name": "validate",
+            "description": "Validate the input using HTML5 Constraints.",
+            "return": {
+              "type": "boolean",
+              "description": "True if the input is valid."
+            },
+            "title": "Validate",
+            "async": true
           },
           "updateLabelVisibility": {
             "name": "updateLabelVisibility",
@@ -3446,7 +3648,7 @@
           "paper-input-decorator": "Polymer/paper-input-decorator#master"
         }
       },
-      "description": "Material Design: <a href=\"http://www.google.com/design/spec/components/text-fields.html\">Text fields</a>\n\n`paper-input-decorator` adds Material Design input field styling and animations to an element.\n\nExample:\n\n    <paper-input-decorator label=\"Your Name\">\n        <input is=\"core-input\">\n    </paper-input-decorator>\n\n    <paper-input-decorator floatingLabel label=\"Your address\">\n        <textarea></textarea>\n    </paper-input-decorator>\n\nTheming\n-------\n\n`paper-input-decorator` uses `core-style` for global theming. The following options are available:\n\n- `CoreStyle.g.paperInput.labelColor` - The inline label, floating label, error message and error icon color when the input does not have focus.\n- `CoreStyle.g.paperInput.focusedColor` - The floating label and the underline color when the input has focus.\n- `CoreStyle.g.paperInput.cursorColor` - The cursor color during the focus animation. Typically this is the same as `focusedColor`.\n- `CoreStyle.g.paperInput.invalidColor` - The error message, the error icon, the cursor, the floating label and the underline's color when the input is invalid and has focus.\n\nTo add custom styling to only some elements, use these selectors:\n\n    paper-input-decorator /deep/ .label-text,\n    paper-input-decorator /deep/ .error {\n        /* inline label,  floating label, error message and error icon color when the input is unfocused */\n        color: green;\n    }\n\n    paper-input-decorator /deep/ ::-webkit-input-placeholder {\n        /* platform specific rules for placeholder text */\n        color: green;\n    }\n    paper-input-decorator /deep/ ::-moz-placeholder {\n        color: green;\n    }\n    paper-input-decorator /deep/ :-ms-input-placeholder {\n        color: green;\n    }\n\n    paper-input-decorator /deep/ .unfocused-underline {\n        /* line color when the input is unfocused */\n        background-color: green;\n    }\n\n    paper-input-decorator[focused] /deep/ .floating-label .label-text {\n        /* floating label color when the input is focused */\n        color: orange;\n    }\n\n    paper-input-decorator /deep/ .focused-underline {\n        /* line color when the input is focused */\n        background-color: orange;\n    }\n\n    paper-input-decorator /deep/ .cursor {\n        /* cursor color during the focus transition */\n        background-color: orange;\n    }\n\n    paper-input-decorator.invalid[focused] /deep/ .floated-label .label-text,\n    paper-input-decorator[focused] /deep/ .error {\n        /* floating label, error message nad error icon color when the input is invalid and focused */\n        color: salmon;\n    }\n\n    paper-input-decorator.invalid /deep/ .focused-underline,\n    paper-input-decorator.invalid /deep/ .cursor {\n        /* line and cursor color when the input is invalid and focused */\n        background-color: salmon;\n    }\n\nForm submission\n---------------\n\nYou can use inputs decorated with this element in a `form` as usual.\n\nAccessibility\n-------------\n\n`paper-input-decorator` will automatically set the `aria-label` attribute on the nested input\nto the value of `label`. Do not set the `placeholder` attribute on the nested input, as it will\nconflict with this element.",
+      "description": "Material Design: <a href=\"http://www.google.com/design/spec/components/text-fields.html\">Text fields</a>\n\n`paper-input-decorator` adds Material Design input field styling and animations to an element.\n\nExample:\n\n    <paper-input-decorator label=\"Your Name\">\n        <input is=\"core-input\">\n    </paper-input-decorator>\n\n    <paper-input-decorator floatingLabel label=\"Your address\">\n        <textarea></textarea>\n    </paper-input-decorator>\n\nTheming\n-------\n\n`paper-input-decorator` uses `core-style` for global theming. The following options are available:\n\n- `CoreStyle.g.paperInput.labelColor` - The inline label, floating label, error message and error icon color when the input does not have focus.\n- `CoreStyle.g.paperInput.focusedColor` - The floating label and the underline color when the input has focus.\n- `CoreStyle.g.paperInput.invalidColor` - The error message, the error icon, the floating label and the underline's color when the input is invalid and has focus.\n\nTo add custom styling to only some elements, use these selectors:\n\n    paper-input-decorator /deep/ .label-text,\n    paper-input-decorator /deep/ .error {\n        /* inline label,  floating label, error message and error icon color when the input is unfocused */\n        color: green;\n    }\n\n    paper-input-decorator /deep/ ::-webkit-input-placeholder {\n        /* platform specific rules for placeholder text */\n        color: green;\n    }\n    paper-input-decorator /deep/ ::-moz-placeholder {\n        color: green;\n    }\n    paper-input-decorator /deep/ :-ms-input-placeholder {\n        color: green;\n    }\n\n    paper-input-decorator /deep/ .unfocused-underline {\n        /* line color when the input is unfocused */\n        background-color: green;\n    }\n\n    paper-input-decorator[focused] /deep/ .floated-label .label-text {\n        /* floating label color when the input is focused */\n        color: orange;\n    }\n\n    paper-input-decorator /deep/ .focused-underline {\n        /* line color when the input is focused */\n        background-color: orange;\n    }\n\n    paper-input-decorator.invalid[focused] /deep/ .floated-label .label-text,\n    paper-input-decorator[focused] /deep/ .error {\n        /* floating label, error message nad error icon color when the input is invalid and focused */\n        color: salmon;\n    }\n\n    paper-input-decorator.invalid /deep/ .focused-underline {\n        /* line and color when the input is invalid and focused */\n        background-color: salmon;\n    }\n\nForm submission\n---------------\n\nYou can use inputs decorated with this element in a `form` as usual.\n\nValidation\n----------\n\nBecause you provide the `input` element to `paper-input-decorator`, you can use any validation library\nor the <a href=\"https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation\">HTML5 Constraints Validation API</a>\nto implement validation. Set the `isInvalid` attribute when the input is validated, and provide an\nerror message in the `error` attribute.\n\nExample:\n\n    <paper-input-decorator id=\"paper1\" error=\"Value must start with a number!\">\n        <input id=\"input1\" is=\"core-input\" pattern=\"^[0-9].*\">\n    </paper-input-decorator>\n    <button onclick=\"validate()\"></button>\n    <script>\n        function validate() {\n            var decorator = document.getElementById('paper1');\n            var input = document.getElementById('input1');\n            decorator.isInvalid = !input.validity.valid;\n        }\n    </script>\n\nExample to validate as the user types:\n\n    <template is=\"auto-binding\">\n        <paper-input-decorator id=\"paper2\" error=\"Value must start with a number!\" isInvalid=\"{{!$.input2.validity.valid}}\">\n            <input id=\"input2\" is=\"core-input\" pattern=\"^[0-9].*\">\n        </paper-input-decorator>\n    </template>\n\nAccessibility\n-------------\n\n`paper-input-decorator` will automatically set the `aria-label` attribute on the nested input\nto the value of `label`. Do not set the `placeholder` attribute on the nested input, as it will\nconflict with this element.",
       "type": "polymer",
       "ns": "polymer",
       "title": "Paper input decorator",
@@ -3475,6 +3677,26 @@
             "type": "boolean",
             "default": false,
             "title": "Disabled"
+          },
+          "value": {
+            "name": "value",
+            "description": "The current value of the input.",
+            "type": "String",
+            "default": "''",
+            "title": "Value"
+          },
+          "committedValue": {
+            "name": "committedValue",
+            "description": "The most recently committed value of the input.",
+            "type": "String",
+            "default": "''",
+            "title": "Committed value"
+          },
+          "focus": {
+            "name": "focus",
+            "description": "Focuses the `input`.",
+            "title": "Focus",
+            "async": true
           }
         },
         "output": {}
@@ -3484,7 +3706,7 @@
           "paper-input": "Polymer/paper-input#master"
         }
       },
-      "description": "Material Design: <a href=\"http://www.google.com/design/spec/components/text-fields.html#text-fields-single-line-text-field\">Single line text field</a>\n\n`paper-input` is a single-line text field for user input. It is a convenience element composed of\na `paper-input-decorator` and a `input is=\"core-input\"`.\n\nExample:\n\n    <paper-input label=\"Your Name\"></paper-input>\n\nIf you need more control over the `input` element, use `paper-input-decorator`.\n\nTheming\n-------\n\n`paper-input` can be styled similarly to `paper-input-decorator`.\n\nForm submission\n---------------\n\nUnlike inputs using `paper-input-decorator` directly, `paper-input` does not work out of\nthe box with the native `form` element. This is because the native `form` is not aware of\nshadow DOM and does not treat `paper-input` as a form element.\n\nUse `paper-input-decorator` directly, or see\n<a href=\"https://github.com/garstasio/ajax-form\">`ajax-form`</a> for a possible solution\nto submitting a `paper-input`.",
+      "description": "Material Design: <a href=\"http://www.google.com/design/spec/components/text-fields.html#text-fields-single-line-text-field\">Single line text field</a>\n\n`paper-input` is a single-line text field for user input. It is a convenience element composed of\na `paper-input-decorator` and a `input is=\"core-input\"`.\n\nExample:\n\n    <paper-input label=\"Your Name\"></paper-input>\n\nIf you need more control over the `input` element, use `paper-input-decorator`.\n\nTheming\n-------\n\n`paper-input` can be styled similarly to `paper-input-decorator`.\n\nForm submission\n---------------\n\nUnlike inputs using `paper-input-decorator` directly, `paper-input` does not work out of\nthe box with the native `form` element. This is because the native `form` is not aware of\nshadow DOM and does not treat `paper-input` as a form element.\n\nUse `paper-input-decorator` directly, or see\n<a href=\"https://github.com/garstasio/ajax-form\">`ajax-form`</a> for a possible solution\nto submitting a `paper-input`.\n\nValidation\n----------\n\nUse `paper-input-decorator` if you would like to implement validation.",
       "type": "polymer",
       "ns": "polymer",
       "title": "Paper input",
@@ -3633,7 +3855,7 @@
           "paper-radio-button": "Polymer/paper-radio-button#master"
         }
       },
-      "description": "`paper-radio-button` is a button that can be either checked or unchecked.\nUser can tap the radio button to check it.  But it cannot be unchecked by\ntapping once checked.\n\nUse `paper-radio-group` to group a set of radio buttons.  When radio buttons\nare inside a radio group, only one radio button in the group can be checked.\n\nExample:\n\n    <paper-radio-button></paper-radio-button>\n    \nStyling radio button:\n\nTo change the ink color for checked state:\n\n    paper-radio-button::shadow #ink[checked] {\n      color: #4285f4;\n    }\n    \nTo change the radio checked color:\n    \n    paper-radio-button::shadow #onRadio {\n      background-color: #4285f4;\n    }\n    \nTo change the ink color for unchecked state:\n\n    paper-radio-button::shadow #ink {\n      color: #b5b5b5;\n    }\n    \nTo change the radio unchecked color:\n    \n    paper-radio-button::shadow #offRadio {\n      border-color: #b5b5b5;\n    }",
+      "description": "`paper-radio-button` is a button that can be either checked or unchecked.\nUser can tap the radio button to check it.  But it cannot be unchecked by\ntapping once checked.\n\nUse `paper-radio-group` to group a set of radio buttons.  When radio buttons\nare inside a radio group, only one radio button in the group can be checked.\n\nExample:\n\n    <paper-radio-button></paper-radio-button>\n    \nStyling radio button:\n\nTo change the ink color for checked state:\n\n    paper-radio-button::shadow #ink[checked] {\n      color: #4285f4;\n    }\n    \nTo change the radio checked color:\n    \n    paper-radio-button::shadow #onRadio {\n      background-color: #4285f4;\n    }\n\n    paper-radio-button[checked]::shadow #offRadio {\n      border-color: #4285f4;\n    }\n\nTo change the ink color for unchecked state:\n\n    paper-radio-button::shadow #ink {\n      color: #b5b5b5;\n    }\n    \nTo change the radio unchecked color:\n    \n    paper-radio-button::shadow #offRadio {\n      border-color: #b5b5b5;\n    }",
       "type": "polymer",
       "ns": "polymer",
       "title": "Paper radio button",
@@ -3800,7 +4022,7 @@
           "paper-ripple": "Polymer/paper-ripple#master"
         }
       },
-      "description": "`paper-ripple` provides a visual effect that other paper elements can\nuse to simulate a rippling effect emanating from the point of contact.  The\neffect can be visualized as a concentric circle with motion.\n\nExample:\n\n    <paper-ripple></paper-ripple>\n\n`paper-ripple` listens to \"down\" and \"up\" events so it would display ripple\neffect when touches on it.  You can also defeat the default behavior and\nmanually route the down and up actions to the ripple element.  Note that it is\nimportant if you call downAction() you will have to make sure to call upAction()\nso that `paper-ripple` would end the animation loop.\n\nExample:\n\n    <paper-ripple id=\"ripple\" style=\"pointer-events: none;\"></paper-ripple>\n    ...\n    downAction: function(e) {\n      this.$.ripple.downAction({x: e.x, y: e.y});\n    },\n    upAction: function(e) {\n      this.$.ripple.upAction();\n    }\n\nStyling ripple effect:\n\n  Use CSS color property to style the ripple:\n\n    paper-ripple {\n      color: #4285f4;\n    }\n\n  Note that CSS color property is inherited so it is not required to set it on\n  the `paper-ripple` element directly.\n\nApply `recenteringTouch` class to make the recentering rippling effect.\n\n    <paper-ripple class=\"recenteringTouch\"></paper-ripple>\n\nApply `circle` class to make the rippling effect within a circle.\n\n    <paper-ripple class=\"circle\"></paper-ripple>",
+      "description": "`paper-ripple` provides a visual effect that other paper elements can\nuse to simulate a rippling effect emanating from the point of contact.  The\neffect can be visualized as a concentric circle with motion.\n\nExample:\n\n    <paper-ripple></paper-ripple>\n\n`paper-ripple` listens to \"down\" and \"up\" events so it would display ripple\neffect when touches on it.  You can also defeat the default behavior and\nmanually route the down and up actions to the ripple element.  Note that it is\nimportant if you call downAction() you will have to make sure to call upAction()\nso that `paper-ripple` would end the animation loop.\n\nExample:\n\n    <paper-ripple id=\"ripple\" style=\"pointer-events: none;\"></paper-ripple>\n    ...\n    downAction: function(e) {\n      this.$.ripple.downAction({x: e.x, y: e.y});\n    },\n    upAction: function(e) {\n      this.$.ripple.upAction();\n    }\n\nStyling ripple effect:\n\n  Use CSS color property to style the ripple:\n\n    paper-ripple {\n      color: #4285f4;\n    }\n\n  Note that CSS color property is inherited so it is not required to set it on\n  the `paper-ripple` element directly.\n\nBy default, the ripple is centered on the point of contact.  Apply `recenteringTouch` \nclass to have the ripple grow toward the center of its container.\n\n    <paper-ripple class=\"recenteringTouch\"></paper-ripple>\n\nApply `circle` class to make the rippling effect within a circle.\n\n    <paper-ripple class=\"circle\"></paper-ripple>",
       "type": "polymer",
       "ns": "polymer",
       "title": "Paper ripple",
@@ -3822,6 +4044,12 @@
             "type": "boolean",
             "default": false,
             "title": "Animated"
+          },
+          "setZ": {
+            "name": "setZ",
+            "description": "Set the z-depth of the shadow. This should be used after element\ncreation instead of setting the z property directly.",
+            "title": "Set z",
+            "async": true
           }
         },
         "output": {}
@@ -3916,6 +4144,13 @@
             "type": "boolean",
             "default": false,
             "title": "Active"
+          },
+          "alt": {
+            "name": "alt",
+            "description": "Alternative text content for accessibility support.\nIf alt is present, it will add an aria-label whose content matches alt when active.\nIf alt is not present, it will default to 'loading' as the alt value.",
+            "type": "string",
+            "default": "loading",
+            "title": "Alt"
           }
         },
         "output": {}
@@ -3925,7 +4160,7 @@
           "paper-spinner": "Polymer/paper-spinner#master"
         }
       },
-      "description": "Element providing material design circular spinner.\n\n##### Example\n\n    <paper-spinner active></paper-spinner>\n\nThe default spinner cycles between blue, red, yellow and green. It can be customized so\nthat it uses one color only.\n\n##### Example\n\n    <style shim-shadowdom>\n      paper-spinner.blue::shadow .circle {\n        border-color: #4285f4;\n      }\n    </style>\n\n    <paper-spinner class=\"blue\" active></paper-spinner>",
+      "description": "Element providing material design circular spinner.\n\n##### Example\n\n    <paper-spinner active></paper-spinner>\n\nThe default spinner cycles between blue, red, yellow and green. It can be customized so\nthat it uses one color only.\n\n##### Example\n\n    <style shim-shadowdom>\n      paper-spinner.blue::shadow .circle {\n        border-color: #4285f4;\n      }\n    </style>\n\n    <paper-spinner class=\"blue\" active></paper-spinner>\n\nAlt attribute should be set to provide adequate context for accessibility. If not provided,\nit defaults to 'loading'.\nEmpty alt can be provided to mark the element as decorative if alternative content is provided\nin another form (e.g. a text block following the spinner).\n\n##### Example\n  <paper-spinner alt=\"Loading contacts list\" active></paper-spinner>",
       "type": "polymer",
       "ns": "polymer",
       "title": "Paper spinner",
@@ -4158,7 +4393,7 @@
           "paper-toggle-button": "Polymer/paper-toggle-button#master"
         }
       },
-      "description": "`paper-toggle-button` provides a ON/OFF switch that user can toggle the state\nby tapping or by dragging the swtich.\n\nExample:\n\n    <paper-toggle-button></paper-toggle-button>\n\nStyling toggle button:\n\nTo change the ink color for checked state:\n\n    paper-toggle-button::shadow paper-radio-button::shadow #ink[checked] {\n      color: #4285f4;\n    }\n    \nTo change the radio checked color:\n    \n    paper-toggle-button::shadow paper-radio-button::shadow #onRadio {\n      background-color: #4285f4;\n    }\n    \nTo change the bar color for checked state:\n\n    paper-toggle-button::shadow #toggleBar[checked] {\n      background-color: #4285f4;\n    }\n    \nTo change the ink color for unchecked state:\n\n    paper-toggle-button::shadow paper-radio-button::shadow #ink {\n      color: #b5b5b5;\n    }\n    \nTo change the radio unchecked color:\n    \n    paper-toggle-button::shadow paper-radio-button::shadow #offRadio {\n      border-color: #b5b5b5;\n    }\n\nTo change the bar color for unchecked state:\n\n    paper-toggle-button::shadow #toggleBar {\n      background-color: red;\n    }",
+      "description": "`paper-toggle-button` provides a ON/OFF switch that user can toggle the state\nby tapping or by dragging the swtich.\n\nExample:\n\n    <paper-toggle-button></paper-toggle-button>\n\nStyling toggle button:\n\nTo change the toggle color:\n\n    paper-toggle-button::shadow .toggle {\n      background-color: #9c27b0;\n    }\n\nTo change the ink color:\n    \n    paper-toggle-button::shadow .toggle-ink {\n      color: #009688;\n    }\n\nTo change the checked toggle color:\n\n    paper-toggle-button::shadow [checked] .toggle {\n      background-color: #4285f4;\n    }\n\nTo change the checked ink color:\n\n    paper-toggle-button::shadow [checked] .toggle-ink {\n      color: #4285f4;\n    }\n\nTo change the toggle bar and toggle button colors separately:\n\n    paper-toggle-button::shadow .toggle-bar {\n      background-color: #5677fc;\n    }\n\n    paper-toggle-button::shadow .toggle-button {\n      background-color: #9c27b0;\n    }",
       "type": "polymer",
       "ns": "polymer",
       "title": "Paper toggle button",

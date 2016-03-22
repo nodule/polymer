@@ -1,314 +1,74 @@
-var parser = require('polymer-context-free-parser');
-var fs = require('fs');
-var util = require('util');
-var glob = require('glob');
-var path = require('path');
-var d = require('dot-object')();
-var defs = {};
-var extenders = [];
-var humanize = require('underscore.string').humanize;
-var _ = require('underscore');
-
-// glob the .html file of each installed component
-var g = glob('./bower_components/*/*.html');
-
-/**
- *
- * Todo: some packages define multiple components.
- * Maybe use metadata.
- *
- * core-slider extends core-range
- * But the attributes are not merged..
- */
-
-/**
- *
- * Parses a webcomponents .html file
- * Using the context free parser.
- *
- */
-function parseFile(file) {
-
-  var basename  = path.basename(file);
-  var component = basename + '.html';
-  var componentFile = file + component;
-
-  var text = fs.readFileSync(file, 'utf8');
-
-  var result = parser.parse(text);
-
-  // process each context free definition
-  result.forEach(processDef);
-
-}
-
-g.on('end', function(files) {
-
-  files.forEach(parseFile);
-
-  while (extenders.length) {
-    var def  = extenders.pop();
-    var base = defs[def.extends];
-
-    console.log('doing extender', def.extends);
-
-    if(base) {
-      def.extends = null;
-      //def = extend(true, base, def);
-      def = _.extend(true, def, base);
-      console.log(def.name);
-      if(def.name === 'paper-slider') {
-        console.log('MERGED!', def);
-      }
-
-      processDef(def);
-    } else {
-      console.log('Unable to find:', def.extends);
-    }
-  }
-
-});
-
-function isWebComponent(def) {
-  if (!def.methods && !def.attributes && !def.events) {
-    // ain't no web component or is base
-    return false;
-  }
-  return true;
-}
-
-/**
- *
- * Write the node definition.
- *
- * @param {Object} nD Chix Node Definition
- *
- */
-function writeNodeDefinition(def) {
-
-  // only write if there are any ports.
-  if (Object.keys(def.ports.input).length || Object.keys(def.ports.output).length) {
-    if (!fs.existsSync('./nodes/' + def.name)) {
-      fs.mkdirSync('./nodes/' + def.name);
-    }
-
-    fs.writeFileSync('./nodes/' + def.name + '/node.json',
-      JSON.stringify(def, null, 2)
-    );
-  }
-
-}
-
-
-/**
- *
- *
- *
- * @param {Object} def
- * @param {String} base
- */
-function processDef(def, base) {
-
-  if (def.name === 'Entity') {
-    return false;
-  }
-
-  console.log('Processing', def.name, [
-    'attributes', 'methods', 'events'
-  ].filter(function(prop) { return def.hasOwnProperty(prop);  })
-    .join(', '));
-
-  var nD = createNodeDefinition(def);
-
-  console.log('nD.name', nD.name);
-
-  if(!isWebComponent(def)) {
-    return false;
-  }
-
-  // register to resolve extends
-  defs[nD.name] = nD;
-
-  if (def.extends) {
-    nD.extends = def.extends;
-    extenders.push(nD);
-    return;
-  }
-
-  writeNodeDefinition(nD);
-
-}
-
-/*
-
-  Still faulty, is a described object
-
-  "properties": {
-+          "detail.isSelected": {
-             "type": "boolean",
-             "name": "detail.isSelected",
--            "description": "true for selection and false for deselection"
-+            "description": "true for selection and false for deselection",
-+            "title": "Detail.is selected"
-           },
--          {
-+          "detail.item": {
-             "type": "Object",
-             "name": "detail.item",
--            "description": "the item element"
-+            "description": "the item element",
-+            "title": "Detail.item"
-           }
-*/
-
-
-function paramsToProperties(a) {
-
-  var name;
-  var prop;
-  var param;
-
-  // .params is an array.
-  // I would like to always pass them as an object
-  // so PolymerNode must understand this.
-  if(a.params) {
-
-    // not overwriting anything?
-    a.type = 'object';
-    a.properties = {};
-
-    for(var i = 0; i < a.params.length; i++) {
-      param = a.params[i];
-
-      // only one level deep for now detail.isSelected
-      var m = param.name.split('.');
-      name = m[0];
-
-      param.title = humanize(m[0]);
-
-      convertDefault(param);
-
-      if(m[1]) {
-        prop = m[1];
-        // type is object/
-        // we are handling a property.
-        if (!a.properties.hasOwnProperty(name)) {
-          a.properties[name] = {
-            type: 'Object',
-            name: name,
-            title: humanize(name)
-            // description:  can have a description?
-          };
-          a.properties[name].properties = {};
-        }
-        param.name = prop;
-        param.title = humanize(prop);
-        a.properties[name].properties[prop] = param;
-
-      } else {
-        a.properties[param.name] = param;
-      }
-    }
-
-    delete a.params;
-  }
-
-}
-
-function convertDefault(def) {
-  if (def.default) {
-    if (def.default === 'null') {
-      def.default = null;
-    } else {
-      switch (def.type) {
-        case 'string':
-          def.default = def.default.replace(/(^'|'$)/g, '');
-        break;
-
-        case 'boolean':
-          def.default = /^t/i.test(def.default);
-        break;
-
-        case 'number':
-          def.default = parseInt(def.default);
-        break;
-      }
-    }
-  }
-}
-
-function createNodeDefinition(def) {
-
-  var nD = {};
-
-  nD.name = def.name;
-  nD.title = humanize(def.name);
-  nD.ns = 'polymer';
-  nD.type = 'polymer';
-  if(def.description) {
-    nD.description = def.description.trim();
-  }
-  nD.dependencies = { bower: { } };
-  nD.dependencies.bower[def.name] =
-    'Polymer/' + def.name + '#master';
-  nD.ports = {
-    input: {},
-    output: {}
-  };
-
-  if (def.attributes) {
-
-    def.attributes.forEach(function(a) {
-
-      a.title = humanize(a.name);
-
-      convertDefault(a);
-
-      if (a.description) {
-        a.description = a.description.trim();
-      }
-      nD.ports.input[a.name] = a;
-    });
-
-  }
-
-  if (def.methods) {
-    def.methods.forEach(function(a) {
-      if (nD.ports.input.hasOwnProperty(a.name)) {
-        throw Error('Conflicting port names');
-      } else {
-
-        if (a.description) {
-          a.description = a.description.trim();
-        }
-
-        a.title = humanize(a.name);
-
-        convertDefault(a);
-
-        a.async = true;
-
-        paramsToProperties(a);
-
-        nD.ports.input[a.name] = a;
-
-      }
-    });
-  }
-
-  if (def.events) {
-    def.events.forEach(function(e) {
-      e.title = humanize(e.name);
-      if (e.description) {
-        e.description = e.description.trim();
-      }
-
-      paramsToProperties(e);
-
-      nD.ports.output[e.name] = e;
-    });
-  }
-
-  return nD;
-
+module.exports = {
+  CoreResizable: require('./CoreResizable'),
+  coreA11yKeys: require('./core-a11y-keys'),
+  coreAjax: require('./core-ajax'),
+  coreAnimatedPages: require('./core-animated-pages'),
+  coreAnimation: require('./core-animation'),
+  coreCollapse: require('./core-collapse'),
+  coreDocViewer: require('./core-doc-viewer'),
+  coreDrawerPanel: require('./core-drawer-panel'),
+  coreDropdownBase: require('./core-dropdown-base'),
+  coreDropdownMenu: require('./core-dropdown-menu'),
+  coreDropdown: require('./core-dropdown'),
+  coreHeaderPanel: require('./core-header-panel'),
+  coreIconButton: require('./core-icon-button'),
+  coreIcon: require('./core-icon'),
+  coreIconsetSvg: require('./core-iconset-svg'),
+  coreIconset: require('./core-iconset'),
+  coreImage: require('./core-image'),
+  coreInput: require('./core-input'),
+  coreItem: require('./core-item'),
+  coreLabel: require('./core-label'),
+  coreLayoutTrbl: require('./core-layout-trbl'),
+  coreList: require('./core-list'),
+  coreLocalstorage: require('./core-localstorage'),
+  coreMediaQuery: require('./core-media-query'),
+  coreMenuButton: require('./core-menu-button'),
+  coreMenu: require('./core-menu'),
+  coreMeta: require('./core-meta'),
+  coreOverlay: require('./core-overlay'),
+  corePages: require('./core-pages'),
+  coreRange: require('./core-range'),
+  coreScaffold: require('./core-scaffold'),
+  coreScrollHeaderPanel: require('./core-scroll-header-panel'),
+  coreScrollThreshold: require('./core-scroll-threshold'),
+  coreSelection: require('./core-selection'),
+  coreSelector: require('./core-selector'),
+  coreSplitter: require('./core-splitter'),
+  coreStyle: require('./core-style'),
+  coreSubmenu: require('./core-submenu'),
+  coreToolbar: require('./core-toolbar'),
+  coreTooltip: require('./core-tooltip'),
+  coreTransitionCss: require('./core-transition-css'),
+  coreTransition: require('./core-transition'),
+  coreXhr: require('./core-xhr'),
+  paperActionDialog: require('./paper-action-dialog'),
+  paperAutogrowTextarea: require('./paper-autogrow-textarea'),
+  paperButtonBase: require('./paper-button-base'),
+  paperButton: require('./paper-button'),
+  paperCharCounter: require('./paper-char-counter'),
+  paperCheckbox: require('./paper-checkbox'),
+  paperDialogBase: require('./paper-dialog-base'),
+  paperDialog: require('./paper-dialog'),
+  paperDropdownMenu: require('./paper-dropdown-menu'),
+  paperDropdownTransition: require('./paper-dropdown-transition'),
+  paperDropdown: require('./paper-dropdown'),
+  paperFab: require('./paper-fab'),
+  paperIconButton: require('./paper-icon-button'),
+  paperInputDecorator: require('./paper-input-decorator'),
+  paperInput: require('./paper-input'),
+  paperItem: require('./paper-item'),
+  paperMenuButton: require('./paper-menu-button'),
+  paperProgress: require('./paper-progress'),
+  paperRadioButton: require('./paper-radio-button'),
+  paperRadioGroup: require('./paper-radio-group'),
+  paperRipple: require('./paper-ripple'),
+  paperShadow: require('./paper-shadow'),
+  paperSlider: require('./paper-slider'),
+  paperSpinner: require('./paper-spinner'),
+  paperTab: require('./paper-tab'),
+  paperTabs: require('./paper-tabs'),
+  paperToast: require('./paper-toast'),
+  paperToggleButton: require('./paper-toggle-button'),
+  samplerScaffold: require('./sampler-scaffold')
 }

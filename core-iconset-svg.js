@@ -1,0 +1,66 @@
+module.exports = {
+  name: "core-iconset-svg",
+  title: "Core iconset svg",
+  ns: "polymer",
+  type: "polymer",
+  description: "The `core-iconset-svg` element allows users to define their own icon sets\nthat contain svg icons. The svg icon elements should be children of the\n`core-iconset-svg` element. Multiple icons should be given distinct id's.\n\nUsing svg elements to create icons has a few advantages over traditional\nbitmap graphics like jpg or png. Icons that use svg are vector based so they\nare resolution independent and should look good on any device. They are\nstylable via css. Icons can be themed, colorized, and even animated.\n\nExample:\n\n    <core-iconset-svg id=\"my-svg-icons\" iconSize=\"24\">\n      <svg>\n        <defs>\n          <g id=\"shape\">\n            <rect x=\"50\" y=\"50\" width=\"50\" height=\"50\" />\n            <circle cx=\"50\" cy=\"50\" r=\"50\" />\n          </g>\n        </defs>\n      </svg>\n    </core-iconset-svg>\n\nThis will automatically register the icon set \"my-svg-icons\" to the iconset\ndatabase.  To use these icons from within another element, make a\n`core-iconset` element and call the `byId` method\nto retrieve a given iconset. To apply a particular icon inside an\nelement use the `applyIcon` method. For example:\n\n    iconset.applyIcon(iconNode, 'car');",
+  dependencies: {
+    bower: {
+      "core-iconset-svg": "Polymer/core-iconset-svg#master"
+    }
+  },
+  ports: {
+    input: {
+      iconSize: {
+        name: "iconSize",
+        description: "The size of an individual icon. Note that icons must be square.",
+        type: "number",
+        "default": 24,
+        title: "Icon size"
+      },
+      applyIcon: {
+        name: "applyIcon",
+        description: "Applies an icon to the given element. The svg icon is added to the\nelement's shadowRoot if one exists or directly to itself.\n\napplied.",
+        title: "Apply icon",
+        async: true,
+        type: "object",
+        properties: {
+          element: {
+            type: "Element",
+            name: "element",
+            description: "The element to which the icon is",
+            title: "Element"
+          },
+          icon: {
+            type: "String|Number",
+            name: "icon",
+            description: "The name the icon to apply.",
+            title: "Icon"
+          }
+        }
+      },
+      updateIcons: {
+        name: "updateIcons",
+        description: "Tell users of the iconset, that the set has loaded.\nThis finds all elements matching the selector argument and calls \nthe method argument on them.\ndefaults to '[icon]'\ndefaults to 'updateIcon'",
+        title: "Update icons",
+        async: true,
+        type: "object",
+        properties: {
+          css: {
+            type: "string",
+            name: "css",
+            description: "selector to identify iconset users, ",
+            title: "Css"
+          },
+          method: {
+            type: "string",
+            name: "method",
+            description: "to call on found elements, ",
+            title: "Method"
+          }
+        }
+      }
+    },
+    output: {}
+  }
+}

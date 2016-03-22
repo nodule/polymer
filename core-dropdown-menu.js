@@ -1,0 +1,38 @@
+module.exports = {
+  name: "core-dropdown-menu",
+  title: "Core dropdown menu",
+  ns: "polymer",
+  type: "polymer",
+  description: "`core-dropdown-menu` works together with `core-dropdown` and `core-selector` to\nimplement a drop-down menu. The currently selected item is displayed in the\ncontrol. If no item is selected, the `label` is displayed instead.\n\nThe child element with the class `dropdown` will be used as the drop-down\nmenu. It should be a `core-dropdown` or other overlay element. You should\nalso provide a `core-selector` or other selector element, such as `core-menu`,\nin the drop-down.\n\nExample:\n\n    <core-dropdown-menu label=\"Choose a pastry\">\n        <core-dropdown class=\"dropdown\">\n            <core-selector>\n              <core-item label=\"Croissant\"></core-item>\n              <core-item label=\"Donut\"></core-item>\n              <core-item label=\"Financier\"></core-item>\n              <core-item label=\"Madeleine\"></core-item>\n            </core-selector>\n        </core-dropdown>\n    </core-dropdown-menu>",
+  dependencies: {
+    bower: {
+      "core-dropdown-menu": "Polymer/core-dropdown-menu#master"
+    }
+  },
+  ports: {
+    input: {
+      label: {
+        name: "label",
+        description: "A label for the control. The label is displayed if no item is selected.",
+        type: "string",
+        "default": "Select an item",
+        title: "Label"
+      },
+      openedIcon: {
+        name: "openedIcon",
+        description: "The icon to display when the drop-down is opened.",
+        type: "string",
+        "default": "arrow-drop-up",
+        title: "Opened icon"
+      },
+      closedIcon: {
+        name: "closedIcon",
+        description: "The icon to display when the drop-down is closed.",
+        type: "string",
+        "default": "arrow-drop-down",
+        title: "Closed icon"
+      }
+    },
+    output: {}
+  }
+}

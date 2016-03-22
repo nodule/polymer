@@ -1,0 +1,37 @@
+module.exports = {
+  name: "core-input",
+  title: "Core input",
+  ns: "polymer",
+  type: "polymer",
+  description: "`core-input` is an unstyled single-line input field. It extends the native\n`input` element.\n\nExample:\n\n    <input is=\"core-input\">\n\nThe input's value is considered \"committed\" if the user hits the \"enter\" key\nor blurs the input after changing the value. The committed value is stored in\nthe `committedValue` property.\n\nIf the input has `type = number`, this element will also prevent non-numeric characters\nfrom being typed into the text field.\n\nAccessibility\n-------------\n\nThe following ARIA attributes are set automatically:\n\n- `aria-label`: set to the `placeholder` attribute\n- `aria-disabled`: set if `disabled` is true",
+  dependencies: {
+    bower: {
+      "core-input": "Polymer/core-input#master"
+    }
+  },
+  ports: {
+    input: {
+      committedValue: {
+        name: "committedValue",
+        description: "The \"committed\" value of the input, ie. the input value when the user\nhits the \"enter\" key or blurs the input after changing the value. You\ncan bind to this value instead of listening for the \"change\" event.\nSetting this property has no effect on the input value.",
+        type: "string",
+        "default": "",
+        title: "Committed value"
+      },
+      preventInvalidInput: {
+        name: "preventInvalidInput",
+        description: "Set to true to prevent invalid input from being entered.",
+        type: "boolean",
+        "default": false,
+        title: "Prevent invalid input"
+      },
+      commit: {
+        name: "commit",
+        description: "Commits the `value` to `committedValue`",
+        title: "Commit",
+        async: true
+      }
+    },
+    output: {}
+  }
+}

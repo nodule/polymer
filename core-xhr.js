@@ -1,0 +1,87 @@
+module.exports = {
+  name: "core-xhr",
+  title: "Core xhr",
+  ns: "polymer",
+  type: "polymer",
+  description: "core-xhr can be used to perform XMLHttpRequests.\n\n    <core-xhr id=\"xhr\"></core-xhr>\n    ...\n    this.$.xhr.request({url: url, params: params, callback: callback});",
+  dependencies: {
+    bower: {
+      "core-xhr": "Polymer/core-xhr#master"
+    }
+  },
+  ports: {
+    input: {
+      request: {
+        name: "request",
+        description: "Sends a HTTP request to the server and returns the XHR object.",
+        title: "Request",
+        async: true,
+        type: "object",
+        properties: {
+          inOptions: {
+            type: "Object",
+            name: "inOptions",
+            title: "In options",
+            properties: {
+              url: {
+                type: "String",
+                name: "url",
+                description: "The url to which the request is sent.",
+                title: "Url"
+              },
+              method: {
+                type: "String",
+                name: "method",
+                description: "The HTTP method to use, default is GET.",
+                title: "Method"
+              },
+              sync: {
+                type: "boolean",
+                name: "sync",
+                description: "By default, all requests are sent asynchronously. To send synchronous requests, set to true.",
+                title: "Sync"
+              },
+              params: {
+                type: "Object",
+                name: "params",
+                description: "Data to be sent to the server.",
+                title: "Params"
+              },
+              body: {
+                type: "Object",
+                name: "body",
+                description: "The content for the request body for POST method.",
+                title: "Body"
+              },
+              headers: {
+                type: "Object",
+                name: "headers",
+                description: "HTTP request headers.",
+                title: "Headers"
+              },
+              responseType: {
+                type: "String",
+                name: "responseType",
+                description: "The response type. Default is 'text'.",
+                title: "Response type"
+              },
+              withCredentials: {
+                type: "boolean",
+                name: "withCredentials",
+                description: "Whether or not to send credentials on the request. Default is false.",
+                title: "With credentials"
+              },
+              callback: {
+                type: "Object",
+                name: "callback",
+                description: "Called when request is completed.",
+                title: "Callback"
+              }
+            }
+          }
+        }
+      }
+    },
+    output: {}
+  }
+}

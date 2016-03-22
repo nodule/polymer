@@ -1,0 +1,85 @@
+module.exports = {
+  name: "core-selection",
+  title: "Core selection",
+  ns: "polymer",
+  type: "polymer",
+  description: "The `<core-selection>` element is used to manage selection state. It has no\nvisual appearance and is typically used in conjunction with another element.\nFor example, [core-selector](#core-selector)\nuses a `<core-selection>` to manage selection.\n\nTo mark an item as selected, call the `select(item)` method on \n`<core-selection>`. The item itself is an argument to this method.\n\nThe `<core-selection>`element manages selection state for any given set of\nitems. When an item is selected, the `core-select` event is fired.\n\nThe attribute `multi` indicates if multiple items can be selected at once.\n  \nExample:\n \n    <polymer-element name=\"selection-example\">\n       <template>\n         <style>\n           polyfill-next-selector { content: ':host > .selected'; }\n           ::content > .selected {\n             font-weight: bold;\n             font-style: italic;\n           }\n         </style>\n         <ul on-tap=\"{{itemTapAction}}\">\n           <content></content>\n         </ul>\n         <core-selection id=\"selection\" multi\n                         on-core-select=\"{{selectAction}}\"></core-selection>\n       </template>\n       <script>\n         Polymer('selection-example', {\n           itemTapAction: function(e, detail, sender) {\n             this.$.selection.select(e.target);\n           },\n           selectAction: function(e, detail, sender) {\n             detail.item.classList.toggle('selected', detail.isSelected);\n           }\n         });\n       </script>\n    </polymer-element>\n\n    <selection-example>\n      <li>Red</li>\n      <li>Green</li>\n      <li>Blue</li>\n    </selection-example>",
+  dependencies: {
+    bower: {
+      "core-selection": "Polymer/core-selection#master"
+    }
+  },
+  ports: {
+    input: {
+      multi: {
+        name: "multi",
+        description: "If true, multiple selections are allowed.",
+        type: "boolean",
+        "default": false,
+        title: "Multi"
+      },
+      getSelection: {
+        name: "getSelection",
+        description: "Retrieves the selected item(s).\ngetSelection will return an array, otherwise it will return \nthe selected item or undefined if there is no selection.",
+        title: "Get selection",
+        async: true
+      },
+      isSelected: {
+        name: "isSelected",
+        description: "Indicates if a given item is selected.",
+        title: "Is selected",
+        async: true,
+        type: "object",
+        properties: {
+          item: {
+            type: "any",
+            name: "item",
+            description: "The item whose selection state should be checked.",
+            title: "Item"
+          }
+        }
+      },
+      select: {
+        name: "select",
+        description: "Set the selection state for a given `item`. If the multi property\nis true, then the selected state of `item` will be toggled; otherwise\nthe `item` will be selected.",
+        title: "Select",
+        async: true
+      },
+      toggle: {
+        name: "toggle",
+        description: "Toggles the selection state for `item`.",
+        title: "Toggle",
+        async: true
+      }
+    },
+    output: {
+      "core-select": {
+        name: "core-select",
+        description: "Fired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.",
+        title: "Core select",
+        type: "object",
+        properties: {
+          detail: {
+            type: "Object",
+            name: "detail",
+            title: "Detail",
+            properties: {
+              isSelected: {
+                type: "boolean",
+                name: "isSelected",
+                description: "true for selection and false for de-selection",
+                title: "Is selected"
+              },
+              item: {
+                type: "Object",
+                name: "item",
+                description: "the item element",
+                title: "Item"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
